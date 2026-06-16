@@ -1,0 +1,1389 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rookie2 Portfolio</title>
+  <style>
+    :root {
+      --page-white: #ffffff;
+      --page-black: #09090b;
+      --copy-black: #000000;
+      --copy-white: #ffffff;
+      --content-max: 1920px;
+      --section-max: 1200px;
+      --section-side: 80px;
+      --section-gutter: 160px;
+      --section-width: min(calc(100vw - var(--section-gutter)), var(--section-max));
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--copy-black);
+      background: var(--page-white);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      margin: 0;
+      width: 100%;
+      background: var(--page-white);
+      scroll-behavior: auto;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      width: 100%;
+      min-width: 320px;
+      background: var(--page-white);
+      overflow-x: clip;
+      overscroll-behavior-y: none;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+      word-break: keep-all;
+      overflow-wrap: normal;
+    }
+
+    img,
+    video {
+      display: block;
+      max-width: 100%;
+    }
+
+    .landing {
+      width: 100%;
+      background: var(--page-white);
+    }
+
+    .hero-intro {
+      --hero-height: min(56.25vw, 1080px);
+      position: relative;
+      background: var(--page-white);
+    }
+
+    .hero {
+      --hero-edge: 80px;
+      --hero-top: 80px;
+      --hero-bottom: 80px;
+      --hero-title-size: 112px;
+      --hero-detail-width: 252px;
+      --hero-detail-gap: 60px;
+      --hero-eyebrow-size: 24px;
+      --hero-body-size: 16px;
+      --hero-mark-width: 118px;
+      --hero-mark-height: 12px;
+      position: relative;
+      width: 100%;
+      height: var(--hero-height);
+      overflow: hidden;
+      background: transparent;
+      isolation: isolate;
+      z-index: 1;
+    }
+
+    .hero-intro__background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: var(--hero-height);
+      overflow: hidden;
+      background: var(--page-white);
+      transform: translate3d(0, var(--hero-bg-offset, 0px), 0);
+      will-change: transform;
+    }
+
+    .hero__media,
+    .hero__media-color {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: min(100vw, var(--content-max));
+      height: var(--hero-height);
+      transform: translateX(-50%);
+    }
+
+    .hero__media img,
+    .hero__media-color img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero__media img,
+    .hero__media-color img {
+      object-fit: fill;
+      object-position: center center;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero__media-color {
+      opacity: 0;
+      mix-blend-mode: normal;
+      z-index: 1;
+      animation: hero-color-pulse 5s linear infinite;
+    }
+
+    @keyframes hero-color-pulse {
+      0%,
+      40% {
+        opacity: 0;
+      }
+
+      70% {
+        opacity: 0.6;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      width: min(100%, var(--content-max));
+      height: 100%;
+      margin: 0 auto;
+      padding: var(--hero-top) var(--hero-edge) var(--hero-bottom);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .hero__title {
+      margin: 0;
+      font-family: "A Type OTF", "A_Type_OTF", "A Type", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: var(--hero-title-size);
+      line-height: 0.94;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .hero__detail {
+      width: var(--hero-detail-width);
+      display: flex;
+      flex-direction: column;
+      gap: var(--hero-detail-gap);
+    }
+
+    .hero__eyebrow {
+      margin: 0 0 24px;
+      font-size: var(--hero-eyebrow-size);
+      line-height: 1;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .hero__body {
+      margin: 0;
+      font-size: var(--hero-body-size);
+      line-height: 1.2;
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .hero__mark {
+      width: var(--hero-mark-width);
+      height: var(--hero-mark-height);
+      object-fit: contain;
+    }
+
+    @media (max-width: 1600px) {
+      .hero {
+        --hero-title-size: 95px;
+        --hero-detail-width: 214px;
+        --hero-detail-gap: 51px;
+        --hero-eyebrow-size: 20px;
+        --hero-body-size: 14px;
+        --hero-mark-width: 100px;
+        --hero-mark-height: 10px;
+      }
+
+      .hero__eyebrow {
+        margin-bottom: 20px;
+      }
+
+    }
+
+    .intro {
+      position: relative;
+      z-index: 2;
+      height: clamp(355px, calc(28.3125vw - 67px), 477px);
+      overflow: hidden;
+      background: var(--page-black);
+      color: var(--copy-white);
+    }
+
+    @media (min-width: 1600px) {
+      .intro {
+        height: clamp(406px, calc(28.3125vw - 47px), 497px);
+      }
+    }
+
+    .intro__copy {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: var(--section-width);
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .intro__title {
+      margin: 0;
+      font-size: clamp(34px, 3.125vw, 60px);
+      line-height: 1.1;
+      letter-spacing: 0;
+      font-weight: 600;
+      color: #f9f9fa;
+    }
+
+    .intro__body {
+      margin: clamp(18px, 1.667vw, 32px) auto 0;
+      max-width: 900px;
+      font-size: clamp(16px, 1.25vw, 24px);
+      line-height: 1.4;
+      letter-spacing: 0;
+      font-weight: 400;
+      color: rgba(249, 249, 250, 0.9);
+    }
+
+    @media (min-width: 561px) {
+      .intro__title {
+        font-size: clamp(42px, 3.125vw, 60px);
+      }
+
+      .intro__body {
+        margin-top: clamp(28px, 2.083vw, 40px);
+      }
+    }
+
+    @media (max-width: 1600px) {
+      .intro__body {
+        max-width: 860px;
+      }
+    }
+
+    .intro-motion {
+      position: relative;
+      z-index: 2;
+      height: 500svh;
+      min-height: 2600px;
+      background: #050506;
+    }
+
+    .intro-motion__stage {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100svh;
+      overflow: hidden;
+      background: #050506;
+    }
+
+    .intro-motion__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      background: #050506;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .intro-motion__copy {
+      position: absolute;
+      top: 50%;
+      left: calc((100vw - var(--section-width)) / 2);
+      z-index: 2;
+      width: min(600px, var(--section-width));
+      margin: 0;
+      color: #f9f9fa;
+      font-size: clamp(24px, 1.875vw, 36px);
+      line-height: 1.4;
+      letter-spacing: 0;
+      font-weight: 600;
+      opacity: var(--motion-copy-opacity, 0);
+      transform: translate3d(0, calc(-50% + var(--motion-copy-y, 80px)), 0);
+      pointer-events: none;
+      will-change: opacity, transform;
+    }
+
+    .section03 {
+      --visual-inner-width: var(--section-width);
+      --visual-card-width: var(--section-width);
+      --visual-card-height: 768px;
+      --visual-card-gap: 28px;
+      --visual-radius: 36px;
+      --visual-title-size: 60px;
+      --visual-card-title-size: 36px;
+      --visual-label-size: 24px;
+      --visual-card-padding: 80px;
+      position: relative;
+      z-index: 2;
+      min-height: 100svh;
+      padding: 240px 0 58px;
+      overflow: hidden;
+      background: #0d0b0b;
+      color: #f9f9fa;
+    }
+
+    .visual-principles__inner {
+      width: var(--visual-inner-width);
+      margin: 0 auto;
+    }
+
+    .visual-principles__title {
+      margin: 0 0 40px;
+      font-size: var(--visual-title-size);
+      line-height: 1.1;
+      letter-spacing: 0;
+      font-weight: 600;
+      color: #f9f9fa;
+      white-space: nowrap;
+    }
+
+    .visual-principles__viewport {
+      width: 100vw;
+      margin-left: calc((100vw - var(--visual-inner-width)) / -2);
+      overflow: visible;
+    }
+
+    .visual-principles__track {
+      display: flex;
+      gap: var(--visual-card-gap);
+      width: max-content;
+      padding-left: calc((100vw - var(--visual-inner-width)) / 2);
+      padding-right: calc((100vw - var(--visual-inner-width)) / 2);
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      transform: translate3d(var(--visual-track-x, 0px), 0, 0);
+      will-change: transform;
+    }
+
+    .visual-principles__track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .visual-principles__track.is-dragging {
+      cursor: grabbing;
+    }
+
+    .visual-card {
+      position: relative;
+      flex: 0 0 var(--visual-card-width);
+      width: var(--visual-card-width);
+      height: var(--visual-card-height);
+      overflow: hidden;
+      border-radius: var(--visual-radius);
+      background: #19191a;
+    }
+
+    .visual-card--black {
+      background: #000000;
+    }
+
+    .visual-card__image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .visual-card__body {
+      position: absolute;
+      inset: var(--visual-card-padding);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visual-card__body--principles {
+      gap: clamp(44px, 5.85vw, 80px);
+    }
+
+    .visual-card__body--vision {
+      align-items: center;
+      gap: clamp(34px, 4.39vw, 60px);
+    }
+
+    .visual-card__body--intent {
+      inset: auto auto 15.625% 10%;
+      width: min(600px, 50%);
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
+    .visual-card__description {
+      margin: 0;
+      max-width: 600px;
+      color: rgba(249, 249, 250, 0.9);
+      font-size: clamp(16px, 2vw, 24px);
+      line-height: 1.4;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+
+    .visual-card__art-wrap {
+      position: relative;
+      width: min(900px, 100%);
+      aspect-ratio: 900 / 282;
+    }
+
+    .visual-card__art {
+      width: 100%;
+      height: auto;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .visual-card__art--principles {
+      aspect-ratio: 900 / 282;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .visual-card__art--vision {
+      width: min(1032px, 100%);
+    }
+
+    .visual-card__label {
+      position: absolute;
+      top: 50%;
+      margin: 0;
+      color: #000000;
+      font-size: max(10px, var(--visual-label-size));
+      line-height: 1.3;
+      letter-spacing: 0;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+      transform: translate(-50%, -50%);
+    }
+
+    .visual-card__label--left {
+      left: 15.55%;
+    }
+
+    .visual-card__label--center {
+      left: 50%;
+    }
+
+    .visual-card__label--right {
+      left: 84.5%;
+    }
+
+    .visual-card__title {
+      margin: 0;
+      color: #f9f9fa;
+      font-size: var(--visual-card-title-size);
+      line-height: 1.4;
+      letter-spacing: 0;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .visual-card--empty::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: #19191a;
+    }
+
+    .visual-principles__indicator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      width: var(--visual-card-width);
+      margin: 40px auto 0;
+    }
+
+    .visual-principles__dot {
+      width: 12px;
+      height: 12px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      appearance: none;
+      background: #494951;
+      cursor: pointer;
+      transition: width 240ms ease, background-color 240ms ease, transform 240ms ease;
+    }
+
+    .visual-principles__dot:focus-visible {
+      outline: 2px solid rgba(249, 249, 250, 0.65);
+      outline-offset: 4px;
+    }
+
+    .visual-principles__dot:hover {
+      background: #686871;
+      transform: scale(1.08);
+    }
+
+    .visual-principles__dot.is-active {
+      width: 40px;
+      background: #f5f5fb;
+      transform: scale(1);
+    }
+
+    @media (max-width: 1200px) {
+      .hero {
+        --hero-edge: 40px;
+        --hero-top: 40px;
+        --hero-bottom: 40px;
+        --hero-title-size: 70px;
+        --hero-detail-width: 214px;
+        --hero-detail-gap: 51px;
+        --hero-eyebrow-size: 20px;
+        --hero-body-size: 14px;
+        --hero-mark-width: 100px;
+        --hero-mark-height: 10px;
+      }
+
+      .hero__eyebrow {
+        margin-bottom: 20px;
+      }
+
+      .intro {
+        height: 397px;
+      }
+
+      .intro__copy {
+        bottom: 0;
+      }
+
+      .intro__body {
+        max-width: 760px;
+      }
+
+      .intro-motion {
+        height: 460svh;
+        min-height: 2300px;
+      }
+    }
+
+    @media (max-width: 1600px) {
+      :root {
+        --section-side: 64px;
+        --section-gutter: 128px;
+      }
+
+      .section03 {
+        --visual-card-width: var(--section-width);
+        --visual-card-height: 680px;
+        --visual-card-gap: 24px;
+        --visual-radius: 31px;
+        --visual-title-size: 51px;
+        --visual-card-title-size: 31px;
+        --visual-label-size: 20px;
+        --visual-card-padding: 82px;
+        padding-top: 204px;
+        padding-bottom: 58px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      :root {
+        --section-side: 40px;
+        --section-gutter: 80px;
+      }
+
+      .section03 {
+        --visual-card-width: calc(100vw - 160px);
+        --visual-card-height: clamp(430px, 51.667vw, 620px);
+        --visual-card-gap: 22px;
+        --visual-radius: 28px;
+        --visual-title-size: 42px;
+        --visual-card-title-size: 26px;
+        --visual-label-size: 18px;
+        --visual-card-padding: 66px;
+        padding-top: 150px;
+        padding-bottom: 56px;
+      }
+
+      .visual-principles__title {
+        margin-bottom: 34px;
+      }
+
+      .visual-principles__indicator {
+        margin-top: 34px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --section-side: 24px;
+        --section-gutter: 48px;
+      }
+
+      .section03 {
+        --visual-card-width: calc(100vw - 72px);
+        --visual-card-height: 400px;
+        --visual-card-gap: 16px;
+        --visual-radius: 24px;
+        --visual-title-size: 34px;
+        --visual-card-title-size: 20px;
+        --visual-label-size: clamp(10px, 2.8vw, 11px);
+        --visual-card-padding: 28px;
+        padding-top: 96px;
+        padding-bottom: 48px;
+      }
+
+      .visual-principles__title {
+        margin-bottom: 28px;
+        white-space: normal;
+      }
+
+      .visual-card__body--principles {
+        gap: 44px;
+      }
+
+      .visual-card__body--vision {
+        gap: 28px;
+      }
+
+      .visual-card__body--intent {
+        inset: auto 28px 36px 28px;
+        width: auto;
+        gap: 16px;
+      }
+
+      .visual-card__description {
+        max-width: 420px;
+        font-size: 13px;
+      }
+
+      .visual-principles__indicator {
+        width: var(--visual-card-width);
+        margin-top: 28px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .hero-intro {
+        --hero-height: 600px;
+      }
+
+      .hero {
+        --hero-edge: 24px;
+        --hero-top: 80px;
+        --hero-bottom: 40px;
+        --hero-title-size: 68px;
+        --hero-detail-width: 252px;
+        --hero-detail-gap: 0px;
+        --hero-eyebrow-size: 20px;
+        --hero-body-size: 16px;
+        --hero-mark-width: 96px;
+        --hero-mark-height: 10px;
+        min-height: 0;
+        max-height: none;
+      }
+
+      .hero__media,
+      .hero__media-color {
+        top: auto;
+        bottom: 0;
+        left: calc(50% - 5px);
+        width: 532px;
+        height: 300px;
+        transform: translateX(-50%);
+      }
+
+      .hero__media img {
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      .hero__media-color img {
+        object-fit: contain;
+        object-position: center center;
+      }
+
+      .hero__content {
+        display: block;
+        padding: 0;
+      }
+
+      .hero__title {
+        position: absolute;
+        top: 130px;
+        left: 50%;
+        width: 252px;
+        text-align: center;
+        line-height: 0.705;
+        transform: translateX(-50%);
+      }
+
+      .hero__detail {
+        display: contents;
+      }
+
+      .hero__detail-copy {
+        position: absolute;
+        top: 218px;
+        left: 50%;
+        width: var(--hero-detail-width);
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
+      .hero__eyebrow {
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .hero__body {
+        line-height: 1.2;
+        font-weight: 500;
+        color: #818590;
+      }
+
+      .hero__body-line {
+        display: block;
+        white-space: nowrap;
+      }
+
+      .hero__mark {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        filter: none;
+      }
+
+      .intro {
+        height: 400px;
+      }
+
+      .intro__copy {
+        width: var(--section-width);
+        bottom: 0;
+      }
+
+      .intro__body {
+        max-width: 350px;
+      }
+
+      .intro-motion__video {
+        object-position: center center;
+      }
+
+      .intro-motion__copy {
+        left: calc((100vw - var(--section-width)) / 2);
+        width: var(--section-width);
+        font-size: 24px;
+      }
+
+      .section03 {
+        --visual-card-width: calc(100vw - 72px);
+        --visual-card-height: 360px;
+        --visual-card-title-size: 18px;
+        --visual-label-size: clamp(10px, 2.8vw, 11px);
+        --visual-card-padding: 24px;
+      }
+
+      .visual-card__body--intent {
+        inset: auto 24px 28px 24px;
+        gap: 12px;
+      }
+
+      .visual-card__description {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="landing">
+    <div class="hero-intro">
+      <div class="hero-intro__background" aria-hidden="true">
+        <picture class="hero__media">
+          <img src="./assets/images/HeroImg.png" alt="">
+        </picture>
+        <picture class="hero__media-color">
+          <img src="./assets/images/HeroImg_Color.png" alt="">
+        </picture>
+      </div>
+
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__content">
+          <h1 class="hero__title" id="hero-title">Rookie2</h1>
+          <div class="hero__detail">
+            <div class="hero__detail-copy">
+              <p class="hero__eyebrow">Autonomy at Scale</p>
+              <p class="hero__body">
+                <span class="hero__body-line">Scaling autonomous delivery across</span>
+                <span class="hero__body-line">real-world buildings,</span>
+                <span class="hero__body-line">one seamless journey at a time.</span>
+              </p>
+            </div>
+            <img class="hero__mark" src="./assets/images/NaverLabsMark.svg" alt="NAVER LABS">
+          </div>
+        </div>
+      </section>
+
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="intro__copy">
+          <h2 class="intro__title" id="intro-title">Moving What Matters</h2>
+          <p class="intro__body">ROOKIE2 automates countless movements throughout modern buildings, allowing people to focus on what matters most. Designed to make even the smallest delivery feel seamless, efficient, and effortless.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="intro-motion" id="introMotion" aria-label="Rookie2 intro motion">
+      <div class="intro-motion__stage">
+        <video
+          id="introMotionVideo"
+          class="intro-motion__video"
+          src="./assets/media/Intro_mv.mp4"
+          poster="./assets/images/Intro_mv_poster.png"
+          preload="auto"
+          muted
+          playsinline
+          aria-hidden="true"
+        ></video>
+        <p class="intro-motion__copy" aria-live="off">Every delivery is a small movement. Together, they shape the rhythm of a building. Rookie2 is designed to keep that rhythm moving.</p>
+      </div>
+    </section>
+
+    <section class="section03 visual-principles" aria-labelledby="visual-principles-title">
+      <div class="visual-principles__inner">
+        <h2 class="visual-principles__title" id="visual-principles-title">Visual Principles</h2>
+        <div class="visual-principles__viewport" data-visual-carousel>
+          <div class="visual-principles__track" data-visual-track>
+            <article class="visual-card visual-card--black" data-visual-card data-card-label="Three Principles Behind Rookie2" aria-label="Three Principles Behind Rookie2">
+              <div class="visual-card__body visual-card__body--principles">
+                <div class="visual-card__art-wrap">
+                  <img class="visual-card__art visual-card__art--principles" src="./assets/images/visual-principles/card-principles-graphic.svg" alt="">
+                  <p class="visual-card__label visual-card__label--left">Lively<br>Interaction</p>
+                  <p class="visual-card__label visual-card__label--center">Connected<br>Experience</p>
+                  <p class="visual-card__label visual-card__label--right">Approachable<br>Future</p>
+                </div>
+                <h3 class="visual-card__title">Three Principles Behind Rookie2</h3>
+              </div>
+            </article>
+
+            <article class="visual-card visual-card--black" data-visual-card data-card-label="Shaping the Vision" aria-label="Shaping the Vision">
+              <div class="visual-card__body visual-card__body--vision">
+                <h3 class="visual-card__title">Shaping the Vision</h3>
+                <img class="visual-card__art visual-card__art--vision" src="./assets/images/visual-principles/card-vision-grid.png" alt="">
+              </div>
+            </article>
+
+            <article class="visual-card visual-card--intent" data-visual-card data-card-label="Intent Made Visible" aria-label="Intent Made Visible">
+              <img class="visual-card__image" src="./assets/images/visual-principles/card-intent-visual.jpg" alt="">
+              <div class="visual-card__body visual-card__body--intent">
+                <p class="visual-card__description">The display translates the robot’s intent, status, and emotion into a visual language that feels intuitive, approachable, and easy to understand.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="visual-principles__indicator" data-visual-indicator role="tablist" aria-label="Visual Principles cards"></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const heroSection = document.querySelector(".hero");
+    const heroBackground = document.querySelector(".hero-intro__background");
+    const motionSection = document.getElementById("introMotion");
+    const motionCopy = document.querySelector(".intro-motion__copy");
+    const video = document.getElementById("introMotionVideo");
+    const visualCarousel = document.querySelector("[data-visual-carousel]");
+    const visualTrack = document.querySelector("[data-visual-track]");
+    const visualIndicator = document.querySelector("[data-visual-indicator]");
+    const COPY_REVEAL_START_SECONDS = 1.6;
+    const COPY_REVEAL_DURATION_SECONDS = 0.85;
+    const COPY_REVEAL_DISTANCE = 80;
+    const VISUAL_DRAG_THRESHOLD_RATIO = 0.15;
+
+    let duration = 0;
+    let progress = 0;
+    let targetTime = 0;
+    let currentTime = 0;
+    let ticking = false;
+    let hasMetadata = false;
+    let isPrimed = false;
+    let lastTouchY = 0;
+    let lastScrollY = -1;
+    let visualScrollTimer = 0;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
+
+    function isVisualCarouselTarget(target) {
+      return visualCarousel && target instanceof Element && Boolean(target.closest("[data-visual-carousel]"));
+    }
+
+    function getMaxScrollY() {
+      return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    }
+
+    function getMotionProgress() {
+      const start = motionSection.offsetTop;
+      const end = motionSection.offsetTop + motionSection.offsetHeight - window.innerHeight;
+
+      if (end <= start) {
+        return 0;
+      }
+
+      return clamp((window.scrollY - start) / (end - start), 0, 1);
+    }
+
+    function updateHeroBackground() {
+      const heroHeight = heroSection ? heroSection.offsetHeight : 0;
+      const introTravel = clamp(window.scrollY, 0, heroHeight);
+      const offset = introTravel * -0.3;
+      heroBackground.style.setProperty("--hero-bg-offset", `${offset}px`);
+    }
+
+    function updateScrollState() {
+      updateHeroBackground();
+      updateVideoTarget();
+    }
+
+    function updateVideoTarget() {
+      progress = getMotionProgress();
+
+      if (!hasMetadata || !duration) {
+        updateMotionCopy(0);
+        return;
+      }
+
+      targetTime = progress * duration;
+
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(scrub);
+      }
+    }
+
+    function updateMotionCopy(videoTime) {
+      if (!motionCopy) {
+        return;
+      }
+
+      const revealStart = duration
+        ? Math.min(COPY_REVEAL_START_SECONDS, Math.max(0, duration - COPY_REVEAL_DURATION_SECONDS))
+        : COPY_REVEAL_START_SECONDS;
+      const revealDuration = duration
+        ? Math.max(0.2, Math.min(COPY_REVEAL_DURATION_SECONDS, duration - revealStart))
+        : COPY_REVEAL_DURATION_SECONDS;
+      const rawProgress = clamp((videoTime - revealStart) / revealDuration, 0, 1);
+      const easedProgress = easeOutCubic(rawProgress);
+      const offset = (1 - easedProgress) * COPY_REVEAL_DISTANCE;
+
+      motionCopy.style.setProperty("--motion-copy-opacity", easedProgress.toFixed(4));
+      motionCopy.style.setProperty("--motion-copy-y", `${offset.toFixed(2)}px`);
+    }
+
+    function scrub() {
+      ticking = false;
+
+      if (!hasMetadata || !duration) {
+        return;
+      }
+
+      currentTime += (targetTime - currentTime) * 0.35;
+
+      if (Math.abs(targetTime - currentTime) < 0.01) {
+        currentTime = targetTime;
+      }
+
+      video.currentTime = clamp(currentTime, 0, duration);
+      updateMotionCopy(currentTime);
+
+      if (currentTime !== targetTime) {
+        ticking = true;
+        requestAnimationFrame(scrub);
+      }
+    }
+
+    function syncScrollProgress() {
+      if (window.scrollY !== lastScrollY) {
+        lastScrollY = window.scrollY;
+        updateScrollState();
+      }
+
+      requestAnimationFrame(syncScrollProgress);
+    }
+
+    function initializeVideo() {
+      duration = video.duration || 0;
+      hasMetadata = true;
+      video.pause();
+      updateMotionCopy(0);
+      updateScrollState();
+    }
+
+    function primeVideo() {
+      if (isPrimed) {
+        return;
+      }
+
+      isPrimed = true;
+
+      const playPromise = video.play();
+
+      if (playPromise) {
+        playPromise.then(() => {
+          video.pause();
+          updateScrollState();
+        }).catch(() => {
+          updateScrollState();
+        });
+      }
+    }
+
+    function scrollToPosition(nextY) {
+      window.scrollTo(0, clamp(nextY, 0, getMaxScrollY()));
+      updateScrollState();
+    }
+
+    function handleWheel(event) {
+      if (isVisualCarouselTarget(event.target) && Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+        return;
+      }
+
+      event.preventDefault();
+      primeVideo();
+      scrollToPosition(window.scrollY + event.deltaY);
+    }
+
+    function handleKeydown(event) {
+      const smallStep = Math.max(48, window.innerHeight * 0.08);
+      const largeStep = window.innerHeight * 0.82;
+      const keyMap = {
+        ArrowDown: smallStep,
+        ArrowUp: -smallStep,
+        PageDown: largeStep,
+        PageUp: -largeStep,
+        " ": largeStep
+      };
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        primeVideo();
+        scrollToPosition(0);
+        return;
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        primeVideo();
+        scrollToPosition(getMaxScrollY());
+        return;
+      }
+
+      if (Object.prototype.hasOwnProperty.call(keyMap, event.key)) {
+        event.preventDefault();
+        primeVideo();
+        scrollToPosition(window.scrollY + keyMap[event.key]);
+      }
+    }
+
+    function handleTouchStart(event) {
+      if (isVisualCarouselTarget(event.target)) {
+        return;
+      }
+
+      lastTouchY = event.touches[0].clientY;
+    }
+
+    function handleTouchMove(event) {
+      if (isVisualCarouselTarget(event.target)) {
+        return;
+      }
+
+      event.preventDefault();
+      primeVideo();
+      const nextTouchY = event.touches[0].clientY;
+      const deltaY = lastTouchY - nextTouchY;
+      lastTouchY = nextTouchY;
+      scrollToPosition(window.scrollY + deltaY);
+    }
+
+    function initializeVisualCarousel() {
+      if (!visualCarousel || !visualTrack || !visualIndicator) {
+        return;
+      }
+
+      const cards = Array.from(visualTrack.querySelectorAll("[data-visual-card]"));
+      let activeIndex = 0;
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartOffset = 0;
+      let dragStartIndex = 0;
+      let currentOffset = 0;
+      let snapAnimationFrame = 0;
+
+      if (!cards.length) {
+        return;
+      }
+
+      visualIndicator.innerHTML = "";
+
+      const buttons = cards.map((card, index) => {
+        const button = document.createElement("button");
+        const label = card.dataset.cardLabel || `Card ${index + 1}`;
+
+        button.className = "visual-principles__dot";
+        button.type = "button";
+        button.setAttribute("role", "tab");
+        button.setAttribute("aria-label", label);
+        button.setAttribute("aria-selected", "false");
+        button.addEventListener("click", () => {
+          animateToVisualCard(index);
+        });
+        visualIndicator.appendChild(button);
+        return button;
+      });
+
+      function getCardStep() {
+        if (cards.length > 1) {
+          return cards[1].offsetLeft - cards[0].offsetLeft;
+        }
+
+        return cards[0].offsetWidth;
+      }
+
+      function getCenterOffset() {
+        const firstCard = cards[0];
+
+        if (!firstCard) {
+          return 0;
+        }
+
+        const firstCardCenter = firstCard.offsetLeft + firstCard.offsetWidth / 2;
+        return window.innerWidth / 2 - firstCardCenter;
+      }
+
+      function getTargetOffset(index) {
+        return getCenterOffset() - getCardStep() * clamp(index, 0, cards.length - 1);
+      }
+
+      function getMinOffset() {
+        return getTargetOffset(cards.length - 1);
+      }
+
+      function getMaxOffset() {
+        return getTargetOffset(0);
+      }
+
+      function getNearestIndex(offset = currentOffset) {
+        const step = getCardStep();
+
+        if (!step) {
+          return 0;
+        }
+
+        return clamp(Math.round((getCenterOffset() - offset) / step), 0, cards.length - 1);
+      }
+
+      function setActiveIndex(index) {
+        activeIndex = clamp(index, 0, cards.length - 1);
+
+        buttons.forEach((button, buttonIndex) => {
+          const isActive = buttonIndex === activeIndex;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-selected", String(isActive));
+        });
+      }
+
+      function getBoundedOffset(offset) {
+        return clamp(offset, getMinOffset(), getMaxOffset());
+      }
+
+      function cancelSnapAnimation() {
+        if (snapAnimationFrame) {
+          cancelAnimationFrame(snapAnimationFrame);
+          snapAnimationFrame = 0;
+        }
+
+        visualTrack.classList.remove("is-settling");
+      }
+
+      function renderTrackOffset(offset) {
+        currentOffset = offset;
+        visualTrack.style.setProperty("--visual-track-x", `${offset.toFixed(2)}px`);
+        setActiveIndex(getNearestIndex(offset));
+      }
+
+      function renderDragOffset(offset) {
+        const minOffset = getMinOffset();
+        const maxOffset = getMaxOffset();
+        let nextOffset = offset;
+
+        if (nextOffset > maxOffset) {
+          nextOffset = maxOffset + (nextOffset - maxOffset) * 0.24;
+        } else if (nextOffset < minOffset) {
+          nextOffset = minOffset + (nextOffset - minOffset) * 0.24;
+        }
+
+        renderTrackOffset(nextOffset);
+      }
+
+      function jumpToVisualCard(index) {
+        cancelSnapAnimation();
+        renderTrackOffset(getTargetOffset(index));
+        setActiveIndex(index);
+      }
+
+      function animateToVisualCard(index) {
+        const targetIndex = clamp(index, 0, cards.length - 1);
+        const start = currentOffset;
+        const end = getTargetOffset(targetIndex);
+        const distance = end - start;
+        const duration = clamp(Math.abs(distance) * 0.42, 240, 560);
+        const startedAt = performance.now();
+
+        cancelSnapAnimation();
+
+        if (Math.abs(distance) < 0.5) {
+          jumpToVisualCard(targetIndex);
+          return;
+        }
+
+        visualTrack.classList.add("is-settling");
+
+        function step(now) {
+          const elapsed = now - startedAt;
+          const progressValue = clamp(elapsed / duration, 0, 1);
+          const easedValue = easeOutCubic(progressValue);
+
+          renderTrackOffset(start + distance * easedValue);
+
+          if (progressValue < 1) {
+            snapAnimationFrame = requestAnimationFrame(step);
+            return;
+          }
+
+          renderTrackOffset(end);
+          visualTrack.classList.remove("is-settling");
+          snapAnimationFrame = 0;
+          setActiveIndex(targetIndex);
+        }
+
+        snapAnimationFrame = requestAnimationFrame(step);
+      }
+
+      function snapToNearest() {
+        animateToVisualCard(getNearestIndex());
+      }
+
+      function snapFromDrag(releaseX) {
+        const dragDistance = releaseX - dragStartX;
+        const threshold = getCardStep() * VISUAL_DRAG_THRESHOLD_RATIO;
+        let targetIndex = getNearestIndex();
+
+        if (Math.abs(dragDistance) >= threshold) {
+          targetIndex = dragStartIndex + (dragDistance < 0 ? 1 : -1);
+        }
+
+        animateToVisualCard(clamp(targetIndex, 0, cards.length - 1));
+      }
+
+      function handlePointerDown(event) {
+        if (event.pointerType === "mouse" && event.button !== 0) {
+          return;
+        }
+
+        event.preventDefault();
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartOffset = currentOffset;
+        dragStartIndex = getNearestIndex(currentOffset);
+        window.clearTimeout(visualScrollTimer);
+        cancelSnapAnimation();
+        visualTrack.classList.add("is-dragging");
+        visualTrack.setPointerCapture(event.pointerId);
+      }
+
+      function handlePointerMove(event) {
+        if (!isDragging) {
+          return;
+        }
+
+        event.preventDefault();
+        renderDragOffset(dragStartOffset + event.clientX - dragStartX);
+      }
+
+      function handlePointerUp(event) {
+        if (!isDragging) {
+          return;
+        }
+
+        isDragging = false;
+        visualTrack.classList.remove("is-dragging");
+
+        if (visualTrack.hasPointerCapture(event.pointerId)) {
+          visualTrack.releasePointerCapture(event.pointerId);
+        }
+
+        snapFromDrag(event.clientX);
+      }
+
+      function handleVisualWheel(event) {
+        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) {
+          return;
+        }
+
+        event.preventDefault();
+        window.clearTimeout(visualScrollTimer);
+        cancelSnapAnimation();
+        renderTrackOffset(getBoundedOffset(currentOffset - event.deltaX));
+        visualScrollTimer = window.setTimeout(snapToNearest, 140);
+      }
+
+      visualTrack.addEventListener("pointerdown", handlePointerDown);
+      visualTrack.addEventListener("pointermove", handlePointerMove);
+      visualTrack.addEventListener("pointerup", handlePointerUp);
+      visualTrack.addEventListener("pointercancel", handlePointerUp);
+      visualTrack.addEventListener("wheel", handleVisualWheel, { passive: false });
+      window.addEventListener("resize", () => {
+        jumpToVisualCard(activeIndex);
+      });
+
+      setActiveIndex(0);
+      jumpToVisualCard(0);
+    }
+
+    video.addEventListener("loadedmetadata", initializeVideo, { once: true });
+    video.addEventListener("loadeddata", updateScrollState, { once: true });
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("keydown", handleKeydown);
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    window.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    video.load();
+    updateHeroBackground();
+    initializeVisualCarousel();
+    requestAnimationFrame(syncScrollProgress);
+
+    if (video.readyState >= 1) {
+      initializeVideo();
+    }
+  </script>
+</body>
+</html>
