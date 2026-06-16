@@ -14,7 +14,7 @@
 - `assets/images/visual-principles/card-intent-visual.jpg`: Visual Principles 3번 카드 `Intent Made Visible`의 배경 비주얼 이미지입니다. 설명 텍스트는 HTML/CSS로 따로 얹습니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
-- `History/index_20260617_001454.html`: 2026-06-17 00:14 기준 현재 `index.html` 스냅샷입니다. 히스토리 폴더는 최신 확인용 스냅샷 1개만 유지합니다.
+- `History/index_20260617_002500.html`: 2026-06-17 00:25 기준 현재 `index.html` 스냅샷입니다. 히스토리 폴더는 최신 확인용 스냅샷 1개만 유지합니다.
 
 ## 2026-06-17 최종 점검
 
@@ -25,6 +25,7 @@
 - Visual Principles 카드 폭은 모든 반응형 지점에서 `var(--section-width)`를 사용합니다. 활성 카드, 타이틀, 인디케이터의 좌측 기준선은 항상 같아야 합니다.
 - Visual Principles 터치 스와이프는 방향 잠금 로직을 사용합니다. 가로 의도가 확인되면 카드 스와이프, 세로 의도가 크면 페이지 스크롤을 유지합니다.
 - Intro motion 터치 스크럽은 `233svh`, 최소 `1320px` 기준입니다. 더 빠르거나 느리게 조정할 때는 높이값을 바꾸는 방식으로 접근합니다.
+- Hero 태블릿 구간 `max-width: 1200px`은 상단 타이틀과 하단 요소를 이전 기준보다 약 12% 줄인 값으로 사용합니다. 하단 서브텍스트는 `max-width: 150px`, `line-height: 1.4`입니다.
 
 제거했거나 제거할 수 있는 항목:
 
@@ -103,7 +104,9 @@ Hero 반응형 기준:
 - 기본: 1920 기준, 배경은 1920 이상 커지지 않음
 - `max-width: 1600px`: Hero 텍스트/하단 요소 약 85% 스케일
 - `max-width: 1200px`: 태블릿 스케일, 좌측 여백 40px
-  - 하단 detail 요소는 배경과 텍스트가 겹치지 않도록 width `180px`로 좁힙니다. gap `51px`, eyebrow `20px`, body `14px`, logo `100 x 10`
+  - 상단 타이틀은 `62px`입니다.
+  - 하단 detail 요소는 배경과 텍스트가 겹치지 않도록 width `158px`로 좁힙니다. gap `45px`, eyebrow `18px`, body `12px`, logo `88 x 9`
+  - 하단 body 서브텍스트는 width `150px`, `line-height: 1.4`입니다.
 - `max-width: 560px`: 모바일
   - Figma `Hero_Mobile` 프레임 기준: `390 x 600`
   - Hero 높이 `600px`
