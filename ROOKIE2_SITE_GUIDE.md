@@ -226,7 +226,7 @@ Intro motion overlay 카피 기준:
 - `scrub()`: 영상 currentTime을 targetTime으로 부드럽게 따라가게 함. 터치 환경에서는 더 빠르게 따라붙도록 보간값을 높입니다.
 - `scrollToPosition()`: wheel/key 커스텀 스크롤 처리
 
-현재 wheel/key 이벤트는 `preventDefault()`를 사용해 직접 scroll position을 제어합니다. 반면 모바일/태블릿 터치는 브라우저의 네이티브 관성 스크롤을 유지하기 위해 `touchmove`를 가로채지 않습니다. 첫 `touchstart`에서는 영상 프라임만 수행합니다.
+현재 wheel/key 이벤트는 `preventDefault()`를 사용해 직접 scroll position을 제어합니다. 반면 모바일/태블릿 터치는 브라우저의 네이티브 관성 스크롤을 유지합니다. 단, 최상단에서 아래로 당기는 iOS rubber-band overscroll은 Hero fixed 배경과 텍스트 레이어가 어긋나는 문제를 만들기 때문에 `scrollY <= 0` 상태의 pull-down `touchmove`만 차단합니다. 첫 `touchstart`에서는 영상 프라임을 수행합니다.
 
 ## 콘텐츠/언어 기준
 
