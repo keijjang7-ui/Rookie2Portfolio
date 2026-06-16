@@ -644,7 +644,7 @@
       }
 
       .section03 {
-        --visual-card-width: calc(100vw - 72px);
+        --visual-card-width: calc(100vw - 48px);
         --visual-card-height: 400px;
         --visual-card-gap: 16px;
         --visual-radius: 24px;
@@ -807,7 +807,7 @@
       }
 
       .section03 {
-        --visual-card-width: calc(100vw - 72px);
+        --visual-card-width: calc(100vw - 48px);
         --visual-card-height: 360px;
         --visual-card-title-size: 18px;
         --visual-label-size: clamp(10px, 2.8vw, 11px);
@@ -821,6 +821,14 @@
 
       .visual-card__description {
         font-size: 16px;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .hero-intro__background {
+        position: absolute;
+        transform: none;
+        will-change: auto;
       }
     }
 
@@ -935,6 +943,8 @@
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
     const COPY_REVEAL_DISTANCE = 80;
     const VISUAL_DRAG_THRESHOLD_RATIO = 0.15;
+    const VISUAL_SWIPE_LOCK_DISTANCE = 8;
+    const VISUAL_SWIPE_AXIS_RATIO = 1.15;
     const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
 
     let duration = 0;
@@ -944,7 +954,6 @@
     let ticking = false;
     let hasMetadata = false;
     let isPrimed = false;
-    let lastTouchY = 0;
     let lastScrollY = -1;
     let visualScrollTimer = 0;
 
@@ -1131,24 +1140,8 @@
         return;
       }
 
-      lastTouchY = event.touches[0].clientY;
       primeVideo();
       updateScrollState();
-    }
-
-    function handleTouchMove(event) {
-      if (!coarsePointerQuery.matches || isVisualCarouselTarget(event.target) || !event.cancelable) {
-        return;
-      }
-
-      const nextTouchY = event.touches[0].clientY;
-      const isPullingDownAtTop = window.scrollY <= 0 && nextTouchY > lastTouchY;
-
-      lastTouchY = nextTouchY;
-
-      if (isPullingDownAtTop) {
-        event.preventDefault();
-      }
     }
 
     function initializeVisualCarousel() {
@@ -1160,8 +1153,10 @@
       let activeIndex = 0;
       let isDragging = false;
       let dragStartX = 0;
+      let dragStartY = 0;
       let dragStartOffset = 0;
       let dragStartIndex = 0;
+      let dragIntent = "pending";
       let currentOffset = 0;
       let snapAnimationFrame = 0;
 
@@ -1331,20 +1326,52 @@
         animateToVisualCard(clamp(targetIndex, 0, cards.length - 1));
       }
 
+      function preventPointerDefault(event) {
+        if (event.cancelable) {
+          event.preventDefault();
+        }
+      }
+
+      function releaseVisualPointer(event) {
+        if (visualTrack.hasPointerCapture(event.pointerId)) {
+          visualTrack.releasePointerCapture(event.pointerId);
+        }
+      }
+
+      function lockVisualDrag(event) {
+        dragIntent = "horizontal";
+        window.clearTimeout(visualScrollTimer);
+        cancelSnapAnimation();
+        visualTrack.classList.add("is-dragging");
+
+        if (!visualTrack.hasPointerCapture(event.pointerId)) {
+          visualTrack.setPointerCapture(event.pointerId);
+        }
+      }
+
+      function resetVisualDrag(event) {
+        isDragging = false;
+        dragIntent = "pending";
+        visualTrack.classList.remove("is-dragging");
+        releaseVisualPointer(event);
+      }
+
       function handlePointerDown(event) {
         if (event.pointerType === "mouse" && event.button !== 0) {
           return;
         }
 
-        event.preventDefault();
         isDragging = true;
         dragStartX = event.clientX;
+        dragStartY = event.clientY;
         dragStartOffset = currentOffset;
         dragStartIndex = getNearestIndex(currentOffset);
-        window.clearTimeout(visualScrollTimer);
-        cancelSnapAnimation();
-        visualTrack.classList.add("is-dragging");
-        visualTrack.setPointerCapture(event.pointerId);
+        dragIntent = event.pointerType === "mouse" ? "horizontal" : "pending";
+
+        if (dragIntent === "horizontal") {
+          preventPointerDefault(event);
+          lockVisualDrag(event);
+        }
       }
 
       function handlePointerMove(event) {
@@ -1352,7 +1379,29 @@
           return;
         }
 
-        event.preventDefault();
+        const deltaX = event.clientX - dragStartX;
+        const deltaY = event.clientY - dragStartY;
+        const absX = Math.abs(deltaX);
+        const absY = Math.abs(deltaY);
+
+        if (dragIntent === "pending") {
+          if (Math.max(absX, absY) < VISUAL_SWIPE_LOCK_DISTANCE) {
+            return;
+          }
+
+          if (absY > absX * VISUAL_SWIPE_AXIS_RATIO) {
+            resetVisualDrag(event);
+            return;
+          }
+
+          if (absX <= absY * VISUAL_SWIPE_AXIS_RATIO) {
+            return;
+          }
+
+          lockVisualDrag(event);
+        }
+
+        preventPointerDefault(event);
         renderDragOffset(dragStartOffset + event.clientX - dragStartX);
       }
 
@@ -1361,13 +1410,12 @@
           return;
         }
 
-        isDragging = false;
-        visualTrack.classList.remove("is-dragging");
-
-        if (visualTrack.hasPointerCapture(event.pointerId)) {
-          visualTrack.releasePointerCapture(event.pointerId);
+        if (dragIntent !== "horizontal") {
+          resetVisualDrag(event);
+          return;
         }
 
+        resetVisualDrag(event);
         snapFromDrag(event.clientX);
       }
 
@@ -1403,7 +1451,6 @@
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("keydown", handleKeydown);
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     video.load();
     updateHeroBackground();
