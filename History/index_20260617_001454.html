@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Rookie2 Portfolio</title>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg%20width%3D%2280%22%20height%3D%2280%22%20viewBox%3D%220%200%2080%2080%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2280%22%20height%3D%2280%22%20rx%3D%2240%22%20fill%3D%22black%22%2F%3E%3Cpath%20d%3D%22M45.7212%2041.1057L33.8263%2024H24V56H34.2788V38.8943L46.1737%2056H56V24H45.7212V41.1057Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E">
   <style>
     :root {
       --page-white: #ffffff;
@@ -246,7 +247,7 @@
 
     .intro__body {
       margin: clamp(18px, 1.667vw, 32px) auto 0;
-      max-width: 900px;
+      max-width: 760px;
       font-size: clamp(16px, 1.25vw, 24px);
       line-height: 1.4;
       letter-spacing: 0;
@@ -266,7 +267,7 @@
 
     @media (max-width: 1600px) {
       .intro__body {
-        max-width: 860px;
+        max-width: 720px;
       }
     }
 
@@ -389,7 +390,15 @@
     }
 
     .visual-card--black {
-      background: #000000;
+      background: #19191a;
+    }
+
+    .visual-card--intent {
+      background: #19191a;
+    }
+
+    .visual-card--intent .visual-card__image {
+      mix-blend-mode: screen;
     }
 
     .visual-card__image {
@@ -551,7 +560,7 @@
         --hero-top: 40px;
         --hero-bottom: 40px;
         --hero-title-size: 70px;
-        --hero-detail-width: 214px;
+        --hero-detail-width: 180px;
         --hero-detail-gap: 51px;
         --hero-eyebrow-size: 20px;
         --hero-body-size: 14px;
@@ -572,7 +581,7 @@
       }
 
       .intro__body {
-        max-width: 760px;
+        max-width: 640px;
       }
 
       .intro-motion {
@@ -608,7 +617,7 @@
       }
 
       .section03 {
-        --visual-card-width: calc(100vw - 160px);
+        --visual-card-width: var(--section-width);
         --visual-card-height: clamp(430px, 51.667vw, 620px);
         --visual-card-gap: 22px;
         --visual-radius: 28px;
@@ -636,7 +645,7 @@
       }
 
       .section03 {
-        --visual-card-width: calc(100vw - 72px);
+        --visual-card-width: var(--section-width);
         --visual-card-height: 400px;
         --visual-card-gap: 16px;
         --visual-radius: 24px;
@@ -669,7 +678,7 @@
 
       .visual-card__description {
         max-width: 420px;
-        font-size: 13px;
+        font-size: 16px;
       }
 
       .visual-principles__indicator {
@@ -783,6 +792,11 @@
         max-width: 350px;
       }
 
+      .intro-motion {
+        height: 233svh;
+        min-height: 1320px;
+      }
+
       .intro-motion__video {
         object-position: center center;
       }
@@ -794,7 +808,7 @@
       }
 
       .section03 {
-        --visual-card-width: calc(100vw - 72px);
+        --visual-card-width: var(--section-width);
         --visual-card-height: 360px;
         --visual-card-title-size: 18px;
         --visual-label-size: clamp(10px, 2.8vw, 11px);
@@ -807,7 +821,22 @@
       }
 
       .visual-card__description {
-        font-size: 12px;
+        font-size: 16px;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .hero-intro__background {
+        position: absolute;
+        transform: none;
+        will-change: auto;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) and (max-width: 1200px) {
+      .intro-motion {
+        height: 233svh;
+        min-height: 1320px;
       }
     }
   </style>
@@ -915,6 +944,9 @@
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
     const COPY_REVEAL_DISTANCE = 80;
     const VISUAL_DRAG_THRESHOLD_RATIO = 0.15;
+    const VISUAL_SWIPE_LOCK_DISTANCE = 8;
+    const VISUAL_SWIPE_AXIS_RATIO = 1.15;
+    const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
 
     let duration = 0;
     let progress = 0;
@@ -923,7 +955,6 @@
     let ticking = false;
     let hasMetadata = false;
     let isPrimed = false;
-    let lastTouchY = 0;
     let lastScrollY = -1;
     let visualScrollTimer = 0;
 
@@ -996,6 +1027,10 @@
       motionCopy.style.setProperty("--motion-copy-y", `${offset.toFixed(2)}px`);
     }
 
+    function getScrubFollow() {
+      return coarsePointerQuery.matches ? 0.68 : 0.35;
+    }
+
     function scrub() {
       ticking = false;
 
@@ -1003,7 +1038,7 @@
         return;
       }
 
-      currentTime += (targetTime - currentTime) * 0.35;
+      currentTime += (targetTime - currentTime) * getScrubFollow();
 
       if (Math.abs(targetTime - currentTime) < 0.01) {
         currentTime = targetTime;
@@ -1106,20 +1141,8 @@
         return;
       }
 
-      lastTouchY = event.touches[0].clientY;
-    }
-
-    function handleTouchMove(event) {
-      if (isVisualCarouselTarget(event.target)) {
-        return;
-      }
-
-      event.preventDefault();
       primeVideo();
-      const nextTouchY = event.touches[0].clientY;
-      const deltaY = lastTouchY - nextTouchY;
-      lastTouchY = nextTouchY;
-      scrollToPosition(window.scrollY + deltaY);
+      updateScrollState();
     }
 
     function initializeVisualCarousel() {
@@ -1131,8 +1154,10 @@
       let activeIndex = 0;
       let isDragging = false;
       let dragStartX = 0;
+      let dragStartY = 0;
       let dragStartOffset = 0;
       let dragStartIndex = 0;
+      let dragIntent = "pending";
       let currentOffset = 0;
       let snapAnimationFrame = 0;
 
@@ -1302,20 +1327,52 @@
         animateToVisualCard(clamp(targetIndex, 0, cards.length - 1));
       }
 
+      function preventPointerDefault(event) {
+        if (event.cancelable) {
+          event.preventDefault();
+        }
+      }
+
+      function releaseVisualPointer(event) {
+        if (visualTrack.hasPointerCapture(event.pointerId)) {
+          visualTrack.releasePointerCapture(event.pointerId);
+        }
+      }
+
+      function lockVisualDrag(event) {
+        dragIntent = "horizontal";
+        window.clearTimeout(visualScrollTimer);
+        cancelSnapAnimation();
+        visualTrack.classList.add("is-dragging");
+
+        if (!visualTrack.hasPointerCapture(event.pointerId)) {
+          visualTrack.setPointerCapture(event.pointerId);
+        }
+      }
+
+      function resetVisualDrag(event) {
+        isDragging = false;
+        dragIntent = "pending";
+        visualTrack.classList.remove("is-dragging");
+        releaseVisualPointer(event);
+      }
+
       function handlePointerDown(event) {
         if (event.pointerType === "mouse" && event.button !== 0) {
           return;
         }
 
-        event.preventDefault();
         isDragging = true;
         dragStartX = event.clientX;
+        dragStartY = event.clientY;
         dragStartOffset = currentOffset;
         dragStartIndex = getNearestIndex(currentOffset);
-        window.clearTimeout(visualScrollTimer);
-        cancelSnapAnimation();
-        visualTrack.classList.add("is-dragging");
-        visualTrack.setPointerCapture(event.pointerId);
+        dragIntent = event.pointerType === "mouse" ? "horizontal" : "pending";
+
+        if (dragIntent === "horizontal") {
+          preventPointerDefault(event);
+          lockVisualDrag(event);
+        }
       }
 
       function handlePointerMove(event) {
@@ -1323,7 +1380,29 @@
           return;
         }
 
-        event.preventDefault();
+        const deltaX = event.clientX - dragStartX;
+        const deltaY = event.clientY - dragStartY;
+        const absX = Math.abs(deltaX);
+        const absY = Math.abs(deltaY);
+
+        if (dragIntent === "pending") {
+          if (Math.max(absX, absY) < VISUAL_SWIPE_LOCK_DISTANCE) {
+            return;
+          }
+
+          if (absY > absX * VISUAL_SWIPE_AXIS_RATIO) {
+            resetVisualDrag(event);
+            return;
+          }
+
+          if (absX <= absY * VISUAL_SWIPE_AXIS_RATIO) {
+            return;
+          }
+
+          lockVisualDrag(event);
+        }
+
+        preventPointerDefault(event);
         renderDragOffset(dragStartOffset + event.clientX - dragStartX);
       }
 
@@ -1332,13 +1411,12 @@
           return;
         }
 
-        isDragging = false;
-        visualTrack.classList.remove("is-dragging");
-
-        if (visualTrack.hasPointerCapture(event.pointerId)) {
-          visualTrack.releasePointerCapture(event.pointerId);
+        if (dragIntent !== "horizontal") {
+          resetVisualDrag(event);
+          return;
         }
 
+        resetVisualDrag(event);
         snapFromDrag(event.clientX);
       }
 
@@ -1374,7 +1452,6 @@
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("keydown", handleKeydown);
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     video.load();
     updateHeroBackground();

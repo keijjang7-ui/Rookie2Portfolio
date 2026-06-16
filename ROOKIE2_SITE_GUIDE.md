@@ -14,6 +14,30 @@
 - `assets/images/visual-principles/card-intent-visual.jpg`: Visual Principles 3번 카드 `Intent Made Visible`의 배경 비주얼 이미지입니다. 설명 텍스트는 HTML/CSS로 따로 얹습니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
+- `History/index_20260617_001454.html`: 2026-06-17 00:14 기준 현재 `index.html` 스냅샷입니다. 히스토리 폴더는 최신 확인용 스냅샷 1개만 유지합니다.
+
+## 2026-06-17 최종 점검
+
+오늘 작업 기준으로 확정된 내용:
+
+- `index.html`에 favicon SVG data URL을 직접 포함했습니다.
+- 터치 환경의 Hero 배경은 `position: absolute`로 전환합니다. 이전처럼 최상단 pull-down을 `touchmove`에서 막는 방식은 다시 사용하지 않습니다.
+- Visual Principles 카드 폭은 모든 반응형 지점에서 `var(--section-width)`를 사용합니다. 활성 카드, 타이틀, 인디케이터의 좌측 기준선은 항상 같아야 합니다.
+- Visual Principles 터치 스와이프는 방향 잠금 로직을 사용합니다. 가로 의도가 확인되면 카드 스와이프, 세로 의도가 크면 페이지 스크롤을 유지합니다.
+- Intro motion 터치 스크럽은 `233svh`, 최소 `1320px` 기준입니다. 더 빠르거나 느리게 조정할 때는 높이값을 바꾸는 방식으로 접근합니다.
+
+제거했거나 제거할 수 있는 항목:
+
+- 이전 `History/index_*.html` 스냅샷은 최신 스냅샷을 만들 때 삭제합니다.
+- `assets/images/visual-principles/card-principles-graphic.png`는 현재 `index.html`에서 참조하지 않습니다. 1번 카드 그래픽은 SVG를 사용합니다. 필요 없는 백업 자산으로 확정되면 추후 삭제할 수 있습니다.
+- 카드 폭을 위한 `calc(100vw - 160px)`, `calc(100vw - 72px)`, `calc(100vw - 48px)` 같은 개별 예외는 다시 추가하지 않습니다.
+
+추가할 때 지킬 기준:
+
+- 새 섹션은 Hero를 제외하면 기본 정보 영역 `--section-width` 기준에 맞춥니다.
+- 새 카드/텍스트 섹션은 먼저 Figma 레이어 기준을 확인하고, 레이아웃 기준이 생기면 이 문서에 함께 기록합니다.
+- 새 이미지/영상 자산은 `assets/images` 또는 `assets/media` 아래에 넣고, 파일 구조 목록에 사용 목적을 추가합니다.
+- 현재 favicon은 브라우저 탭용 SVG data URL입니다. iOS 홈 화면 아이콘, PNG fallback, SNS 공유 이미지가 필요해지면 별도 파일 자산과 meta 태그를 추가합니다.
 
 ## Figma 기준
 
