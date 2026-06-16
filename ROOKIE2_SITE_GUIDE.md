@@ -14,7 +14,7 @@
 - `assets/images/visual-principles/card-intent-visual.jpg`: Visual Principles 3번 카드 `Intent Made Visible`의 배경 비주얼 이미지입니다. 설명 텍스트는 HTML/CSS로 따로 얹습니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
-- `History/index_20260617_003438.html`: 2026-06-17 00:34 기준 현재 `index.html` 스냅샷입니다. 히스토리 폴더는 최신 확인용 스냅샷 1개만 유지합니다.
+- `History/index_20260617_004126.html`: 2026-06-17 00:41 기준 현재 `index.html` 스냅샷입니다. 히스토리 폴더는 최신 확인용 스냅샷 1개만 유지합니다.
 
 ## 2026-06-17 최종 점검
 
@@ -208,7 +208,7 @@ Intro motion overlay 카피 기준:
 - Figma 기준 1920px 화면에서 title은 x `360`, y `240` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
 - 타이틀: `Visual Principles`, Pretendard SemiBold, 기본 `60px`, `line-height: 1.1`
 - 카드 기본 폭은 모든 반응형 지점에서 정보 영역과 같은 `--section-width`를 기준으로 합니다. 활성 카드의 좌측선은 항상 Visual Principles 타이틀 좌측선과 맞아야 합니다.
-- 섹션 하단 여백은 데스크톱 기준 기존보다 약 `166px` 줄인 `58px`입니다. 반응형 구간은 1600 이하 `58px`, 1200 이하 `56px`, 모바일 `48px` 기준입니다.
+- 섹션 하단 여백은 데스크톱 기본 기준 `78px`입니다. 반응형 구간은 1600 이하 `58px`, 1200 이하 `56px`, 모바일 `48px` 기준입니다.
 - 카드 간격: `28px`
 - 카드 radius: `36px`
 - 카드 배경:
