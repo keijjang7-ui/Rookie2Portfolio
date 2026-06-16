@@ -180,7 +180,7 @@ Intro motion overlay 카피 기준:
 - 배경: `#0d0b0b`
 - Figma 기준 1920px 화면에서 title은 x `360`, y `240` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
 - 타이틀: `Visual Principles`, Pretendard SemiBold, 기본 `60px`, `line-height: 1.1`
-- 카드 기본 크기: 데스크톱에서는 정보 폭과 같은 `1200 x 768`을 기준으로 합니다. 1200 이하 및 모바일처럼 좁은 화면에서는 양쪽 카드 힌트가 충분히 보이도록 카드 폭을 viewport보다 작게 둘 수 있습니다.
+- 카드 기본 폭은 모든 반응형 지점에서 정보 영역과 같은 `--section-width`를 기준으로 합니다. 활성 카드의 좌측선은 항상 Visual Principles 타이틀 좌측선과 맞아야 합니다.
 - 섹션 하단 여백은 데스크톱 기준 기존보다 약 `166px` 줄인 `58px`입니다. 반응형 구간은 1600 이하 `58px`, 1200 이하 `56px`, 모바일 `48px` 기준입니다.
 - 카드 간격: `28px`
 - 카드 radius: `36px`
@@ -189,7 +189,7 @@ Intro motion overlay 카피 기준:
   - 3번 `Intent Made Visible`: `#19191a` 기반 + 배경 이미지 `mix-blend-mode: screen`
 - 카드 트랙은 viewport 전체 폭 위에 놓고, 활성 카드의 중심이 항상 viewport 중심에 오도록 `transform`으로 이동합니다. 이 구조 덕분에 활성 카드의 좌우에 걸치는 이전/다음 카드의 노출 폭이 동일합니다.
 - 화면이 줄어들면 카드 너비/높이와 내부 텍스트가 함께 단계적으로 줄어듭니다.
-- 모바일 좌우 여백은 정보 영역 기준과 같은 `24px`입니다. 중심 카드 폭은 `calc(100vw - 48px)`로 두어 Visual Principles 타이틀과 카드의 좌측 기준선을 맞춥니다.
+- 모바일 좌우 여백은 정보 영역 기준과 같은 `24px`입니다. 중심 카드 폭은 `var(--section-width)`를 사용해 Visual Principles 타이틀과 카드의 좌측 기준선을 맞춥니다.
 
 카드 자산 관리 원칙:
 
