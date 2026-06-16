@@ -246,7 +246,7 @@
 
     .intro__body {
       margin: clamp(18px, 1.667vw, 32px) auto 0;
-      max-width: 900px;
+      max-width: 760px;
       font-size: clamp(16px, 1.25vw, 24px);
       line-height: 1.4;
       letter-spacing: 0;
@@ -266,7 +266,7 @@
 
     @media (max-width: 1600px) {
       .intro__body {
-        max-width: 860px;
+        max-width: 720px;
       }
     }
 
@@ -389,7 +389,15 @@
     }
 
     .visual-card--black {
-      background: #000000;
+      background: #19191a;
+    }
+
+    .visual-card--intent {
+      background: #19191a;
+    }
+
+    .visual-card--intent .visual-card__image {
+      mix-blend-mode: screen;
     }
 
     .visual-card__image {
@@ -551,7 +559,7 @@
         --hero-top: 40px;
         --hero-bottom: 40px;
         --hero-title-size: 70px;
-        --hero-detail-width: 214px;
+        --hero-detail-width: 180px;
         --hero-detail-gap: 51px;
         --hero-eyebrow-size: 20px;
         --hero-body-size: 14px;
@@ -572,7 +580,7 @@
       }
 
       .intro__body {
-        max-width: 760px;
+        max-width: 640px;
       }
 
       .intro-motion {
@@ -669,7 +677,7 @@
 
       .visual-card__description {
         max-width: 420px;
-        font-size: 13px;
+        font-size: 16px;
       }
 
       .visual-principles__indicator {
@@ -784,8 +792,8 @@
       }
 
       .intro-motion {
-        height: 400svh;
-        min-height: 2000px;
+        height: 300svh;
+        min-height: 1600px;
       }
 
       .intro-motion__video {
@@ -812,7 +820,14 @@
       }
 
       .visual-card__description {
-        font-size: 12px;
+        font-size: 16px;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) and (max-width: 1200px) {
+      .intro-motion {
+        height: 300svh;
+        min-height: 1600px;
       }
     }
   </style>

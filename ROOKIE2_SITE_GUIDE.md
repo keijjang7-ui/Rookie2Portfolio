@@ -78,7 +78,7 @@ Hero 반응형 기준:
 - 기본: 1920 기준, 배경은 1920 이상 커지지 않음
 - `max-width: 1600px`: Hero 텍스트/하단 요소 약 85% 스케일
 - `max-width: 1200px`: 태블릿 스케일, 좌측 여백 40px
-  - 하단 detail 요소는 가독성을 위해 1600 구간 크기를 유지합니다: width `214px`, gap `51px`, eyebrow `20px`, body `14px`, logo `100 x 10`
+  - 하단 detail 요소는 배경과 텍스트가 겹치지 않도록 width `180px`로 좁힙니다. gap `51px`, eyebrow `20px`, body `14px`, logo `100 x 10`
 - `max-width: 560px`: 모바일
   - Figma `Hero_Mobile` 프레임 기준: `390 x 600`
   - Hero 높이 `600px`
@@ -121,11 +121,11 @@ Intro 레이아웃 기준:
 - 1600 이상에서는 Intro 상단 여백을 더 확보하기 위해 별도 높이 규칙을 사용합니다.
 - 메인/서브 간격은 기본 `margin: clamp(18px, 1.667vw, 32px) auto 0`입니다.
 - 모바일 제외, 561px 이상에서는 Figma 기준에 맞춰 `margin-top: clamp(28px, 2.083vw, 40px)`입니다.
-- `.intro__copy` 최대 폭은 Figma `Txt` 그룹 기준 `900px`입니다.
+- `.intro__copy`는 공통 정보 폭 `--section-width`를 사용하고, 서브 텍스트는 메인 타이틀보다 조금 넓은 정도로 제한합니다.
 - `.intro__body` 최대 폭:
-  - 기본: `900px`
-  - 1600 이하: `860px`
-  - 1200 이하: `760px`
+  - 기본: `760px`
+  - 1600 이하: `720px`
+  - 1200 이하: `640px`
   - 560 이하: `350px`
 
 ## Intro Motion 영상 기준
@@ -140,7 +140,7 @@ Intro 레이아웃 기준:
 - 영상은 `object-fit: cover`
 - 현재 section 높이는 기본 `500svh`, 최소 `2600px`
 - 1200 이하에서는 `460svh`, 최소 `2300px`
-- 560 이하 모바일에서는 스크럽 속도를 높이기 위해 `400svh`, 최소 `2000px`
+- 560 이하 모바일과 1200 이하 터치 환경에서는 스크럽 속도를 높이기 위해 `300svh`, 최소 `1600px`
 - 영상 뒤에는 Figma `Section03` 기준의 빈 섹션 `.section03`이 이어지며, 배경은 `#0d0b0b`입니다.
 
 Intro motion overlay 카피 기준:
@@ -184,9 +184,8 @@ Intro motion overlay 카피 기준:
 - 카드 간격: `28px`
 - 카드 radius: `36px`
 - 카드 배경:
-  - 1번 `Three Principles Behind Rookie2`: `#000000`
-  - 2번 `Shaping the Vision`: `#000000`
-  - 3번 `Intent Made Visible`: `#19191a` 기반 + 배경 이미지
+  - 모든 카드 공통: `#19191a`
+  - 3번 `Intent Made Visible`: `#19191a` 기반 + 배경 이미지 `mix-blend-mode: screen`
 - 카드 트랙은 viewport 전체 폭 위에 놓고, 활성 카드의 중심이 항상 viewport 중심에 오도록 `transform`으로 이동합니다. 이 구조 덕분에 활성 카드의 좌우에 걸치는 이전/다음 카드의 노출 폭이 동일합니다.
 - 화면이 줄어들면 카드 너비/높이와 내부 텍스트가 함께 단계적으로 줄어듭니다.
 - 모바일 좌우 여백은 기존 기준대로 `24px`이며, 카드 폭은 좌우에 다음/이전 카드 힌트가 균형 있게 보이도록 viewport보다 작게 둡니다.
@@ -204,6 +203,7 @@ Intro motion overlay 카피 기준:
 - 1번 카드 내부 라벨 텍스트는 모바일에서도 최소 `10px` 이상을 유지합니다.
 - 2번 카드의 이미지 그리드는 하나의 PNG로 저장했습니다.
 - 3번 카드는 Figma 최신 기준에 따라 제목 없이 설명 텍스트만 표시합니다.
+- 3번 카드 설명 텍스트는 모바일에서도 Intro 서브텍스트와 비슷한 가독성을 유지하도록 최소 `16px`을 기준으로 합니다.
 
 캐러셀 동작:
 
