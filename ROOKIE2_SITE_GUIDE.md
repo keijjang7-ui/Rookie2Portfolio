@@ -212,7 +212,7 @@ Intro motion overlay 카피 기준:
 - 드래그 스냅은 중앙 기준이 아니라 방향 기준입니다. 카드 간격의 약 `15%` 이상만 당겨도 드래그 방향의 다음/이전 카드로 넘어갑니다.
 - 인디케이터는 JS에서 카드 개수를 읽어 자동 생성합니다. 카드가 4개 이상으로 늘어나도 `data-visual-card` article만 추가하면 인디케이터가 함께 늘어납니다.
 - 인디케이터 hover는 조금 밝은 회색, active는 흰색 긴 pill 형태입니다.
-- 기존 전역 커스텀 wheel/touch 스크롤이 카드 가로 슬라이드를 방해하지 않도록 Visual Principles 영역은 예외 처리되어 있습니다.
+- 기존 전역 커스텀 wheel/key 스크롤이 카드 가로 슬라이드를 방해하지 않도록 Visual Principles 영역은 예외 처리되어 있습니다.
 
 ## 스크롤/비디오 스크립트 기준
 
@@ -223,10 +223,10 @@ Intro motion overlay 카피 기준:
 - `updateHeroBackground()`: Hero 배경 parallax offset 갱신
 - `getMotionProgress()`: Intro motion 섹션 내 스크롤 progress 계산
 - `updateVideoTarget()`: progress를 video target time으로 변환
-- `scrub()`: 영상 currentTime을 targetTime으로 부드럽게 따라가게 함
-- `scrollToPosition()`: wheel/key/touch 커스텀 스크롤 처리
+- `scrub()`: 영상 currentTime을 targetTime으로 부드럽게 따라가게 함. 터치 환경에서는 더 빠르게 따라붙도록 보간값을 높입니다.
+- `scrollToPosition()`: wheel/key 커스텀 스크롤 처리
 
-현재 wheel/touch/key 이벤트는 `preventDefault()`를 사용해 직접 scroll position을 제어합니다. 스크롤 감각을 바꿀 때는 이 부분이 전체 페이지 스크롤에 영향을 주는지 반드시 확인해야 합니다.
+현재 wheel/key 이벤트는 `preventDefault()`를 사용해 직접 scroll position을 제어합니다. 반면 모바일/태블릿 터치는 브라우저의 네이티브 관성 스크롤을 유지하기 위해 `touchmove`를 가로채지 않습니다. 첫 `touchstart`에서는 영상 프라임만 수행합니다.
 
 ## 콘텐츠/언어 기준
 

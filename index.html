@@ -935,6 +935,7 @@
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
     const COPY_REVEAL_DISTANCE = 80;
     const VISUAL_DRAG_THRESHOLD_RATIO = 0.15;
+    const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
 
     let duration = 0;
     let progress = 0;
@@ -943,7 +944,6 @@
     let ticking = false;
     let hasMetadata = false;
     let isPrimed = false;
-    let lastTouchY = 0;
     let lastScrollY = -1;
     let visualScrollTimer = 0;
 
@@ -1016,6 +1016,10 @@
       motionCopy.style.setProperty("--motion-copy-y", `${offset.toFixed(2)}px`);
     }
 
+    function getScrubFollow() {
+      return coarsePointerQuery.matches ? 0.68 : 0.35;
+    }
+
     function scrub() {
       ticking = false;
 
@@ -1023,7 +1027,7 @@
         return;
       }
 
-      currentTime += (targetTime - currentTime) * 0.35;
+      currentTime += (targetTime - currentTime) * getScrubFollow();
 
       if (Math.abs(targetTime - currentTime) < 0.01) {
         currentTime = targetTime;
@@ -1126,20 +1130,8 @@
         return;
       }
 
-      lastTouchY = event.touches[0].clientY;
-    }
-
-    function handleTouchMove(event) {
-      if (isVisualCarouselTarget(event.target)) {
-        return;
-      }
-
-      event.preventDefault();
       primeVideo();
-      const nextTouchY = event.touches[0].clientY;
-      const deltaY = lastTouchY - nextTouchY;
-      lastTouchY = nextTouchY;
-      scrollToPosition(window.scrollY + deltaY);
+      updateScrollState();
     }
 
     function initializeVisualCarousel() {
@@ -1394,7 +1386,6 @@
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("keydown", handleKeydown);
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
-    window.addEventListener("touchmove", handleTouchMove, { passive: false });
 
     video.load();
     updateHeroBackground();
