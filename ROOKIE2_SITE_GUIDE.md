@@ -140,6 +140,7 @@ Intro 레이아웃 기준:
 - 영상은 `object-fit: cover`
 - 현재 section 높이는 기본 `500svh`, 최소 `2600px`
 - 1200 이하에서는 `460svh`, 최소 `2300px`
+- 560 이하 모바일에서는 스크럽 속도를 높이기 위해 `400svh`, 최소 `2000px`
 - 영상 뒤에는 Figma `Section03` 기준의 빈 섹션 `.section03`이 이어지며, 배경은 `#0d0b0b`입니다.
 
 Intro motion overlay 카피 기준:
