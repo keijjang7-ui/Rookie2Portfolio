@@ -14,7 +14,7 @@
 - `assets/images/visual-principles/card-intent-visual.jpg`: Visual Principles 3번 카드 `Intent Made Visible`의 배경 비주얼 이미지입니다. 설명 텍스트는 HTML/CSS로 따로 얹습니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
-- `History/index_20260617_002500.html`: 2026-06-17 00:25 기준 현재 `index.html` 스냅샷입니다. 히스토리 폴더는 최신 확인용 스냅샷 1개만 유지합니다.
+- `History/index_20260617_003438.html`: 2026-06-17 00:34 기준 현재 `index.html` 스냅샷입니다. 히스토리 폴더는 최신 확인용 스냅샷 1개만 유지합니다.
 
 ## 2026-06-17 최종 점검
 
@@ -25,7 +25,7 @@
 - Visual Principles 카드 폭은 모든 반응형 지점에서 `var(--section-width)`를 사용합니다. 활성 카드, 타이틀, 인디케이터의 좌측 기준선은 항상 같아야 합니다.
 - Visual Principles 터치 스와이프는 방향 잠금 로직을 사용합니다. 가로 의도가 확인되면 카드 스와이프, 세로 의도가 크면 페이지 스크롤을 유지합니다.
 - Intro motion 터치 스크럽은 `233svh`, 최소 `1320px` 기준입니다. 더 빠르거나 느리게 조정할 때는 높이값을 바꾸는 방식으로 접근합니다.
-- Hero 태블릿 구간 `max-width: 1200px`은 상단 타이틀과 하단 요소를 이전 기준보다 약 12% 줄인 값으로 사용합니다. 하단 서브텍스트는 `max-width: 150px`, `line-height: 1.4`입니다.
+- Hero 태블릿 구간 `max-width: 1200px`은 상단 타이틀과 하단 요소를 이전 기준보다 약 12% 줄인 값으로 사용합니다. 하단 서브텍스트는 `max-width: 120px`, `line-height: 140%`입니다.
 
 제거했거나 제거할 수 있는 항목:
 
@@ -106,7 +106,7 @@ Hero 반응형 기준:
 - `max-width: 1200px`: 태블릿 스케일, 좌측 여백 40px
   - 상단 타이틀은 `62px`입니다.
   - 하단 detail 요소는 배경과 텍스트가 겹치지 않도록 width `158px`로 좁힙니다. gap `45px`, eyebrow `18px`, body `12px`, logo `88 x 9`
-  - 하단 body 서브텍스트는 width `150px`, `line-height: 1.4`입니다.
+  - 하단 body 서브텍스트는 width `120px`, `line-height: 140%`입니다.
 - `max-width: 560px`: 모바일
   - Figma `Hero_Mobile` 프레임 기준: `390 x 600`
   - Hero 높이 `600px`
@@ -153,7 +153,7 @@ Intro 레이아웃 기준:
 - `.intro__body` 최대 폭:
   - 기본: `760px`
   - 1600 이하: `720px`
-  - 1200 이하: `640px`
+  - 1200 이하: `512px`
   - 560 이하: `350px`
 
 ## Intro Motion 영상 기준
@@ -226,7 +226,7 @@ Intro motion overlay 카피 기준:
   - 1번: `Three Principles Behind Rookie2`
   - 2번: `Shaping the Vision`
   - 3번: `Intent Made Visible`
-- 1번 카드의 세 가지 라벨 `Lively Interaction`, `Connected Experience`, `Approachable Future`도 CSS 텍스트로 얹습니다.
+- 1번 카드의 세 가지 라벨 `Lively Interaction`, `Connected Experience`, `Approachable Future`도 CSS 텍스트로 얹습니다. 모바일 `560px` 이하에서는 각각 `Lively`, `Connected`, `Future`로 축약하고 `12px` 정수 크기를 사용합니다.
 - 1번 카드의 동글한 컬러 그래픽은 PNG 캡처가 아니라 SVG 벡터를 사용합니다. 원본 `900 x 282` 비율을 유지해야 하며, `preserveAspectRatio="xMidYMid meet"`와 CSS `object-fit: contain` 기준을 사용합니다. 검은 사각 배경이 보이거나 모바일에서 찌그러져 보이면 SVG 비율 설정을 먼저 확인합니다.
 - 1번 카드 내부 라벨 텍스트는 모바일에서도 최소 `10px` 이상을 유지합니다.
 - 2번 카드의 이미지 그리드는 하나의 PNG로 저장했습니다.

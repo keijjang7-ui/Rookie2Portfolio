@@ -486,6 +486,10 @@
       transform: translate(-50%, -50%);
     }
 
+    .visual-card__label-mobile {
+      display: none;
+    }
+
     .visual-card__label--left {
       left: 15.55%;
     }
@@ -573,8 +577,8 @@
       }
 
       .hero__body {
-        max-width: 150px;
-        line-height: 1.4;
+        max-width: 120px;
+        line-height: 140%;
       }
 
       .intro {
@@ -586,7 +590,7 @@
       }
 
       .intro__body {
-        max-width: 640px;
+        max-width: 512px;
       }
 
       .intro-motion {
@@ -817,8 +821,16 @@
         --visual-card-width: var(--section-width);
         --visual-card-height: 360px;
         --visual-card-title-size: 18px;
-        --visual-label-size: clamp(10px, 2.8vw, 11px);
+        --visual-label-size: 12px;
         --visual-card-padding: 24px;
+      }
+
+      .visual-card__label-full {
+        display: none;
+      }
+
+      .visual-card__label-mobile {
+        display: inline;
       }
 
       .visual-card__body--intent {
@@ -909,9 +921,9 @@
               <div class="visual-card__body visual-card__body--principles">
                 <div class="visual-card__art-wrap">
                   <img class="visual-card__art visual-card__art--principles" src="./assets/images/visual-principles/card-principles-graphic.svg" alt="">
-                  <p class="visual-card__label visual-card__label--left">Lively<br>Interaction</p>
-                  <p class="visual-card__label visual-card__label--center">Connected<br>Experience</p>
-                  <p class="visual-card__label visual-card__label--right">Approachable<br>Future</p>
+                  <p class="visual-card__label visual-card__label--left"><span class="visual-card__label-full">Lively<br>Interaction</span><span class="visual-card__label-mobile">Lively</span></p>
+                  <p class="visual-card__label visual-card__label--center"><span class="visual-card__label-full">Connected<br>Experience</span><span class="visual-card__label-mobile">Connected</span></p>
+                  <p class="visual-card__label visual-card__label--right"><span class="visual-card__label-full">Approachable<br>Future</span><span class="visual-card__label-mobile">Future</span></p>
                 </div>
                 <h3 class="visual-card__title">Three Principles Behind Rookie2</h3>
               </div>
