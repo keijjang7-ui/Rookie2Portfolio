@@ -460,6 +460,13 @@
       width: min(1032px, 100%);
     }
 
+    .visual-card__vision-mask {
+      display: flex;
+      justify-content: center;
+      width: min(1032px, 100%);
+      overflow: visible;
+    }
+
     .visual-card__image--understood {
       top: 21.41%;
       right: auto;
@@ -915,6 +922,13 @@
       .visual-card__art--vision {
         width: calc(var(--visual-card-width) + 88px);
         max-width: none;
+        flex: 0 0 auto;
+      }
+
+      .visual-card__vision-mask {
+        width: calc((var(--visual-card-width) + 88px) * 0.597);
+        max-width: none;
+        overflow: hidden;
       }
 
       .visual-card__understood-spacer {
@@ -1013,7 +1027,9 @@
             <article class="visual-card visual-card--black" data-visual-card data-card-label="Shaping the Vision" aria-label="Shaping the Vision">
               <div class="visual-card__body visual-card__body--vision">
                 <h3 class="visual-card__title">Shaping the Vision</h3>
-                <img class="visual-card__art visual-card__art--vision" src="./assets/images/visual-principles/card-vision-grid.png" alt="">
+                <div class="visual-card__vision-mask">
+                  <img class="visual-card__art visual-card__art--vision" src="./assets/images/visual-principles/card-vision-grid.png" alt="">
+                </div>
               </div>
             </article>
 
