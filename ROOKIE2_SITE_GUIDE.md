@@ -100,8 +100,8 @@ Hero 배경 레이어:
 - 컬러 레이어는 `hero-color-pulse` 애니메이션으로 동작합니다.
 - 현재 pulse는 5초 반복입니다.
   - 0~2초: opacity 0
-  - 2~3.5초: opacity 0 -> 0.6
-  - 3.5~5초: opacity 0.6 -> 0
+  - 2~3.5초: opacity 0 -> 0.7
+  - 3.5~5초: opacity 0.7 -> 0
 
 Hero 반응형 기준:
 
