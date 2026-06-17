@@ -180,8 +180,8 @@ Intro 레이아웃 기준:
 - 영상 overlay 카피: `.intro-motion__copy`
 - `.intro-motion__stage`는 `position: sticky; top: 0; height: 100svh;`
 - 영상은 `object-fit: cover`
-- 현재 section 높이는 기본 `500svh`, 최소 `2600px`
-- 1200 이하에서는 `460svh`, 최소 `2300px`
+- 현재 section 높이는 기본 `400svh`, 최소 `2080px`
+- 1200 이하 비터치 환경에서는 `368svh`, 최소 `1840px`
 - 560 이하 모바일과 1200 이하 터치 환경에서는 현재 기준보다 약 `1.5배` 빠른 스크럽을 위해 `233svh`, 최소 `1320px`
 - 영상 뒤에는 Figma `Section03` 기준의 빈 섹션 `.section03`이 이어지며, 배경은 `#0d0b0b`입니다.
 
