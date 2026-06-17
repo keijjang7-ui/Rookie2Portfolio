@@ -132,7 +132,7 @@ Hero 반응형 기준:
   - 설명 묶음은 `top: 218px`, width `252px`, 중앙 정렬
   - 타이틀과 설명 묶음의 세로 간격은 `40px`
   - 설명 eyebrow는 `20px`, body는 `16px`, body color `#818590`, eyebrow/body 간격은 `16px` 시각 기준에 맞춰 CSS margin `10px`
-  - 모바일 body는 Figma처럼 3줄로 고정하기 위해 `.hero__body-line`을 block + `white-space: nowrap`으로 처리합니다.
+  - 모바일 body는 정보량을 줄이기 위해 2줄 전용 카피 `Scaling autonomous delivery / across real-world buildings.`를 사용합니다. 데스크톱/태블릿의 3줄 카피는 숨깁니다.
 
 ## Intro 현재 기준
 
