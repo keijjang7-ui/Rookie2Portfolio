@@ -10,7 +10,7 @@
 - `assets/images/Intro_mv_poster.png`: Intro motion 영상 poster 이미지입니다.
 - `assets/images/NaverLabsMark.svg`: Hero 하단 NAVER LABS 로고입니다.
 - `assets/images/visual-principles/card-principles-graphic.svg`: Visual Principles 1번 카드의 벡터 그래픽 이미지입니다. 배경이 보이지 않도록 Figma의 `Subtract` 벡터를 SVG로 가져왔고, 카드 내부 텍스트는 HTML/CSS로 따로 얹습니다.
-- `assets/images/visual-principles/card-vision-grid.png`: Visual Principles 2번 카드의 이미지 그리드입니다. 카드 하나당 하나의 이미지 파일로 관리한다는 원칙에 맞춰 Figma 이미지 묶음을 한 장으로 저장했습니다.
+- `assets/images/visual-principles/card-vision-grid.png`: Visual Principles 2번 카드의 이미지 그리드입니다. 카드 하나당 하나의 이미지 파일로 관리한다는 원칙에 맞춰 Figma 이미지 타일 10개를 투명 배경의 한 장 PNG로 합성했습니다.
 - `assets/images/visual-principles/card-intent-visual.jpg`: Visual Principles 3번 카드 `Intent Made Visible`의 배경 비주얼 이미지입니다. 설명 텍스트는 HTML/CSS로 따로 얹습니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
@@ -241,7 +241,8 @@ Intro motion overlay 카피 기준:
 - 1번 카드의 세 가지 라벨 `Lively Interaction`, `Connected Experience`, `Approachable Future`도 CSS 텍스트로 얹습니다. 모바일 `560px` 이하에서는 각각 `Lively`, `Connected`, `Future`로 축약하고 `12px` 정수 크기를 사용합니다.
 - 1번 카드의 동글한 컬러 그래픽은 PNG 캡처가 아니라 SVG 벡터를 사용합니다. 원본 `900 x 282` 비율을 유지해야 하며, `preserveAspectRatio="xMidYMid meet"`와 CSS `object-fit: contain` 기준을 사용합니다. 검은 사각 배경이 보이거나 모바일에서 찌그러져 보이면 SVG 비율 설정을 먼저 확인합니다.
 - 1번 카드 내부 라벨 텍스트는 모바일에서도 최소 `10px` 이상을 유지합니다.
-- 2번 카드의 이미지 그리드는 하나의 PNG로 저장했습니다.
+- 2번 카드의 이미지 그리드는 하나의 투명 PNG로 저장했습니다. 이미지 바깥 배경은 투명해야 하며, 검은 캔버스가 포함된 PNG로 교체하지 않습니다.
+- 2번 카드는 모바일 `560px` 이하에서만 이미지 그리드를 카드 폭보다 크게 배치합니다. 비율을 유지한 채 좌우로 걸치게 하고, 넘치는 영역은 `.visual-card`의 `overflow: hidden`으로 마스킹합니다.
 - 3번 카드는 Figma 최신 기준에 따라 제목 없이 설명 텍스트만 표시합니다.
 - 3번 카드 설명 텍스트는 모바일에서도 Intro 서브텍스트와 비슷한 가독성을 유지하도록 최소 `16px`을 기준으로 합니다.
 
