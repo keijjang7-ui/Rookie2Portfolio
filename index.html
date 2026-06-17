@@ -559,26 +559,96 @@
     }
 
     @media (max-width: 1200px) {
+      .hero-intro {
+        --hero-height: clamp(600px, calc(31vw + 428px), 800px);
+      }
+
       .hero {
-        --hero-edge: 40px;
+        --hero-edge: 24px;
         --hero-top: 40px;
-        --hero-bottom: 40px;
-        --hero-title-size: 62px;
-        --hero-detail-width: 158px;
-        --hero-detail-gap: 45px;
-        --hero-eyebrow-size: 18px;
-        --hero-body-size: 12px;
-        --hero-mark-width: 88px;
-        --hero-mark-height: 9px;
+        --hero-bottom: 0px;
+        --hero-title-size: clamp(68px, calc(2vw + 56px), 80px);
+        --hero-detail-width: 252px;
+        --hero-detail-gap: 0px;
+        --hero-eyebrow-size: 20px;
+        --hero-body-size: 16px;
+        --hero-mark-width: 116px;
+        --hero-mark-height: 12px;
+        min-height: 0;
+        max-height: none;
+      }
+
+      .hero__media,
+      .hero__media-color {
+        top: auto;
+        bottom: 0;
+        left: calc(50% - 18px);
+        width: clamp(720px, calc(100vw - 200px), 1000px);
+        height: clamp(406px, calc(56vw - 108px), 564px);
+        transform: translateX(-50%);
+      }
+
+      .hero__media img {
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      .hero__media-color img {
+        object-fit: contain;
+        object-position: center center;
+      }
+
+      .hero__content {
+        display: block;
+        padding: 0;
+      }
+
+      .hero__title {
+        position: absolute;
+        top: clamp(122px, calc(5vw + 92px), 152px);
+        left: 50%;
+        width: 296px;
+        text-align: center;
+        line-height: 0.7;
+        transform: translateX(-50%);
+      }
+
+      .hero__detail {
+        display: contents;
+      }
+
+      .hero__detail-copy {
+        position: absolute;
+        top: clamp(218px, calc(5vw + 188px), 248px);
+        left: 50%;
+        width: var(--hero-detail-width);
+        transform: translateX(-50%);
+        text-align: center;
       }
 
       .hero__eyebrow {
-        margin-bottom: 18px;
+        margin-bottom: 10px;
+        font-weight: 700;
       }
 
       .hero__body {
-        max-width: 120px;
-        line-height: 140%;
+        max-width: none;
+        line-height: 1.2;
+        font-weight: 500;
+        color: #818590;
+      }
+
+      .hero__body-line {
+        display: block;
+        white-space: nowrap;
+      }
+
+      .hero__mark {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        filter: none;
       }
 
       .intro {
@@ -649,8 +719,8 @@
 
     @media (max-width: 760px) {
       :root {
-        --section-side: 24px;
-        --section-gutter: 48px;
+        --section-side: 28px;
+        --section-gutter: 56px;
       }
 
       .section03 {
