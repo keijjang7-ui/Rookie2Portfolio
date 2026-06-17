@@ -11,7 +11,7 @@
 - `assets/images/NaverLabsMark.svg`: Hero 하단 NAVER LABS 로고입니다.
 - `assets/images/visual-principles/card-principles-graphic.svg`: Visual Principles 1번 카드의 벡터 그래픽 이미지입니다. 배경이 보이지 않도록 Figma의 `Subtract` 벡터를 SVG로 가져왔고, 카드 내부 텍스트는 HTML/CSS로 따로 얹습니다.
 - `assets/images/visual-principles/card-vision-grid.png`: Visual Principles 2번 카드의 이미지 그리드입니다. 카드 하나당 하나의 이미지 파일로 관리한다는 원칙에 맞춰 Figma 이미지 타일 10개를 투명 배경의 한 장 PNG로 합성했습니다.
-- `assets/images/visual-principles/card-intent-visual.jpg`: Visual Principles 3번 카드 `Intent Made Visible`의 배경 비주얼 이미지입니다. 설명 텍스트는 HTML/CSS로 따로 얹습니다.
+- `assets/images/visual-principles/card-understood-visual.jpg`: Visual Principles 3번 카드 `Designed to Be Understood`의 배경 비주얼 이미지입니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
 - `History/index_20260617_004703.html`: 2026-06-17 00:47 기준 현재 `index.html` 스냅샷입니다. 히스토리 폴더는 최신 확인용 스냅샷 1개만 유지합니다.
@@ -225,7 +225,7 @@ Intro motion overlay 카피 기준:
 - 카드 radius: `36px`
 - 카드 배경:
   - 모든 카드 공통: `#19191a`
-  - 3번 `Intent Made Visible`: `#19191a` 기반 + 배경 이미지 `mix-blend-mode: screen`
+  - 3번 `Designed to Be Understood`: `#19191a` 기반 + 배경 이미지 `mix-blend-mode: screen`
 - 카드 트랙은 viewport 전체 폭 위에 놓고, 활성 카드의 중심이 항상 viewport 중심에 오도록 `transform`으로 이동합니다. 이 구조 덕분에 활성 카드의 좌우에 걸치는 이전/다음 카드의 노출 폭이 동일합니다.
 - 화면이 줄어들면 카드 너비/높이와 내부 텍스트가 함께 단계적으로 줄어듭니다.
 - 모바일 좌우 여백은 정보 영역 기준과 같은 `28px`입니다. 중심 카드 폭은 `var(--section-width)`를 사용해 Visual Principles 타이틀과 카드의 좌측 기준선을 맞춥니다.
@@ -237,14 +237,14 @@ Intro motion overlay 카피 기준:
 - 현재 카드 순서:
   - 1번: `Three Principles Behind Rookie2`
   - 2번: `Shaping the Vision`
-  - 3번: `Intent Made Visible`
+  - 3번: `Designed to Be Understood`
 - 1번 카드의 세 가지 라벨 `Lively Interaction`, `Connected Experience`, `Approachable Future`도 CSS 텍스트로 얹습니다. 모바일 `560px` 이하에서는 각각 `Lively`, `Connected`, `Future`로 축약하고 `12px` 정수 크기를 사용합니다.
 - 1번 카드의 동글한 컬러 그래픽은 PNG 캡처가 아니라 SVG 벡터를 사용합니다. 원본 `900 x 282` 비율을 유지해야 하며, `preserveAspectRatio="xMidYMid meet"`와 CSS `object-fit: contain` 기준을 사용합니다. 검은 사각 배경이 보이거나 모바일에서 찌그러져 보이면 SVG 비율 설정을 먼저 확인합니다.
 - 1번 카드 내부 라벨 텍스트는 모바일에서도 최소 `10px` 이상을 유지합니다.
 - 2번 카드의 이미지 그리드는 하나의 투명 PNG로 저장했습니다. 이미지 바깥 배경은 투명해야 하며, 검은 캔버스가 포함된 PNG로 교체하지 않습니다.
 - 2번 카드는 모바일 `560px` 이하에서만 이미지 그리드를 카드 폭보다 크게 배치합니다. 비율을 유지한 채 좌우로 걸치게 하고, 넘치는 영역은 `.visual-card`의 `overflow: hidden`으로 마스킹합니다. 이때 타이틀과 이미지를 하나의 세로 그룹으로 보고 카드 상하 중앙에 배치합니다.
-- 3번 카드는 Figma 최신 기준에 따라 제목 없이 설명 텍스트만 표시합니다.
-- 3번 카드 설명 텍스트는 모바일에서도 Intro 서브텍스트와 비슷한 가독성을 유지하도록 최소 `16px`을 기준으로 합니다.
+- 3번 카드는 Figma 최신 기준에 따라 `Designed to Be Understood` 타이틀과 배경 비주얼만 표시합니다.
+- 3번 카드 타이틀은 모든 반응형 지점에서 2번 카드 `Shaping the Vision` 타이틀의 상단 높이와 맞춥니다. 현재 구현은 2번 카드 이미지 영역과 같은 비율의 투명 스페이서를 사용해 두 카드의 타이틀 높이를 동일하게 유지합니다.
 
 캐러셀 동작:
 

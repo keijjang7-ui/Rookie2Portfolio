@@ -393,11 +393,11 @@
       background: #19191a;
     }
 
-    .visual-card--intent {
+    .visual-card--understood {
       background: #19191a;
     }
 
-    .visual-card--intent .visual-card__image {
+    .visual-card--understood .visual-card__image {
       mix-blend-mode: screen;
     }
 
@@ -431,21 +431,9 @@
       gap: clamp(34px, 4.39vw, 60px);
     }
 
-    .visual-card__body--intent {
-      inset: auto auto 15.625% 10%;
-      width: min(600px, 50%);
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
-
-    .visual-card__description {
-      margin: 0;
-      max-width: 600px;
-      color: rgba(249, 249, 250, 0.9);
-      font-size: clamp(16px, 2vw, 24px);
-      line-height: 1.4;
-      letter-spacing: 0;
-      font-weight: 400;
+    .visual-card__body--understood {
+      align-items: center;
+      gap: clamp(34px, 4.39vw, 60px);
     }
 
     .visual-card__art-wrap {
@@ -470,6 +458,26 @@
 
     .visual-card__art--vision {
       width: min(1032px, 100%);
+    }
+
+    .visual-card__image--understood {
+      top: 21.41%;
+      right: auto;
+      bottom: auto;
+      left: -6.89%;
+      width: 113.78%;
+      height: auto;
+      max-width: none;
+      object-fit: contain;
+    }
+
+    .visual-card__understood-spacer {
+      display: block;
+      flex: 0 0 auto;
+      width: min(1032px, 100%);
+      aspect-ratio: 1032 / 408;
+      pointer-events: none;
+      visibility: hidden;
     }
 
     .visual-card__label {
@@ -749,17 +757,6 @@
         gap: 28px;
       }
 
-      .visual-card__body--intent {
-        inset: auto 28px 36px 28px;
-        width: auto;
-        gap: 16px;
-      }
-
-      .visual-card__description {
-        max-width: 420px;
-        font-size: 16px;
-      }
-
       .visual-principles__indicator {
         width: var(--visual-card-width);
         margin-top: 28px;
@@ -909,19 +906,22 @@
         gap: 24px;
       }
 
+      .visual-card__body--understood {
+        inset: 0;
+        justify-content: center;
+        gap: 24px;
+      }
+
       .visual-card__art--vision {
         width: calc(var(--visual-card-width) + 88px);
         max-width: none;
       }
 
-      .visual-card__body--intent {
-        inset: auto 24px 28px 24px;
-        gap: 12px;
+      .visual-card__understood-spacer {
+        width: calc(var(--visual-card-width) + 88px);
+        max-width: none;
       }
 
-      .visual-card__description {
-        font-size: 16px;
-      }
     }
 
     @media (hover: none) and (pointer: coarse) {
@@ -1017,10 +1017,11 @@
               </div>
             </article>
 
-            <article class="visual-card visual-card--intent" data-visual-card data-card-label="Intent Made Visible" aria-label="Intent Made Visible">
-              <img class="visual-card__image" src="./assets/images/visual-principles/card-intent-visual.jpg" alt="">
-              <div class="visual-card__body visual-card__body--intent">
-                <p class="visual-card__description">The display translates the robot’s intent, status, and emotion into a visual language that feels intuitive, approachable, and easy to understand.</p>
+            <article class="visual-card visual-card--understood" data-visual-card data-card-label="Designed to Be Understood" aria-label="Designed to Be Understood">
+              <img class="visual-card__image visual-card__image--understood" src="./assets/images/visual-principles/card-understood-visual.jpg" alt="">
+              <div class="visual-card__body visual-card__body--understood">
+                <h3 class="visual-card__title">Designed to Be Understood</h3>
+                <span class="visual-card__understood-spacer" aria-hidden="true"></span>
               </div>
             </article>
           </div>
