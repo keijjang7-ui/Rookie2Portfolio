@@ -12,6 +12,7 @@
 - `assets/images/visual-principles/card-principles-graphic.svg`: Visual Principles 1번 카드의 벡터 그래픽 이미지입니다. 배경이 보이지 않도록 Figma의 `Subtract` 벡터를 SVG로 가져왔고, 카드 내부 텍스트는 HTML/CSS로 따로 얹습니다.
 - `assets/images/visual-principles/card-vision-grid.png`: Visual Principles 2번 카드의 이미지 그리드입니다. 카드 하나당 하나의 이미지 파일로 관리한다는 원칙에 맞춰 Figma 이미지 타일 10개를 투명 배경의 한 장 PNG로 합성했습니다.
 - `assets/images/visual-principles/card-understood-visual.jpg`: Visual Principles 3번 카드 `Designed to Be Understood`의 배경 비주얼 이미지입니다.
+- `assets/fonts/a-type/AType-Bold.otf`: Hero 타이틀 `Rookie2`에 사용하는 A Type 웹폰트입니다. 사이트에서 쓰는 두께만 `assets` 아래에서 관리합니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
 - `History/index_20260617_004703.html`: 2026-06-17 00:47 기준 현재 `index.html` 스냅샷입니다. 히스토리 폴더는 최신 확인용 스냅샷 1개만 유지합니다.
@@ -21,6 +22,7 @@
 오늘 작업 기준으로 확정된 내용:
 
 - `index.html`에 favicon SVG data URL을 직접 포함했습니다.
+- Hero 타이틀 폰트는 `assets/fonts/a-type/AType-Bold.otf`를 `@font-face`로 로드합니다. 루트의 `A type/` 원본 폴더는 사이트 자산으로 쓰지 않고 Git 추적에서도 제외합니다.
 - 터치 환경의 Hero 배경은 `position: absolute`로 전환합니다. 이전처럼 최상단 pull-down을 `touchmove`에서 막는 방식은 다시 사용하지 않습니다.
 - Visual Principles 카드 폭은 모든 반응형 지점에서 `var(--section-width)`를 사용합니다. 활성 카드, 타이틀, 인디케이터의 좌측 기준선은 항상 같아야 합니다.
 - Visual Principles 터치 스와이프는 방향 잠금 로직을 사용합니다. 가로 의도가 확인되면 카드 스와이프, 세로 의도가 크면 페이지 스크롤을 유지합니다.
