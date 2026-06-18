@@ -24,12 +24,6 @@
       --section-side: 80px;
       --section-gutter: 160px;
       --section-width: min(calc(100vw - var(--section-gutter)), var(--section-max));
-      --type-title-size: 60px;
-      --type-body-size: 24px;
-      --type-state-size: 36px;
-      --type-title-line: 1.1;
-      --type-body-line: 1.4;
-      --type-state-line: 1.4;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--copy-black);
       background: var(--page-white);
@@ -296,8 +290,8 @@
 
     .intro__title {
       margin: 0;
-      font-size: var(--type-title-size);
-      line-height: var(--type-title-line);
+      font-size: clamp(34px, 3.125vw, 60px);
+      line-height: 1.1;
       letter-spacing: 0;
       font-weight: 600;
       color: #f9f9fa;
@@ -306,14 +300,18 @@
     .intro__body {
       margin: clamp(18px, 1.667vw, 32px) auto 0;
       max-width: 760px;
-      font-size: var(--type-body-size);
-      line-height: var(--type-body-line);
+      font-size: clamp(16px, 1.25vw, 24px);
+      line-height: 1.4;
       letter-spacing: 0;
       font-weight: 400;
       color: rgba(249, 249, 250, 0.9);
     }
 
     @media (min-width: 561px) {
+      .intro__title {
+        font-size: clamp(42px, 3.125vw, 60px);
+      }
+
       .intro__body {
         margin-top: clamp(28px, 2.083vw, 40px);
       }
@@ -362,8 +360,8 @@
       width: min(600px, var(--section-width));
       margin: 0;
       color: #f9f9fa;
-      font-size: var(--type-state-size);
-      line-height: var(--type-state-line);
+      font-size: clamp(24px, 1.875vw, 36px);
+      line-height: 1.4;
       letter-spacing: 0;
       font-weight: 600;
       opacity: var(--motion-copy-opacity, 0);
@@ -378,6 +376,8 @@
       --visual-card-height: 675px;
       --visual-card-gap: 28px;
       --visual-radius: 36px;
+      --visual-title-size: 60px;
+      --visual-card-title-size: 36px;
       --visual-label-size: 24px;
       --visual-card-padding: 80px;
       position: relative;
@@ -396,8 +396,8 @@
 
     .visual-principles__title {
       margin: 0 0 40px;
-      font-size: var(--type-title-size);
-      line-height: var(--type-title-line);
+      font-size: var(--visual-title-size);
+      line-height: 1.1;
       letter-spacing: 0;
       font-weight: 600;
       color: #f9f9fa;
@@ -650,8 +650,8 @@
     .visual-card__title {
       margin: 0;
       color: #f9f9fa;
-      font-size: var(--type-state-size);
-      line-height: var(--type-state-line);
+      font-size: var(--visual-card-title-size);
+      line-height: 1.4;
       letter-spacing: 0;
       font-weight: 600;
       text-align: center;
@@ -723,12 +723,14 @@
     }
 
     .section04 {
+      --interface-title-size: 60px;
       --interface-top: 113px;
       --interface-stack-gap: 120px;
       --interface-icon-columns: 5;
       --interface-icon-size: 160px;
       --interface-icon-column-gap: 100px;
       --interface-icon-row-gap: 100px;
+      --interface-summary-size: 36px;
       --interface-summary-width: 800px;
       --interface-summary-gap: 120px;
       position: relative;
@@ -747,8 +749,8 @@
     .interface-design__title {
       margin: 0;
       color: #f9f9fa;
-      font-size: var(--type-title-size);
-      line-height: var(--type-title-line);
+      font-size: var(--interface-title-size);
+      line-height: 1.1;
       letter-spacing: 0;
       font-weight: 600;
       text-align: left;
@@ -795,7 +797,7 @@
 
     .interface-icon__motion {
       position: absolute;
-      top: calc(50% + var(--interface-icon-y-offset, 0px));
+      top: 50%;
       left: 50%;
       display: block;
       width: var(--interface-icon-base-size);
@@ -810,20 +812,6 @@
     .interface-icon--scale-80 {
       --interface-icon-base-size: 80%;
       --interface-icon-hover-size: 100%;
-    }
-
-    .interface-icon--scale-110 {
-      --interface-icon-base-size: 110%;
-      --interface-icon-hover-size: 138%;
-    }
-
-    .interface-icon--scale-105 {
-      --interface-icon-base-size: 105%;
-      --interface-icon-hover-size: 131%;
-    }
-
-    .interface-icon--offset-y-4 {
-      --interface-icon-y-offset: 4px;
     }
 
     .interface-icon.is-active .interface-icon__motion {
@@ -849,8 +837,8 @@
       width: min(var(--interface-summary-width), 100%);
       margin: var(--interface-summary-gap) auto 0;
       color: #f9f9fa;
-      font-size: var(--type-state-size);
-      line-height: var(--type-state-line);
+      font-size: var(--interface-summary-size);
+      line-height: 1.4;
       letter-spacing: 0;
       font-weight: 600;
       text-align: center;
@@ -979,9 +967,6 @@
       :root {
         --section-side: 64px;
         --section-gutter: 128px;
-        --type-title-size: 51px;
-        --type-body-size: 20px;
-        --type-state-size: 31px;
       }
 
       .section03 {
@@ -989,6 +974,8 @@
         --visual-card-height: 675px;
         --visual-card-gap: 24px;
         --visual-radius: 31px;
+        --visual-title-size: 51px;
+        --visual-card-title-size: 31px;
         --visual-label-size: 20px;
         --visual-card-padding: 82px;
         padding-top: 204px;
@@ -996,10 +983,12 @@
       }
 
       .section04 {
+        --interface-title-size: 51px;
         --interface-top: 104px;
         --interface-stack-gap: 104px;
         --interface-icon-column-gap: 80px;
         --interface-icon-row-gap: 84px;
+        --interface-summary-size: 31px;
         --interface-summary-width: 760px;
         --interface-summary-gap: 104px;
         min-height: 1360px;
@@ -1011,9 +1000,6 @@
       :root {
         --section-side: 40px;
         --section-gutter: 80px;
-        --type-title-size: 42px;
-        --type-body-size: 18px;
-        --type-state-size: 26px;
       }
 
       .section03 {
@@ -1021,6 +1007,8 @@
         --visual-card-height: clamp(430px, 51.667vw, 620px);
         --visual-card-gap: 22px;
         --visual-radius: 28px;
+        --visual-title-size: 42px;
+        --visual-card-title-size: 26px;
         --visual-label-size: 18px;
         --visual-card-padding: 66px;
         padding-top: 150px;
@@ -1036,10 +1024,12 @@
       }
 
       .section04 {
+        --interface-title-size: 42px;
         --interface-top: 96px;
         --interface-stack-gap: 72px;
         --interface-icon-column-gap: 56px;
         --interface-icon-row-gap: 64px;
+        --interface-summary-size: 28px;
         --interface-summary-width: 720px;
         --interface-summary-gap: 72px;
         min-height: 1100px;
@@ -1048,18 +1038,14 @@
     }
 
     @media (max-width: 760px) {
-      :root {
-        --type-title-size: 34px;
-        --type-body-size: 16px;
-        --type-state-size: 20px;
-      }
-
       .section03 {
         --visual-inner-width: min(calc(100vw - 56px), var(--section-max));
         --visual-card-width: var(--visual-inner-width);
         --visual-card-height: 400px;
         --visual-card-gap: 16px;
         --visual-radius: 24px;
+        --visual-title-size: 34px;
+        --visual-card-title-size: 20px;
         --visual-label-size: clamp(10px, 2.8vw, 11px);
         --visual-card-padding: 28px;
         padding-top: 96px;
@@ -1228,23 +1214,27 @@
       .intro-motion__copy {
         left: calc((100vw - var(--section-width)) / 2);
         width: var(--section-width);
+        font-size: 24px;
       }
 
       .section03 {
         --visual-card-width: var(--section-width);
         --visual-card-height: 320px;
+        --visual-card-title-size: 18px;
         --visual-label-size: 12px;
         --visual-card-padding: 24px;
         min-height: auto;
       }
 
       .section04 {
+        --interface-title-size: 34px;
         --interface-top: 80px;
         --interface-stack-gap: 48px;
         --interface-icon-columns: 3;
         --interface-icon-size: 88px;
         --interface-icon-column-gap: 24px;
         --interface-icon-row-gap: 34px;
+        --interface-summary-size: 22px;
         --interface-summary-width: 100%;
         --interface-summary-gap: 56px;
         margin-top: -1px;
@@ -1434,7 +1424,7 @@
         <h2 class="interface-design__title" id="interface-design-title">Interface Design</h2>
         <div class="interface-icons" aria-label="Rookie2 interface icon set">
           <div class="interface-icons__grid" data-interface-icons>
-            <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="Box" aria-label="Box icon" aria-pressed="false">
+            <button class="interface-icon" type="button" data-lottie-key="Box" aria-label="Box icon" aria-pressed="false">
               <span class="interface-icon__motion" aria-hidden="true"></span>
             </button>
             <button class="interface-icon" type="button" data-lottie-key="BeverageIce" aria-label="Beverage ice icon" aria-pressed="false">
@@ -1452,7 +1442,7 @@
             <button class="interface-icon" type="button" data-lottie-key="Send" aria-label="Send icon" aria-pressed="false">
               <span class="interface-icon__motion" aria-hidden="true"></span>
             </button>
-            <button class="interface-icon interface-icon--offset-y-4" type="button" data-lottie-key="Sports" aria-label="Sports icon" aria-pressed="false">
+            <button class="interface-icon" type="button" data-lottie-key="Sports" aria-label="Sports icon" aria-pressed="false">
               <span class="interface-icon__motion" aria-hidden="true"></span>
             </button>
             <button class="interface-icon" type="button" data-lottie-key="Hand" aria-label="Hand icon" aria-pressed="false">
@@ -1461,10 +1451,10 @@
             <button class="interface-icon" type="button" data-lottie-key="Bell" aria-label="Bell icon" aria-pressed="false">
               <span class="interface-icon__motion" aria-hidden="true"></span>
             </button>
-            <button class="interface-icon interface-icon--scale-110" type="button" data-lottie-key="Check" aria-label="Check icon" aria-pressed="false">
+            <button class="interface-icon" type="button" data-lottie-key="Check" aria-label="Check icon" aria-pressed="false">
               <span class="interface-icon__motion" aria-hidden="true"></span>
             </button>
-            <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="LocationDefault" aria-label="Location icon" aria-pressed="false">
+            <button class="interface-icon" type="button" data-lottie-key="LocationDefault" aria-label="Location icon" aria-pressed="false">
               <span class="interface-icon__motion" aria-hidden="true"></span>
             </button>
             <button class="interface-icon" type="button" data-lottie-key="ArrowDown" aria-label="Arrow down icon" aria-pressed="false">

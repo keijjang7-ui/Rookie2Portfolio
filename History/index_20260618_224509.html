@@ -24,12 +24,6 @@
       --section-side: 80px;
       --section-gutter: 160px;
       --section-width: min(calc(100vw - var(--section-gutter)), var(--section-max));
-      --type-title-size: 60px;
-      --type-body-size: 24px;
-      --type-state-size: 36px;
-      --type-title-line: 1.1;
-      --type-body-line: 1.4;
-      --type-state-line: 1.4;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--copy-black);
       background: var(--page-white);
@@ -296,8 +290,8 @@
 
     .intro__title {
       margin: 0;
-      font-size: var(--type-title-size);
-      line-height: var(--type-title-line);
+      font-size: clamp(34px, 3.125vw, 60px);
+      line-height: 1.1;
       letter-spacing: 0;
       font-weight: 600;
       color: #f9f9fa;
@@ -306,14 +300,18 @@
     .intro__body {
       margin: clamp(18px, 1.667vw, 32px) auto 0;
       max-width: 760px;
-      font-size: var(--type-body-size);
-      line-height: var(--type-body-line);
+      font-size: clamp(16px, 1.25vw, 24px);
+      line-height: 1.4;
       letter-spacing: 0;
       font-weight: 400;
       color: rgba(249, 249, 250, 0.9);
     }
 
     @media (min-width: 561px) {
+      .intro__title {
+        font-size: clamp(42px, 3.125vw, 60px);
+      }
+
       .intro__body {
         margin-top: clamp(28px, 2.083vw, 40px);
       }
@@ -362,8 +360,8 @@
       width: min(600px, var(--section-width));
       margin: 0;
       color: #f9f9fa;
-      font-size: var(--type-state-size);
-      line-height: var(--type-state-line);
+      font-size: clamp(24px, 1.875vw, 36px);
+      line-height: 1.4;
       letter-spacing: 0;
       font-weight: 600;
       opacity: var(--motion-copy-opacity, 0);
@@ -378,6 +376,8 @@
       --visual-card-height: 675px;
       --visual-card-gap: 28px;
       --visual-radius: 36px;
+      --visual-title-size: 60px;
+      --visual-card-title-size: 36px;
       --visual-label-size: 24px;
       --visual-card-padding: 80px;
       position: relative;
@@ -396,8 +396,8 @@
 
     .visual-principles__title {
       margin: 0 0 40px;
-      font-size: var(--type-title-size);
-      line-height: var(--type-title-line);
+      font-size: var(--visual-title-size);
+      line-height: 1.1;
       letter-spacing: 0;
       font-weight: 600;
       color: #f9f9fa;
@@ -650,8 +650,8 @@
     .visual-card__title {
       margin: 0;
       color: #f9f9fa;
-      font-size: var(--type-state-size);
-      line-height: var(--type-state-line);
+      font-size: var(--visual-card-title-size);
+      line-height: 1.4;
       letter-spacing: 0;
       font-weight: 600;
       text-align: center;
@@ -723,18 +723,14 @@
     }
 
     .section04 {
-      --interface-top: 113px;
-      --interface-stack-gap: 120px;
-      --interface-icon-columns: 5;
-      --interface-icon-size: 160px;
-      --interface-icon-column-gap: 100px;
-      --interface-icon-row-gap: 100px;
-      --interface-summary-width: 800px;
-      --interface-summary-gap: 120px;
+      --interface-title-size: 60px;
+      --interface-body-size: 24px;
+      --interface-body-width: 600px;
+      --interface-gap: 40px;
       position: relative;
       z-index: 2;
-      min-height: 1600px;
-      padding: var(--interface-top) 0 240px;
+      min-height: 1080px;
+      padding: 200px 0 120px;
       background: #0d0b0b;
       color: #f9f9fa;
     }
@@ -747,113 +743,22 @@
     .interface-design__title {
       margin: 0;
       color: #f9f9fa;
-      font-size: var(--type-title-size);
-      line-height: var(--type-title-line);
+      font-size: var(--interface-title-size);
+      line-height: 1.1;
       letter-spacing: 0;
       font-weight: 600;
       text-align: left;
     }
 
-    .interface-icons {
-      width: 100%;
-      margin-top: var(--interface-stack-gap);
-    }
-
-    .interface-icons__grid {
-      display: grid;
-      grid-template-columns: repeat(var(--interface-icon-columns), minmax(0, 1fr));
-      gap: var(--interface-icon-row-gap) var(--interface-icon-column-gap);
-      align-items: center;
-      justify-items: center;
-      width: 100%;
-    }
-
-    .interface-icon {
-      --interface-icon-base-size: 100%;
-      --interface-icon-hover-size: 125%;
-      position: relative;
-      display: block;
-      width: min(var(--interface-icon-size), 100%);
-      aspect-ratio: 1;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      border-radius: 999px;
-      background: transparent;
-      color: inherit;
-      cursor: pointer;
-      line-height: 0;
-      overflow: visible;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .interface-icon:focus-visible {
-      outline: 2px solid rgba(249, 249, 250, 0.85);
-      outline-offset: 10px;
-    }
-
-    .interface-icon__motion {
-      position: absolute;
-      top: calc(50% + var(--interface-icon-y-offset, 0px));
-      left: 50%;
-      display: block;
-      width: var(--interface-icon-base-size);
-      height: var(--interface-icon-base-size);
-      transform: translate(-50%, -50%);
-      transition:
-        width 180ms cubic-bezier(0.2, 0, 0.2, 1),
-        height 180ms cubic-bezier(0.2, 0, 0.2, 1);
-      pointer-events: none;
-    }
-
-    .interface-icon--scale-80 {
-      --interface-icon-base-size: 80%;
-      --interface-icon-hover-size: 100%;
-    }
-
-    .interface-icon--scale-110 {
-      --interface-icon-base-size: 110%;
-      --interface-icon-hover-size: 138%;
-    }
-
-    .interface-icon--scale-105 {
-      --interface-icon-base-size: 105%;
-      --interface-icon-hover-size: 131%;
-    }
-
-    .interface-icon--offset-y-4 {
-      --interface-icon-y-offset: 4px;
-    }
-
-    .interface-icon.is-active .interface-icon__motion {
-      width: var(--interface-icon-hover-size);
-      height: var(--interface-icon-hover-size);
-      transition-duration: 460ms;
-      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .interface-icon.is-returning .interface-icon__motion {
-      transition-duration: 160ms;
-      transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);
-    }
-
-    .interface-icon__motion svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-      overflow: visible;
-    }
-
-    .interface-design__summary {
-      width: min(var(--interface-summary-width), 100%);
-      margin: var(--interface-summary-gap) auto 0;
-      color: #f9f9fa;
-      font-size: var(--type-state-size);
-      line-height: var(--type-state-line);
+    .interface-design__body {
+      width: min(var(--interface-body-width), 100%);
+      margin: var(--interface-gap) 0 0;
+      color: rgba(249, 249, 250, 0.9);
+      font-size: var(--interface-body-size);
+      line-height: 1.4;
       letter-spacing: 0;
-      font-weight: 600;
-      text-align: center;
+      font-weight: 400;
+      text-align: left;
     }
 
     @media (max-width: 1200px) {
@@ -979,9 +884,6 @@
       :root {
         --section-side: 64px;
         --section-gutter: 128px;
-        --type-title-size: 51px;
-        --type-body-size: 20px;
-        --type-state-size: 31px;
       }
 
       .section03 {
@@ -989,6 +891,8 @@
         --visual-card-height: 675px;
         --visual-card-gap: 24px;
         --visual-radius: 31px;
+        --visual-title-size: 51px;
+        --visual-card-title-size: 31px;
         --visual-label-size: 20px;
         --visual-card-padding: 82px;
         padding-top: 204px;
@@ -996,14 +900,13 @@
       }
 
       .section04 {
-        --interface-top: 104px;
-        --interface-stack-gap: 104px;
-        --interface-icon-column-gap: 80px;
-        --interface-icon-row-gap: 84px;
-        --interface-summary-width: 760px;
-        --interface-summary-gap: 104px;
-        min-height: 1360px;
-        padding-bottom: 200px;
+        --interface-title-size: 51px;
+        --interface-body-size: 22px;
+        --interface-body-width: 560px;
+        --interface-gap: 34px;
+        min-height: 900px;
+        padding-top: 170px;
+        padding-bottom: 100px;
       }
     }
 
@@ -1011,9 +914,6 @@
       :root {
         --section-side: 40px;
         --section-gutter: 80px;
-        --type-title-size: 42px;
-        --type-body-size: 18px;
-        --type-state-size: 26px;
       }
 
       .section03 {
@@ -1021,6 +921,8 @@
         --visual-card-height: clamp(430px, 51.667vw, 620px);
         --visual-card-gap: 22px;
         --visual-radius: 28px;
+        --visual-title-size: 42px;
+        --visual-card-title-size: 26px;
         --visual-label-size: 18px;
         --visual-card-padding: 66px;
         padding-top: 150px;
@@ -1036,30 +938,25 @@
       }
 
       .section04 {
-        --interface-top: 96px;
-        --interface-stack-gap: 72px;
-        --interface-icon-column-gap: 56px;
-        --interface-icon-row-gap: 64px;
-        --interface-summary-width: 720px;
-        --interface-summary-gap: 72px;
-        min-height: 1100px;
-        padding-bottom: 160px;
+        --interface-title-size: 42px;
+        --interface-body-size: 20px;
+        --interface-body-width: 512px;
+        --interface-gap: 28px;
+        min-height: 760px;
+        padding-top: 140px;
+        padding-bottom: 96px;
       }
     }
 
     @media (max-width: 760px) {
-      :root {
-        --type-title-size: 34px;
-        --type-body-size: 16px;
-        --type-state-size: 20px;
-      }
-
       .section03 {
         --visual-inner-width: min(calc(100vw - 56px), var(--section-max));
         --visual-card-width: var(--visual-inner-width);
         --visual-card-height: 400px;
         --visual-card-gap: 16px;
         --visual-radius: 24px;
+        --visual-title-size: 34px;
+        --visual-card-title-size: 20px;
         --visual-label-size: clamp(10px, 2.8vw, 11px);
         --visual-card-padding: 28px;
         padding-top: 96px;
@@ -1228,28 +1125,27 @@
       .intro-motion__copy {
         left: calc((100vw - var(--section-width)) / 2);
         width: var(--section-width);
+        font-size: 24px;
       }
 
       .section03 {
         --visual-card-width: var(--section-width);
         --visual-card-height: 320px;
+        --visual-card-title-size: 18px;
         --visual-label-size: 12px;
         --visual-card-padding: 24px;
         min-height: auto;
       }
 
       .section04 {
-        --interface-top: 80px;
-        --interface-stack-gap: 48px;
-        --interface-icon-columns: 3;
-        --interface-icon-size: 88px;
-        --interface-icon-column-gap: 24px;
-        --interface-icon-row-gap: 34px;
-        --interface-summary-width: 100%;
-        --interface-summary-gap: 56px;
+        --interface-title-size: 34px;
+        --interface-body-size: 18px;
+        --interface-body-width: 100%;
+        --interface-gap: 20px;
         margin-top: -1px;
-        min-height: auto;
-        padding-bottom: 96px;
+        min-height: 560px;
+        padding-top: 80px;
+        padding-bottom: 72px;
       }
 
       .visual-card__label-full {
@@ -1432,62 +1328,11 @@
     <section class="section04 interface-design" aria-labelledby="interface-design-title">
       <div class="interface-design__inner">
         <h2 class="interface-design__title" id="interface-design-title">Interface Design</h2>
-        <div class="interface-icons" aria-label="Rookie2 interface icon set">
-          <div class="interface-icons__grid" data-interface-icons>
-            <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="Box" aria-label="Box icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon" type="button" data-lottie-key="BeverageIce" aria-label="Beverage ice icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon" type="button" data-lottie-key="BeverageHot" aria-label="Beverage hot icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon interface-icon--scale-80" type="button" data-lottie-key="Congrat" data-lottie-start-frame="20" aria-label="Congrats icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon" type="button" data-lottie-key="Heart" aria-label="Heart icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon" type="button" data-lottie-key="Send" aria-label="Send icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon interface-icon--offset-y-4" type="button" data-lottie-key="Sports" aria-label="Sports icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon" type="button" data-lottie-key="Hand" aria-label="Hand icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon" type="button" data-lottie-key="Bell" aria-label="Bell icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon interface-icon--scale-110" type="button" data-lottie-key="Check" aria-label="Check icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="LocationDefault" aria-label="Location icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon" type="button" data-lottie-key="ArrowDown" aria-label="Arrow down icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon" type="button" data-lottie-key="Fire" aria-label="Fire icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon" type="button" data-lottie-key="Evacuate" aria-label="Evacuate icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-            <button class="interface-icon" type="button" data-lottie-key="Siren" aria-label="Siren icon" aria-pressed="false">
-              <span class="interface-icon__motion" aria-hidden="true"></span>
-            </button>
-          </div>
-          <p class="interface-design__summary">A library of over 80 icons helps communicate status, intent, and emotion through a clear and expressive visual language.</p>
-        </div>
+        <p class="interface-design__body">Designed to communicate intent, status, and emotion through a clear visual language. Every interaction is carefully crafted to help users understand, trust, and engage with Rookie2 naturally.</p>
       </div>
     </section>
   </main>
 
-  <script src="./assets/js/lottie.min.js"></script>
-  <script src="./assets/js/interface-lottie-data.js"></script>
   <script>
     const heroSection = document.querySelector(".hero");
     const heroBackground = document.querySelector(".hero-intro__background");
@@ -1497,7 +1342,6 @@
     const visualCarousel = document.querySelector("[data-visual-carousel]");
     const visualTrack = document.querySelector("[data-visual-track]");
     const visualIndicator = document.querySelector("[data-visual-indicator]");
-    const interfaceIconGrid = document.querySelector("[data-interface-icons]");
     const COPY_REVEAL_START_SECONDS = 1.6;
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
     const COPY_REVEAL_DISTANCE = 80;
@@ -2003,225 +1847,6 @@
       jumpToVisualCard(0);
     }
 
-    function initializeInterfaceIcons() {
-      if (!interfaceIconGrid || !window.lottie) {
-        return;
-      }
-
-      const iconItems = Array.from(interfaceIconGrid.querySelectorAll("[data-lottie-key]"));
-      const lottieData = window.ROOKIE2_INTERFACE_LOTTIES || {};
-      const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-      let selectedTouchState = null;
-
-      if (!iconItems.length) {
-        return;
-      }
-
-      function isTouchIconMode() {
-        return coarsePointerQuery.matches;
-      }
-
-      function finishIconReturn(state) {
-        if (!state) {
-          return;
-        }
-
-        state.shouldStop = false;
-        state.canStopAtStart = false;
-        state.item.classList.remove("is-active");
-        state.item.setAttribute("aria-pressed", "false");
-
-        if (state.animation) {
-          state.animation.setSpeed(1);
-          state.animation.goToAndStop(state.startFrame, true);
-        }
-
-        window.setTimeout(() => {
-          state.item.classList.remove("is-returning");
-        }, 180);
-      }
-
-      function requestIconReturn(state) {
-        if (!state) {
-          return;
-        }
-
-        state.item.classList.add("is-returning");
-        state.item.classList.remove("is-active");
-        state.item.setAttribute("aria-pressed", "false");
-
-        if (!state.animation || reducedMotionQuery.matches || state.animation.isPaused) {
-          finishIconReturn(state);
-          return;
-        }
-
-        state.shouldStop = true;
-        state.canStopAtStart = false;
-        state.animation.setSpeed(1);
-      }
-
-      function activateIcon(state) {
-        if (!state || !state.animation) {
-          return;
-        }
-
-        state.shouldStop = false;
-        state.canStopAtStart = false;
-        state.item.classList.remove("is-returning");
-        state.item.classList.add("is-active");
-        state.item.setAttribute("aria-pressed", "true");
-
-        if (reducedMotionQuery.matches) {
-          state.animation.goToAndStop(state.startFrame, true);
-          return;
-        }
-
-        if (state.animation.isPaused) {
-          state.animation.setSpeed(1);
-          state.animation.play();
-        } else {
-          state.animation.setSpeed(1);
-        }
-      }
-
-      const iconStates = iconItems.map((item) => {
-        const motionTarget = item.querySelector(".interface-icon__motion");
-        const animationData = lottieData[item.dataset.lottieKey];
-        const startFrame = Number.parseInt(item.dataset.lottieStartFrame || "0", 10);
-        const state = {
-          item,
-          animation: null,
-          startFrame: Number.isNaN(startFrame) ? 0 : startFrame,
-          canStopAtStart: false,
-          shouldStop: false
-        };
-
-        if (!motionTarget || !animationData) {
-          return state;
-        }
-
-        state.animation = window.lottie.loadAnimation({
-          container: motionTarget,
-          renderer: "svg",
-          loop: true,
-          autoplay: false,
-          animationData,
-          rendererSettings: {
-            preserveAspectRatio: "xMidYMid meet",
-            progressiveLoad: true
-          }
-        });
-
-        state.animation.addEventListener("DOMLoaded", () => {
-          state.animation.goToAndStop(state.startFrame, true);
-          item.classList.add("is-ready");
-        });
-
-        state.animation.addEventListener("loopComplete", () => {
-          if (state.shouldStop) {
-            if (state.startFrame > 0) {
-              state.canStopAtStart = true;
-              return;
-            }
-
-            if (selectedTouchState === state) {
-              selectedTouchState = null;
-            }
-
-            finishIconReturn(state);
-          }
-        });
-
-        state.animation.addEventListener("enterFrame", (event) => {
-          if (!state.shouldStop || !state.canStopAtStart || state.startFrame <= 0) {
-            return;
-          }
-
-          const currentFrame = event && typeof event.currentTime === "number"
-            ? event.currentTime
-            : state.animation.currentFrame;
-
-          if (currentFrame >= state.startFrame) {
-            if (selectedTouchState === state) {
-              selectedTouchState = null;
-            }
-
-            finishIconReturn(state);
-          }
-        });
-
-        item.addEventListener("pointerenter", () => {
-          if (!isTouchIconMode()) {
-            activateIcon(state);
-          }
-        });
-
-        item.addEventListener("pointerleave", () => {
-          if (!isTouchIconMode()) {
-            requestIconReturn(state);
-          }
-        });
-
-        item.addEventListener("focus", () => {
-          if (!isTouchIconMode()) {
-            activateIcon(state);
-          }
-        });
-
-        item.addEventListener("blur", () => {
-          if (!isTouchIconMode()) {
-            requestIconReturn(state);
-          }
-        });
-
-        item.addEventListener("click", (event) => {
-          if (!isTouchIconMode()) {
-            return;
-          }
-
-          event.preventDefault();
-
-          if (selectedTouchState && selectedTouchState !== state) {
-            requestIconReturn(selectedTouchState);
-          }
-
-          if (selectedTouchState === state && item.classList.contains("is-active")) {
-            selectedTouchState = null;
-            requestIconReturn(state);
-            return;
-          }
-
-          selectedTouchState = state;
-          activateIcon(state);
-        });
-
-        return state;
-      });
-
-      document.addEventListener("pointerdown", (event) => {
-        if (!isTouchIconMode() || !selectedTouchState) {
-          return;
-        }
-
-        if (event.target instanceof Element && interfaceIconGrid.contains(event.target)) {
-          return;
-        }
-
-        requestIconReturn(selectedTouchState);
-        selectedTouchState = null;
-      }, { passive: true });
-
-      const handleReducedMotionChange = () => {
-        iconStates.forEach(finishIconReturn);
-      };
-
-      if (typeof reducedMotionQuery.addEventListener === "function") {
-        reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
-      } else if (typeof reducedMotionQuery.addListener === "function") {
-        reducedMotionQuery.addListener(handleReducedMotionChange);
-      }
-    }
-
     video.addEventListener("loadedmetadata", initializeVideo, { once: true });
     video.addEventListener("loadeddata", updateScrollState, { once: true });
     window.addEventListener("scroll", updateScrollState, { passive: true });
@@ -2233,7 +1858,6 @@
     video.load();
     updateHeroBackground();
     initializeVisualCarousel();
-    initializeInterfaceIcons();
     requestAnimationFrame(syncScrollProgress);
 
     if (video.readyState >= 1) {

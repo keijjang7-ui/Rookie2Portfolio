@@ -17,7 +17,7 @@
 - `assets/fonts/a-type/AType-Bold.otf`: Hero 타이틀 `Rookie2`에 사용하는 A Type 웹폰트입니다. 사이트에서 쓰는 두께만 `assets` 아래에서 관리합니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
-- `History/index_20260617_004703.html`: 2026-06-17 00:47 기준 현재 `index.html` 스냅샷입니다. 히스토리 폴더는 최신 확인용 스냅샷 1개만 유지합니다.
+- `History/index_20260619_001030.html`: 2026-06-19 00:10 기준, 공통 타이포그래피 토큰 적용 직전의 `index.html` 스냅샷입니다.
 
 ## 2026-06-17 최종 점검
 
@@ -30,6 +30,7 @@
 - Visual Principles 터치 스와이프는 방향 잠금 로직을 사용합니다. 가로 의도가 확인되면 카드 스와이프, 세로 의도가 크면 페이지 스크롤을 유지합니다.
 - Intro motion 터치 스크럽은 `233svh`, 최소 `1320px` 기준입니다. 더 빠르거나 느리게 조정할 때는 높이값을 바꾸는 방식으로 접근합니다.
 - Hero 태블릿 구간 `max-width: 1200px`은 Figma `Hero_Tablet` 프레임을 기준으로 모바일처럼 독립 레이아웃으로 분기합니다. 좌측 정렬 축소형 규칙은 더 이상 사용하지 않습니다.
+- Hero를 제외한 정보 섹션의 텍스트는 공통 타이포그래피 토큰 `title`, `body`, `state` 세 가지로 관리합니다. 새 섹션을 추가할 때도 먼저 이 세 속성 중 하나를 선택합니다.
 
 제거했거나 제거할 수 있는 항목:
 
@@ -91,6 +92,23 @@ Figma 디자인을 다시 반영할 때는 먼저 Figma에서 해당 node를 확
   <section class="section04 interface-design">...</section>
 </main>
 ```
+
+## 공통 타이포그래피 기준
+
+Hero는 이 기준에서 제외합니다. Hero 아래 정보 섹션의 텍스트 크기는 `index.html`의 `:root`에서 세 가지 토큰으로 관리합니다.
+
+- `title`: 섹션의 큰 타이틀입니다. 예: `Moving What Matters`, `Visual Principles`, `Interface Design`
+- `body`: 큰 타이틀 아래 설명문입니다. 예: Intro 서브 텍스트
+- `state`: 중간 강조 텍스트입니다. 예: Intro motion overlay 카피, Visual Principles 카드 타이틀, Interface Design 아이콘 아래 카피
+
+현재 반응형 크기 기준:
+
+- 기본: `title 60px`, `body 24px`, `state 36px`
+- 1600 이하: `title 51px`, `body 20px`, `state 31px`
+- 1200 이하: `title 42px`, `body 18px`, `state 26px`
+- 760 이하: `title 34px`, `body 16px`, `state 20px`
+
+Visual Principles 1번 카드 안의 `Lively`, `Connected`, `Future` 라벨은 이미지 안에 얹는 예외 라벨이므로 이 공통 토큰을 따르지 않고 `--visual-label-size`로 별도 관리합니다.
 
 ## Hero 동작 기준
 
@@ -157,13 +175,12 @@ Intro 디자인 기준:
 - 텍스트 컬러: Figma `Grayscale/Gray-100`, `#F9F9FA`
 - 메인 타이틀:
   - `font-weight: 600`
-  - 기본 `font-size: clamp(34px, 3.125vw, 60px)`
-  - 모바일 제외, 561px 이상에서는 Figma 기준을 유지하기 위해 `font-size: clamp(42px, 3.125vw, 60px)`
-  - `line-height: 1.1`
+  - 공통 `title` 토큰 사용
+  - `line-height: var(--type-title-line)`
 - 서브 텍스트:
   - `color: rgba(249, 249, 250, 0.9)`
-  - `font-size: clamp(16px, 1.25vw, 24px)`
-  - `line-height: 1.4`
+  - 공통 `body` 토큰 사용
+  - `line-height: var(--type-body-line)`
 
 Intro 레이아웃 기준:
 
@@ -200,8 +217,7 @@ Intro motion overlay 카피 기준:
 - 위치는 모든 반응형 지점에서 공통 정보 영역 `--section-width`의 왼쪽 기준선과 맞춥니다. 1920 기준 `x: 360`, 1600 기준 `x: 200`, 1200 기준 `x: 40`, 모바일 390 기준 `x: 28`입니다.
 - 최대 폭: `600px`
 - 카피 폭은 데스크톱/태블릿에서 `min(600px, var(--section-width))`, 모바일에서는 `var(--section-width)`입니다.
-- 폰트: Pretendard SemiBold, `36px`, `line-height: 1.4`, color `#f9f9fa`
-- 반응형 폰트: `clamp(24px, 1.875vw, 36px)`
+- 폰트: Pretendard SemiBold, 공통 `state` 토큰, `line-height: var(--type-state-line)`, color `#f9f9fa`
 - 영상 시간 기준 약 `1.6s`부터 등장하며, 기존 완료 시점은 유지하기 위해 약 `2.45s`에 제 위치에 도달합니다.
 - 등장 동작은 스크롤 progress에 종속됩니다.
   - opacity: `0 -> 1`
@@ -228,7 +244,7 @@ Intro motion overlay 카피 기준:
 - 섹션 클래스: `.section03.visual-principles`
 - 배경: `#0d0b0b`
 - Figma 기준 1920px 화면에서 title은 x `360`, y `240` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
-- 타이틀: `Visual Principles`, Pretendard SemiBold, 기본 `60px`, `line-height: 1.1`
+- 타이틀: `Visual Principles`, Pretendard SemiBold, 공통 `title` 토큰, `line-height: var(--type-title-line)`
 - 카드 기본 폭은 모든 반응형 지점에서 정보 영역과 같은 `--section-width`를 기준으로 합니다. 활성 카드의 좌측선은 항상 Visual Principles 타이틀 좌측선과 맞아야 합니다.
 - 카드 기본 높이는 데스크톱 시작 기준 `675px`입니다.
 - 반응형 breakpoint는 기본적으로 사이트 전체 기준인 `1600px`, `1200px`, `560px`를 따르되, `Visual Principles` 카드 캐러셀은 이미지/텍스트 충돌을 막기 위해 전용 `760px` 완충 구간을 사용합니다.
@@ -241,7 +257,7 @@ Intro motion overlay 카피 기준:
   - 4번 `Expressive Gaze`: 배경 이미지 위에 흰색 선 5개를 CSS 요소로 얹고, 양끝 긴 선은 `xx.html`의 로봇 눈 깜빡임과 같은 `2.2s cubic-bezier(0.48, 0, 0.22, 1)` 타이밍을 사용합니다. 양끝 선은 Figma의 `strokeWeight 31px` + 세로 선분 `34px` 기준을 흉내 내며, blink 중간에는 선분 길이가 `1px`이 된 상태처럼 원형에 가깝게 줄어듭니다.
   - 5번: Figma 이미지 그대로 `object-fit: cover`로 표시합니다.
 - 카드 트랙은 viewport 전체 폭 위에 놓고, 활성 카드의 중심이 항상 viewport 중심에 오도록 `transform`으로 이동합니다. 이 구조 덕분에 활성 카드의 좌우에 걸치는 이전/다음 카드의 노출 폭이 동일합니다.
-- 화면이 줄어들면 카드 너비/높이와 내부 텍스트가 함께 단계적으로 줄어듭니다.
+- 화면이 줄어들면 카드 너비/높이와 공통 `state` 텍스트가 함께 단계적으로 줄어듭니다.
 - 모바일 좌우 여백은 정보 영역 기준과 같은 `28px`입니다. 중심 카드 폭은 `var(--section-width)`를 사용해 Visual Principles 타이틀과 카드의 좌측 기준선을 맞춥니다.
 - 모바일 `560px` 이하에서 5개 카드 공통 높이는 `320px`입니다.
 
@@ -279,18 +295,26 @@ Intro motion overlay 카피 기준:
 
 ## Interface Design / Section04 기준
 
-`Visual Principles` 이후의 다음 섹션은 Figma의 `Interface Design` 텍스트 영역을 기준으로 구현합니다.
+`Visual Principles` 이후의 다음 섹션은 Figma의 `Interface Design` 레이어를 기준으로 구현합니다.
 
 - 섹션 클래스: `.section04.interface-design`
 - 배경: `#0D0B0B`
-- 현재 구현 기준 1920px 화면에서 텍스트 블록은 x `360`, y `200` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
-- 섹션 기본 높이: `1080px`
-- 타이틀: `Interface Design`, Pretendard SemiBold, 기본 `60px`, `line-height: 1.1`
-- 본문: Pretendard Regular, 기본 `24px`, `line-height: 1.4`, 폭 `600px`, opacity `0.9`
-- 타이틀과 본문 간격: 기본 `40px`
-- 상단 여백은 기본 `200px`, 1600 이하 `170px`, 1200 이하 `140px`, 560 이하 모바일 `80px`로 정수 비율 축소합니다.
-- 현재는 헤드와 서브문구만 구현되어 있으며, 추후 이 섹션에 추가 화면/카드/모션을 이어서 배치합니다.
+- 현재 구현 기준 1920px 화면에서 inner는 x `360`, y `113` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
+- 섹션 기본 높이: `1600px`
+- 타이틀: `Interface Design`, Pretendard SemiBold, 공통 `title` 토큰, `line-height: var(--type-title-line)`
+- 타이틀 직하단 서브문구는 제거했습니다.
+- 아이콘 세트는 `assets/json`의 Lottie JSON을 사용합니다. 현재 Figma 노출 기준 15개를 사용하고, `Globe.json`은 Figma에서 hidden 상태라 제외합니다.
+- Lottie 엔진은 외부 CDN에 의존하지 않고 `assets/js/lottie.min.js` 로컬 파일을 사용합니다. 회사망, 배포 환경, 오프라인 검수에서 아이콘이 빈 슬롯으로 보이는 문제를 피하기 위한 기준입니다.
+- `file://`로 `index.html`을 직접 열어도 아이콘이 보이도록, 런타임은 JSON 파일을 직접 fetch하지 않습니다. `assets/js/interface-lottie-data.js`에 15개 JSON을 묶어 `window.ROOKIE2_INTERFACE_LOTTIES`로 제공하고, HTML의 `data-lottie-key`로 매칭합니다.
+- 데스크톱 기준 아이콘 슬롯은 `160px`, 5열, column/row gap `100px`입니다. `1200px` inner 안에 정확히 맞도록 구성합니다.
+- 아이콘은 버튼 슬롯 중앙에 Lottie를 렌더링합니다. 슬롯과 Lottie 스케일을 분리해 나중에 아이콘 크기 조절이 쉽도록 합니다.
+- 아이콘 hover/tap 확대는 grid layout에 영향을 주면 안 됩니다. `.interface-icon` 슬롯은 고정 크기/고정 좌표를 유지하고, `.interface-icon__motion`은 `position: absolute`로 중앙 배치해 `width/height`가 변해도 행간과 위치가 밀리지 않게 합니다.
+- hover 또는 터치 tap 시 해당 Lottie가 재생되고, 활성 아이콘은 기본 `160px` 슬롯 기준 `125%` 크기인 `200px`처럼 보입니다.
+- hover 종료, blur, 다른 아이콘 선택 시 즉시 끊지 않고 현재 루프가 끝나는 지점까지 재생한 뒤 각 아이콘의 시작/정지 프레임으로 돌아가 정지합니다. 기본값은 `0`프레임입니다.
+- 개별 아이콘은 `data-lottie-start-frame`과 CSS 크기 클래스로 예외 값을 줄 수 있습니다. 현재 4번째 `Congrat` 아이콘은 시작/정지 프레임 `20`, 기본 크기 `80%`, 활성 크기 `100%`를 사용합니다. 종료 시에는 종료 요청 시점과 관계없이 현재 루프를 끝까지 재생한 뒤, 다음 루프의 `0`프레임대부터 `20`프레임까지 자연스럽게 지나간 뒤 정지합니다.
+- 아이콘 아래 카피는 Figma 기준 문구 `A library of over 80 icons helps communicate status, intent, and emotion through a clear and expressive visual language.`를 사용하며, 공통 `state` 토큰을 따릅니다.
 - 반응형 breakpoint는 사이트 기본 기준인 `1600px`, `1200px`, `560px`를 따릅니다.
+- 모바일 `560px` 이하에서는 아이콘을 3열로 배치해 터치 타깃과 가독성을 확보합니다.
 - 모바일 `560px` 이하에서는 `Visual Principles`와의 경계에서 흰 배경이 1px 새지 않도록 `.section04`에 `margin-top: -1px` 보정을 둡니다.
 - 모바일 `560px` 이하에서는 데스크톱 좁은 창에서 과한 빈 공간이 생기지 않도록 `.section03`의 `min-height: 100svh`를 `auto`로 풉니다.
 
