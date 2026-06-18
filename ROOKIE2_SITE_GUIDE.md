@@ -280,7 +280,7 @@ Intro motion overlay 카피 기준:
 `Visual Principles` 이후의 다음 섹션은 Figma의 `Interface Design` 텍스트 영역을 기준으로 구현합니다.
 
 - 섹션 클래스: `.section04.interface-design`
-- 배경: `#100E0E`
+- 배경: `#0D0B0B`
 - Figma 기준 1920px 화면에서 텍스트 블록은 x `360`, y `120` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
 - 섹션 기본 높이: `1080px`
 - 타이틀: `Interface Design`, Pretendard SemiBold, 기본 `60px`, `line-height: 1.1`
