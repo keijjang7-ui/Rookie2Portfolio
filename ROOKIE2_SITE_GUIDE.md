@@ -282,11 +282,12 @@ Intro motion overlay 카피 기준:
 
 - 섹션 클래스: `.section04.interface-design`
 - 배경: `#0D0B0B`
-- Figma 기준 1920px 화면에서 텍스트 블록은 x `360`, y `120` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
+- 현재 구현 기준 1920px 화면에서 텍스트 블록은 x `360`, y `200` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
 - 섹션 기본 높이: `1080px`
 - 타이틀: `Interface Design`, Pretendard SemiBold, 기본 `60px`, `line-height: 1.1`
 - 본문: Pretendard Regular, 기본 `24px`, `line-height: 1.4`, 폭 `600px`, opacity `0.9`
 - 타이틀과 본문 간격: 기본 `40px`
+- 상단 여백은 기본 `200px`, 1600 이하 `170px`, 1200 이하 `140px`, 560 이하 모바일 `110px`로 정수 비율 축소합니다.
 - 현재는 헤드와 서브문구만 구현되어 있으며, 추후 이 섹션에 추가 화면/카드/모션을 이어서 배치합니다.
 - 반응형 breakpoint는 사이트 기본 기준인 `1600px`, `1200px`, `560px`를 따릅니다.
 - 모바일 `560px` 이하에서는 `Visual Principles`와의 경계에서 흰 배경이 1px 새지 않도록 `.section04`에 `margin-top: -1px` 보정을 둡니다.
