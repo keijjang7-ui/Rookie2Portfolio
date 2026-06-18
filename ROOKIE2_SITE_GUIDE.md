@@ -12,6 +12,8 @@
 - `assets/images/visual-principles/card-principles-graphic.svg`: Visual Principles 1번 카드의 벡터 그래픽 이미지입니다. 배경이 보이지 않도록 Figma의 `Subtract` 벡터를 SVG로 가져왔고, 카드 내부 텍스트는 HTML/CSS로 따로 얹습니다.
 - `assets/images/visual-principles/card-vision-grid.png`: Visual Principles 2번 카드의 이미지 그리드입니다. 카드 하나당 하나의 이미지 파일로 관리한다는 원칙에 맞춰 Figma 이미지 타일 10개를 투명 배경의 한 장 PNG로 합성했습니다.
 - `assets/images/visual-principles/card-understood-visual.jpg`: Visual Principles 3번 카드 `Designed to Be Understood`의 배경 비주얼 이미지입니다.
+- `assets/images/visual-principles/card-expressive-gaze-bg.png`: Visual Principles 4번 카드 `Expressive Gaze`의 배경 이미지입니다. 흰색 선 5개는 이미지에 굽지 않고 HTML/CSS로 얹습니다.
+- `assets/images/visual-principles/card-future-form.png`: Visual Principles 5번 카드의 전체 이미지입니다.
 - `assets/fonts/a-type/AType-Bold.otf`: Hero 타이틀 `Rookie2`에 사용하는 A Type 웹폰트입니다. 사이트에서 쓰는 두께만 `assets` 아래에서 관리합니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
@@ -32,7 +34,7 @@
 제거했거나 제거할 수 있는 항목:
 
 - 이전 `History/index_*.html` 스냅샷은 최신 스냅샷을 만들 때 삭제합니다.
-- Visual Principles에서 현재 쓰는 자산은 `card-principles-graphic.svg`, `card-vision-grid.png`, `card-understood-visual.jpg`입니다. 예전 백업이나 이전 카드 이미지는 보관하지 않습니다.
+- Visual Principles에서 현재 쓰는 자산은 `card-principles-graphic.svg`, `card-vision-grid.png`, `card-understood-visual.jpg`, `card-expressive-gaze-bg.png`, `card-future-form.png`입니다. 예전 백업이나 이전 카드 이미지는 보관하지 않습니다.
 - 카드 폭을 위한 `calc(100vw - 160px)`, `calc(100vw - 72px)`, `calc(100vw - 48px)` 같은 개별 예외는 다시 추가하지 않습니다.
 
 추가할 때 지킬 기준:
@@ -56,10 +58,12 @@
   - `Intro_mv`
   - `Intro_mv_end`
   - `Visual Principles`
+  - `Interface Design` (현재 Figma 레이어명은 `Intro_mv`, 내부 텍스트 기준)
 - Figma의 `Intro` node id는 `1:26`입니다.
 - Figma의 `Hero_Tablet` node id는 `30:2`입니다.
 - Figma의 `Hero_Mobile` node id는 `18:2`입니다.
 - Figma의 `Visual Principles` node id는 `18:25`입니다.
+- Figma의 `Interface Design` section node id는 `37:29`입니다.
 
 Figma 디자인을 다시 반영할 때는 먼저 Figma에서 해당 node를 확인하고, `index.html`의 현재 수작업 구조에 맞게 CSS/HTML로 변환합니다.
 
@@ -71,6 +75,7 @@ Figma 디자인을 다시 반영할 때는 먼저 Figma에서 해당 node를 확
 2. `Intro`
 3. `Intro_mv` scroll-scrub video
 4. `Visual Principles` horizontal card carousel
+5. `Interface Design`
 
 `Hero`와 `Intro`는 `.hero-intro` 래퍼 안에 함께 들어 있습니다. 데스크톱/일반 포인터 환경에서는 Hero 배경을 별도 fixed 레이어로 두고, Hero 텍스트와 Intro 섹션이 스크롤 흐름 안에서 움직입니다. 터치 환경에서는 fixed 레이어 어긋남을 피하기 위해 Hero 배경도 문서 흐름과 함께 움직이게 합니다.
 
@@ -82,6 +87,8 @@ Figma 디자인을 다시 반영할 때는 먼저 Figma에서 해당 node를 확
     <section class="intro">...</section>
   </div>
   <section class="intro-motion">...</section>
+  <section class="section03 visual-principles">...</section>
+  <section class="section04 interface-design">...</section>
 </main>
 ```
 
@@ -222,12 +229,16 @@ Intro motion overlay 카피 기준:
 - Figma 기준 1920px 화면에서 title은 x `360`, y `240` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
 - 타이틀: `Visual Principles`, Pretendard SemiBold, 기본 `60px`, `line-height: 1.1`
 - 카드 기본 폭은 모든 반응형 지점에서 정보 영역과 같은 `--section-width`를 기준으로 합니다. 활성 카드의 좌측선은 항상 Visual Principles 타이틀 좌측선과 맞아야 합니다.
+- 카드 기본 높이는 데스크톱 시작 기준 `675px`입니다.
+- 반응형 breakpoint는 기본적으로 사이트 전체 기준인 `1600px`, `1200px`, `560px`를 따르되, `Visual Principles` 카드 캐러셀은 이미지/텍스트 충돌을 막기 위해 전용 `760px` 완충 구간을 사용합니다.
 - 섹션 하단 여백은 데스크톱 기본 기준 `120px`입니다. 반응형 구간은 1600 이하 `58px`, 1200 이하 `56px`, 모바일 `48px` 기준입니다.
 - 카드 간격: `28px`
 - 카드 radius: `36px`
 - 카드 배경:
   - 모든 카드 공통: `#19191a`
   - 3번 `Designed to Be Understood`: `#19191a` 기반 + 배경 이미지 `mix-blend-mode: screen`
+  - 4번 `Expressive Gaze`: 배경 이미지 위에 흰색 선 5개를 CSS 요소로 얹고, 양끝 긴 선은 `xx.html`의 로봇 눈 깜빡임과 같은 `2.2s cubic-bezier(0.48, 0, 0.22, 1)` 타이밍을 사용합니다. 양끝 선은 Figma의 `strokeWeight 31px` + 세로 선분 `34px` 기준을 흉내 내며, blink 중간에는 선분 길이가 `1px`이 된 상태처럼 원형에 가깝게 줄어듭니다.
+  - 5번: Figma 이미지 그대로 `object-fit: cover`로 표시합니다.
 - 카드 트랙은 viewport 전체 폭 위에 놓고, 활성 카드의 중심이 항상 viewport 중심에 오도록 `transform`으로 이동합니다. 이 구조 덕분에 활성 카드의 좌우에 걸치는 이전/다음 카드의 노출 폭이 동일합니다.
 - 화면이 줄어들면 카드 너비/높이와 내부 텍스트가 함께 단계적으로 줄어듭니다.
 - 모바일 좌우 여백은 정보 영역 기준과 같은 `28px`입니다. 중심 카드 폭은 `var(--section-width)`를 사용해 Visual Principles 타이틀과 카드의 좌측 기준선을 맞춥니다.
@@ -240,6 +251,8 @@ Intro motion overlay 카피 기준:
   - 1번: `Three Principles Behind Rookie2`
   - 2번: `Shaping the Vision`
   - 3번: `Designed to Be Understood`
+  - 4번: `Expressive Gaze`
+  - 5번: 이미지 카드
 - 1번 카드의 세 가지 라벨 `Lively Interaction`, `Connected Experience`, `Approachable Future`도 CSS 텍스트로 얹습니다. 모바일 `560px` 이하에서는 각각 `Lively`, `Connected`, `Future`로 축약하고 `12px` 정수 크기를 사용합니다.
 - 1번 카드의 동글한 컬러 그래픽은 PNG 캡처가 아니라 SVG 벡터를 사용합니다. 원본 `900 x 282` 비율을 유지해야 하며, `preserveAspectRatio="xMidYMid meet"`와 CSS `object-fit: contain` 기준을 사용합니다. 검은 사각 배경이 보이거나 모바일에서 찌그러져 보이면 SVG 비율 설정을 먼저 확인합니다.
 - 1번 카드 내부 라벨 텍스트는 모바일에서도 최소 `10px` 이상을 유지합니다.
@@ -249,6 +262,8 @@ Intro motion overlay 카피 기준:
 - 3번 카드는 Figma 최신 기준에 따라 `Designed to Be Understood` 타이틀과 배경 비주얼만 표시합니다.
 - 3번 카드 타이틀은 모든 반응형 지점에서 2번 카드 `Shaping the Vision` 타이틀의 상단 높이와 맞춥니다. 현재 구현은 2번 카드 이미지 영역과 같은 비율의 투명 스페이서를 사용해 두 카드의 타이틀 높이를 동일하게 유지합니다.
 - 모바일 `560px` 이하의 3번 카드 배경 비주얼은 하단에 붙어 있어야 합니다. 타이틀과 이미지가 닿지 않도록 하단을 `-30px`로 걸치고, 이미지 폭은 `min(calc(121% + 106px), 520px)`로 제한합니다.
+- 4번 카드의 흰색 선은 배경 이미지와 같은 `1200 x 768` 좌표계 안에 넣습니다. 카드 비율이 바뀌어 배경 이미지가 cover/crop 되더라도 선이 배경과 같은 비율과 위치로 움직여야 합니다. 양끝 긴 선은 전체 시각 높이 `65px` 기준에서 `32px`까지 줄어들도록 구현합니다. 이는 Figma의 세로 선분 길이 `34px -> 1px`에 stroke cap `31px`이 더해진 시각 크기입니다. 라운드 캡이 찌그러지지 않도록 `transform: scaleY()`가 아니라 pseudo-element의 `height`를 애니메이션합니다.
+- 4번 카드 텍스트는 좌측 하단 정렬입니다. 좌측 간격은 반응형 inset 값을 사용하며, 데스크톱 시작 기준은 `100px`입니다. 하단 간격은 baseline 착시 보정을 위해 좌측 inset의 `90%`를 사용합니다.
 
 캐러셀 동작:
 
@@ -259,6 +274,20 @@ Intro motion overlay 카피 기준:
 - 인디케이터는 JS에서 카드 개수를 읽어 자동 생성합니다. 카드가 4개 이상으로 늘어나도 `data-visual-card` article만 추가하면 인디케이터가 함께 늘어납니다.
 - 인디케이터 hover는 조금 밝은 회색, active는 흰색 긴 pill 형태입니다.
 - 기존 전역 커스텀 wheel/key 스크롤이 카드 가로 슬라이드를 방해하지 않도록 Visual Principles 영역은 예외 처리되어 있습니다.
+
+## Interface Design / Section04 기준
+
+`Visual Principles` 이후의 다음 섹션은 Figma의 `Interface Design` 텍스트 영역을 기준으로 구현합니다.
+
+- 섹션 클래스: `.section04.interface-design`
+- 배경: `#100E0E`
+- Figma 기준 1920px 화면에서 텍스트 블록은 x `360`, y `120` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
+- 섹션 기본 높이: `1080px`
+- 타이틀: `Interface Design`, Pretendard SemiBold, 기본 `60px`, `line-height: 1.1`
+- 본문: Pretendard Regular, 기본 `24px`, `line-height: 1.4`, 폭 `600px`, opacity `0.9`
+- 타이틀과 본문 간격: 기본 `40px`
+- 현재는 헤드와 서브문구만 구현되어 있으며, 추후 이 섹션에 추가 화면/카드/모션을 이어서 배치합니다.
+- 반응형 breakpoint는 사이트 기본 기준인 `1600px`, `1200px`, `560px`를 따릅니다.
 
 ## 스크롤/비디오 스크립트 기준
 

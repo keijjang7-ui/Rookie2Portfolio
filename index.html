@@ -333,7 +333,7 @@
     .section03 {
       --visual-inner-width: var(--section-width);
       --visual-card-width: var(--section-width);
-      --visual-card-height: 768px;
+      --visual-card-height: 675px;
       --visual-card-gap: 28px;
       --visual-radius: 36px;
       --visual-title-size: 60px;
@@ -413,6 +413,14 @@
       mix-blend-mode: screen;
     }
 
+    .visual-card--gaze {
+      background: #19191a;
+    }
+
+    .visual-card--future {
+      background: #19191a;
+    }
+
     .visual-card__image {
       position: absolute;
       inset: 0;
@@ -488,6 +496,76 @@
       height: auto;
       max-width: none;
       object-fit: contain;
+    }
+
+    .visual-card__gaze-media {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      aspect-ratio: 1200 / 768;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .visual-card__image--gaze {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .visual-card__gaze-line {
+      position: absolute;
+      top: var(--gaze-y);
+      left: var(--gaze-x);
+      width: 2.083%;
+      aspect-ratio: 1;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
+      transform: translate(-50%, -50%);
+      transform-origin: center;
+    }
+
+    .visual-card__gaze-line--eye {
+      width: 2.583%;
+      height: 8.464%;
+      aspect-ratio: auto;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .visual-card__gaze-line--eye::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
+      transform: translate(-50%, -50%);
+      transform-origin: center;
+      animation: visual-gaze-blink 2.2s cubic-bezier(0.48, 0, 0.22, 1) infinite;
+      will-change: height;
+    }
+
+    .visual-card__title--gaze {
+      --visual-gaze-title-inset: clamp(28px, calc(var(--visual-card-width) * 0.08333), 100px);
+      position: absolute;
+      left: var(--visual-gaze-title-inset);
+      bottom: calc(var(--visual-gaze-title-inset) * 0.9);
+      text-align: left;
+    }
+
+    .visual-card__image--future {
+      object-fit: cover;
+      object-position: center center;
     }
 
     .visual-card__understood-spacer {
@@ -583,6 +661,64 @@
       width: 40px;
       background: #f5f5fb;
       transform: scale(1);
+    }
+
+    @keyframes visual-gaze-blink {
+      0%,
+      45%,
+      72%,
+      100% {
+        height: 100%;
+      }
+
+      58% {
+        height: 49.23%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .visual-card__gaze-line--eye::before {
+        animation: none;
+      }
+    }
+
+    .section04 {
+      --interface-title-size: 60px;
+      --interface-body-size: 24px;
+      --interface-body-width: 600px;
+      --interface-gap: 40px;
+      position: relative;
+      z-index: 2;
+      min-height: 1080px;
+      padding: 120px 0;
+      background: #100e0e;
+      color: #f9f9fa;
+    }
+
+    .interface-design__inner {
+      width: var(--section-width);
+      margin: 0 auto;
+    }
+
+    .interface-design__title {
+      margin: 0;
+      color: #f9f9fa;
+      font-size: var(--interface-title-size);
+      line-height: 1.1;
+      letter-spacing: 0;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .interface-design__body {
+      width: min(var(--interface-body-width), 100%);
+      margin: var(--interface-gap) 0 0;
+      color: rgba(249, 249, 250, 0.9);
+      font-size: var(--interface-body-size);
+      line-height: 1.4;
+      letter-spacing: 0;
+      font-weight: 400;
+      text-align: left;
     }
 
     @media (max-width: 1200px) {
@@ -708,7 +844,7 @@
 
       .section03 {
         --visual-card-width: var(--section-width);
-        --visual-card-height: 680px;
+        --visual-card-height: 675px;
         --visual-card-gap: 24px;
         --visual-radius: 31px;
         --visual-title-size: 51px;
@@ -717,6 +853,16 @@
         --visual-card-padding: 82px;
         padding-top: 204px;
         padding-bottom: 58px;
+      }
+
+      .section04 {
+        --interface-title-size: 51px;
+        --interface-body-size: 22px;
+        --interface-body-width: 560px;
+        --interface-gap: 34px;
+        min-height: 900px;
+        padding-top: 100px;
+        padding-bottom: 100px;
       }
     }
 
@@ -746,16 +892,22 @@
       .visual-principles__indicator {
         margin-top: 34px;
       }
+
+      .section04 {
+        --interface-title-size: 42px;
+        --interface-body-size: 20px;
+        --interface-body-width: 512px;
+        --interface-gap: 28px;
+        min-height: 760px;
+        padding-top: 96px;
+        padding-bottom: 96px;
+      }
     }
 
     @media (max-width: 760px) {
-      :root {
-        --section-side: 28px;
-        --section-gutter: 56px;
-      }
-
       .section03 {
-        --visual-card-width: var(--section-width);
+        --visual-inner-width: min(calc(100vw - 56px), var(--section-max));
+        --visual-card-width: var(--visual-inner-width);
         --visual-card-height: 400px;
         --visual-card-gap: 16px;
         --visual-radius: 24px;
@@ -786,7 +938,19 @@
       }
     }
 
+    @media (max-width: 680px) {
+      .visual-card__gaze-media {
+        width: auto;
+        height: 100%;
+      }
+    }
+
     @media (max-width: 560px) {
+      :root {
+        --section-side: 28px;
+        --section-gutter: 56px;
+      }
+
       .hero-intro {
         --hero-height: 600px;
       }
@@ -917,6 +1081,16 @@
         --visual-card-title-size: 18px;
         --visual-label-size: 12px;
         --visual-card-padding: 24px;
+      }
+
+      .section04 {
+        --interface-title-size: 34px;
+        --interface-body-size: 18px;
+        --interface-body-width: 100%;
+        --interface-gap: 20px;
+        min-height: 560px;
+        padding-top: 96px;
+        padding-bottom: 72px;
       }
 
       .visual-card__label-full {
@@ -1070,9 +1244,32 @@
                 <span class="visual-card__understood-spacer" aria-hidden="true"></span>
               </div>
             </article>
+
+            <article class="visual-card visual-card--gaze" data-visual-card data-card-label="Expressive Gaze" aria-label="Expressive Gaze">
+              <div class="visual-card__gaze-media" aria-hidden="true">
+                <img class="visual-card__image--gaze" src="./assets/images/visual-principles/card-expressive-gaze-bg.png" alt="">
+                <span class="visual-card__gaze-line visual-card__gaze-line--eye" style="--gaze-x: 41.333%; --gaze-y: 50.391%;"></span>
+                <span class="visual-card__gaze-line" style="--gaze-x: 45.667%; --gaze-y: 50.391%;"></span>
+                <span class="visual-card__gaze-line" style="--gaze-x: 50%; --gaze-y: 50.391%;"></span>
+                <span class="visual-card__gaze-line" style="--gaze-x: 54.333%; --gaze-y: 50.391%;"></span>
+                <span class="visual-card__gaze-line visual-card__gaze-line--eye" style="--gaze-x: 58.667%; --gaze-y: 50.391%;"></span>
+              </div>
+              <h3 class="visual-card__title visual-card__title--gaze">Expressive Gaze</h3>
+            </article>
+
+            <article class="visual-card visual-card--future" data-visual-card data-card-label="Card 05" aria-label="Card 05">
+              <img class="visual-card__image visual-card__image--future" src="./assets/images/visual-principles/card-future-form.png" alt="">
+            </article>
           </div>
         </div>
         <div class="visual-principles__indicator" data-visual-indicator role="tablist" aria-label="Visual Principles cards"></div>
+      </div>
+    </section>
+
+    <section class="section04 interface-design" aria-labelledby="interface-design-title">
+      <div class="interface-design__inner">
+        <h2 class="interface-design__title" id="interface-design-title">Interface Design</h2>
+        <p class="interface-design__body">Designed to communicate intent, status, and emotion through a clear visual language. Every interaction is carefully crafted to help users understand, trust, and engage with Rookie2 naturally.</p>
       </div>
     </section>
   </main>
