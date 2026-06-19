@@ -129,7 +129,7 @@ Hero 배경 레이어:
   - 0~2초: opacity 0
   - 2~3.5초: opacity 0 -> 0.7
   - 3.5~5초: opacity 0.7 -> 0
-- Hero 중앙 하단에는 `SCROLL` 안내와 세로 라인 애니메이션 `.hero-scroll`을 둡니다. 기본 `bottom: 40px`, 태블릿 `28px`, 모바일 `24px` 기준입니다.
+- Hero 중앙 하단에는 `Scroll` 안내와 세로 라인 애니메이션 `.hero-scroll`을 둡니다. 기본 `bottom: 40px`, 태블릿 `28px`, 모바일 `24px` 기준입니다.
 
 Hero 반응형 기준:
 
