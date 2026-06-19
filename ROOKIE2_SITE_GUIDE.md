@@ -310,6 +310,7 @@ Intro motion overlay 카피 기준:
 - 아이콘은 버튼 슬롯 중앙에 Lottie를 렌더링합니다. 슬롯과 Lottie 스케일을 분리해 나중에 아이콘 크기 조절이 쉽도록 합니다.
 - 아이콘 hover/tap 확대는 grid layout에 영향을 주면 안 됩니다. `.interface-icon` 슬롯은 고정 크기/고정 좌표를 유지하고, `.interface-icon__motion`은 `position: absolute`로 중앙 배치해 `width/height`가 변해도 행간과 위치가 밀리지 않게 합니다.
 - hover 또는 터치 tap 시 해당 Lottie가 재생되고, 활성 아이콘은 기본 `160px` 슬롯 기준 `125%` 크기인 `200px`처럼 보입니다.
+- 모바일 `560px` 이하에서는 hover/tap 확대 크기는 유지하고, 기본 상태의 내부 Lottie 크기만 현재 모바일 기준에서 10% 줄입니다. 슬롯 크기와 그리드 위치는 유지합니다.
 - hover 종료, blur, 다른 아이콘 선택 시 즉시 끊지 않고 현재 루프가 끝나는 지점까지 재생한 뒤 각 아이콘의 시작/정지 프레임으로 돌아가 정지합니다. 기본값은 `0`프레임입니다.
 - 개별 아이콘은 `data-lottie-start-frame`과 CSS 크기 클래스로 예외 값을 줄 수 있습니다. 현재 4번째 `Congrat` 아이콘은 시작/정지 프레임 `20`, 기본 크기 `80%`, 활성 크기 `100%`를 사용합니다. 종료 시에는 종료 요청 시점과 관계없이 현재 루프를 끝까지 재생한 뒤, 다음 루프의 `0`프레임대부터 `20`프레임까지 자연스럽게 지나간 뒤 정지합니다.
 - 아이콘 아래 카피는 Figma 기준 문구 `A library of over 80 icons helps communicate status, intent, and emotion through a clear and expressive visual language.`를 사용하며, 공통 `state` 토큰을 따릅니다.
