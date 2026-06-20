@@ -826,6 +826,10 @@
       --interface-icon-y-offset: 4px;
     }
 
+    .interface-icon--offset-y-up-4 {
+      --interface-icon-y-offset: -4px;
+    }
+
     .interface-icon.is-active .interface-icon__motion {
       width: var(--interface-icon-hover-size);
       height: var(--interface-icon-hover-size);
@@ -1492,7 +1496,7 @@
             <button class="interface-icon" type="button" data-lottie-key="Evacuate" aria-label="Evacuate icon" aria-pressed="false">
               <span class="interface-icon__motion" aria-hidden="true"></span>
             </button>
-            <button class="interface-icon" type="button" data-lottie-key="Siren" aria-label="Siren icon" aria-pressed="false">
+            <button class="interface-icon interface-icon--offset-y-up-4" type="button" data-lottie-key="Siren" aria-label="Siren icon" aria-pressed="false">
               <span class="interface-icon__motion" aria-hidden="true"></span>
             </button>
           </div>

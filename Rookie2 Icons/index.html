@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rookie2 Icons</title>
+  <style>
+    :root {
+      --page-bg: #0d0b0b;
+      --section-max: 1200px;
+      --section-side: 80px;
+      --section-gutter: 160px;
+      --section-width: min(calc(100vw - var(--section-gutter)), var(--section-max));
+      --interface-icon-columns: 5;
+      --interface-icon-size: 160px;
+      --interface-icon-column-gap: 100px;
+      --interface-icon-row-gap: 100px;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: #f9f9fa;
+      background: var(--page-bg);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      min-width: 320px;
+      background: var(--page-bg);
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    body {
+      min-height: 100vh;
+    }
+
+    .icons-page {
+      display: grid;
+      place-items: center;
+      width: 100%;
+      min-height: 100vh;
+      padding: 96px 0;
+      background: var(--page-bg);
+    }
+
+    .icons-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--interface-icon-columns), minmax(0, 1fr));
+      gap: var(--interface-icon-row-gap) var(--interface-icon-column-gap);
+      align-items: center;
+      justify-items: center;
+      width: var(--section-width);
+    }
+
+    .interface-icon {
+      --interface-icon-base-size: 100%;
+      --interface-icon-hover-size: 138%;
+      position: relative;
+      display: block;
+      width: min(var(--interface-icon-size), 100%);
+      aspect-ratio: 1;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      line-height: 0;
+      overflow: visible;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .interface-icon:focus-visible {
+      outline: 2px solid rgba(249, 249, 250, 0.85);
+      outline-offset: 10px;
+    }
+
+    .interface-icon__motion {
+      position: absolute;
+      top: calc(50% + var(--interface-icon-y-offset, 0px));
+      left: 50%;
+      display: block;
+      width: var(--interface-icon-base-size);
+      height: var(--interface-icon-base-size);
+      transform: translate(-50%, -50%);
+      transition:
+        width 180ms cubic-bezier(0.2, 0, 0.2, 1),
+        height 180ms cubic-bezier(0.2, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .interface-icon--scale-83 {
+      --interface-icon-base-size: 83%;
+      --interface-icon-hover-size: 114%;
+    }
+
+    .interface-icon--scale-110 {
+      --interface-icon-base-size: 110%;
+      --interface-icon-hover-size: 152%;
+    }
+
+    .interface-icon--scale-105 {
+      --interface-icon-base-size: 105%;
+      --interface-icon-hover-size: 144%;
+    }
+
+    .interface-icon--scale-globe {
+      --interface-icon-base-size: 108%;
+      --interface-icon-hover-size: 149%;
+    }
+
+    .interface-icon--offset-y-4 {
+      --interface-icon-y-offset: 4px;
+    }
+
+    .interface-icon--offset-y-up-4 {
+      --interface-icon-y-offset: -4px;
+    }
+
+    .interface-icon.is-active .interface-icon__motion {
+      width: var(--interface-icon-hover-size);
+      height: var(--interface-icon-hover-size);
+      transition-duration: 460ms;
+      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .interface-icon.is-returning .interface-icon__motion {
+      transition-duration: 160ms;
+      transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);
+    }
+
+    .interface-icon__motion svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    @media (max-width: 1600px) {
+      :root {
+        --section-side: 64px;
+        --section-gutter: 128px;
+        --interface-icon-column-gap: 80px;
+        --interface-icon-row-gap: 84px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      :root {
+        --section-side: 40px;
+        --section-gutter: 80px;
+        --interface-icon-column-gap: 56px;
+        --interface-icon-row-gap: 64px;
+      }
+
+      .icons-page {
+        padding: 80px 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root {
+        --section-side: 28px;
+        --section-gutter: 56px;
+        --interface-icon-columns: 3;
+        --interface-icon-size: 88px;
+        --interface-icon-column-gap: 24px;
+        --interface-icon-row-gap: 34px;
+      }
+
+      .icons-page {
+        padding: 64px 0;
+      }
+
+      .interface-icon {
+        --interface-icon-base-size: 90%;
+      }
+
+      .interface-icon--scale-83 {
+        --interface-icon-base-size: 74.7%;
+      }
+
+      .interface-icon--scale-110 {
+        --interface-icon-base-size: 99%;
+      }
+
+      .interface-icon--scale-105 {
+        --interface-icon-base-size: 94.5%;
+      }
+
+      .interface-icon--scale-globe {
+        --interface-icon-base-size: 97%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="icons-page">
+    <div class="icons-grid" data-interface-icons aria-label="Rookie2 interface icon set">
+      <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="Box" aria-label="Box icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon" type="button" data-lottie-key="BeverageIce" aria-label="Beverage ice icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon" type="button" data-lottie-key="BeverageHot" aria-label="Beverage hot icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon interface-icon--scale-83" type="button" data-lottie-key="Congrat" data-lottie-start-frame="20" aria-label="Congrats icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon" type="button" data-lottie-key="Heart" aria-label="Heart icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon" type="button" data-lottie-key="Send" aria-label="Send icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon interface-icon--offset-y-4" type="button" data-lottie-key="Sports" aria-label="Sports icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon" type="button" data-lottie-key="Hand" aria-label="Hand icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon" type="button" data-lottie-key="Bell" aria-label="Bell icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon interface-icon--scale-110" type="button" data-lottie-key="Check" aria-label="Check icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="LocationDefault" aria-label="Location icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon" type="button" data-lottie-key="ArrowDown" aria-label="Arrow down icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon" type="button" data-lottie-key="Fire" aria-label="Fire icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon" type="button" data-lottie-key="Evacuate" aria-label="Evacuate icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon interface-icon--offset-y-up-4" type="button" data-lottie-key="Siren" aria-label="Siren icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+      <button class="interface-icon interface-icon--scale-globe" type="button" data-lottie-key="Globe" aria-label="Globe icon" aria-pressed="false">
+        <span class="interface-icon__motion" aria-hidden="true"></span>
+      </button>
+    </div>
+  </main>
+
+  <script src="./js/lottie.min.js"></script>
+  <script src="./js/icons-data.js"></script>
+  <script>
+    const interfaceIconGrid = document.querySelector("[data-interface-icons]");
+    const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
+
+    function initializeInterfaceIcons() {
+      if (!interfaceIconGrid || !window.lottie) {
+        return;
+      }
+
+      const iconItems = Array.from(interfaceIconGrid.querySelectorAll("[data-lottie-key]"));
+      const lottieData = window.ROOKIE2_ICON_SET || {};
+      const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let selectedTouchState = null;
+
+      if (!iconItems.length) {
+        return;
+      }
+
+      function isTouchIconMode() {
+        return coarsePointerQuery.matches;
+      }
+
+      function finishIconReturn(state) {
+        if (!state) {
+          return;
+        }
+
+        state.shouldStop = false;
+        state.canStopAtStart = false;
+        state.item.classList.remove("is-active");
+        state.item.setAttribute("aria-pressed", "false");
+
+        if (state.animation) {
+          state.animation.setSpeed(1);
+          state.animation.goToAndStop(state.startFrame, true);
+        }
+
+        window.setTimeout(() => {
+          state.item.classList.remove("is-returning");
+        }, 180);
+      }
+
+      function requestIconReturn(state) {
+        if (!state) {
+          return;
+        }
+
+        state.item.classList.add("is-returning");
+        state.item.classList.remove("is-active");
+        state.item.setAttribute("aria-pressed", "false");
+
+        if (!state.animation || reducedMotionQuery.matches || state.animation.isPaused) {
+          finishIconReturn(state);
+          return;
+        }
+
+        state.shouldStop = true;
+        state.canStopAtStart = false;
+        state.animation.setSpeed(1);
+      }
+
+      function activateIcon(state) {
+        if (!state || !state.animation) {
+          return;
+        }
+
+        state.shouldStop = false;
+        state.canStopAtStart = false;
+        state.item.classList.remove("is-returning");
+        state.item.classList.add("is-active");
+        state.item.setAttribute("aria-pressed", "true");
+
+        if (reducedMotionQuery.matches) {
+          state.animation.goToAndStop(state.startFrame, true);
+          return;
+        }
+
+        if (state.animation.isPaused) {
+          state.animation.setSpeed(1);
+          state.animation.play();
+        } else {
+          state.animation.setSpeed(1);
+        }
+      }
+
+      const iconStates = iconItems.map((item) => {
+        const motionTarget = item.querySelector(".interface-icon__motion");
+        const animationData = lottieData[item.dataset.lottieKey];
+        const startFrame = Number.parseInt(item.dataset.lottieStartFrame || "0", 10);
+        const state = {
+          item,
+          animation: null,
+          startFrame: Number.isNaN(startFrame) ? 0 : startFrame,
+          canStopAtStart: false,
+          shouldStop: false
+        };
+
+        if (!motionTarget || !animationData) {
+          return state;
+        }
+
+        state.animation = window.lottie.loadAnimation({
+          container: motionTarget,
+          renderer: "svg",
+          loop: true,
+          autoplay: false,
+          animationData,
+          rendererSettings: {
+            preserveAspectRatio: "xMidYMid meet",
+            progressiveLoad: true
+          }
+        });
+
+        state.animation.addEventListener("DOMLoaded", () => {
+          state.animation.goToAndStop(state.startFrame, true);
+          item.classList.add("is-ready");
+        });
+
+        state.animation.addEventListener("loopComplete", () => {
+          if (state.shouldStop) {
+            if (state.startFrame > 0) {
+              state.canStopAtStart = true;
+              return;
+            }
+
+            if (selectedTouchState === state) {
+              selectedTouchState = null;
+            }
+
+            finishIconReturn(state);
+          }
+        });
+
+        state.animation.addEventListener("enterFrame", (event) => {
+          if (!state.shouldStop || !state.canStopAtStart || state.startFrame <= 0) {
+            return;
+          }
+
+          const currentFrame = event && typeof event.currentTime === "number"
+            ? event.currentTime
+            : state.animation.currentFrame;
+
+          if (currentFrame >= state.startFrame) {
+            if (selectedTouchState === state) {
+              selectedTouchState = null;
+            }
+
+            finishIconReturn(state);
+          }
+        });
+
+        item.addEventListener("pointerenter", () => {
+          if (!isTouchIconMode()) {
+            activateIcon(state);
+          }
+        });
+
+        item.addEventListener("pointerleave", () => {
+          if (!isTouchIconMode()) {
+            requestIconReturn(state);
+          }
+        });
+
+        item.addEventListener("focus", () => {
+          if (!isTouchIconMode()) {
+            activateIcon(state);
+          }
+        });
+
+        item.addEventListener("blur", () => {
+          if (!isTouchIconMode()) {
+            requestIconReturn(state);
+          }
+        });
+
+        item.addEventListener("click", (event) => {
+          if (!isTouchIconMode()) {
+            return;
+          }
+
+          event.preventDefault();
+
+          if (selectedTouchState && selectedTouchState !== state) {
+            requestIconReturn(selectedTouchState);
+          }
+
+          if (selectedTouchState === state && item.classList.contains("is-active")) {
+            selectedTouchState = null;
+            requestIconReturn(state);
+            return;
+          }
+
+          selectedTouchState = state;
+          activateIcon(state);
+        });
+
+        return state;
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!isTouchIconMode() || !selectedTouchState) {
+          return;
+        }
+
+        if (event.target instanceof Element && interfaceIconGrid.contains(event.target)) {
+          return;
+        }
+
+        requestIconReturn(selectedTouchState);
+        selectedTouchState = null;
+      }, { passive: true });
+
+      const handleReducedMotionChange = () => {
+        iconStates.forEach(finishIconReturn);
+      };
+
+      if (typeof reducedMotionQuery.addEventListener === "function") {
+        reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
+      } else if (typeof reducedMotionQuery.addListener === "function") {
+        reducedMotionQuery.addListener(handleReducedMotionChange);
+      }
+    }
+
+    initializeInterfaceIcons();
+  </script>
+</body>
+</html>
