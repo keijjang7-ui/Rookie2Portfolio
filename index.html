@@ -1546,8 +1546,8 @@
         --interface-heading-gap: 24px;
         --interface-card-gap: 16px;
         --interface-card-radius: 24px;
-        --interface-color-card-height: 160px;
-        --interface-color-row-height: 160px;
+        --interface-color-card-height: 132px;
+        --interface-color-row-height: 132px;
         --interface-color-label-size: 12px;
         --interface-typo-letter-size: 104px;
         --interface-typo-label-size: 14px;
@@ -1577,7 +1577,14 @@
       }
 
       .interface-swatch {
-        padding: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+      }
+
+      .interface-swatch__label {
+        text-align: center;
       }
 
       .interface-typo {
