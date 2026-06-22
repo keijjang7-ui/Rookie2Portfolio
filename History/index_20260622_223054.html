@@ -383,7 +383,7 @@
       position: relative;
       z-index: 2;
       min-height: 100svh;
-      padding: 240px 0 260px;
+      padding: 240px 0 120px;
       overflow: hidden;
       background: #0d0b0b;
       color: #f9f9fa;
@@ -724,61 +724,24 @@
 
     .section04 {
       --interface-top: 113px;
-      --interface-section-gap: 240px;
-      --interface-color-gap: 160px;
-      --interface-heading-gap: 40px;
-      --interface-heading-width: 600px;
-      --interface-system-width: 800px;
-      --interface-card-gap: 28px;
-      --interface-card-radius: 36px;
-      --interface-color-card-height: 320px;
-      --interface-color-row-height: 200px;
-      --interface-color-label-size: 24px;
-      --interface-typo-letter-size: 210px;
-      --interface-typo-label-size: 20px;
-      --interface-icon-summary-width: 800px;
-      --interface-icon-summary-gap: 120px;
+      --interface-stack-gap: 120px;
       --interface-icon-columns: 5;
       --interface-icon-size: 160px;
       --interface-icon-column-gap: 100px;
       --interface-icon-row-gap: 100px;
-      --interface-info-card-height: 675px;
-      --interface-info-gap: 28px;
-      --interface-info-indicator-gap: 40px;
-      --interface-info-radius: 36px;
+      --interface-summary-width: 800px;
+      --interface-summary-gap: 120px;
       position: relative;
       z-index: 2;
-      padding: var(--interface-top) 0 320px;
-      background: #100b0b;
+      min-height: 1600px;
+      padding: var(--interface-top) 0 240px;
+      background: #0d0b0b;
       color: #f9f9fa;
     }
 
     .interface-design__inner {
       width: var(--section-width);
       margin: 0 auto;
-    }
-
-    .interface-design__stack,
-    .interface-color-typo,
-    .interface-icons,
-    .interface-info {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .interface-design__stack {
-      gap: var(--interface-section-gap);
-    }
-
-    .interface-color-typo {
-      gap: var(--interface-color-gap);
-    }
-
-    .interface-design__heading {
-      display: flex;
-      flex-direction: column;
-      gap: var(--interface-heading-gap);
-      width: min(var(--interface-heading-width), 100%);
     }
 
     .interface-design__title {
@@ -791,142 +754,9 @@
       text-align: left;
     }
 
-    .interface-design__body {
-      margin: 0;
-      color: #f9f9fa;
-      font-size: var(--type-body-size);
-      line-height: var(--type-body-line);
-      letter-spacing: 0;
-      font-weight: 400;
-    }
-
-    .interface-color {
-      display: flex;
-      flex-direction: column;
-      gap: var(--interface-card-gap);
-      width: 100%;
-    }
-
-    .interface-color__row {
-      display: grid;
-      gap: var(--interface-card-gap);
-      width: 100%;
-    }
-
-    .interface-color__row--top {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .interface-color__row--bottom {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .interface-color__split {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--interface-card-gap);
-    }
-
-    .interface-swatch {
-      min-height: var(--interface-color-card-height);
-      padding: 40px;
-      border-radius: var(--interface-card-radius);
-      background: #19191a;
-    }
-
-    .interface-swatch--short {
-      min-height: var(--interface-color-row-height);
-    }
-
-    .interface-swatch--teal {
-      background: linear-gradient(135deg, #3bffdb 0%, #00fbff 100%);
-    }
-
-    .interface-swatch--blue {
-      background: #00a1ff;
-    }
-
-    .interface-swatch--violet {
-      background: #9948fc;
-    }
-
-    .interface-swatch--red {
-      background: #ff3832;
-    }
-
-    .interface-swatch--yellow {
-      background: #ffb446;
-    }
-
-    .interface-swatch--green {
-      background: #00e696;
-    }
-
-    .interface-swatch__label {
-      margin: 0;
-      color: #000000;
-      font-size: var(--interface-color-label-size);
-      line-height: 1.3;
-      letter-spacing: 0;
-      font-weight: 600;
-    }
-
-    .interface-typo {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: clamp(64px, 15.333vw, 184px);
-      width: 100%;
-      padding: 0 40px;
-    }
-
-    .interface-typo__item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      min-width: 0;
-    }
-
-    .interface-typo__letter {
-      margin: 0;
-      color: #f9f9fa;
-      font-size: var(--interface-typo-letter-size);
-      line-height: 0.705;
-      letter-spacing: 0;
-      font-weight: var(--interface-typo-weight);
-      text-align: center;
-    }
-
-    .interface-typo__caption {
-      margin: 40px 0 0;
-      color: #f9f9fa;
-      font-size: var(--interface-typo-label-size);
-      line-height: 1.3;
-      letter-spacing: 0;
-      font-weight: 600;
-      text-align: center;
-    }
-
-    .interface-typo__caption span {
-      display: block;
-      margin-top: 4px;
-      font-weight: 400;
-    }
-
-    .interface-system-summary,
-    .interface-design__summary {
-      width: min(var(--interface-system-width), 100%);
-      margin: 0 auto;
-      color: #f9f9fa;
-      font-size: var(--type-state-size);
-      line-height: var(--type-state-line);
-      letter-spacing: 0;
-      font-weight: 600;
-      text-align: center;
-    }
-
     .interface-icons {
       width: 100%;
-      gap: var(--interface-icon-summary-gap);
+      margin-top: var(--interface-stack-gap);
     }
 
     .interface-icons__grid {
@@ -1020,111 +850,14 @@
     }
 
     .interface-design__summary {
-      width: min(var(--interface-icon-summary-width), 100%);
-    }
-
-    .interface-info {
-      gap: var(--interface-info-indicator-gap);
-      width: 100%;
-    }
-
-    .interface-info__viewport {
-      width: 100vw;
-      margin-left: calc((100vw - var(--section-width)) / -2);
-      overflow: visible;
-    }
-
-    .interface-info__track {
-      display: flex;
-      gap: var(--interface-info-gap);
-      width: max-content;
-      padding-left: calc((100vw - var(--section-width)) / 2);
-      padding-right: calc((100vw - var(--section-width)) / 2);
-      cursor: grab;
-      touch-action: pan-y;
-      user-select: none;
-      transform: translate3d(var(--interface-info-track-x, 0px), 0, 0);
-      will-change: transform;
-    }
-
-    .interface-info__track.is-dragging {
-      cursor: grabbing;
-    }
-
-    .interface-info__group {
-      display: grid;
-      flex: 0 0 var(--section-width);
-      width: var(--section-width);
-      height: var(--interface-info-card-height);
-      gap: var(--interface-info-gap);
-    }
-
-    .interface-info__group--single {
-      grid-template-columns: minmax(0, 1fr);
-    }
-
-    .interface-info__group--split {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .interface-info__group--wide {
-      grid-template-columns: minmax(0, 400fr) minmax(0, 772fr);
-    }
-
-    .interface-info__card {
-      min-width: 0;
-      height: 100%;
-      border-radius: var(--interface-info-radius);
-      background: #19191a;
-      overflow: hidden;
-    }
-
-    .interface-info__image {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center center;
-      pointer-events: none;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
-
-    .interface-info__indicator {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      width: var(--section-width);
-      margin: 0 auto;
-    }
-
-    .interface-info__dot {
-      width: 12px;
-      height: 12px;
-      padding: 0;
-      border: 0;
-      border-radius: 999px;
-      appearance: none;
-      background: #494951;
-      cursor: pointer;
-      transition: width 240ms ease, background-color 240ms ease, transform 240ms ease;
-    }
-
-    .interface-info__dot:focus-visible {
-      outline: 2px solid rgba(249, 249, 250, 0.65);
-      outline-offset: 4px;
-    }
-
-    .interface-info__dot:hover {
-      background: #686871;
-      transform: scale(1.08);
-    }
-
-    .interface-info__dot.is-active {
-      width: 40px;
-      background: #f5f5fb;
-      transform: scale(1);
+      width: min(var(--interface-summary-width), 100%);
+      margin: var(--interface-summary-gap) auto 0;
+      color: #f9f9fa;
+      font-size: var(--type-state-size);
+      line-height: var(--type-state-line);
+      letter-spacing: 0;
+      font-weight: 600;
+      text-align: center;
     }
 
     @media (max-width: 1200px) {
@@ -1263,27 +996,18 @@
         --visual-label-size: 20px;
         --visual-card-padding: 82px;
         padding-top: 204px;
-        padding-bottom: 213px;
+        padding-bottom: 58px;
       }
 
       .section04 {
         --interface-top: 104px;
-        --interface-section-gap: 204px;
-        --interface-color-gap: 136px;
-        --interface-heading-gap: 34px;
-        --interface-card-radius: 31px;
-        --interface-color-card-height: 292px;
-        --interface-color-row-height: 180px;
-        --interface-color-label-size: 20px;
-        --interface-typo-letter-size: 178px;
-        --interface-typo-label-size: 18px;
+        --interface-stack-gap: 104px;
         --interface-icon-column-gap: 80px;
         --interface-icon-row-gap: 84px;
-        --interface-icon-summary-width: 760px;
-        --interface-icon-summary-gap: 104px;
-        --interface-info-card-height: 600px;
-        --interface-info-radius: 31px;
-        padding-bottom: 272px;
+        --interface-summary-width: 760px;
+        --interface-summary-gap: 104px;
+        min-height: 1360px;
+        padding-bottom: 200px;
       }
     }
 
@@ -1305,7 +1029,7 @@
         --visual-card-padding: 66px;
         min-height: auto;
         padding-top: 150px;
-        padding-bottom: 165px;
+        padding-bottom: 56px;
       }
 
       .visual-principles__title {
@@ -1318,29 +1042,13 @@
 
       .section04 {
         --interface-top: 96px;
-        --interface-section-gap: 160px;
-        --interface-color-gap: 104px;
-        --interface-heading-gap: 32px;
-        --interface-card-gap: 22px;
-        --interface-card-radius: 28px;
-        --interface-color-card-height: 260px;
-        --interface-color-row-height: 160px;
-        --interface-color-label-size: 18px;
-        --interface-typo-letter-size: 148px;
-        --interface-typo-label-size: 16px;
+        --interface-stack-gap: 72px;
         --interface-icon-column-gap: 56px;
         --interface-icon-row-gap: 64px;
-        --interface-icon-summary-width: 720px;
-        --interface-icon-summary-gap: 72px;
-        --interface-info-card-height: 520px;
-        --interface-info-gap: 22px;
-        --interface-info-indicator-gap: 34px;
-        --interface-info-radius: 28px;
+        --interface-summary-width: 720px;
+        --interface-summary-gap: 72px;
+        min-height: 1100px;
         padding-bottom: 160px;
-      }
-
-      .interface-typo {
-        padding: 0 24px;
       }
     }
 
@@ -1360,7 +1068,7 @@
         --visual-label-size: clamp(10px, 2.8vw, 11px);
         --visual-card-padding: 28px;
         padding-top: 96px;
-        padding-bottom: 128px;
+        padding-bottom: 48px;
       }
 
       .visual-principles__title {
@@ -1379,10 +1087,6 @@
       .visual-principles__indicator {
         width: var(--visual-card-width);
         margin-top: 28px;
-      }
-
-      .section04 {
-        --interface-info-indicator-gap: 28px;
       }
     }
 
@@ -1536,58 +1240,20 @@
         --visual-card-height: 320px;
         --visual-label-size: 12px;
         --visual-card-padding: 24px;
-        padding-bottom: 125px;
       }
 
       .section04 {
         --interface-top: 80px;
-        --interface-section-gap: 96px;
-        --interface-color-gap: 64px;
-        --interface-heading-gap: 24px;
-        --interface-card-gap: 16px;
-        --interface-card-radius: 24px;
-        --interface-color-card-height: 180px;
-        --interface-color-row-height: 120px;
-        --interface-color-label-size: 12px;
-        --interface-typo-letter-size: 104px;
-        --interface-typo-label-size: 14px;
+        --interface-stack-gap: 48px;
         --interface-icon-columns: 3;
         --interface-icon-size: 88px;
         --interface-icon-column-gap: 24px;
         --interface-icon-row-gap: 34px;
-        --interface-icon-summary-width: 100%;
-        --interface-icon-summary-gap: 56px;
-        --interface-info-card-height: 320px;
-        --interface-info-gap: 16px;
-        --interface-info-radius: 24px;
+        --interface-summary-width: 100%;
+        --interface-summary-gap: 56px;
         margin-top: -1px;
+        min-height: auto;
         padding-bottom: 96px;
-      }
-
-      .interface-color__row--top {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .interface-color__row--bottom {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .interface-color__split {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .interface-swatch {
-        padding: 24px;
-      }
-
-      .interface-typo {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 48px;
-        padding: 0;
-      }
-
-      .interface-typo__caption {
-        margin-top: 24px;
       }
 
       .interface-icon {
@@ -1785,134 +1451,56 @@
 
     <section class="section04 interface-design" aria-labelledby="interface-design-title">
       <div class="interface-design__inner">
-        <div class="interface-design__stack">
-          <div class="interface-color-typo">
-            <div class="interface-design__heading">
-              <h2 class="interface-design__title" id="interface-design-title">Interface Design</h2>
-              <p class="interface-design__body">Designed to communicate intent, status, and emotion through a clear visual language. Every interaction is carefully crafted to help users understand, trust, and engage with Rookie2 naturally.</p>
-            </div>
-
-            <div class="interface-color" aria-label="Rookie2 interface color palette">
-              <div class="interface-color__row interface-color__row--top">
-                <div class="interface-swatch interface-swatch--teal">
-                  <p class="interface-swatch__label">Core Teal<br>Hex 32FFEA</p>
-                </div>
-                <div class="interface-color__split">
-                  <div class="interface-swatch interface-swatch--blue">
-                    <p class="interface-swatch__label">Core Blue<br>Hex 00A1FF</p>
-                  </div>
-                  <div class="interface-swatch interface-swatch--violet">
-                    <p class="interface-swatch__label">Core Violet<br>Hex 9948FC</p>
-                  </div>
-                </div>
-              </div>
-              <div class="interface-color__row interface-color__row--bottom">
-                <div class="interface-swatch interface-swatch--short interface-swatch--red">
-                  <p class="interface-swatch__label">Status Red<br>Hex FF3832</p>
-                </div>
-                <div class="interface-swatch interface-swatch--short interface-swatch--yellow">
-                  <p class="interface-swatch__label">Status Yellow<br>Hex FFB446</p>
-                </div>
-                <div class="interface-swatch interface-swatch--short interface-swatch--green">
-                  <p class="interface-swatch__label">Status Green<br>Hex 00E696</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="interface-typo" aria-label="Rookie2 interface typography samples">
-              <div class="interface-typo__item" style="--interface-typo-weight: 400;">
-                <p class="interface-typo__letter">Aa</p>
-                <p class="interface-typo__caption">Label/Description<span>Pretendard R</span></p>
-              </div>
-              <div class="interface-typo__item" style="--interface-typo-weight: 500;">
-                <p class="interface-typo__letter">Aa</p>
-                <p class="interface-typo__caption">Body<span>Pretendard M</span></p>
-              </div>
-              <div class="interface-typo__item" style="--interface-typo-weight: 600;">
-                <p class="interface-typo__letter">Aa</p>
-                <p class="interface-typo__caption">Headline/Title<span>Pretendard SB</span></p>
-              </div>
-            </div>
-
-            <p class="interface-system-summary">A vibrant palette of neon and gradient colors, paired with a balanced sans-serif typeface, ensures visibility, readability, and expressive communication across diverse environments and viewing distances.</p>
+        <h2 class="interface-design__title" id="interface-design-title">Interface Design</h2>
+        <div class="interface-icons" aria-label="Rookie2 interface icon set">
+          <div class="interface-icons__grid" data-interface-icons>
+            <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="Box" aria-label="Box icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon" type="button" data-lottie-key="BeverageIce" aria-label="Beverage ice icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon" type="button" data-lottie-key="BeverageHot" aria-label="Beverage hot icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon interface-icon--scale-83" type="button" data-lottie-key="Congrat" data-lottie-start-frame="20" aria-label="Congrats icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon" type="button" data-lottie-key="Heart" aria-label="Heart icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon" type="button" data-lottie-key="Send" aria-label="Send icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon interface-icon--offset-y-4" type="button" data-lottie-key="Sports" aria-label="Sports icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon" type="button" data-lottie-key="Hand" aria-label="Hand icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon" type="button" data-lottie-key="Bell" aria-label="Bell icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon interface-icon--scale-110" type="button" data-lottie-key="Check" aria-label="Check icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="LocationDefault" aria-label="Location icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon" type="button" data-lottie-key="ArrowDown" aria-label="Arrow down icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon" type="button" data-lottie-key="Fire" aria-label="Fire icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon" type="button" data-lottie-key="Evacuate" aria-label="Evacuate icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
+            <button class="interface-icon interface-icon--offset-y-up-4" type="button" data-lottie-key="Siren" aria-label="Siren icon" aria-pressed="false">
+              <span class="interface-icon__motion" aria-hidden="true"></span>
+            </button>
           </div>
-
-          <div class="interface-icons" aria-label="Rookie2 interface icon set">
-            <div class="interface-icons__grid" data-interface-icons>
-              <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="Box" aria-label="Box icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon" type="button" data-lottie-key="BeverageIce" aria-label="Beverage ice icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon" type="button" data-lottie-key="BeverageHot" aria-label="Beverage hot icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon interface-icon--scale-83" type="button" data-lottie-key="Congrat" data-lottie-start-frame="20" aria-label="Congrats icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon" type="button" data-lottie-key="Heart" aria-label="Heart icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon" type="button" data-lottie-key="Send" aria-label="Send icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon interface-icon--offset-y-4" type="button" data-lottie-key="Sports" aria-label="Sports icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon" type="button" data-lottie-key="Hand" aria-label="Hand icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon" type="button" data-lottie-key="Bell" aria-label="Bell icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon interface-icon--scale-110" type="button" data-lottie-key="Check" aria-label="Check icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="LocationDefault" aria-label="Location icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon" type="button" data-lottie-key="ArrowDown" aria-label="Arrow down icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon" type="button" data-lottie-key="Fire" aria-label="Fire icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon" type="button" data-lottie-key="Evacuate" aria-label="Evacuate icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-              <button class="interface-icon interface-icon--offset-y-up-4" type="button" data-lottie-key="Siren" aria-label="Siren icon" aria-pressed="false">
-                <span class="interface-icon__motion" aria-hidden="true"></span>
-              </button>
-            </div>
-            <p class="interface-design__summary">A library of over 80 icons helps communicate status, intent, and emotion through a clear and expressive visual language.</p>
-          </div>
-
-          <div class="interface-info" data-interface-info-carousel aria-label="Rookie2 interface information cards">
-            <div class="interface-info__viewport">
-              <div class="interface-info__track" data-interface-info-track>
-                <div class="interface-info__group interface-info__group--split" data-interface-info-slide data-card-label="Interface info 01">
-                  <div class="interface-info__card">
-                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-01-left.png" alt="">
-                  </div>
-                  <div class="interface-info__card">
-                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-01-right.png" alt="">
-                  </div>
-                </div>
-                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface info 02">
-                  <div class="interface-info__card" aria-hidden="true"></div>
-                </div>
-                <div class="interface-info__group interface-info__group--wide" data-interface-info-slide data-card-label="Interface info 03">
-                  <div class="interface-info__card" aria-hidden="true"></div>
-                  <div class="interface-info__card" aria-hidden="true"></div>
-                </div>
-                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface info 04">
-                  <div class="interface-info__card" aria-hidden="true"></div>
-                </div>
-              </div>
-            </div>
-            <div class="interface-info__indicator" data-interface-info-indicator role="tablist" aria-label="Interface information cards"></div>
-          </div>
+          <p class="interface-design__summary">A library of over 80 icons helps communicate status, intent, and emotion through a clear and expressive visual language.</p>
         </div>
       </div>
     </section>
@@ -1929,9 +1517,6 @@
     const visualCarousel = document.querySelector("[data-visual-carousel]");
     const visualTrack = document.querySelector("[data-visual-track]");
     const visualIndicator = document.querySelector("[data-visual-indicator]");
-    const interfaceInfoCarousel = document.querySelector("[data-interface-info-carousel]");
-    const interfaceInfoTrack = document.querySelector("[data-interface-info-track]");
-    const interfaceInfoIndicator = document.querySelector("[data-interface-info-indicator]");
     const interfaceIconGrid = document.querySelector("[data-interface-icons]");
     const COPY_REVEAL_START_SECONDS = 1.6;
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
@@ -1950,13 +1535,12 @@
     let isPrimed = false;
     let lastScrollY = -1;
     let visualScrollTimer = 0;
-    let interfaceInfoScrollTimer = 0;
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
     const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
 
-    function isHorizontalCarouselTarget(target) {
-      return target instanceof Element && Boolean(target.closest("[data-visual-carousel], [data-interface-info-carousel]"));
+    function isVisualCarouselTarget(target) {
+      return visualCarousel && target instanceof Element && Boolean(target.closest("[data-visual-carousel]"));
     }
 
     function getMaxScrollY() {
@@ -2089,7 +1673,7 @@
     }
 
     function handleWheel(event) {
-      if (isHorizontalCarouselTarget(event.target) && Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+      if (isVisualCarouselTarget(event.target) && Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
         return;
       }
 
@@ -2131,7 +1715,7 @@
     }
 
     function handleTouchStart(event) {
-      if (isHorizontalCarouselTarget(event.target)) {
+      if (isVisualCarouselTarget(event.target)) {
         return;
       }
 
@@ -2439,306 +2023,6 @@
       jumpToVisualCard(0);
     }
 
-    function initializeInterfaceInfoCarousel() {
-      if (!interfaceInfoCarousel || !interfaceInfoTrack || !interfaceInfoIndicator) {
-        return;
-      }
-
-      const groups = Array.from(interfaceInfoTrack.querySelectorAll("[data-interface-info-slide]"));
-      let activeIndex = 0;
-      let isDragging = false;
-      let dragStartX = 0;
-      let dragStartY = 0;
-      let dragStartOffset = 0;
-      let dragStartIndex = 0;
-      let dragIntent = "pending";
-      let currentOffset = 0;
-      let snapAnimationFrame = 0;
-
-      if (!groups.length) {
-        return;
-      }
-
-      interfaceInfoIndicator.innerHTML = "";
-
-      const buttons = groups.map((group, index) => {
-        const button = document.createElement("button");
-        const label = group.dataset.cardLabel || `Interface info ${index + 1}`;
-
-        button.className = "interface-info__dot";
-        button.type = "button";
-        button.setAttribute("role", "tab");
-        button.setAttribute("aria-label", label);
-        button.setAttribute("aria-selected", "false");
-        button.addEventListener("click", () => {
-          animateToInfoGroup(index);
-        });
-        interfaceInfoIndicator.appendChild(button);
-        return button;
-      });
-
-      function getGroupStep() {
-        if (groups.length > 1) {
-          return groups[1].offsetLeft - groups[0].offsetLeft;
-        }
-
-        return groups[0].offsetWidth;
-      }
-
-      function getCenterOffset() {
-        const firstGroup = groups[0];
-
-        if (!firstGroup) {
-          return 0;
-        }
-
-        const firstGroupCenter = firstGroup.offsetLeft + firstGroup.offsetWidth / 2;
-        return window.innerWidth / 2 - firstGroupCenter;
-      }
-
-      function getTargetOffset(index) {
-        return getCenterOffset() - getGroupStep() * clamp(index, 0, groups.length - 1);
-      }
-
-      function getMinOffset() {
-        return getTargetOffset(groups.length - 1);
-      }
-
-      function getMaxOffset() {
-        return getTargetOffset(0);
-      }
-
-      function getNearestIndex(offset = currentOffset) {
-        const step = getGroupStep();
-
-        if (!step) {
-          return 0;
-        }
-
-        return clamp(Math.round((getCenterOffset() - offset) / step), 0, groups.length - 1);
-      }
-
-      function setActiveIndex(index) {
-        activeIndex = clamp(index, 0, groups.length - 1);
-
-        buttons.forEach((button, buttonIndex) => {
-          const isActive = buttonIndex === activeIndex;
-          button.classList.toggle("is-active", isActive);
-          button.setAttribute("aria-selected", String(isActive));
-        });
-      }
-
-      function getBoundedOffset(offset) {
-        return clamp(offset, getMinOffset(), getMaxOffset());
-      }
-
-      function cancelSnapAnimation() {
-        if (snapAnimationFrame) {
-          cancelAnimationFrame(snapAnimationFrame);
-          snapAnimationFrame = 0;
-        }
-
-        interfaceInfoTrack.classList.remove("is-settling");
-      }
-
-      function renderTrackOffset(offset) {
-        currentOffset = offset;
-        interfaceInfoTrack.style.setProperty("--interface-info-track-x", `${offset.toFixed(2)}px`);
-        setActiveIndex(getNearestIndex(offset));
-      }
-
-      function renderDragOffset(offset) {
-        const minOffset = getMinOffset();
-        const maxOffset = getMaxOffset();
-        let nextOffset = offset;
-
-        if (nextOffset > maxOffset) {
-          nextOffset = maxOffset + (nextOffset - maxOffset) * 0.24;
-        } else if (nextOffset < minOffset) {
-          nextOffset = minOffset + (nextOffset - minOffset) * 0.24;
-        }
-
-        renderTrackOffset(nextOffset);
-      }
-
-      function jumpToInfoGroup(index) {
-        cancelSnapAnimation();
-        renderTrackOffset(getTargetOffset(index));
-        setActiveIndex(index);
-      }
-
-      function animateToInfoGroup(index) {
-        const targetIndex = clamp(index, 0, groups.length - 1);
-        const start = currentOffset;
-        const end = getTargetOffset(targetIndex);
-        const distance = end - start;
-        const duration = clamp(Math.abs(distance) * 0.42, 240, 560);
-        const startedAt = performance.now();
-
-        cancelSnapAnimation();
-
-        if (Math.abs(distance) < 0.5) {
-          jumpToInfoGroup(targetIndex);
-          return;
-        }
-
-        interfaceInfoTrack.classList.add("is-settling");
-
-        function step(now) {
-          const elapsed = now - startedAt;
-          const progressValue = clamp(elapsed / duration, 0, 1);
-          const easedValue = easeOutCubic(progressValue);
-
-          renderTrackOffset(start + distance * easedValue);
-
-          if (progressValue < 1) {
-            snapAnimationFrame = requestAnimationFrame(step);
-            return;
-          }
-
-          renderTrackOffset(end);
-          interfaceInfoTrack.classList.remove("is-settling");
-          snapAnimationFrame = 0;
-          setActiveIndex(targetIndex);
-        }
-
-        snapAnimationFrame = requestAnimationFrame(step);
-      }
-
-      function snapToNearest() {
-        animateToInfoGroup(getNearestIndex());
-      }
-
-      function snapFromDrag(releaseX) {
-        const dragDistance = releaseX - dragStartX;
-        const threshold = getGroupStep() * VISUAL_DRAG_THRESHOLD_RATIO;
-        let targetIndex = getNearestIndex();
-
-        if (Math.abs(dragDistance) >= threshold) {
-          targetIndex = dragStartIndex + (dragDistance < 0 ? 1 : -1);
-        }
-
-        animateToInfoGroup(clamp(targetIndex, 0, groups.length - 1));
-      }
-
-      function preventPointerDefault(event) {
-        if (event.cancelable) {
-          event.preventDefault();
-        }
-      }
-
-      function releaseInfoPointer(event) {
-        if (interfaceInfoTrack.hasPointerCapture(event.pointerId)) {
-          interfaceInfoTrack.releasePointerCapture(event.pointerId);
-        }
-      }
-
-      function lockInfoDrag(event) {
-        dragIntent = "horizontal";
-        window.clearTimeout(interfaceInfoScrollTimer);
-        cancelSnapAnimation();
-        interfaceInfoTrack.classList.add("is-dragging");
-
-        if (!interfaceInfoTrack.hasPointerCapture(event.pointerId)) {
-          interfaceInfoTrack.setPointerCapture(event.pointerId);
-        }
-      }
-
-      function resetInfoDrag(event) {
-        isDragging = false;
-        dragIntent = "pending";
-        interfaceInfoTrack.classList.remove("is-dragging");
-        releaseInfoPointer(event);
-      }
-
-      function handlePointerDown(event) {
-        if (event.pointerType === "mouse" && event.button !== 0) {
-          return;
-        }
-
-        isDragging = true;
-        dragStartX = event.clientX;
-        dragStartY = event.clientY;
-        dragStartOffset = currentOffset;
-        dragStartIndex = getNearestIndex(currentOffset);
-        dragIntent = event.pointerType === "mouse" ? "horizontal" : "pending";
-
-        if (dragIntent === "horizontal") {
-          preventPointerDefault(event);
-          lockInfoDrag(event);
-        }
-      }
-
-      function handlePointerMove(event) {
-        if (!isDragging) {
-          return;
-        }
-
-        const deltaX = event.clientX - dragStartX;
-        const deltaY = event.clientY - dragStartY;
-        const absX = Math.abs(deltaX);
-        const absY = Math.abs(deltaY);
-
-        if (dragIntent === "pending") {
-          if (Math.max(absX, absY) < VISUAL_SWIPE_LOCK_DISTANCE) {
-            return;
-          }
-
-          if (absY > absX * VISUAL_SWIPE_AXIS_RATIO) {
-            resetInfoDrag(event);
-            return;
-          }
-
-          if (absX <= absY * VISUAL_SWIPE_AXIS_RATIO) {
-            return;
-          }
-
-          lockInfoDrag(event);
-        }
-
-        preventPointerDefault(event);
-        renderDragOffset(dragStartOffset + event.clientX - dragStartX);
-      }
-
-      function handlePointerUp(event) {
-        if (!isDragging) {
-          return;
-        }
-
-        if (dragIntent !== "horizontal") {
-          resetInfoDrag(event);
-          return;
-        }
-
-        resetInfoDrag(event);
-        snapFromDrag(event.clientX);
-      }
-
-      function handleInfoWheel(event) {
-        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) {
-          return;
-        }
-
-        event.preventDefault();
-        window.clearTimeout(interfaceInfoScrollTimer);
-        cancelSnapAnimation();
-        renderTrackOffset(getBoundedOffset(currentOffset - event.deltaX));
-        interfaceInfoScrollTimer = window.setTimeout(snapToNearest, 140);
-      }
-
-      interfaceInfoTrack.addEventListener("pointerdown", handlePointerDown);
-      interfaceInfoTrack.addEventListener("pointermove", handlePointerMove);
-      interfaceInfoTrack.addEventListener("pointerup", handlePointerUp);
-      interfaceInfoTrack.addEventListener("pointercancel", handlePointerUp);
-      interfaceInfoTrack.addEventListener("wheel", handleInfoWheel, { passive: false });
-      window.addEventListener("resize", () => {
-        jumpToInfoGroup(activeIndex);
-      });
-
-      setActiveIndex(0);
-      jumpToInfoGroup(0);
-    }
-
     function initializeInterfaceIcons() {
       if (!interfaceIconGrid || !window.lottie) {
         return;
@@ -2969,7 +2253,6 @@
     video.load();
     updateHeroBackground();
     initializeVisualCarousel();
-    initializeInterfaceInfoCarousel();
     initializeInterfaceIcons();
     requestAnimationFrame(syncScrollProgress);
 

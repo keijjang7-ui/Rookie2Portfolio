@@ -298,22 +298,37 @@ Intro motion overlay 카피 기준:
 `Visual Principles` 이후의 다음 섹션은 Figma의 `Interface Design` 레이어를 기준으로 구현합니다.
 
 - 섹션 클래스: `.section04.interface-design`
-- 배경: `#0D0B0B`
+- 배경: Figma 기준 `#100B0B`
 - 현재 구현 기준 1920px 화면에서 inner는 x `360`, y `113` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
-- 섹션 기본 높이: `1600px`
+- 섹션은 Figma의 큰 블록 순서인 `ColorTypo` → `Icon` → `Info` 순서로 구성합니다. 1920px 기준 큰 블록 간격은 `240px`입니다.
+- `Visual Principles` 인디케이터 하단에서 `Interface Design` 타이틀 상단까지의 Figma 기준 간격은 1920px에서 `373px`입니다. 현재 CSS에서는 `.section03` 하단 padding과 `.section04` 상단 padding의 합으로 맞춥니다.
 - 타이틀: `Interface Design`, Pretendard SemiBold, 공통 `title` 토큰, `line-height: var(--type-title-line)`
-- 타이틀 직하단 서브문구는 제거했습니다.
+- 타이틀 직하단에는 Figma 기준 body 문구를 사용합니다. `body` 토큰을 따르고, 타이틀과 본문 사이 간격은 1920px 기준 `40px`입니다.
+- `ColorTypo` 영역은 컬러 팔레트, 타이포 샘플, 중앙 설명문으로 구성합니다.
+  - 컬러 팔레트는 1200px inner 안에서 top row `586 + 586`, right split `279 + 279`, bottom row `381.333 * 3` 비율을 따릅니다.
+  - 컬러 카드 radius는 1920px 기준 `36px`, gap은 `28px`입니다.
+  - 모바일에서도 하단 Status Red/Yellow/Green 카드는 3열을 유지합니다. 컬러 카드의 좌우 패딩은 기존 카드 패딩을 유지하고, 모바일 컬러 라벨 전체를 더 작은 텍스트로 줄입니다.
+  - 타이포 샘플은 `Aa` 3개를 Regular, Medium, SemiBold 기준으로 노출합니다.
+  - 중앙 설명문은 공통 `state` 토큰을 따르고, 1920px 기준 폭 `800px`입니다.
 - 아이콘 세트는 `assets/json`의 Lottie JSON을 사용합니다. 현재 Figma 노출 기준 15개를 사용하고, `Globe.json`은 Figma에서 hidden 상태라 제외합니다.
 - Lottie 엔진은 외부 CDN에 의존하지 않고 `assets/js/lottie.min.js` 로컬 파일을 사용합니다. 회사망, 배포 환경, 오프라인 검수에서 아이콘이 빈 슬롯으로 보이는 문제를 피하기 위한 기준입니다.
 - `file://`로 `index.html`을 직접 열어도 아이콘이 보이도록, 런타임은 JSON 파일을 직접 fetch하지 않습니다. `assets/js/interface-lottie-data.js`에 15개 JSON을 묶어 `window.ROOKIE2_INTERFACE_LOTTIES`로 제공하고, HTML의 `data-lottie-key`로 매칭합니다.
 - 데스크톱 기준 아이콘 슬롯은 `160px`, 5열, column/row gap `100px`입니다. `1200px` inner 안에 정확히 맞도록 구성합니다.
 - 아이콘은 버튼 슬롯 중앙에 Lottie를 렌더링합니다. 슬롯과 Lottie 스케일을 분리해 나중에 아이콘 크기 조절이 쉽도록 합니다.
 - 아이콘 hover/tap 확대는 grid layout에 영향을 주면 안 됩니다. `.interface-icon` 슬롯은 고정 크기/고정 좌표를 유지하고, `.interface-icon__motion`은 `position: absolute`로 중앙 배치해 `width/height`가 변해도 행간과 위치가 밀리지 않게 합니다.
-- hover 또는 터치 tap 시 해당 Lottie가 재생되고, 활성 아이콘은 기본 `160px` 슬롯 기준 `125%` 크기인 `200px`처럼 보입니다.
+- hover 또는 터치 tap 시 해당 Lottie가 재생되고, 활성 아이콘은 기본 `160px` 슬롯 기준 `138%` 크기처럼 보입니다.
 - 모바일 `560px` 이하에서는 hover/tap 확대 크기는 유지하고, 기본 상태의 내부 Lottie 크기만 현재 모바일 기준에서 10% 줄입니다. 슬롯 크기와 그리드 위치는 유지합니다.
 - hover 종료, blur, 다른 아이콘 선택 시 즉시 끊지 않고 현재 루프가 끝나는 지점까지 재생한 뒤 각 아이콘의 시작/정지 프레임으로 돌아가 정지합니다. 기본값은 `0`프레임입니다.
-- 개별 아이콘은 `data-lottie-start-frame`과 CSS 크기 클래스로 예외 값을 줄 수 있습니다. 현재 4번째 `Congrat` 아이콘은 시작/정지 프레임 `20`, 기본 크기 `80%`, 활성 크기 `100%`를 사용합니다. 종료 시에는 종료 요청 시점과 관계없이 현재 루프를 끝까지 재생한 뒤, 다음 루프의 `0`프레임대부터 `20`프레임까지 자연스럽게 지나간 뒤 정지합니다.
+- 개별 아이콘은 `data-lottie-start-frame`과 CSS 크기/위치 클래스로 예외 값을 줄 수 있습니다. 현재 4번째 `Congrat` 아이콘은 시작/정지 프레임 `20`, 기본 크기 `83%`, 활성 크기 `114%`를 사용합니다. `Sports`와 `Siren`은 내부 Lottie 위치만 보정합니다. 종료 시에는 종료 요청 시점과 관계없이 현재 루프를 끝까지 재생한 뒤, 다음 루프의 `0`프레임대부터 지정 시작 프레임까지 자연스럽게 지나간 뒤 정지합니다.
 - 아이콘 아래 카피는 Figma 기준 문구 `A library of over 80 icons helps communicate status, intent, and emotion through a clear and expressive visual language.`를 사용하며, 공통 `state` 토큰을 따릅니다.
+- `Info` 영역은 `Visual Principles` 캐러셀과 같은 스와이프/인디케이터 감각을 사용하지만, 단위는 개별 카드가 아니라 `1200px 그룹`입니다.
+  - 1번 그룹: 1200px 안에 `586 + 586` 두 카드
+    - 두 카드는 Figma에서 추출한 `assets/images/interface-design/info-card-01-left.png`, `assets/images/interface-design/info-card-01-right.png`를 사용합니다.
+  - 2번 그룹: 1200px 단일 카드
+  - 3번 그룹: 1200px 안에 `400 + 772` 비율의 두 카드
+  - 4번 그룹: 1200px 단일 카드
+  - 현재 카드들은 비어 있는 placeholder로 유지하고, 추후 콘텐츠/이미지를 채웁니다.
+  - 카드와 인디케이터 사이 간격은 `Visual Principles`와 동일하게 맞춥니다. 현재 기준은 데스크톱 `40px`, 1200px 이하 `34px`, 760px 이하 및 모바일 `28px`입니다.
 - 반응형 breakpoint는 사이트 기본 기준인 `1600px`, `1200px`, `560px`를 따릅니다.
 - 모바일 `560px` 이하에서는 아이콘을 3열로 배치해 터치 타깃과 가독성을 확보합니다.
 - 모바일 `560px` 이하에서는 `Visual Principles`와의 경계에서 흰 배경이 1px 새지 않도록 `.section04`에 `margin-top: -1px` 보정을 둡니다.
