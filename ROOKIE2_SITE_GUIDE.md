@@ -307,7 +307,7 @@ Intro motion overlay 카피 기준:
 - `ColorTypo` 영역은 컬러 팔레트, 타이포 샘플, 중앙 설명문으로 구성합니다.
   - 컬러 팔레트는 1200px inner 안에서 top row `586 + 586`, right split `279 + 279`, bottom row `381.333 * 3` 비율을 따릅니다.
   - 컬러 카드 radius는 1920px 기준 `36px`, gap은 `28px`입니다.
-  - 모바일에서도 하단 Status Red/Yellow/Green 카드는 3열을 유지합니다. 모바일 컬러 카드는 모두 높이 `132px`, 내부 여백 `0`, 텍스트 중앙 정렬/중앙 배치로 맞추고, 컬러 라벨 전체를 더 작은 텍스트로 줄입니다.
+  - 모바일에서도 하단 Stat Red/Yellow/Green 카드는 3열을 유지합니다. 모바일 컬러 카드는 모두 높이 `132px`, 내부 여백 `16px`, 좌상단 정렬을 유지하고, 컬러 라벨 전체를 더 작은 텍스트로 줄입니다. 컬러 값 앞의 `Hex` 표기는 제거합니다.
   - 타이포 샘플은 `Aa` 3개를 Regular, Medium, SemiBold 기준으로 노출합니다.
   - 중앙 설명문은 공통 `state` 토큰을 따르고, 1920px 기준 폭 `800px`입니다.
 - 아이콘 세트는 `assets/json`의 Lottie JSON을 사용합니다. 현재 Figma 노출 기준 15개를 사용하고, `Globe.json`은 Figma에서 hidden 상태라 제외합니다.
