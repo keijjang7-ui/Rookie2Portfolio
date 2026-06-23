@@ -315,8 +315,10 @@ Intro motion overlay 카피 기준:
 - `ColorTypo` 영역은 컬러 팔레트, 타이포 샘플, 중앙 설명문으로 구성합니다.
   - 컬러 팔레트는 1200px inner 안에서 top row `586 + 586`, right split `279 + 279`, bottom row `381.333 * 3` 비율을 따릅니다.
   - 컬러 카드 radius는 1920px 기준 `36px`, gap은 `28px`입니다. 컬러 카드 내부 여백은 데스크톱 `40px`, 태블릿 `32px`, 모바일 `16px` 기준입니다.
-  - 모바일에서도 하단 Stat Red/Yellow/Green 카드는 3열을 유지합니다. 모바일 컬러 카드는 모두 높이 `132px`, 내부 여백 `16px`, 좌상단 정렬을 유지하고, 컬러 라벨 전체를 더 작은 텍스트로 줄입니다. 컬러 값 앞의 `Hex` 표기는 제거합니다.
-  - 타이포 샘플은 `Aa` 3개를 Regular, Medium, SemiBold 기준으로 노출합니다.
+  - 모든 컬러 카드의 컬러 코드는 데스크톱/태블릿에서 `Hex 32FFEA`처럼 `Hex` 접두어를 붙이고, 모바일 `560px` 이하에서만 접두어를 숨겨 코드만 표시합니다.
+  - 하단 상태 컬러 라벨은 데스크톱/태블릿에서 `Status Red/Yellow/Green`, 모바일 `560px` 이하에서만 `Stat Red/Yellow/Green`으로 축약합니다.
+  - 모바일에서도 하단 상태 컬러 카드는 3열을 유지합니다. 모바일 컬러 카드는 모두 높이 `132px`, 내부 여백 `16px`, 좌상단 정렬을 유지하고, 컬러 라벨 전체를 더 작은 텍스트로 줄입니다.
+  - 타이포 샘플은 `Aa` 3개를 Regular, Medium, SemiBold 기준으로 노출하며, 라벨은 `Labels`, `Body`, `Headlines`를 사용합니다.
   - 중앙 설명문은 공통 `state` 토큰을 따르고, 1920px 기준 폭 `800px`입니다.
 - 아이콘 세트는 `assets/json`의 Lottie JSON을 사용합니다. 현재 Figma 노출 기준 15개를 사용하고, `Globe.json`은 Figma에서 hidden 상태라 제외합니다.
 - Lottie 엔진은 외부 CDN에 의존하지 않고 `assets/js/lottie.min.js` 로컬 파일을 사용합니다. 회사망, 배포 환경, 오프라인 검수에서 아이콘이 빈 슬롯으로 보이는 문제를 피하기 위한 기준입니다.
@@ -328,7 +330,7 @@ Intro motion overlay 카피 기준:
 - 모바일 `560px` 이하에서는 hover/tap 확대 크기는 유지하고, 기본 상태의 내부 Lottie 크기만 현재 모바일 기준에서 10% 줄입니다. 슬롯 크기와 그리드 위치는 유지합니다.
 - hover 종료, blur, 다른 아이콘 선택 시 즉시 끊지 않고 현재 루프가 끝나는 지점까지 재생한 뒤 각 아이콘의 시작/정지 프레임으로 돌아가 정지합니다. 기본값은 `0`프레임입니다.
 - 개별 아이콘은 `data-lottie-start-frame`과 CSS 크기/위치 클래스로 예외 값을 줄 수 있습니다. 현재 4번째 `Congrat` 아이콘은 시작/정지 프레임 `20`, 기본 크기 `83%`, 활성 크기 `114%`를 사용합니다. `Sports`와 `Siren`은 내부 Lottie 위치만 보정합니다. 종료 시에는 종료 요청 시점과 관계없이 현재 루프를 끝까지 재생한 뒤, 다음 루프의 `0`프레임대부터 지정 시작 프레임까지 자연스럽게 지나간 뒤 정지합니다.
-- 아이콘 아래 카피는 Figma 기준 문구 `A library of over 80 icons helps communicate status, intent, and emotion through a clear and expressive visual language.`를 사용하며, 공통 `state` 토큰을 따릅니다.
+- 아이콘 아래 카피는 `A library of over 80 animated icons communicates status, intent, and emotion through a clear visual language. Tap or hover to see them in motion.`를 사용하며, 공통 `state` 토큰을 따릅니다.
 - `Info` 영역은 `Visual Principles` 캐러셀과 같은 스와이프/인디케이터 감각을 사용하지만, 단위는 개별 카드가 아니라 `1200px 그룹`입니다.
   - 1번 그룹: 1200px 안에 `586 + 586` 두 카드
     - 두 카드는 Figma에서 추출한 `assets/images/interface-design/info-card-01-left.png`, `assets/images/interface-design/info-card-01-right.png`를 사용합니다.

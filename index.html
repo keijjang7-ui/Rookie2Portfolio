@@ -875,6 +875,14 @@
       font-weight: 600;
     }
 
+    .interface-swatch__label-status-short {
+      display: none;
+    }
+
+    .interface-swatch__label-hex-prefix {
+      display: inline;
+    }
+
     .interface-typo {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1590,6 +1598,18 @@
         padding: 16px;
       }
 
+      .interface-swatch__label-status-full {
+        display: none;
+      }
+
+      .interface-swatch__label-status-short {
+        display: inline;
+      }
+
+      .interface-swatch__label-hex-prefix {
+        display: none;
+      }
+
       .interface-typo {
         grid-template-columns: minmax(0, 1fr);
         gap: 48px;
@@ -1805,26 +1825,26 @@
             <div class="interface-color" aria-label="Rookie2 interface color palette">
               <div class="interface-color__row interface-color__row--top">
                 <div class="interface-swatch interface-swatch--teal">
-                  <p class="interface-swatch__label">Core Teal<br>32FFEA</p>
+                  <p class="interface-swatch__label">Core Teal<br><span class="interface-swatch__label-hex-prefix">Hex </span>32FFEA</p>
                 </div>
                 <div class="interface-color__split">
                   <div class="interface-swatch interface-swatch--blue">
-                    <p class="interface-swatch__label">Core Blue<br>00A1FF</p>
+                    <p class="interface-swatch__label">Core Blue<br><span class="interface-swatch__label-hex-prefix">Hex </span>00A1FF</p>
                   </div>
                   <div class="interface-swatch interface-swatch--violet">
-                    <p class="interface-swatch__label">Core Violet<br>9948FC</p>
+                    <p class="interface-swatch__label">Core Violet<br><span class="interface-swatch__label-hex-prefix">Hex </span>9948FC</p>
                   </div>
                 </div>
               </div>
               <div class="interface-color__row interface-color__row--bottom">
                 <div class="interface-swatch interface-swatch--short interface-swatch--red">
-                  <p class="interface-swatch__label">Stat Red<br>FF3832</p>
+                  <p class="interface-swatch__label"><span class="interface-swatch__label-status-full">Status</span><span class="interface-swatch__label-status-short">Stat</span> Red<br><span class="interface-swatch__label-hex-prefix">Hex </span>FF3832</p>
                 </div>
                 <div class="interface-swatch interface-swatch--short interface-swatch--yellow">
-                  <p class="interface-swatch__label">Stat Yellow<br>FFB446</p>
+                  <p class="interface-swatch__label"><span class="interface-swatch__label-status-full">Status</span><span class="interface-swatch__label-status-short">Stat</span> Yellow<br><span class="interface-swatch__label-hex-prefix">Hex </span>FFB446</p>
                 </div>
                 <div class="interface-swatch interface-swatch--short interface-swatch--green">
-                  <p class="interface-swatch__label">Stat Green<br>00E696</p>
+                  <p class="interface-swatch__label"><span class="interface-swatch__label-status-full">Status</span><span class="interface-swatch__label-status-short">Stat</span> Green<br><span class="interface-swatch__label-hex-prefix">Hex </span>00E696</p>
                 </div>
               </div>
             </div>
@@ -1832,7 +1852,7 @@
             <div class="interface-typo" aria-label="Rookie2 interface typography samples">
               <div class="interface-typo__item" style="--interface-typo-weight: 400;">
                 <p class="interface-typo__letter">Aa</p>
-                <p class="interface-typo__caption">Label/Description<span>Pretendard R</span></p>
+                <p class="interface-typo__caption">Labels<span>Pretendard R</span></p>
               </div>
               <div class="interface-typo__item" style="--interface-typo-weight: 500;">
                 <p class="interface-typo__letter">Aa</p>
@@ -1840,7 +1860,7 @@
               </div>
               <div class="interface-typo__item" style="--interface-typo-weight: 600;">
                 <p class="interface-typo__letter">Aa</p>
-                <p class="interface-typo__caption">Headline/Title<span>Pretendard SB</span></p>
+                <p class="interface-typo__caption">Headlines<span>Pretendard SB</span></p>
               </div>
             </div>
 
@@ -1895,7 +1915,7 @@
                 <span class="interface-icon__motion" aria-hidden="true"></span>
               </button>
             </div>
-            <p class="interface-design__summary">A library of over 80 icons helps communicate status, intent, and emotion through a clear and expressive visual language.</p>
+            <p class="interface-design__summary">A library of over 80 animated icons communicates status, intent, and emotion through a clear visual language. Tap or hover to see them in motion.</p>
           </div>
 
           <div class="interface-info" data-interface-info-carousel aria-label="Rookie2 interface information cards">
