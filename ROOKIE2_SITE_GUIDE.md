@@ -108,6 +108,14 @@ Hero는 이 기준에서 제외합니다. Hero 아래 정보 섹션의 텍스트
 - 1200 이하: `title 42px`, `body 18px`, `state 26px`
 - 760 이하: `title 34px`, `body 16px`, `state 20px`
 
+좌측 정렬 텍스트의 optical inset 기준:
+
+- Hero, 중앙 정렬 텍스트, 카드 내부 텍스트는 이 기준에서 제외합니다.
+- 정보 섹션의 좌측 정렬 텍스트는 컨테이너의 실제 좌측 기준선을 유지하고, 텍스트만 `--left-text-optical-inset`으로 살짝 안쪽 보정합니다.
+- 값은 기본 `8px`, 1200 이하 태블릿 `6px`, 560 이하 모바일 `4px`입니다.
+- 현재 적용 대상은 `.intro-motion__copy`, `.visual-principles__title`, `.interface-design__heading`입니다.
+- 앞으로 카드 외부의 좌측 정렬 텍스트를 추가할 때도 같은 흐름을 우선 따릅니다.
+
 Visual Principles 1번 카드 안의 `Lively`, `Connected`, `Future` 라벨은 이미지 안에 얹는 예외 라벨이므로 이 공통 토큰을 따르지 않고 `--visual-label-size`로 별도 관리합니다.
 
 ## Hero 동작 기준
@@ -214,7 +222,7 @@ Intro motion overlay 카피 기준:
 
 - Figma 레이어: `Intro_mv_end` 안의 `Txt`
 - 문구: `Every delivery is a small movement. Together, they shape the rhythm of a building. Rookie2 is designed to keep that rhythm moving.`
-- 위치는 모든 반응형 지점에서 공통 정보 영역 `--section-width`의 왼쪽 기준선과 맞춥니다. 1920 기준 `x: 360`, 1600 기준 `x: 200`, 1200 기준 `x: 40`, 모바일 390 기준 `x: 28`입니다.
+- 컨테이너 위치는 모든 반응형 지점에서 공통 정보 영역 `--section-width`의 왼쪽 기준선과 맞춥니다. 1920 기준 `x: 360`, 1600 기준 `x: 200`, 1200 기준 `x: 40`, 모바일 390 기준 `x: 28`입니다. 텍스트는 공통 optical inset을 적용합니다.
 - 최대 폭: `600px`
 - 카피 폭은 데스크톱/태블릿에서 `min(600px, var(--section-width))`, 모바일에서는 `var(--section-width)`입니다.
 - 폰트: Pretendard SemiBold, 공통 `state` 토큰, `line-height: var(--type-state-line)`, color `#f9f9fa`
@@ -243,7 +251,7 @@ Intro motion overlay 카피 기준:
 
 - 섹션 클래스: `.section03.visual-principles`
 - 배경: `#0d0b0b`
-- Figma 기준 1920px 화면에서 title은 x `360`, y `240` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
+- Figma 기준 1920px 화면에서 title 컨테이너는 x `360`, y `240` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다. 텍스트는 공통 optical inset을 적용합니다.
 - 타이틀: `Visual Principles`, Pretendard SemiBold, 공통 `title` 토큰, `line-height: var(--type-title-line)`
 - 카드 기본 폭은 모든 반응형 지점에서 정보 영역과 같은 `--section-width`를 기준으로 합니다. 활성 카드의 좌측선은 항상 Visual Principles 타이틀 좌측선과 맞아야 합니다.
 - 카드 기본 높이는 데스크톱 시작 기준 `675px`입니다.
@@ -302,7 +310,7 @@ Intro motion overlay 카피 기준:
 - 현재 구현 기준 1920px 화면에서 inner는 x `360`, y `113` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
 - 섹션은 Figma의 큰 블록 순서인 `ColorTypo` → `Icon` → `Info` 순서로 구성합니다. 1920px 기준 큰 블록 간격은 `240px`입니다.
 - `Visual Principles` 인디케이터 하단에서 `Interface Design` 타이틀 상단까지의 Figma 기준 간격은 1920px에서 `373px`입니다. 현재 CSS에서는 `.section03` 하단 padding과 `.section04` 상단 padding의 합으로 맞춥니다.
-- 타이틀: `Interface Design`, Pretendard SemiBold, 공통 `title` 토큰, `line-height: var(--type-title-line)`
+- 타이틀: `Interface Design`, Pretendard SemiBold, 공통 `title` 토큰, `line-height: var(--type-title-line)`. 타이틀과 직하단 body는 공통 optical inset을 적용합니다.
 - 타이틀 직하단에는 Figma 기준 body 문구를 사용합니다. `body` 토큰을 따르고, 타이틀과 본문 사이 간격은 1920px 기준 `40px`입니다.
 - `ColorTypo` 영역은 컬러 팔레트, 타이포 샘플, 중앙 설명문으로 구성합니다.
   - 컬러 팔레트는 1200px inner 안에서 top row `586 + 586`, right split `279 + 279`, bottom row `381.333 * 3` 비율을 따릅니다.

@@ -30,6 +30,7 @@
       --type-title-line: 1.1;
       --type-body-line: 1.4;
       --type-state-line: 1.4;
+      --left-text-optical-inset: 8px;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--copy-black);
       background: var(--page-white);
@@ -361,6 +362,7 @@
       z-index: 2;
       width: min(600px, var(--section-width));
       margin: 0;
+      padding-left: var(--left-text-optical-inset);
       color: #f9f9fa;
       font-size: var(--type-state-size);
       line-height: var(--type-state-line);
@@ -396,6 +398,7 @@
 
     .visual-principles__title {
       margin: 0 0 40px;
+      padding-left: var(--left-text-optical-inset);
       font-size: var(--type-title-size);
       line-height: var(--type-title-line);
       letter-spacing: 0;
@@ -779,6 +782,7 @@
       flex-direction: column;
       gap: var(--interface-heading-gap);
       width: min(var(--interface-heading-width), 100%);
+      padding-left: var(--left-text-optical-inset);
     }
 
     .interface-design__title {
@@ -1294,6 +1298,7 @@
         --type-title-size: 42px;
         --type-body-size: 18px;
         --type-state-size: 26px;
+        --left-text-optical-inset: 6px;
       }
 
       .section03 {
@@ -1401,6 +1406,7 @@
       :root {
         --section-side: 28px;
         --section-gutter: 56px;
+        --left-text-optical-inset: 4px;
       }
 
       .hero-intro {
