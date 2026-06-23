@@ -1091,11 +1091,16 @@
       overflow: hidden;
     }
 
+    .interface-info__picture,
     .interface-info__image,
     .interface-info__video {
       display: block;
       width: 100%;
       height: 100%;
+    }
+
+    .interface-info__image,
+    .interface-info__video {
       object-fit: cover;
       object-position: center center;
       pointer-events: none;
@@ -1181,7 +1186,7 @@
     .interface-distance__bar {
       display: block;
       width: var(--meter-width);
-      height: 3px;
+      height: var(--meter-bar-height, 3px);
       margin-left: var(--meter-offset);
       border-radius: 999px;
       background: #f9f9fa;
@@ -1723,7 +1728,8 @@
       }
 
       .interface-distance {
-        gap: 34px;
+        --meter-bar-height: 1px;
+        gap: 46px;
       }
 
       .interface-distance__visuals {
@@ -2085,6 +2091,7 @@
                 <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Viewing distance">
                   <div class="interface-info__card interface-info__card--distance">
                     <div class="interface-distance" aria-label="Optimized for every viewing distance">
+                      <h3 class="interface-info__title">Optimized for Every Viewing Distance</h3>
                       <div class="interface-distance__visuals" aria-hidden="true">
                         <div class="interface-distance__item interface-distance__item--near">
                           <img class="interface-distance__image interface-distance__image--near" src="./assets/images/interface-design/info-card-distance-near.svg" alt="">
@@ -2108,7 +2115,6 @@
                           </span>
                         </div>
                       </div>
-                      <h3 class="interface-info__title">Optimized for Every Viewing Distance</h3>
                     </div>
                   </div>
                 </div>
@@ -2119,12 +2125,18 @@
                         <img class="interface-info__image" src="./assets/images/interface-design/info-card-05-nice.jpg" alt="">
                       </div>
                       <div class="interface-info__card">
-                        <img class="interface-info__image" src="./assets/images/interface-design/info-card-05-pin.png" alt="">
+                        <picture class="interface-info__picture">
+                          <source media="(max-width: 560px)" srcset="./assets/images/interface-design/info-card-05-pin-m.png">
+                          <img class="interface-info__image" src="./assets/images/interface-design/info-card-05-pin.png" alt="">
+                        </picture>
                       </div>
                     </div>
                     <div class="interface-info__column">
                       <div class="interface-info__card">
-                        <img class="interface-info__image" src="./assets/images/interface-design/info-card-05-destination.png" alt="">
+                        <picture class="interface-info__picture">
+                          <source media="(max-width: 560px)" srcset="./assets/images/interface-design/info-card-05-destination-m.png">
+                          <img class="interface-info__image" src="./assets/images/interface-design/info-card-05-destination.png" alt="">
+                        </picture>
                       </div>
                       <div class="interface-info__card">
                         <img class="interface-info__image" src="./assets/images/interface-design/info-card-05-depart.png" alt="">
