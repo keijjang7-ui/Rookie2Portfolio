@@ -173,7 +173,7 @@ Hero 반응형 기준:
 현재 표시 문구:
 
 - Title: `Moving What Matters`
-- Body: `ROOKIE2 automates countless movements throughout modern buildings, allowing people to focus on what matters most. Designed to make even the smallest delivery feel seamless, efficient, and effortless.`
+- Body: `Rookie2 automates countless movements throughout modern buildings, allowing people to focus on what matters most. Every delivery is designed to feel seamless, efficient, and effortless.`
 
 보관용 한글 문구는 `assets/content/intro.json`에 있습니다.
 
@@ -368,8 +368,8 @@ word-break: keep-all;
 overflow-wrap: normal;
 ```
 
-- 특별히 요청받지 않는 한 `Rookie2`처럼 자연스러운 표기를 기본으로 합니다.
-- 전체 대문자 표기는 앞으로 거의 사용하지 않는 방향입니다. 단, 현재 Intro 영문 body에는 사용자가 준 원문 그대로 `ROOKIE2`가 들어가 있습니다. 사용자가 다시 지시하면 `Rookie2`로 바꿉니다.
+- 모든 노출 문구에서 브랜드명은 `Rookie2`로 표기합니다.
+- 전체 대문자 표기는 도구용 상수명이나 생성 스크립트처럼 코드 맥락에서 필요한 경우에만 사용합니다.
 
 ## 앞으로 추가될 정보 섹션 기준
 
