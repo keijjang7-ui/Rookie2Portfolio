@@ -14,7 +14,8 @@
 - `assets/images/visual-principles/card-understood-visual.jpg`: Visual Principles 3번 카드 `Designed to Be Understood`의 배경 비주얼 이미지입니다.
 - `assets/images/visual-principles/card-expressive-gaze-bg.png`: Visual Principles 4번 카드 `Expressive Gaze`의 배경 이미지입니다. 흰색 선 5개는 이미지에 굽지 않고 HTML/CSS로 얹습니다.
 - `assets/images/visual-principles/card-future-form.png`: Visual Principles 5번 카드의 전체 이미지입니다.
-- `assets/media/Interface_mv_01.mp4`: Interface Design `Info` 1번 그룹의 motion 카드 영상입니다.
+- `assets/media/Interface_mv_01.mp4`: Interface Design `Info` 1번 그룹의 motion 카드 데스크톱/기본 영상입니다.
+- `assets/media/Interface_mv_01-m.mp4`: Interface Design `Info` 1번 그룹의 모바일 `560px` 이하 전용 영상입니다.
 - `assets/images/interface-design/info-card-02-left.png`, `assets/images/interface-design/info-card-02-right.png`: Interface Design `Info` 2번 그룹의 좌우 이미지 카드입니다.
 - `assets/images/interface-design/info-card-distance-near.svg`, `assets/images/interface-design/info-card-distance-mid.svg`, `assets/images/interface-design/info-card-distance-far.svg`: Interface Design `Info` 3번 그룹의 viewing distance 그래픽입니다.
 - `assets/images/interface-design/info-card-05-nice.jpg`, `assets/images/interface-design/info-card-05-pin.png`, `assets/images/interface-design/info-card-05-destination.png`, `assets/images/interface-design/info-card-05-depart.png`: Interface Design `Info` 4번 그룹의 status interface 예시 이미지입니다.
@@ -339,7 +340,7 @@ Intro motion overlay 카피 기준:
 - 아이콘 아래 카피는 `A library of over 80 animated icons communicates status, intent, and emotion through a clear visual language. Tap or hover to see them in motion.`를 사용하며, 공통 `state` 토큰을 따릅니다.
 - `Info` 영역은 `Visual Principles` 캐러셀과 같은 스와이프/인디케이터 감각을 사용하지만, 단위는 개별 카드가 아니라 `1200px 그룹`입니다. 카드 높이, indicator 간격, 반응형 완충 구간은 `Visual Principles`와 맞추는 것을 기본값으로 봅니다.
   - 카드 높이 기준은 데스크톱과 1600px 이하 `675px`, 1200px 이하 `clamp(430px, 51.667vw, 620px)`, 760px 이하 `400px`, 560px 이하 `320px`입니다.
-  - 1번 그룹 `Interface motion`: 1200px 단일 영상 카드입니다. `assets/media/Interface_mv_01.mp4`를 사용하고, 해당 슬라이드가 활성 상태이면서 섹션이 보일 때만 재생합니다. 벗어나면 currentTime을 초기화하지 않고 pause하며, 다시 돌아오면 이어서 재생합니다. 활성 상태에서는 loop 재생합니다.
+  - 1번 그룹 `Interface motion`: 1200px 단일 영상 카드입니다. 기본 영상은 `assets/media/Interface_mv_01.mp4`를 사용하고, 모바일 `560px` 이하에서는 `assets/media/Interface_mv_01-m.mp4`로 교체합니다. 해당 슬라이드가 활성 상태이면서 섹션이 보일 때만 재생합니다. 벗어나면 currentTime을 초기화하지 않고 pause하며, 다시 돌아오면 이어서 재생합니다. 활성 상태에서는 loop 재생합니다.
   - 2번 그룹 `Interface touchpoints`: 1200px 안에 두 카드가 들어갑니다. `assets/images/interface-design/info-card-02-left.png`, `assets/images/interface-design/info-card-02-right.png`를 사용합니다.
   - 3번 그룹 `Viewing distance`: 1200px 단일 카드입니다. 텍스트를 위, 거리 그래픽을 아래에 둡니다. `info-card-distance-near.svg`, `info-card-distance-mid.svg`, `info-card-distance-far.svg`를 HTML/CSS로 배치합니다. 내부 그래픽은 viewport에 직접 반응하지 않고 카드의 실제 콘텐츠 폭과 좌우 여백을 기준으로 가변되어야 합니다. 거리 라벨은 각 선의 중앙축에 맞추고, 모바일에서는 세 거리 그래픽 사이 간격과 텍스트/이미지 사이 간격을 조금 넓혀 답답해 보이지 않게 유지합니다. 모바일에서는 거리 표시 선이 일러스트 선보다 굵어 보이지 않도록 `--meter-bar-height`를 낮춥니다.
   - 4번 그룹 `Status interface examples`: 1200px 안에 2x2 이미지 카드 그리드를 배치합니다. `info-card-05-nice.jpg`, `info-card-05-pin.png`, `info-card-05-destination.png`, `info-card-05-depart.png`를 사용합니다. 모바일 `560px` 이하에서는 `pin`과 `destination` 이미지만 각각 `info-card-05-pin-m.png`, `info-card-05-destination-m.png`로 교체합니다. 중첩 카드가 자체 고정 높이를 가져 전체 슬라이드 높이를 깨지 않도록 내부 카드는 `height: auto`, `min-height: 0` 기준을 유지합니다.

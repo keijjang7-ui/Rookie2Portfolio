@@ -2077,7 +2077,7 @@
               <div class="interface-info__track" data-interface-info-track>
                 <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface motion">
                   <div class="interface-info__card">
-                    <video class="interface-info__video" src="./assets/media/Interface_mv_01.mp4" muted loop playsinline preload="metadata" aria-label="Rookie2 interface motion display"></video>
+                    <video class="interface-info__video" src="./assets/media/Interface_mv_01.mp4" data-desktop-src="./assets/media/Interface_mv_01.mp4" data-mobile-src="./assets/media/Interface_mv_01-m.mp4" muted loop playsinline preload="metadata" aria-label="Rookie2 interface motion display"></video>
                   </div>
                 </div>
                 <div class="interface-info__group interface-info__group--split" data-interface-info-slide data-card-label="Interface touchpoints">
@@ -2681,6 +2681,7 @@
 
       const groups = Array.from(interfaceInfoTrack.querySelectorAll("[data-interface-info-slide]"));
       const firstGroupVideo = groups[0]?.querySelector(".interface-info__video") || null;
+      const firstGroupVideoMediaQuery = firstGroupVideo && "matchMedia" in window ? window.matchMedia("(max-width: 560px)") : null;
       let activeIndex = 0;
       let isInfoCarouselVisible = false;
       let isDragging = false;
@@ -2755,6 +2756,39 @@
         return clamp(Math.round((getCenterOffset() - offset) / step), 0, groups.length - 1);
       }
 
+      function getFirstGroupVideoSource() {
+        if (!firstGroupVideo) {
+          return "";
+        }
+
+        if (firstGroupVideoMediaQuery?.matches) {
+          return firstGroupVideo.dataset.mobileSrc || firstGroupVideo.dataset.desktopSrc || firstGroupVideo.getAttribute("src") || "";
+        }
+
+        return firstGroupVideo.dataset.desktopSrc || firstGroupVideo.getAttribute("src") || "";
+      }
+
+      function syncFirstGroupVideoSource() {
+        if (!firstGroupVideo) {
+          return;
+        }
+
+        const nextSource = getFirstGroupVideoSource();
+        if (!nextSource || firstGroupVideo.dataset.currentSrc === nextSource) {
+          return;
+        }
+
+        const shouldResume = !firstGroupVideo.paused && activeIndex === 0 && isInfoCarouselVisible;
+        firstGroupVideo.pause();
+        firstGroupVideo.src = nextSource;
+        firstGroupVideo.dataset.currentSrc = nextSource;
+        firstGroupVideo.load();
+
+        if (shouldResume) {
+          playFirstGroupVideo();
+        }
+      }
+
       function pauseFirstGroupVideo() {
         if (!firstGroupVideo) {
           return;
@@ -2767,6 +2801,8 @@
         if (!firstGroupVideo) {
           return;
         }
+
+        syncFirstGroupVideoSource();
 
         const playRequest = firstGroupVideo.play();
 
@@ -3014,6 +3050,21 @@
         infoObserver.observe(interfaceInfoCarousel);
       } else {
         isInfoCarouselVisible = true;
+      }
+
+      syncFirstGroupVideoSource();
+
+      if (firstGroupVideoMediaQuery) {
+        const handleVideoMediaChange = () => {
+          syncFirstGroupVideoSource();
+          syncFirstGroupVideo();
+        };
+
+        if (typeof firstGroupVideoMediaQuery.addEventListener === "function") {
+          firstGroupVideoMediaQuery.addEventListener("change", handleVideoMediaChange);
+        } else if (typeof firstGroupVideoMediaQuery.addListener === "function") {
+          firstGroupVideoMediaQuery.addListener(handleVideoMediaChange);
+        }
       }
 
       window.addEventListener("resize", () => {
