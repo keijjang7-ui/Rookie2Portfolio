@@ -1079,8 +1079,8 @@
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .interface-info__group--wide {
-      grid-template-columns: minmax(0, 400fr) minmax(0, 772fr);
+    .interface-info__group--grid {
+      grid-template-columns: minmax(0, 1fr);
     }
 
     .interface-info__card {
@@ -1091,7 +1091,8 @@
       overflow: hidden;
     }
 
-    .interface-info__image {
+    .interface-info__image,
+    .interface-info__video {
       display: block;
       width: 100%;
       height: 100%;
@@ -1100,6 +1101,139 @@
       pointer-events: none;
       user-select: none;
       -webkit-user-drag: none;
+    }
+
+    .interface-info__card--distance {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(40px, calc(var(--interface-info-card-height) * 0.219), 148px);
+    }
+
+    .interface-distance {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: clamp(56px, calc(var(--interface-info-card-height) * 0.207), 140px);
+      width: min(904px, 100%);
+    }
+
+    .interface-distance__visuals {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: min(13.274%, 120px);
+      width: 100%;
+    }
+
+    .interface-distance__item {
+      flex: 0 1 var(--distance-width);
+      width: var(--distance-width);
+      min-width: 0;
+    }
+
+    .interface-distance__item--near {
+      --distance-width: 17.699%;
+      --meter-width: 20%;
+      --meter-offset: 23.75%;
+    }
+
+    .interface-distance__item--mid {
+      --distance-width: 21.239%;
+      --meter-width: 33.333%;
+      --meter-offset: 19.792%;
+    }
+
+    .interface-distance__item--far {
+      --distance-width: 30.973%;
+      --meter-width: 54.286%;
+      --meter-offset: 13.571%;
+    }
+
+    .interface-distance__image {
+      display: block;
+      width: 100%;
+      aspect-ratio: var(--distance-ratio);
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .interface-distance__image--near {
+      --distance-ratio: 160 / 120;
+    }
+
+    .interface-distance__image--mid {
+      --distance-ratio: 192 / 120;
+    }
+
+    .interface-distance__image--far {
+      --distance-ratio: 280 / 120;
+    }
+
+    .interface-distance__meter {
+      display: block;
+      width: 100%;
+      margin-top: clamp(2px, 0.208vw, 4px);
+    }
+
+    .interface-distance__bar {
+      display: block;
+      width: var(--meter-width);
+      height: 3px;
+      margin-left: var(--meter-offset);
+      border-radius: 999px;
+      background: #f9f9fa;
+    }
+
+    .interface-distance__label {
+      display: block;
+      width: var(--meter-width);
+      margin-left: var(--meter-offset);
+      margin-top: clamp(3px, 0.365vw, 7px);
+      color: #f9f9fa;
+      font-size: clamp(10px, 0.833vw, 16px);
+      line-height: 1.2;
+      letter-spacing: 0;
+      font-weight: 600;
+      overflow: visible;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .interface-info__title {
+      width: 100%;
+      margin: 0;
+      color: #f9f9fa;
+      font-size: var(--type-state-size);
+      line-height: var(--type-state-line);
+      letter-spacing: 0;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .interface-info__columns,
+    .interface-info__column {
+      display: grid;
+      gap: var(--interface-info-gap);
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+    }
+
+    .interface-info__columns {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      width: 100%;
+    }
+
+    .interface-info__column {
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+
+    .interface-info__columns .interface-info__card {
+      height: auto;
+      min-height: 0;
     }
 
     .interface-info__indicator {
@@ -1293,7 +1427,7 @@
         --interface-icon-row-gap: 84px;
         --interface-icon-summary-width: 760px;
         --interface-icon-summary-gap: 104px;
-        --interface-info-card-height: 600px;
+        --interface-info-card-height: 675px;
         --interface-info-radius: 31px;
         padding-bottom: 272px;
       }
@@ -1345,7 +1479,7 @@
         --interface-icon-row-gap: 64px;
         --interface-icon-summary-width: 720px;
         --interface-icon-summary-gap: 72px;
-        --interface-info-card-height: 520px;
+        --interface-info-card-height: clamp(430px, 51.667vw, 620px);
         --interface-info-gap: 22px;
         --interface-info-indicator-gap: 34px;
         --interface-info-radius: 28px;
@@ -1399,7 +1533,9 @@
       }
 
       .section04 {
+        --interface-info-card-height: 400px;
         --interface-info-indicator-gap: 28px;
+        --interface-info-radius: 24px;
       }
     }
 
@@ -1580,6 +1716,18 @@
         --interface-info-radius: 24px;
         margin-top: -1px;
         padding-bottom: 96px;
+      }
+
+      .interface-info__card--distance {
+        padding: 24px;
+      }
+
+      .interface-distance {
+        gap: 34px;
+      }
+
+      .interface-distance__visuals {
+        gap: 32px;
       }
 
       .interface-color__row--top {
@@ -1921,23 +2069,68 @@
           <div class="interface-info" data-interface-info-carousel aria-label="Rookie2 interface information cards">
             <div class="interface-info__viewport">
               <div class="interface-info__track" data-interface-info-track>
-                <div class="interface-info__group interface-info__group--split" data-interface-info-slide data-card-label="Interface info 01">
+                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface motion">
                   <div class="interface-info__card">
-                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-01-left.png" alt="">
-                  </div>
-                  <div class="interface-info__card">
-                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-01-right.png" alt="">
+                    <video class="interface-info__video" src="./assets/media/Interface_mv_01.mp4" muted loop playsinline preload="metadata" aria-label="Rookie2 interface motion display"></video>
                   </div>
                 </div>
-                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface info 02">
-                  <div class="interface-info__card" aria-hidden="true"></div>
+                <div class="interface-info__group interface-info__group--split" data-interface-info-slide data-card-label="Interface touchpoints">
+                  <div class="interface-info__card">
+                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-02-left.png" alt="">
+                  </div>
+                  <div class="interface-info__card">
+                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-02-right.png" alt="">
+                  </div>
                 </div>
-                <div class="interface-info__group interface-info__group--wide" data-interface-info-slide data-card-label="Interface info 03">
-                  <div class="interface-info__card" aria-hidden="true"></div>
-                  <div class="interface-info__card" aria-hidden="true"></div>
+                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Viewing distance">
+                  <div class="interface-info__card interface-info__card--distance">
+                    <div class="interface-distance" aria-label="Optimized for every viewing distance">
+                      <div class="interface-distance__visuals" aria-hidden="true">
+                        <div class="interface-distance__item interface-distance__item--near">
+                          <img class="interface-distance__image interface-distance__image--near" src="./assets/images/interface-design/info-card-distance-near.svg" alt="">
+                          <span class="interface-distance__meter">
+                            <span class="interface-distance__bar"></span>
+                            <span class="interface-distance__label">0.5m</span>
+                          </span>
+                        </div>
+                        <div class="interface-distance__item interface-distance__item--mid">
+                          <img class="interface-distance__image interface-distance__image--mid" src="./assets/images/interface-design/info-card-distance-mid.svg" alt="">
+                          <span class="interface-distance__meter">
+                            <span class="interface-distance__bar"></span>
+                            <span class="interface-distance__label">1-1.5m</span>
+                          </span>
+                        </div>
+                        <div class="interface-distance__item interface-distance__item--far">
+                          <img class="interface-distance__image interface-distance__image--far" src="./assets/images/interface-design/info-card-distance-far.svg" alt="">
+                          <span class="interface-distance__meter">
+                            <span class="interface-distance__bar"></span>
+                            <span class="interface-distance__label">3-4m</span>
+                          </span>
+                        </div>
+                      </div>
+                      <h3 class="interface-info__title">Optimized for Every Viewing Distance</h3>
+                    </div>
+                  </div>
                 </div>
-                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface info 04">
-                  <div class="interface-info__card" aria-hidden="true"></div>
+                <div class="interface-info__group interface-info__group--grid" data-interface-info-slide data-card-label="Status interface examples">
+                  <div class="interface-info__columns">
+                    <div class="interface-info__column">
+                      <div class="interface-info__card">
+                        <img class="interface-info__image" src="./assets/images/interface-design/info-card-05-nice.jpg" alt="">
+                      </div>
+                      <div class="interface-info__card">
+                        <img class="interface-info__image" src="./assets/images/interface-design/info-card-05-pin.png" alt="">
+                      </div>
+                    </div>
+                    <div class="interface-info__column">
+                      <div class="interface-info__card">
+                        <img class="interface-info__image" src="./assets/images/interface-design/info-card-05-destination.png" alt="">
+                      </div>
+                      <div class="interface-info__card">
+                        <img class="interface-info__image" src="./assets/images/interface-design/info-card-05-depart.png" alt="">
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -2475,7 +2668,9 @@
       }
 
       const groups = Array.from(interfaceInfoTrack.querySelectorAll("[data-interface-info-slide]"));
+      const firstGroupVideo = groups[0]?.querySelector(".interface-info__video") || null;
       let activeIndex = 0;
+      let isInfoCarouselVisible = false;
       let isDragging = false;
       let dragStartX = 0;
       let dragStartY = 0;
@@ -2548,7 +2743,41 @@
         return clamp(Math.round((getCenterOffset() - offset) / step), 0, groups.length - 1);
       }
 
+      function pauseFirstGroupVideo() {
+        if (!firstGroupVideo) {
+          return;
+        }
+
+        firstGroupVideo.pause();
+      }
+
+      function playFirstGroupVideo() {
+        if (!firstGroupVideo) {
+          return;
+        }
+
+        const playRequest = firstGroupVideo.play();
+
+        if (playRequest && typeof playRequest.catch === "function") {
+          playRequest.catch(() => {});
+        }
+      }
+
+      function syncFirstGroupVideo(previousIndex = activeIndex) {
+        if (!firstGroupVideo) {
+          return;
+        }
+
+        if (activeIndex === 0 && isInfoCarouselVisible) {
+          playFirstGroupVideo();
+          return;
+        }
+
+        pauseFirstGroupVideo();
+      }
+
       function setActiveIndex(index) {
+        const previousIndex = activeIndex;
         activeIndex = clamp(index, 0, groups.length - 1);
 
         buttons.forEach((button, buttonIndex) => {
@@ -2556,6 +2785,8 @@
           button.classList.toggle("is-active", isActive);
           button.setAttribute("aria-selected", String(isActive));
         });
+
+        syncFirstGroupVideo(previousIndex);
       }
 
       function getBoundedOffset(offset) {
@@ -2761,6 +2992,18 @@
       interfaceInfoTrack.addEventListener("pointerup", handlePointerUp);
       interfaceInfoTrack.addEventListener("pointercancel", handlePointerUp);
       interfaceInfoTrack.addEventListener("wheel", handleInfoWheel, { passive: false });
+
+      if ("IntersectionObserver" in window) {
+        const infoObserver = new IntersectionObserver((entries) => {
+          isInfoCarouselVisible = entries.some((entry) => entry.isIntersecting);
+          syncFirstGroupVideo();
+        }, { threshold: 0.35 });
+
+        infoObserver.observe(interfaceInfoCarousel);
+      } else {
+        isInfoCarouselVisible = true;
+      }
+
       window.addEventListener("resize", () => {
         jumpToInfoGroup(activeIndex);
       });

@@ -14,10 +14,15 @@
 - `assets/images/visual-principles/card-understood-visual.jpg`: Visual Principles 3번 카드 `Designed to Be Understood`의 배경 비주얼 이미지입니다.
 - `assets/images/visual-principles/card-expressive-gaze-bg.png`: Visual Principles 4번 카드 `Expressive Gaze`의 배경 이미지입니다. 흰색 선 5개는 이미지에 굽지 않고 HTML/CSS로 얹습니다.
 - `assets/images/visual-principles/card-future-form.png`: Visual Principles 5번 카드의 전체 이미지입니다.
+- `assets/media/Interface_mv_01.mp4`: Interface Design `Info` 1번 그룹의 motion 카드 영상입니다.
+- `assets/images/interface-design/info-card-02-left.png`, `assets/images/interface-design/info-card-02-right.png`: Interface Design `Info` 2번 그룹의 좌우 이미지 카드입니다.
+- `assets/images/interface-design/info-card-distance-near.svg`, `assets/images/interface-design/info-card-distance-mid.svg`, `assets/images/interface-design/info-card-distance-far.svg`: Interface Design `Info` 3번 그룹의 viewing distance 그래픽입니다.
+- `assets/images/interface-design/info-card-05-nice.jpg`, `assets/images/interface-design/info-card-05-pin.png`, `assets/images/interface-design/info-card-05-destination.png`, `assets/images/interface-design/info-card-05-depart.png`: Interface Design `Info` 4번 그룹의 status interface 예시 이미지입니다.
 - `assets/fonts/a-type/AType-Bold.otf`: Hero 타이틀 `Rookie2`에 사용하는 A Type 웹폰트입니다. 사이트에서 쓰는 두께만 `assets` 아래에서 관리합니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
 - `History/index_20260619_001030.html`: 2026-06-19 00:10 기준, 공통 타이포그래피 토큰 적용 직전의 `index.html` 스냅샷입니다.
+- `History/index_20260623_230605.html`: 2026-06-23 23:06 기준, Interface Design `Info` 카드 반영 직전의 `index.html` 스냅샷입니다.
 
 ## 2026-06-17 최종 점검
 
@@ -41,6 +46,7 @@
 추가할 때 지킬 기준:
 
 - 새 섹션은 Hero를 제외하면 기본 정보 영역 `--section-width` 기준에 맞춥니다.
+- 섹션이 달라도 카드 캐러셀처럼 유사한 UI 구조를 공유한다면 폭, 높이, gap, radius, 인디케이터 위치, 스와이프 감각을 함께 검토하고 가능하면 기존 구조와 맞춥니다. 명확한 디자인 의도가 있을 때만 예외를 둡니다.
 - 새 카드/텍스트 섹션은 먼저 Figma 레이어 기준을 확인하고, 레이아웃 기준이 생기면 이 문서에 함께 기록합니다.
 - 새 이미지/영상 자산은 `assets/images` 또는 `assets/media` 아래에 넣고, 파일 구조 목록에 사용 목적을 추가합니다.
 - 현재 favicon은 브라우저 탭용 SVG data URL입니다. iOS 홈 화면 아이콘, PNG fallback, SNS 공유 이미지가 필요해지면 별도 파일 자산과 meta 태그를 추가합니다.
@@ -331,13 +337,12 @@ Intro motion overlay 카피 기준:
 - hover 종료, blur, 다른 아이콘 선택 시 즉시 끊지 않고 현재 루프가 끝나는 지점까지 재생한 뒤 각 아이콘의 시작/정지 프레임으로 돌아가 정지합니다. 기본값은 `0`프레임입니다.
 - 개별 아이콘은 `data-lottie-start-frame`과 CSS 크기/위치 클래스로 예외 값을 줄 수 있습니다. 현재 4번째 `Congrat` 아이콘은 시작/정지 프레임 `20`, 기본 크기 `83%`, 활성 크기 `114%`를 사용합니다. `Sports`와 `Siren`은 내부 Lottie 위치만 보정합니다. 종료 시에는 종료 요청 시점과 관계없이 현재 루프를 끝까지 재생한 뒤, 다음 루프의 `0`프레임대부터 지정 시작 프레임까지 자연스럽게 지나간 뒤 정지합니다.
 - 아이콘 아래 카피는 `A library of over 80 animated icons communicates status, intent, and emotion through a clear visual language. Tap or hover to see them in motion.`를 사용하며, 공통 `state` 토큰을 따릅니다.
-- `Info` 영역은 `Visual Principles` 캐러셀과 같은 스와이프/인디케이터 감각을 사용하지만, 단위는 개별 카드가 아니라 `1200px 그룹`입니다.
-  - 1번 그룹: 1200px 안에 `586 + 586` 두 카드
-    - 두 카드는 Figma에서 추출한 `assets/images/interface-design/info-card-01-left.png`, `assets/images/interface-design/info-card-01-right.png`를 사용합니다.
-  - 2번 그룹: 1200px 단일 카드
-  - 3번 그룹: 1200px 안에 `400 + 772` 비율의 두 카드
-  - 4번 그룹: 1200px 단일 카드
-  - 현재 카드들은 비어 있는 placeholder로 유지하고, 추후 콘텐츠/이미지를 채웁니다.
+- `Info` 영역은 `Visual Principles` 캐러셀과 같은 스와이프/인디케이터 감각을 사용하지만, 단위는 개별 카드가 아니라 `1200px 그룹`입니다. 카드 높이, indicator 간격, 반응형 완충 구간은 `Visual Principles`와 맞추는 것을 기본값으로 봅니다.
+  - 카드 높이 기준은 데스크톱과 1600px 이하 `675px`, 1200px 이하 `clamp(430px, 51.667vw, 620px)`, 760px 이하 `400px`, 560px 이하 `320px`입니다.
+  - 1번 그룹 `Interface motion`: 1200px 단일 영상 카드입니다. `assets/media/Interface_mv_01.mp4`를 사용하고, 해당 슬라이드가 활성 상태이면서 섹션이 보일 때만 재생합니다. 벗어나면 currentTime을 초기화하지 않고 pause하며, 다시 돌아오면 이어서 재생합니다. 활성 상태에서는 loop 재생합니다.
+  - 2번 그룹 `Interface touchpoints`: 1200px 안에 두 카드가 들어갑니다. `assets/images/interface-design/info-card-02-left.png`, `assets/images/interface-design/info-card-02-right.png`를 사용합니다.
+  - 3번 그룹 `Viewing distance`: 1200px 단일 카드입니다. `info-card-distance-near.svg`, `info-card-distance-mid.svg`, `info-card-distance-far.svg`를 HTML/CSS로 배치합니다. 내부 그래픽은 viewport에 직접 반응하지 않고 카드의 실제 콘텐츠 폭과 좌우 여백을 기준으로 가변되어야 합니다. 거리 라벨은 각 선의 중앙축에 맞추고, 모바일에서는 세 거리 그래픽 사이 간격을 조금 넓혀 답답해 보이지 않게 유지합니다.
+  - 4번 그룹 `Status interface examples`: 1200px 안에 2x2 이미지 카드 그리드를 배치합니다. `info-card-05-nice.jpg`, `info-card-05-pin.png`, `info-card-05-destination.png`, `info-card-05-depart.png`를 사용합니다. 중첩 카드가 자체 고정 높이를 가져 전체 슬라이드 높이를 깨지 않도록 내부 카드는 `height: auto`, `min-height: 0` 기준을 유지합니다.
   - 카드와 인디케이터 사이 간격은 `Visual Principles`와 동일하게 맞춥니다. 현재 기준은 데스크톱 `40px`, 1200px 이하 `34px`, 760px 이하 및 모바일 `28px`입니다.
 - 반응형 breakpoint는 사이트 기본 기준인 `1600px`, `1200px`, `560px`를 따릅니다.
 - 모바일 `560px` 이하에서는 아이콘을 3열로 배치해 터치 타깃과 가독성을 확보합니다.

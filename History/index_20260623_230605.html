@@ -1,0 +1,3011 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rookie2 Portfolio</title>
+  <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg%20width%3D%2280%22%20height%3D%2280%22%20viewBox%3D%220%200%2080%2080%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2280%22%20height%3D%2280%22%20rx%3D%2240%22%20fill%3D%22black%22%2F%3E%3Cpath%20d%3D%22M45.7212%2041.1057L33.8263%2024H24V56H34.2788V38.8943L46.1737%2056H56V24H45.7212V41.1057Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E">
+  <style>
+    @font-face {
+      font-family: "A Type";
+      src: url("./assets/fonts/a-type/AType-Bold.otf") format("opentype");
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --page-white: #ffffff;
+      --page-black: #09090b;
+      --copy-black: #000000;
+      --copy-white: #ffffff;
+      --content-max: 1920px;
+      --section-max: 1200px;
+      --section-side: 80px;
+      --section-gutter: 160px;
+      --section-width: min(calc(100vw - var(--section-gutter)), var(--section-max));
+      --type-title-size: 60px;
+      --type-body-size: 24px;
+      --type-state-size: 36px;
+      --type-title-line: 1.1;
+      --type-body-line: 1.4;
+      --type-state-line: 1.4;
+      --left-text-optical-inset: 8px;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--copy-black);
+      background: var(--page-white);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      margin: 0;
+      width: 100%;
+      background: var(--page-white);
+      scroll-behavior: auto;
+      overflow-x: clip;
+    }
+
+    body {
+      margin: 0;
+      width: 100%;
+      min-width: 320px;
+      background: var(--page-white);
+      overflow-x: clip;
+      overscroll-behavior-y: none;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+      word-break: keep-all;
+      overflow-wrap: normal;
+    }
+
+    img,
+    video {
+      display: block;
+      max-width: 100%;
+    }
+
+    .landing {
+      width: 100%;
+      background: var(--page-white);
+    }
+
+    .hero-intro {
+      --hero-height: min(56.25vw, 1080px);
+      position: relative;
+      background: var(--page-white);
+    }
+
+    .hero {
+      --hero-edge: 80px;
+      --hero-top: 80px;
+      --hero-bottom: 80px;
+      --hero-title-size: 112px;
+      --hero-detail-width: 252px;
+      --hero-detail-gap: 60px;
+      --hero-eyebrow-size: 24px;
+      --hero-body-size: 16px;
+      --hero-mark-width: 118px;
+      --hero-mark-height: 12px;
+      position: relative;
+      width: 100%;
+      height: var(--hero-height);
+      overflow: hidden;
+      background: transparent;
+      isolation: isolate;
+      z-index: 1;
+    }
+
+    .hero-intro__background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: var(--hero-height);
+      overflow: hidden;
+      background: var(--page-white);
+      transform: translate3d(0, var(--hero-bg-offset, 0px), 0);
+      will-change: transform;
+    }
+
+    .hero__media,
+    .hero__media-color {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: min(100vw, var(--content-max));
+      height: var(--hero-height);
+      transform: translateX(-50%);
+    }
+
+    .hero__media img,
+    .hero__media-color img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .hero__media img,
+    .hero__media-color img {
+      object-fit: fill;
+      object-position: center center;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .hero__media-color {
+      opacity: 0;
+      mix-blend-mode: normal;
+      z-index: 1;
+      animation: hero-color-pulse 5s linear infinite;
+    }
+
+    @keyframes hero-color-pulse {
+      0%,
+      40% {
+        opacity: 0;
+      }
+
+      70% {
+        opacity: 0.7;
+      }
+
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 11px;
+      line-height: 1;
+      letter-spacing: 2px;
+      font-weight: 600;
+      pointer-events: none;
+      transform: translateX(-50%);
+    }
+
+    .hero-scroll__line {
+      display: block;
+      width: 1px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.38);
+      animation: hero-scroll-line 2s ease-in-out infinite;
+      transform-origin: top center;
+    }
+
+    @keyframes hero-scroll-line {
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: scaleY(1);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(0.4) translateY(8px);
+      }
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 2;
+      width: min(100%, var(--content-max));
+      height: 100%;
+      margin: 0 auto;
+      padding: var(--hero-top) var(--hero-edge) var(--hero-bottom);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .hero__title {
+      margin: 0;
+      font-family: "A Type", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: var(--hero-title-size);
+      line-height: 0.94;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .hero__detail {
+      width: var(--hero-detail-width);
+      display: flex;
+      flex-direction: column;
+      gap: var(--hero-detail-gap);
+    }
+
+    .hero__eyebrow {
+      margin: 0 0 24px;
+      font-size: var(--hero-eyebrow-size);
+      line-height: 1;
+      letter-spacing: 0;
+      font-weight: 800;
+    }
+
+    .hero__body {
+      margin: 0;
+      font-size: var(--hero-body-size);
+      line-height: 1.2;
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .hero__body-mobile-line {
+      display: none;
+    }
+
+    .hero__mark {
+      width: var(--hero-mark-width);
+      height: var(--hero-mark-height);
+      object-fit: contain;
+    }
+
+    @media (max-width: 1600px) {
+      .hero {
+        --hero-title-size: 95px;
+        --hero-detail-width: 214px;
+        --hero-detail-gap: 51px;
+        --hero-eyebrow-size: 20px;
+        --hero-body-size: 14px;
+        --hero-mark-width: 100px;
+        --hero-mark-height: 10px;
+      }
+
+      .hero__eyebrow {
+        margin-bottom: 20px;
+      }
+
+    }
+
+    .intro {
+      position: relative;
+      z-index: 2;
+      height: clamp(355px, calc(28.3125vw - 67px), 477px);
+      overflow: hidden;
+      background: var(--page-black);
+      color: var(--copy-white);
+    }
+
+    @media (min-width: 1600px) {
+      .intro {
+        height: clamp(406px, calc(28.3125vw - 47px), 497px);
+      }
+    }
+
+    .intro__copy {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: var(--section-width);
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .intro__title {
+      margin: 0;
+      font-size: var(--type-title-size);
+      line-height: var(--type-title-line);
+      letter-spacing: 0;
+      font-weight: 600;
+      color: #f9f9fa;
+    }
+
+    .intro__body {
+      margin: clamp(18px, 1.667vw, 32px) auto 0;
+      max-width: 760px;
+      font-size: var(--type-body-size);
+      line-height: var(--type-body-line);
+      letter-spacing: 0;
+      font-weight: 400;
+      color: rgba(249, 249, 250, 0.9);
+    }
+
+    @media (min-width: 561px) {
+      .intro__body {
+        margin-top: clamp(28px, 2.083vw, 40px);
+      }
+    }
+
+    @media (max-width: 1600px) {
+      .intro__body {
+        max-width: 720px;
+      }
+    }
+
+    .intro-motion {
+      position: relative;
+      z-index: 2;
+      height: 400svh;
+      min-height: 2080px;
+      background: #050506;
+    }
+
+    .intro-motion__stage {
+      position: sticky;
+      top: 0;
+      width: 100%;
+      height: 100svh;
+      overflow: hidden;
+      background: #050506;
+    }
+
+    .intro-motion__video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      background: #050506;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .intro-motion__copy {
+      position: absolute;
+      top: 50%;
+      left: calc((100vw - var(--section-width)) / 2);
+      z-index: 2;
+      width: min(600px, var(--section-width));
+      margin: 0;
+      padding-left: var(--left-text-optical-inset);
+      color: #f9f9fa;
+      font-size: var(--type-state-size);
+      line-height: var(--type-state-line);
+      letter-spacing: 0;
+      font-weight: 600;
+      opacity: var(--motion-copy-opacity, 0);
+      transform: translate3d(0, calc(-50% + var(--motion-copy-y, 80px)), 0);
+      pointer-events: none;
+      will-change: opacity, transform;
+    }
+
+    .section03 {
+      --visual-inner-width: var(--section-width);
+      --visual-card-width: var(--section-width);
+      --visual-card-height: 675px;
+      --visual-card-gap: 28px;
+      --visual-radius: 36px;
+      --visual-label-size: 24px;
+      --visual-card-padding: 80px;
+      position: relative;
+      z-index: 2;
+      min-height: 100svh;
+      padding: 240px 0 260px;
+      overflow: hidden;
+      background: #0d0b0b;
+      color: #f9f9fa;
+    }
+
+    .visual-principles__inner {
+      width: var(--visual-inner-width);
+      margin: 0 auto;
+    }
+
+    .visual-principles__title {
+      margin: 0 0 40px;
+      padding-left: var(--left-text-optical-inset);
+      font-size: var(--type-title-size);
+      line-height: var(--type-title-line);
+      letter-spacing: 0;
+      font-weight: 600;
+      color: #f9f9fa;
+      white-space: nowrap;
+    }
+
+    .visual-principles__viewport {
+      width: 100vw;
+      margin-left: calc((100vw - var(--visual-inner-width)) / -2);
+      overflow: visible;
+    }
+
+    .visual-principles__track {
+      display: flex;
+      gap: var(--visual-card-gap);
+      width: max-content;
+      padding-left: calc((100vw - var(--visual-inner-width)) / 2);
+      padding-right: calc((100vw - var(--visual-inner-width)) / 2);
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      transform: translate3d(var(--visual-track-x, 0px), 0, 0);
+      will-change: transform;
+    }
+
+    .visual-principles__track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .visual-principles__track.is-dragging {
+      cursor: grabbing;
+    }
+
+    .visual-card {
+      position: relative;
+      flex: 0 0 var(--visual-card-width);
+      width: var(--visual-card-width);
+      height: var(--visual-card-height);
+      overflow: hidden;
+      border-radius: var(--visual-radius);
+      background: #19191a;
+    }
+
+    .visual-card--black {
+      background: #19191a;
+    }
+
+    .visual-card--understood {
+      background: #19191a;
+    }
+
+    .visual-card--understood .visual-card__image {
+      mix-blend-mode: screen;
+    }
+
+    .visual-card--gaze {
+      background: #19191a;
+    }
+
+    .visual-card--future {
+      background: #19191a;
+    }
+
+    .visual-card__image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .visual-card__body {
+      position: absolute;
+      inset: var(--visual-card-padding);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .visual-card__body--principles {
+      gap: clamp(44px, 5.85vw, 80px);
+    }
+
+    .visual-card__body--vision {
+      align-items: center;
+      gap: clamp(34px, 4.39vw, 60px);
+    }
+
+    .visual-card__body--understood {
+      align-items: center;
+      gap: clamp(34px, 4.39vw, 60px);
+    }
+
+    .visual-card__art-wrap {
+      position: relative;
+      width: min(900px, 100%);
+      aspect-ratio: 900 / 282;
+    }
+
+    .visual-card__art {
+      width: 100%;
+      height: auto;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .visual-card__art--principles {
+      aspect-ratio: 900 / 282;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .visual-card__art--vision {
+      width: min(1032px, 100%);
+    }
+
+    .visual-card__vision-mask {
+      display: flex;
+      justify-content: center;
+      width: min(1032px, 100%);
+      overflow: visible;
+    }
+
+    .visual-card__image--understood {
+      top: 21.41%;
+      right: auto;
+      bottom: auto;
+      left: -6.89%;
+      width: 113.78%;
+      height: auto;
+      max-width: none;
+      object-fit: contain;
+    }
+
+    .visual-card__gaze-media {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      aspect-ratio: 1200 / 768;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .visual-card__image--gaze {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .visual-card__gaze-line {
+      position: absolute;
+      top: var(--gaze-y);
+      left: var(--gaze-x);
+      width: 2.083%;
+      aspect-ratio: 1;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
+      transform: translate(-50%, -50%);
+      transform-origin: center;
+    }
+
+    .visual-card__gaze-line--eye {
+      width: 2.583%;
+      height: 8.464%;
+      aspect-ratio: auto;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .visual-card__gaze-line--eye::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.18);
+      transform: translate(-50%, -50%);
+      transform-origin: center;
+      animation: visual-gaze-blink 2.2s cubic-bezier(0.48, 0, 0.22, 1) infinite;
+      will-change: height;
+    }
+
+    .visual-card__title--gaze {
+      --visual-gaze-title-inset: clamp(28px, calc(var(--visual-card-width) * 0.08333), 100px);
+      position: absolute;
+      left: var(--visual-gaze-title-inset);
+      bottom: calc(var(--visual-gaze-title-inset) * 0.9);
+      text-align: left;
+    }
+
+    .visual-card__image--future {
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .visual-card__understood-spacer {
+      display: block;
+      flex: 0 0 auto;
+      width: min(1032px, 100%);
+      aspect-ratio: 1032 / 408;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    .visual-card__label {
+      position: absolute;
+      top: 50%;
+      margin: 0;
+      color: #000000;
+      font-size: max(10px, var(--visual-label-size));
+      line-height: 1.3;
+      letter-spacing: 0;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+      transform: translate(-50%, -50%);
+    }
+
+    .visual-card__label-mobile {
+      display: none;
+    }
+
+    .visual-card__label--left {
+      left: 15.55%;
+    }
+
+    .visual-card__label--center {
+      left: 50%;
+    }
+
+    .visual-card__label--right {
+      left: 84.5%;
+    }
+
+    .visual-card__title {
+      margin: 0;
+      color: #f9f9fa;
+      font-size: var(--type-state-size);
+      line-height: var(--type-state-line);
+      letter-spacing: 0;
+      font-weight: 600;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .visual-card--empty::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: #19191a;
+    }
+
+    .visual-principles__indicator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      width: var(--visual-card-width);
+      margin: 40px auto 0;
+    }
+
+    .visual-principles__dot {
+      width: 12px;
+      height: 12px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      appearance: none;
+      background: #494951;
+      cursor: pointer;
+      transition: width 240ms ease, background-color 240ms ease, transform 240ms ease;
+    }
+
+    .visual-principles__dot:focus-visible {
+      outline: 2px solid rgba(249, 249, 250, 0.65);
+      outline-offset: 4px;
+    }
+
+    .visual-principles__dot:hover {
+      background: #686871;
+      transform: scale(1.08);
+    }
+
+    .visual-principles__dot.is-active {
+      width: 40px;
+      background: #f5f5fb;
+      transform: scale(1);
+    }
+
+    @keyframes visual-gaze-blink {
+      0%,
+      45%,
+      72%,
+      100% {
+        height: 100%;
+      }
+
+      58% {
+        height: 49.23%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .visual-card__gaze-line--eye::before {
+        animation: none;
+      }
+    }
+
+    .section04 {
+      --interface-top: 113px;
+      --interface-section-gap: 240px;
+      --interface-color-gap: 160px;
+      --interface-heading-gap: 40px;
+      --interface-heading-width: 600px;
+      --interface-system-width: 800px;
+      --interface-card-gap: 28px;
+      --interface-card-radius: 36px;
+      --interface-color-card-height: 320px;
+      --interface-color-row-height: 200px;
+      --interface-color-label-size: 24px;
+      --interface-typo-letter-size: 210px;
+      --interface-typo-label-size: 20px;
+      --interface-icon-summary-width: 800px;
+      --interface-icon-summary-gap: 120px;
+      --interface-icon-columns: 5;
+      --interface-icon-size: 160px;
+      --interface-icon-column-gap: 100px;
+      --interface-icon-row-gap: 100px;
+      --interface-info-card-height: 675px;
+      --interface-info-gap: 28px;
+      --interface-info-indicator-gap: 40px;
+      --interface-info-radius: 36px;
+      position: relative;
+      z-index: 2;
+      padding: var(--interface-top) 0 320px;
+      background: #100b0b;
+      color: #f9f9fa;
+    }
+
+    .interface-design__inner {
+      width: var(--section-width);
+      margin: 0 auto;
+    }
+
+    .interface-design__stack,
+    .interface-color-typo,
+    .interface-icons,
+    .interface-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .interface-design__stack {
+      gap: var(--interface-section-gap);
+    }
+
+    .interface-color-typo {
+      gap: var(--interface-color-gap);
+    }
+
+    .interface-design__heading {
+      display: flex;
+      flex-direction: column;
+      gap: var(--interface-heading-gap);
+      width: min(var(--interface-heading-width), 100%);
+      padding-left: var(--left-text-optical-inset);
+    }
+
+    .interface-design__title {
+      margin: 0;
+      color: #f9f9fa;
+      font-size: var(--type-title-size);
+      line-height: var(--type-title-line);
+      letter-spacing: 0;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .interface-design__body {
+      margin: 0;
+      color: #f9f9fa;
+      font-size: var(--type-body-size);
+      line-height: var(--type-body-line);
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+
+    .interface-color {
+      display: flex;
+      flex-direction: column;
+      gap: var(--interface-card-gap);
+      width: 100%;
+    }
+
+    .interface-color__row {
+      display: grid;
+      gap: var(--interface-card-gap);
+      width: 100%;
+    }
+
+    .interface-color__row--top {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .interface-color__row--bottom {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .interface-color__split {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--interface-card-gap);
+    }
+
+    .interface-swatch {
+      min-height: var(--interface-color-card-height);
+      padding: 40px;
+      border-radius: var(--interface-card-radius);
+      background: #19191a;
+    }
+
+    .interface-swatch--short {
+      min-height: var(--interface-color-row-height);
+    }
+
+    .interface-swatch--teal {
+      background: linear-gradient(135deg, #3bffdb 0%, #00fbff 100%);
+    }
+
+    .interface-swatch--blue {
+      background: #00a1ff;
+    }
+
+    .interface-swatch--violet {
+      background: #9948fc;
+    }
+
+    .interface-swatch--red {
+      background: #ff3832;
+    }
+
+    .interface-swatch--yellow {
+      background: #ffb446;
+    }
+
+    .interface-swatch--green {
+      background: #00e696;
+    }
+
+    .interface-swatch__label {
+      margin: 0;
+      color: #000000;
+      font-size: var(--interface-color-label-size);
+      line-height: 1.3;
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .interface-swatch__label-status-short {
+      display: none;
+    }
+
+    .interface-swatch__label-hex-prefix {
+      display: inline;
+    }
+
+    .interface-typo {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(64px, 15.333vw, 184px);
+      width: 100%;
+      padding: 0 40px;
+    }
+
+    .interface-typo__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 0;
+    }
+
+    .interface-typo__letter {
+      margin: 0;
+      color: #f9f9fa;
+      font-size: var(--interface-typo-letter-size);
+      line-height: 0.705;
+      letter-spacing: 0;
+      font-weight: var(--interface-typo-weight);
+      text-align: center;
+    }
+
+    .interface-typo__caption {
+      margin: 40px 0 0;
+      color: #f9f9fa;
+      font-size: var(--interface-typo-label-size);
+      line-height: 1.3;
+      letter-spacing: 0;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .interface-typo__caption span {
+      display: block;
+      margin-top: 4px;
+      font-weight: 400;
+    }
+
+    .interface-system-summary,
+    .interface-design__summary {
+      width: min(var(--interface-system-width), 100%);
+      margin: 0 auto;
+      color: #f9f9fa;
+      font-size: var(--type-state-size);
+      line-height: var(--type-state-line);
+      letter-spacing: 0;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .interface-icons {
+      width: 100%;
+      gap: var(--interface-icon-summary-gap);
+    }
+
+    .interface-icons__grid {
+      display: grid;
+      grid-template-columns: repeat(var(--interface-icon-columns), minmax(0, 1fr));
+      gap: var(--interface-icon-row-gap) var(--interface-icon-column-gap);
+      align-items: center;
+      justify-items: center;
+      width: 100%;
+    }
+
+    .interface-icon {
+      --interface-icon-base-size: 100%;
+      --interface-icon-hover-size: 138%;
+      position: relative;
+      display: block;
+      width: min(var(--interface-icon-size), 100%);
+      aspect-ratio: 1;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+      line-height: 0;
+      overflow: visible;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .interface-icon:focus-visible {
+      outline: 2px solid rgba(249, 249, 250, 0.85);
+      outline-offset: 10px;
+    }
+
+    .interface-icon__motion {
+      position: absolute;
+      top: calc(50% + var(--interface-icon-y-offset, 0px));
+      left: 50%;
+      display: block;
+      width: var(--interface-icon-base-size);
+      height: var(--interface-icon-base-size);
+      transform: translate(-50%, -50%);
+      transition:
+        width 180ms cubic-bezier(0.2, 0, 0.2, 1),
+        height 180ms cubic-bezier(0.2, 0, 0.2, 1);
+      pointer-events: none;
+    }
+
+    .interface-icon--scale-83 {
+      --interface-icon-base-size: 83%;
+      --interface-icon-hover-size: 114%;
+    }
+
+    .interface-icon--scale-110 {
+      --interface-icon-base-size: 110%;
+      --interface-icon-hover-size: 152%;
+    }
+
+    .interface-icon--scale-105 {
+      --interface-icon-base-size: 105%;
+      --interface-icon-hover-size: 144%;
+    }
+
+    .interface-icon--offset-y-4 {
+      --interface-icon-y-offset: 4px;
+    }
+
+    .interface-icon--offset-y-up-4 {
+      --interface-icon-y-offset: -4px;
+    }
+
+    .interface-icon.is-active .interface-icon__motion {
+      width: var(--interface-icon-hover-size);
+      height: var(--interface-icon-hover-size);
+      transition-duration: 460ms;
+      transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .interface-icon.is-returning .interface-icon__motion {
+      transition-duration: 160ms;
+      transition-timing-function: cubic-bezier(0.3, 0, 0.2, 1);
+    }
+
+    .interface-icon__motion svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .interface-design__summary {
+      width: min(var(--interface-icon-summary-width), 100%);
+    }
+
+    .interface-info {
+      gap: var(--interface-info-indicator-gap);
+      width: 100%;
+    }
+
+    .interface-info__viewport {
+      width: 100vw;
+      margin-left: calc((100vw - var(--section-width)) / -2);
+      overflow: visible;
+    }
+
+    .interface-info__track {
+      display: flex;
+      gap: var(--interface-info-gap);
+      width: max-content;
+      padding-left: calc((100vw - var(--section-width)) / 2);
+      padding-right: calc((100vw - var(--section-width)) / 2);
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      transform: translate3d(var(--interface-info-track-x, 0px), 0, 0);
+      will-change: transform;
+    }
+
+    .interface-info__track.is-dragging {
+      cursor: grabbing;
+    }
+
+    .interface-info__group {
+      display: grid;
+      flex: 0 0 var(--section-width);
+      width: var(--section-width);
+      height: var(--interface-info-card-height);
+      gap: var(--interface-info-gap);
+    }
+
+    .interface-info__group--single {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .interface-info__group--split {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .interface-info__group--wide {
+      grid-template-columns: minmax(0, 400fr) minmax(0, 772fr);
+    }
+
+    .interface-info__card {
+      min-width: 0;
+      height: 100%;
+      border-radius: var(--interface-info-radius);
+      background: #19191a;
+      overflow: hidden;
+    }
+
+    .interface-info__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .interface-info__indicator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      width: var(--section-width);
+      margin: 0 auto;
+    }
+
+    .interface-info__dot {
+      width: 12px;
+      height: 12px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      appearance: none;
+      background: #494951;
+      cursor: pointer;
+      transition: width 240ms ease, background-color 240ms ease, transform 240ms ease;
+    }
+
+    .interface-info__dot:focus-visible {
+      outline: 2px solid rgba(249, 249, 250, 0.65);
+      outline-offset: 4px;
+    }
+
+    .interface-info__dot:hover {
+      background: #686871;
+      transform: scale(1.08);
+    }
+
+    .interface-info__dot.is-active {
+      width: 40px;
+      background: #f5f5fb;
+      transform: scale(1);
+    }
+
+    @media (max-width: 1200px) {
+      .hero-intro {
+        --hero-height: clamp(600px, calc(31vw + 428px), 800px);
+      }
+
+      .hero {
+        --hero-edge: 24px;
+        --hero-top: 40px;
+        --hero-bottom: 0px;
+        --hero-title-size: clamp(68px, calc(2vw + 56px), 80px);
+        --hero-detail-width: 252px;
+        --hero-detail-gap: 0px;
+        --hero-eyebrow-size: 20px;
+        --hero-body-size: 16px;
+        --hero-mark-width: 116px;
+        --hero-mark-height: 12px;
+        min-height: 0;
+        max-height: none;
+      }
+
+      .hero__media,
+      .hero__media-color {
+        top: auto;
+        bottom: 0;
+        left: calc(50% - 18px);
+        width: clamp(720px, calc(100vw - 200px), 1000px);
+        height: clamp(406px, calc(56vw - 108px), 564px);
+        transform: translateX(-50%);
+      }
+
+      .hero__media img {
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      .hero__media-color img {
+        object-fit: contain;
+        object-position: center center;
+      }
+
+      .hero__content {
+        display: block;
+        padding: 0;
+      }
+
+      .hero__title {
+        position: absolute;
+        top: clamp(122px, calc(5vw + 92px), 152px);
+        left: 50%;
+        width: 296px;
+        text-align: center;
+        line-height: 0.7;
+        transform: translateX(-50%);
+      }
+
+      .hero__detail {
+        display: contents;
+      }
+
+      .hero__detail-copy {
+        position: absolute;
+        top: clamp(218px, calc(5vw + 188px), 248px);
+        left: 50%;
+        width: var(--hero-detail-width);
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
+      .hero__eyebrow {
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .hero__body {
+        max-width: none;
+        line-height: 1.2;
+        font-weight: 500;
+        color: #818590;
+      }
+
+      .hero__body-line {
+        display: block;
+        white-space: nowrap;
+      }
+
+      .hero__body-mobile-line {
+        display: none;
+      }
+
+      .hero__mark {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        filter: none;
+      }
+
+      .hero-scroll {
+        bottom: 28px;
+      }
+
+      .intro {
+        height: 397px;
+      }
+
+      .intro__copy {
+        bottom: 0;
+      }
+
+      .intro__body {
+        max-width: 512px;
+      }
+
+      .intro-motion {
+        height: 368svh;
+        min-height: 1840px;
+      }
+    }
+
+    @media (max-width: 1600px) {
+      :root {
+        --section-side: 64px;
+        --section-gutter: 128px;
+        --type-title-size: 51px;
+        --type-body-size: 20px;
+        --type-state-size: 31px;
+      }
+
+      .section03 {
+        --visual-card-width: var(--section-width);
+        --visual-card-height: 675px;
+        --visual-card-gap: 24px;
+        --visual-radius: 31px;
+        --visual-label-size: 20px;
+        --visual-card-padding: 82px;
+        padding-top: 204px;
+        padding-bottom: 213px;
+      }
+
+      .section04 {
+        --interface-top: 104px;
+        --interface-section-gap: 204px;
+        --interface-color-gap: 136px;
+        --interface-heading-gap: 34px;
+        --interface-card-radius: 31px;
+        --interface-color-card-height: 292px;
+        --interface-color-row-height: 180px;
+        --interface-color-label-size: 20px;
+        --interface-typo-letter-size: 178px;
+        --interface-typo-label-size: 18px;
+        --interface-icon-column-gap: 80px;
+        --interface-icon-row-gap: 84px;
+        --interface-icon-summary-width: 760px;
+        --interface-icon-summary-gap: 104px;
+        --interface-info-card-height: 600px;
+        --interface-info-radius: 31px;
+        padding-bottom: 272px;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      :root {
+        --section-side: 40px;
+        --section-gutter: 80px;
+        --type-title-size: 42px;
+        --type-body-size: 18px;
+        --type-state-size: 26px;
+        --left-text-optical-inset: 6px;
+      }
+
+      .section03 {
+        --visual-card-width: var(--section-width);
+        --visual-card-height: clamp(430px, 51.667vw, 620px);
+        --visual-card-gap: 22px;
+        --visual-radius: 28px;
+        --visual-label-size: 18px;
+        --visual-card-padding: 66px;
+        min-height: auto;
+        padding-top: 150px;
+        padding-bottom: 165px;
+      }
+
+      .visual-principles__title {
+        margin-bottom: 34px;
+      }
+
+      .visual-principles__indicator {
+        margin-top: 34px;
+      }
+
+      .section04 {
+        --interface-top: 96px;
+        --interface-section-gap: 160px;
+        --interface-color-gap: 104px;
+        --interface-heading-gap: 32px;
+        --interface-card-gap: 22px;
+        --interface-card-radius: 28px;
+        --interface-color-card-height: 260px;
+        --interface-color-row-height: 160px;
+        --interface-color-label-size: 18px;
+        --interface-typo-letter-size: 148px;
+        --interface-typo-label-size: 16px;
+        --interface-icon-column-gap: 56px;
+        --interface-icon-row-gap: 64px;
+        --interface-icon-summary-width: 720px;
+        --interface-icon-summary-gap: 72px;
+        --interface-info-card-height: 520px;
+        --interface-info-gap: 22px;
+        --interface-info-indicator-gap: 34px;
+        --interface-info-radius: 28px;
+        padding-bottom: 160px;
+      }
+
+      .interface-typo {
+        padding: 0 24px;
+      }
+
+      .interface-swatch {
+        padding: 32px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --type-title-size: 34px;
+        --type-body-size: 16px;
+        --type-state-size: 20px;
+      }
+
+      .section03 {
+        --visual-inner-width: min(calc(100vw - 56px), var(--section-max));
+        --visual-card-width: var(--visual-inner-width);
+        --visual-card-height: 400px;
+        --visual-card-gap: 16px;
+        --visual-radius: 24px;
+        --visual-label-size: clamp(10px, 2.8vw, 11px);
+        --visual-card-padding: 28px;
+        padding-top: 96px;
+        padding-bottom: 128px;
+      }
+
+      .visual-principles__title {
+        margin-bottom: 28px;
+        white-space: normal;
+      }
+
+      .visual-card__body--principles {
+        gap: 44px;
+      }
+
+      .visual-card__body--vision {
+        gap: 28px;
+      }
+
+      .visual-principles__indicator {
+        width: var(--visual-card-width);
+        margin-top: 28px;
+      }
+
+      .section04 {
+        --interface-info-indicator-gap: 28px;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .visual-card__gaze-media {
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root {
+        --section-side: 28px;
+        --section-gutter: 56px;
+        --left-text-optical-inset: 4px;
+      }
+
+      .hero-intro {
+        --hero-height: 600px;
+      }
+
+      .hero {
+        --hero-edge: 24px;
+        --hero-top: 80px;
+        --hero-bottom: 40px;
+        --hero-title-size: 68px;
+        --hero-detail-width: 252px;
+        --hero-detail-gap: 0px;
+        --hero-eyebrow-size: 20px;
+        --hero-body-size: 16px;
+        --hero-mark-width: 96px;
+        --hero-mark-height: 10px;
+        min-height: 0;
+        max-height: none;
+      }
+
+      .hero__media,
+      .hero__media-color {
+        top: auto;
+        bottom: 0;
+        left: calc(50% - 5px);
+        width: 532px;
+        height: 300px;
+        transform: translateX(-50%);
+      }
+
+      .hero__media img {
+        object-fit: cover;
+        object-position: center center;
+      }
+
+      .hero__media-color img {
+        object-fit: contain;
+        object-position: center center;
+      }
+
+      .hero__content {
+        display: block;
+        padding: 0;
+      }
+
+      .hero__title {
+        position: absolute;
+        top: 130px;
+        left: 50%;
+        width: 252px;
+        text-align: center;
+        line-height: 0.705;
+        transform: translateX(-50%);
+      }
+
+      .hero__detail {
+        display: contents;
+      }
+
+      .hero__detail-copy {
+        position: absolute;
+        top: 218px;
+        left: 50%;
+        width: var(--hero-detail-width);
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
+      .hero__eyebrow {
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .hero__body {
+        max-width: none;
+        line-height: 1.2;
+        font-weight: 500;
+        color: #818590;
+      }
+
+      .hero__body-line {
+        display: none;
+      }
+
+      .hero__body-mobile-line {
+        display: block;
+        white-space: nowrap;
+      }
+
+      .hero__mark {
+        position: absolute;
+        top: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        filter: none;
+      }
+
+      .hero-scroll {
+        bottom: 24px;
+        font-size: 10px;
+      }
+
+      .hero-scroll__line {
+        height: 28px;
+      }
+
+      .intro {
+        height: 400px;
+      }
+
+      .intro__copy {
+        width: var(--section-width);
+        bottom: 0;
+      }
+
+      .intro__body {
+        max-width: 350px;
+      }
+
+      .intro-motion {
+        height: 233svh;
+        min-height: 1320px;
+      }
+
+      .intro-motion__video {
+        object-position: center center;
+      }
+
+      .intro-motion__copy {
+        left: calc((100vw - var(--section-width)) / 2);
+        width: var(--section-width);
+      }
+
+      .section03 {
+        --visual-card-width: var(--section-width);
+        --visual-card-height: 320px;
+        --visual-label-size: 12px;
+        --visual-card-padding: 24px;
+        padding-bottom: 125px;
+      }
+
+      .section04 {
+        --interface-top: 80px;
+        --interface-section-gap: 96px;
+        --interface-color-gap: 64px;
+        --interface-heading-gap: 24px;
+        --interface-card-gap: 16px;
+        --interface-card-radius: 24px;
+        --interface-color-card-height: 132px;
+        --interface-color-row-height: 132px;
+        --interface-color-label-size: 12px;
+        --interface-typo-letter-size: 104px;
+        --interface-typo-label-size: 14px;
+        --interface-icon-columns: 3;
+        --interface-icon-size: 88px;
+        --interface-icon-column-gap: 24px;
+        --interface-icon-row-gap: 34px;
+        --interface-icon-summary-width: 100%;
+        --interface-icon-summary-gap: 56px;
+        --interface-info-card-height: 320px;
+        --interface-info-gap: 16px;
+        --interface-info-radius: 24px;
+        margin-top: -1px;
+        padding-bottom: 96px;
+      }
+
+      .interface-color__row--top {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .interface-color__row--bottom {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .interface-color__split {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .interface-swatch {
+        padding: 16px;
+      }
+
+      .interface-swatch__label-status-full {
+        display: none;
+      }
+
+      .interface-swatch__label-status-short {
+        display: inline;
+      }
+
+      .interface-swatch__label-hex-prefix {
+        display: none;
+      }
+
+      .interface-typo {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 48px;
+        padding: 0;
+      }
+
+      .interface-typo__caption {
+        margin-top: 24px;
+      }
+
+      .interface-icon {
+        --interface-icon-base-size: 90%;
+      }
+
+      .interface-icon--scale-83 {
+        --interface-icon-base-size: 74.7%;
+      }
+
+      .interface-icon--scale-110 {
+        --interface-icon-base-size: 99%;
+      }
+
+      .interface-icon--scale-105 {
+        --interface-icon-base-size: 94.5%;
+      }
+
+      .visual-card__label-full {
+        display: none;
+      }
+
+      .visual-card__label-mobile {
+        display: inline;
+      }
+
+      .visual-card__body--vision {
+        inset: 0;
+        justify-content: center;
+        gap: 24px;
+      }
+
+      .visual-card__body--understood {
+        inset: 0;
+        justify-content: center;
+        gap: 24px;
+      }
+
+      .visual-card__art--vision {
+        width: calc(var(--visual-card-width) + 88px);
+        max-width: none;
+        flex: 0 0 auto;
+      }
+
+      .visual-card__vision-mask {
+        width: calc((var(--visual-card-width) + 88px) * 0.597);
+        max-width: none;
+        overflow: hidden;
+      }
+
+      .visual-card__understood-spacer {
+        width: calc(var(--visual-card-width) + 88px);
+        max-width: none;
+      }
+
+      .visual-card__image--understood {
+        top: auto;
+        bottom: -30px;
+        left: 50%;
+        width: min(calc(121% + 106px), 520px);
+        transform: translateX(-50%);
+      }
+
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .hero-intro__background {
+        position: absolute;
+        transform: none;
+        will-change: auto;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) and (max-width: 1200px) {
+      .intro-motion {
+        height: 233svh;
+        min-height: 1320px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="landing">
+    <div class="hero-intro">
+      <div class="hero-intro__background" aria-hidden="true">
+        <picture class="hero__media">
+          <img src="./assets/images/HeroImg.png" alt="">
+        </picture>
+        <picture class="hero__media-color">
+          <img src="./assets/images/HeroImg_Color.png" alt="">
+        </picture>
+      </div>
+
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__content">
+          <h1 class="hero__title" id="hero-title">Rookie2</h1>
+          <div class="hero__detail">
+            <div class="hero__detail-copy">
+              <p class="hero__eyebrow">Autonomy at Scale</p>
+              <p class="hero__body">
+                <span class="hero__body-line">Scaling autonomous delivery across</span>
+                <span class="hero__body-line">real-world buildings,</span>
+                <span class="hero__body-line">one seamless journey at a time.</span>
+                <span class="hero__body-mobile-line">Scaling autonomous delivery</span>
+                <span class="hero__body-mobile-line">across real-world buildings.</span>
+              </p>
+            </div>
+            <img class="hero__mark" src="./assets/images/NaverLabsMark.svg" alt="NAVER LABS">
+          </div>
+        </div>
+        <div class="hero-scroll" aria-hidden="true">
+          <span>Scroll</span>
+          <span class="hero-scroll__line"></span>
+        </div>
+      </section>
+
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="intro__copy">
+          <h2 class="intro__title" id="intro-title">Moving What Matters</h2>
+          <p class="intro__body">Rookie2 automates countless movements throughout modern buildings, allowing people to focus on what matters most. Every delivery is designed to feel seamless, efficient, and effortless.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="intro-motion" id="introMotion" aria-label="Rookie2 intro motion">
+      <div class="intro-motion__stage">
+        <video
+          id="introMotionVideo"
+          class="intro-motion__video"
+          src="./assets/media/Intro_mv.mp4"
+          poster="./assets/images/Intro_mv_poster.png"
+          preload="auto"
+          muted
+          playsinline
+          aria-hidden="true"
+        ></video>
+        <p class="intro-motion__copy" aria-live="off">Every delivery is a small movement. Together, they shape the rhythm of a building. Rookie2 is designed to keep that rhythm moving.</p>
+      </div>
+    </section>
+
+    <section class="section03 visual-principles" aria-labelledby="visual-principles-title">
+      <div class="visual-principles__inner">
+        <h2 class="visual-principles__title" id="visual-principles-title">Visual Principles</h2>
+        <div class="visual-principles__viewport" data-visual-carousel>
+          <div class="visual-principles__track" data-visual-track>
+            <article class="visual-card visual-card--black" data-visual-card data-card-label="Three Principles Behind Rookie2" aria-label="Three Principles Behind Rookie2">
+              <div class="visual-card__body visual-card__body--principles">
+                <div class="visual-card__art-wrap">
+                  <img class="visual-card__art visual-card__art--principles" src="./assets/images/visual-principles/card-principles-graphic.svg" alt="">
+                  <p class="visual-card__label visual-card__label--left"><span class="visual-card__label-full">Lively<br>Interaction</span><span class="visual-card__label-mobile">Lively</span></p>
+                  <p class="visual-card__label visual-card__label--center"><span class="visual-card__label-full">Connected<br>Experience</span><span class="visual-card__label-mobile">Connected</span></p>
+                  <p class="visual-card__label visual-card__label--right"><span class="visual-card__label-full">Approachable<br>Future</span><span class="visual-card__label-mobile">Future</span></p>
+                </div>
+                <h3 class="visual-card__title">Three Principles Behind Rookie2</h3>
+              </div>
+            </article>
+
+            <article class="visual-card visual-card--black" data-visual-card data-card-label="Shaping the Vision" aria-label="Shaping the Vision">
+              <div class="visual-card__body visual-card__body--vision">
+                <h3 class="visual-card__title">Shaping the Vision</h3>
+                <div class="visual-card__vision-mask">
+                  <img class="visual-card__art visual-card__art--vision" src="./assets/images/visual-principles/card-vision-grid.png" alt="">
+                </div>
+              </div>
+            </article>
+
+            <article class="visual-card visual-card--understood" data-visual-card data-card-label="Designed to Be Understood" aria-label="Designed to Be Understood">
+              <img class="visual-card__image visual-card__image--understood" src="./assets/images/visual-principles/card-understood-visual.jpg" alt="">
+              <div class="visual-card__body visual-card__body--understood">
+                <h3 class="visual-card__title">Designed to Be Understood</h3>
+                <span class="visual-card__understood-spacer" aria-hidden="true"></span>
+              </div>
+            </article>
+
+            <article class="visual-card visual-card--gaze" data-visual-card data-card-label="Expressive Gaze" aria-label="Expressive Gaze">
+              <div class="visual-card__gaze-media" aria-hidden="true">
+                <img class="visual-card__image--gaze" src="./assets/images/visual-principles/card-expressive-gaze-bg.png" alt="">
+                <span class="visual-card__gaze-line visual-card__gaze-line--eye" style="--gaze-x: 41.333%; --gaze-y: 50.391%;"></span>
+                <span class="visual-card__gaze-line" style="--gaze-x: 45.667%; --gaze-y: 50.391%;"></span>
+                <span class="visual-card__gaze-line" style="--gaze-x: 50%; --gaze-y: 50.391%;"></span>
+                <span class="visual-card__gaze-line" style="--gaze-x: 54.333%; --gaze-y: 50.391%;"></span>
+                <span class="visual-card__gaze-line visual-card__gaze-line--eye" style="--gaze-x: 58.667%; --gaze-y: 50.391%;"></span>
+              </div>
+              <h3 class="visual-card__title visual-card__title--gaze">Expressive Gaze</h3>
+            </article>
+
+            <article class="visual-card visual-card--future" data-visual-card data-card-label="Card 05" aria-label="Card 05">
+              <img class="visual-card__image visual-card__image--future" src="./assets/images/visual-principles/card-future-form.png" alt="">
+            </article>
+          </div>
+        </div>
+        <div class="visual-principles__indicator" data-visual-indicator role="tablist" aria-label="Visual Principles cards"></div>
+      </div>
+    </section>
+
+    <section class="section04 interface-design" aria-labelledby="interface-design-title">
+      <div class="interface-design__inner">
+        <div class="interface-design__stack">
+          <div class="interface-color-typo">
+            <div class="interface-design__heading">
+              <h2 class="interface-design__title" id="interface-design-title">Interface Design</h2>
+              <p class="interface-design__body">Designed to communicate intent, status, and emotion through a clear visual language. Every interaction is carefully crafted to help users understand, trust, and engage with Rookie2 naturally.</p>
+            </div>
+
+            <div class="interface-color" aria-label="Rookie2 interface color palette">
+              <div class="interface-color__row interface-color__row--top">
+                <div class="interface-swatch interface-swatch--teal">
+                  <p class="interface-swatch__label">Core Teal<br><span class="interface-swatch__label-hex-prefix">Hex </span>32FFEA</p>
+                </div>
+                <div class="interface-color__split">
+                  <div class="interface-swatch interface-swatch--blue">
+                    <p class="interface-swatch__label">Core Blue<br><span class="interface-swatch__label-hex-prefix">Hex </span>00A1FF</p>
+                  </div>
+                  <div class="interface-swatch interface-swatch--violet">
+                    <p class="interface-swatch__label">Core Violet<br><span class="interface-swatch__label-hex-prefix">Hex </span>9948FC</p>
+                  </div>
+                </div>
+              </div>
+              <div class="interface-color__row interface-color__row--bottom">
+                <div class="interface-swatch interface-swatch--short interface-swatch--red">
+                  <p class="interface-swatch__label"><span class="interface-swatch__label-status-full">Status</span><span class="interface-swatch__label-status-short">Stat</span> Red<br><span class="interface-swatch__label-hex-prefix">Hex </span>FF3832</p>
+                </div>
+                <div class="interface-swatch interface-swatch--short interface-swatch--yellow">
+                  <p class="interface-swatch__label"><span class="interface-swatch__label-status-full">Status</span><span class="interface-swatch__label-status-short">Stat</span> Yellow<br><span class="interface-swatch__label-hex-prefix">Hex </span>FFB446</p>
+                </div>
+                <div class="interface-swatch interface-swatch--short interface-swatch--green">
+                  <p class="interface-swatch__label"><span class="interface-swatch__label-status-full">Status</span><span class="interface-swatch__label-status-short">Stat</span> Green<br><span class="interface-swatch__label-hex-prefix">Hex </span>00E696</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="interface-typo" aria-label="Rookie2 interface typography samples">
+              <div class="interface-typo__item" style="--interface-typo-weight: 400;">
+                <p class="interface-typo__letter">Aa</p>
+                <p class="interface-typo__caption">Labels<span>Pretendard R</span></p>
+              </div>
+              <div class="interface-typo__item" style="--interface-typo-weight: 500;">
+                <p class="interface-typo__letter">Aa</p>
+                <p class="interface-typo__caption">Body<span>Pretendard M</span></p>
+              </div>
+              <div class="interface-typo__item" style="--interface-typo-weight: 600;">
+                <p class="interface-typo__letter">Aa</p>
+                <p class="interface-typo__caption">Headlines<span>Pretendard SB</span></p>
+              </div>
+            </div>
+
+            <p class="interface-system-summary">A vibrant palette of neon and gradient colors, supported by clear status colors and Pretendard's balanced letterforms, ensures visibility, readability, and expressive communication across diverse environments and viewing distances.</p>
+          </div>
+
+          <div class="interface-icons" aria-label="Rookie2 interface icon set">
+            <div class="interface-icons__grid" data-interface-icons>
+              <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="Box" aria-label="Box icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon" type="button" data-lottie-key="BeverageIce" aria-label="Beverage ice icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon" type="button" data-lottie-key="BeverageHot" aria-label="Beverage hot icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon interface-icon--scale-83" type="button" data-lottie-key="Congrat" data-lottie-start-frame="20" aria-label="Congrats icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon" type="button" data-lottie-key="Heart" aria-label="Heart icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon" type="button" data-lottie-key="Send" aria-label="Send icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon interface-icon--offset-y-4" type="button" data-lottie-key="Sports" aria-label="Sports icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon" type="button" data-lottie-key="Hand" aria-label="Hand icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon" type="button" data-lottie-key="Bell" aria-label="Bell icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon interface-icon--scale-110" type="button" data-lottie-key="Check" aria-label="Check icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon interface-icon--scale-105" type="button" data-lottie-key="LocationDefault" aria-label="Location icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon" type="button" data-lottie-key="ArrowDown" aria-label="Arrow down icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon" type="button" data-lottie-key="Fire" aria-label="Fire icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon" type="button" data-lottie-key="Evacuate" aria-label="Evacuate icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+              <button class="interface-icon interface-icon--offset-y-up-4" type="button" data-lottie-key="Siren" aria-label="Siren icon" aria-pressed="false">
+                <span class="interface-icon__motion" aria-hidden="true"></span>
+              </button>
+            </div>
+            <p class="interface-design__summary">A library of over 80 animated icons communicates status, intent, and emotion through a clear visual language. Tap or hover to see them in motion.</p>
+          </div>
+
+          <div class="interface-info" data-interface-info-carousel aria-label="Rookie2 interface information cards">
+            <div class="interface-info__viewport">
+              <div class="interface-info__track" data-interface-info-track>
+                <div class="interface-info__group interface-info__group--split" data-interface-info-slide data-card-label="Interface info 01">
+                  <div class="interface-info__card">
+                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-01-left.png" alt="">
+                  </div>
+                  <div class="interface-info__card">
+                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-01-right.png" alt="">
+                  </div>
+                </div>
+                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface info 02">
+                  <div class="interface-info__card" aria-hidden="true"></div>
+                </div>
+                <div class="interface-info__group interface-info__group--wide" data-interface-info-slide data-card-label="Interface info 03">
+                  <div class="interface-info__card" aria-hidden="true"></div>
+                  <div class="interface-info__card" aria-hidden="true"></div>
+                </div>
+                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface info 04">
+                  <div class="interface-info__card" aria-hidden="true"></div>
+                </div>
+              </div>
+            </div>
+            <div class="interface-info__indicator" data-interface-info-indicator role="tablist" aria-label="Interface information cards"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./assets/js/lottie.min.js"></script>
+  <script src="./assets/js/interface-lottie-data.js"></script>
+  <script>
+    const heroSection = document.querySelector(".hero");
+    const heroBackground = document.querySelector(".hero-intro__background");
+    const motionSection = document.getElementById("introMotion");
+    const motionCopy = document.querySelector(".intro-motion__copy");
+    const video = document.getElementById("introMotionVideo");
+    const visualCarousel = document.querySelector("[data-visual-carousel]");
+    const visualTrack = document.querySelector("[data-visual-track]");
+    const visualIndicator = document.querySelector("[data-visual-indicator]");
+    const interfaceInfoCarousel = document.querySelector("[data-interface-info-carousel]");
+    const interfaceInfoTrack = document.querySelector("[data-interface-info-track]");
+    const interfaceInfoIndicator = document.querySelector("[data-interface-info-indicator]");
+    const interfaceIconGrid = document.querySelector("[data-interface-icons]");
+    const COPY_REVEAL_START_SECONDS = 1.6;
+    const COPY_REVEAL_DURATION_SECONDS = 0.85;
+    const COPY_REVEAL_DISTANCE = 80;
+    const VISUAL_DRAG_THRESHOLD_RATIO = 0.15;
+    const VISUAL_SWIPE_LOCK_DISTANCE = 8;
+    const VISUAL_SWIPE_AXIS_RATIO = 1.15;
+    const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
+
+    let duration = 0;
+    let progress = 0;
+    let targetTime = 0;
+    let currentTime = 0;
+    let ticking = false;
+    let hasMetadata = false;
+    let isPrimed = false;
+    let lastScrollY = -1;
+    let visualScrollTimer = 0;
+    let interfaceInfoScrollTimer = 0;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
+
+    function isHorizontalCarouselTarget(target) {
+      return target instanceof Element && Boolean(target.closest("[data-visual-carousel], [data-interface-info-carousel]"));
+    }
+
+    function getMaxScrollY() {
+      return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+    }
+
+    function getMotionProgress() {
+      const start = motionSection.offsetTop;
+      const end = motionSection.offsetTop + motionSection.offsetHeight - window.innerHeight;
+
+      if (end <= start) {
+        return 0;
+      }
+
+      return clamp((window.scrollY - start) / (end - start), 0, 1);
+    }
+
+    function updateHeroBackground() {
+      const heroHeight = heroSection ? heroSection.offsetHeight : 0;
+      const introTravel = clamp(window.scrollY, 0, heroHeight);
+      const offset = introTravel * -0.3;
+      heroBackground.style.setProperty("--hero-bg-offset", `${offset}px`);
+    }
+
+    function updateScrollState() {
+      updateHeroBackground();
+      updateVideoTarget();
+    }
+
+    function updateVideoTarget() {
+      progress = getMotionProgress();
+
+      if (!hasMetadata || !duration) {
+        updateMotionCopy(0);
+        return;
+      }
+
+      targetTime = progress * duration;
+
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(scrub);
+      }
+    }
+
+    function updateMotionCopy(videoTime) {
+      if (!motionCopy) {
+        return;
+      }
+
+      const revealStart = duration
+        ? Math.min(COPY_REVEAL_START_SECONDS, Math.max(0, duration - COPY_REVEAL_DURATION_SECONDS))
+        : COPY_REVEAL_START_SECONDS;
+      const revealDuration = duration
+        ? Math.max(0.2, Math.min(COPY_REVEAL_DURATION_SECONDS, duration - revealStart))
+        : COPY_REVEAL_DURATION_SECONDS;
+      const rawProgress = clamp((videoTime - revealStart) / revealDuration, 0, 1);
+      const easedProgress = easeOutCubic(rawProgress);
+      const offset = (1 - easedProgress) * COPY_REVEAL_DISTANCE;
+
+      motionCopy.style.setProperty("--motion-copy-opacity", easedProgress.toFixed(4));
+      motionCopy.style.setProperty("--motion-copy-y", `${offset.toFixed(2)}px`);
+    }
+
+    function getScrubFollow() {
+      return coarsePointerQuery.matches ? 0.68 : 0.35;
+    }
+
+    function scrub() {
+      ticking = false;
+
+      if (!hasMetadata || !duration) {
+        return;
+      }
+
+      currentTime += (targetTime - currentTime) * getScrubFollow();
+
+      if (Math.abs(targetTime - currentTime) < 0.01) {
+        currentTime = targetTime;
+      }
+
+      video.currentTime = clamp(currentTime, 0, duration);
+      updateMotionCopy(currentTime);
+
+      if (currentTime !== targetTime) {
+        ticking = true;
+        requestAnimationFrame(scrub);
+      }
+    }
+
+    function syncScrollProgress() {
+      if (window.scrollY !== lastScrollY) {
+        lastScrollY = window.scrollY;
+        updateScrollState();
+      }
+
+      requestAnimationFrame(syncScrollProgress);
+    }
+
+    function initializeVideo() {
+      duration = video.duration || 0;
+      hasMetadata = true;
+      video.pause();
+      updateMotionCopy(0);
+      updateScrollState();
+    }
+
+    function primeVideo() {
+      if (isPrimed) {
+        return;
+      }
+
+      isPrimed = true;
+
+      const playPromise = video.play();
+
+      if (playPromise) {
+        playPromise.then(() => {
+          video.pause();
+          updateScrollState();
+        }).catch(() => {
+          updateScrollState();
+        });
+      }
+    }
+
+    function scrollToPosition(nextY) {
+      window.scrollTo(0, clamp(nextY, 0, getMaxScrollY()));
+      updateScrollState();
+    }
+
+    function handleWheel(event) {
+      if (isHorizontalCarouselTarget(event.target) && Math.abs(event.deltaX) > Math.abs(event.deltaY)) {
+        return;
+      }
+
+      event.preventDefault();
+      primeVideo();
+      scrollToPosition(window.scrollY + event.deltaY);
+    }
+
+    function handleKeydown(event) {
+      const smallStep = Math.max(48, window.innerHeight * 0.08);
+      const largeStep = window.innerHeight * 0.82;
+      const keyMap = {
+        ArrowDown: smallStep,
+        ArrowUp: -smallStep,
+        PageDown: largeStep,
+        PageUp: -largeStep,
+        " ": largeStep
+      };
+
+      if (event.key === "Home") {
+        event.preventDefault();
+        primeVideo();
+        scrollToPosition(0);
+        return;
+      }
+
+      if (event.key === "End") {
+        event.preventDefault();
+        primeVideo();
+        scrollToPosition(getMaxScrollY());
+        return;
+      }
+
+      if (Object.prototype.hasOwnProperty.call(keyMap, event.key)) {
+        event.preventDefault();
+        primeVideo();
+        scrollToPosition(window.scrollY + keyMap[event.key]);
+      }
+    }
+
+    function handleTouchStart(event) {
+      if (isHorizontalCarouselTarget(event.target)) {
+        return;
+      }
+
+      primeVideo();
+      updateScrollState();
+    }
+
+    function initializeVisualCarousel() {
+      if (!visualCarousel || !visualTrack || !visualIndicator) {
+        return;
+      }
+
+      const cards = Array.from(visualTrack.querySelectorAll("[data-visual-card]"));
+      let activeIndex = 0;
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let dragStartOffset = 0;
+      let dragStartIndex = 0;
+      let dragIntent = "pending";
+      let currentOffset = 0;
+      let snapAnimationFrame = 0;
+
+      if (!cards.length) {
+        return;
+      }
+
+      visualIndicator.innerHTML = "";
+
+      const buttons = cards.map((card, index) => {
+        const button = document.createElement("button");
+        const label = card.dataset.cardLabel || `Card ${index + 1}`;
+
+        button.className = "visual-principles__dot";
+        button.type = "button";
+        button.setAttribute("role", "tab");
+        button.setAttribute("aria-label", label);
+        button.setAttribute("aria-selected", "false");
+        button.addEventListener("click", () => {
+          animateToVisualCard(index);
+        });
+        visualIndicator.appendChild(button);
+        return button;
+      });
+
+      function getCardStep() {
+        if (cards.length > 1) {
+          return cards[1].offsetLeft - cards[0].offsetLeft;
+        }
+
+        return cards[0].offsetWidth;
+      }
+
+      function getCenterOffset() {
+        const firstCard = cards[0];
+
+        if (!firstCard) {
+          return 0;
+        }
+
+        const firstCardCenter = firstCard.offsetLeft + firstCard.offsetWidth / 2;
+        return window.innerWidth / 2 - firstCardCenter;
+      }
+
+      function getTargetOffset(index) {
+        return getCenterOffset() - getCardStep() * clamp(index, 0, cards.length - 1);
+      }
+
+      function getMinOffset() {
+        return getTargetOffset(cards.length - 1);
+      }
+
+      function getMaxOffset() {
+        return getTargetOffset(0);
+      }
+
+      function getNearestIndex(offset = currentOffset) {
+        const step = getCardStep();
+
+        if (!step) {
+          return 0;
+        }
+
+        return clamp(Math.round((getCenterOffset() - offset) / step), 0, cards.length - 1);
+      }
+
+      function setActiveIndex(index) {
+        activeIndex = clamp(index, 0, cards.length - 1);
+
+        buttons.forEach((button, buttonIndex) => {
+          const isActive = buttonIndex === activeIndex;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-selected", String(isActive));
+        });
+      }
+
+      function getBoundedOffset(offset) {
+        return clamp(offset, getMinOffset(), getMaxOffset());
+      }
+
+      function cancelSnapAnimation() {
+        if (snapAnimationFrame) {
+          cancelAnimationFrame(snapAnimationFrame);
+          snapAnimationFrame = 0;
+        }
+
+        visualTrack.classList.remove("is-settling");
+      }
+
+      function renderTrackOffset(offset) {
+        currentOffset = offset;
+        visualTrack.style.setProperty("--visual-track-x", `${offset.toFixed(2)}px`);
+        setActiveIndex(getNearestIndex(offset));
+      }
+
+      function renderDragOffset(offset) {
+        const minOffset = getMinOffset();
+        const maxOffset = getMaxOffset();
+        let nextOffset = offset;
+
+        if (nextOffset > maxOffset) {
+          nextOffset = maxOffset + (nextOffset - maxOffset) * 0.24;
+        } else if (nextOffset < minOffset) {
+          nextOffset = minOffset + (nextOffset - minOffset) * 0.24;
+        }
+
+        renderTrackOffset(nextOffset);
+      }
+
+      function jumpToVisualCard(index) {
+        cancelSnapAnimation();
+        renderTrackOffset(getTargetOffset(index));
+        setActiveIndex(index);
+      }
+
+      function animateToVisualCard(index) {
+        const targetIndex = clamp(index, 0, cards.length - 1);
+        const start = currentOffset;
+        const end = getTargetOffset(targetIndex);
+        const distance = end - start;
+        const duration = clamp(Math.abs(distance) * 0.42, 240, 560);
+        const startedAt = performance.now();
+
+        cancelSnapAnimation();
+
+        if (Math.abs(distance) < 0.5) {
+          jumpToVisualCard(targetIndex);
+          return;
+        }
+
+        visualTrack.classList.add("is-settling");
+
+        function step(now) {
+          const elapsed = now - startedAt;
+          const progressValue = clamp(elapsed / duration, 0, 1);
+          const easedValue = easeOutCubic(progressValue);
+
+          renderTrackOffset(start + distance * easedValue);
+
+          if (progressValue < 1) {
+            snapAnimationFrame = requestAnimationFrame(step);
+            return;
+          }
+
+          renderTrackOffset(end);
+          visualTrack.classList.remove("is-settling");
+          snapAnimationFrame = 0;
+          setActiveIndex(targetIndex);
+        }
+
+        snapAnimationFrame = requestAnimationFrame(step);
+      }
+
+      function snapToNearest() {
+        animateToVisualCard(getNearestIndex());
+      }
+
+      function snapFromDrag(releaseX) {
+        const dragDistance = releaseX - dragStartX;
+        const threshold = getCardStep() * VISUAL_DRAG_THRESHOLD_RATIO;
+        let targetIndex = getNearestIndex();
+
+        if (Math.abs(dragDistance) >= threshold) {
+          targetIndex = dragStartIndex + (dragDistance < 0 ? 1 : -1);
+        }
+
+        animateToVisualCard(clamp(targetIndex, 0, cards.length - 1));
+      }
+
+      function preventPointerDefault(event) {
+        if (event.cancelable) {
+          event.preventDefault();
+        }
+      }
+
+      function releaseVisualPointer(event) {
+        if (visualTrack.hasPointerCapture(event.pointerId)) {
+          visualTrack.releasePointerCapture(event.pointerId);
+        }
+      }
+
+      function lockVisualDrag(event) {
+        dragIntent = "horizontal";
+        window.clearTimeout(visualScrollTimer);
+        cancelSnapAnimation();
+        visualTrack.classList.add("is-dragging");
+
+        if (!visualTrack.hasPointerCapture(event.pointerId)) {
+          visualTrack.setPointerCapture(event.pointerId);
+        }
+      }
+
+      function resetVisualDrag(event) {
+        isDragging = false;
+        dragIntent = "pending";
+        visualTrack.classList.remove("is-dragging");
+        releaseVisualPointer(event);
+      }
+
+      function handlePointerDown(event) {
+        if (event.pointerType === "mouse" && event.button !== 0) {
+          return;
+        }
+
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartY = event.clientY;
+        dragStartOffset = currentOffset;
+        dragStartIndex = getNearestIndex(currentOffset);
+        dragIntent = event.pointerType === "mouse" ? "horizontal" : "pending";
+
+        if (dragIntent === "horizontal") {
+          preventPointerDefault(event);
+          lockVisualDrag(event);
+        }
+      }
+
+      function handlePointerMove(event) {
+        if (!isDragging) {
+          return;
+        }
+
+        const deltaX = event.clientX - dragStartX;
+        const deltaY = event.clientY - dragStartY;
+        const absX = Math.abs(deltaX);
+        const absY = Math.abs(deltaY);
+
+        if (dragIntent === "pending") {
+          if (Math.max(absX, absY) < VISUAL_SWIPE_LOCK_DISTANCE) {
+            return;
+          }
+
+          if (absY > absX * VISUAL_SWIPE_AXIS_RATIO) {
+            resetVisualDrag(event);
+            return;
+          }
+
+          if (absX <= absY * VISUAL_SWIPE_AXIS_RATIO) {
+            return;
+          }
+
+          lockVisualDrag(event);
+        }
+
+        preventPointerDefault(event);
+        renderDragOffset(dragStartOffset + event.clientX - dragStartX);
+      }
+
+      function handlePointerUp(event) {
+        if (!isDragging) {
+          return;
+        }
+
+        if (dragIntent !== "horizontal") {
+          resetVisualDrag(event);
+          return;
+        }
+
+        resetVisualDrag(event);
+        snapFromDrag(event.clientX);
+      }
+
+      function handleVisualWheel(event) {
+        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) {
+          return;
+        }
+
+        event.preventDefault();
+        window.clearTimeout(visualScrollTimer);
+        cancelSnapAnimation();
+        renderTrackOffset(getBoundedOffset(currentOffset - event.deltaX));
+        visualScrollTimer = window.setTimeout(snapToNearest, 140);
+      }
+
+      visualTrack.addEventListener("pointerdown", handlePointerDown);
+      visualTrack.addEventListener("pointermove", handlePointerMove);
+      visualTrack.addEventListener("pointerup", handlePointerUp);
+      visualTrack.addEventListener("pointercancel", handlePointerUp);
+      visualTrack.addEventListener("wheel", handleVisualWheel, { passive: false });
+      window.addEventListener("resize", () => {
+        jumpToVisualCard(activeIndex);
+      });
+
+      setActiveIndex(0);
+      jumpToVisualCard(0);
+    }
+
+    function initializeInterfaceInfoCarousel() {
+      if (!interfaceInfoCarousel || !interfaceInfoTrack || !interfaceInfoIndicator) {
+        return;
+      }
+
+      const groups = Array.from(interfaceInfoTrack.querySelectorAll("[data-interface-info-slide]"));
+      let activeIndex = 0;
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let dragStartOffset = 0;
+      let dragStartIndex = 0;
+      let dragIntent = "pending";
+      let currentOffset = 0;
+      let snapAnimationFrame = 0;
+
+      if (!groups.length) {
+        return;
+      }
+
+      interfaceInfoIndicator.innerHTML = "";
+
+      const buttons = groups.map((group, index) => {
+        const button = document.createElement("button");
+        const label = group.dataset.cardLabel || `Interface info ${index + 1}`;
+
+        button.className = "interface-info__dot";
+        button.type = "button";
+        button.setAttribute("role", "tab");
+        button.setAttribute("aria-label", label);
+        button.setAttribute("aria-selected", "false");
+        button.addEventListener("click", () => {
+          animateToInfoGroup(index);
+        });
+        interfaceInfoIndicator.appendChild(button);
+        return button;
+      });
+
+      function getGroupStep() {
+        if (groups.length > 1) {
+          return groups[1].offsetLeft - groups[0].offsetLeft;
+        }
+
+        return groups[0].offsetWidth;
+      }
+
+      function getCenterOffset() {
+        const firstGroup = groups[0];
+
+        if (!firstGroup) {
+          return 0;
+        }
+
+        const firstGroupCenter = firstGroup.offsetLeft + firstGroup.offsetWidth / 2;
+        return window.innerWidth / 2 - firstGroupCenter;
+      }
+
+      function getTargetOffset(index) {
+        return getCenterOffset() - getGroupStep() * clamp(index, 0, groups.length - 1);
+      }
+
+      function getMinOffset() {
+        return getTargetOffset(groups.length - 1);
+      }
+
+      function getMaxOffset() {
+        return getTargetOffset(0);
+      }
+
+      function getNearestIndex(offset = currentOffset) {
+        const step = getGroupStep();
+
+        if (!step) {
+          return 0;
+        }
+
+        return clamp(Math.round((getCenterOffset() - offset) / step), 0, groups.length - 1);
+      }
+
+      function setActiveIndex(index) {
+        activeIndex = clamp(index, 0, groups.length - 1);
+
+        buttons.forEach((button, buttonIndex) => {
+          const isActive = buttonIndex === activeIndex;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-selected", String(isActive));
+        });
+      }
+
+      function getBoundedOffset(offset) {
+        return clamp(offset, getMinOffset(), getMaxOffset());
+      }
+
+      function cancelSnapAnimation() {
+        if (snapAnimationFrame) {
+          cancelAnimationFrame(snapAnimationFrame);
+          snapAnimationFrame = 0;
+        }
+
+        interfaceInfoTrack.classList.remove("is-settling");
+      }
+
+      function renderTrackOffset(offset) {
+        currentOffset = offset;
+        interfaceInfoTrack.style.setProperty("--interface-info-track-x", `${offset.toFixed(2)}px`);
+        setActiveIndex(getNearestIndex(offset));
+      }
+
+      function renderDragOffset(offset) {
+        const minOffset = getMinOffset();
+        const maxOffset = getMaxOffset();
+        let nextOffset = offset;
+
+        if (nextOffset > maxOffset) {
+          nextOffset = maxOffset + (nextOffset - maxOffset) * 0.24;
+        } else if (nextOffset < minOffset) {
+          nextOffset = minOffset + (nextOffset - minOffset) * 0.24;
+        }
+
+        renderTrackOffset(nextOffset);
+      }
+
+      function jumpToInfoGroup(index) {
+        cancelSnapAnimation();
+        renderTrackOffset(getTargetOffset(index));
+        setActiveIndex(index);
+      }
+
+      function animateToInfoGroup(index) {
+        const targetIndex = clamp(index, 0, groups.length - 1);
+        const start = currentOffset;
+        const end = getTargetOffset(targetIndex);
+        const distance = end - start;
+        const duration = clamp(Math.abs(distance) * 0.42, 240, 560);
+        const startedAt = performance.now();
+
+        cancelSnapAnimation();
+
+        if (Math.abs(distance) < 0.5) {
+          jumpToInfoGroup(targetIndex);
+          return;
+        }
+
+        interfaceInfoTrack.classList.add("is-settling");
+
+        function step(now) {
+          const elapsed = now - startedAt;
+          const progressValue = clamp(elapsed / duration, 0, 1);
+          const easedValue = easeOutCubic(progressValue);
+
+          renderTrackOffset(start + distance * easedValue);
+
+          if (progressValue < 1) {
+            snapAnimationFrame = requestAnimationFrame(step);
+            return;
+          }
+
+          renderTrackOffset(end);
+          interfaceInfoTrack.classList.remove("is-settling");
+          snapAnimationFrame = 0;
+          setActiveIndex(targetIndex);
+        }
+
+        snapAnimationFrame = requestAnimationFrame(step);
+      }
+
+      function snapToNearest() {
+        animateToInfoGroup(getNearestIndex());
+      }
+
+      function snapFromDrag(releaseX) {
+        const dragDistance = releaseX - dragStartX;
+        const threshold = getGroupStep() * VISUAL_DRAG_THRESHOLD_RATIO;
+        let targetIndex = getNearestIndex();
+
+        if (Math.abs(dragDistance) >= threshold) {
+          targetIndex = dragStartIndex + (dragDistance < 0 ? 1 : -1);
+        }
+
+        animateToInfoGroup(clamp(targetIndex, 0, groups.length - 1));
+      }
+
+      function preventPointerDefault(event) {
+        if (event.cancelable) {
+          event.preventDefault();
+        }
+      }
+
+      function releaseInfoPointer(event) {
+        if (interfaceInfoTrack.hasPointerCapture(event.pointerId)) {
+          interfaceInfoTrack.releasePointerCapture(event.pointerId);
+        }
+      }
+
+      function lockInfoDrag(event) {
+        dragIntent = "horizontal";
+        window.clearTimeout(interfaceInfoScrollTimer);
+        cancelSnapAnimation();
+        interfaceInfoTrack.classList.add("is-dragging");
+
+        if (!interfaceInfoTrack.hasPointerCapture(event.pointerId)) {
+          interfaceInfoTrack.setPointerCapture(event.pointerId);
+        }
+      }
+
+      function resetInfoDrag(event) {
+        isDragging = false;
+        dragIntent = "pending";
+        interfaceInfoTrack.classList.remove("is-dragging");
+        releaseInfoPointer(event);
+      }
+
+      function handlePointerDown(event) {
+        if (event.pointerType === "mouse" && event.button !== 0) {
+          return;
+        }
+
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartY = event.clientY;
+        dragStartOffset = currentOffset;
+        dragStartIndex = getNearestIndex(currentOffset);
+        dragIntent = event.pointerType === "mouse" ? "horizontal" : "pending";
+
+        if (dragIntent === "horizontal") {
+          preventPointerDefault(event);
+          lockInfoDrag(event);
+        }
+      }
+
+      function handlePointerMove(event) {
+        if (!isDragging) {
+          return;
+        }
+
+        const deltaX = event.clientX - dragStartX;
+        const deltaY = event.clientY - dragStartY;
+        const absX = Math.abs(deltaX);
+        const absY = Math.abs(deltaY);
+
+        if (dragIntent === "pending") {
+          if (Math.max(absX, absY) < VISUAL_SWIPE_LOCK_DISTANCE) {
+            return;
+          }
+
+          if (absY > absX * VISUAL_SWIPE_AXIS_RATIO) {
+            resetInfoDrag(event);
+            return;
+          }
+
+          if (absX <= absY * VISUAL_SWIPE_AXIS_RATIO) {
+            return;
+          }
+
+          lockInfoDrag(event);
+        }
+
+        preventPointerDefault(event);
+        renderDragOffset(dragStartOffset + event.clientX - dragStartX);
+      }
+
+      function handlePointerUp(event) {
+        if (!isDragging) {
+          return;
+        }
+
+        if (dragIntent !== "horizontal") {
+          resetInfoDrag(event);
+          return;
+        }
+
+        resetInfoDrag(event);
+        snapFromDrag(event.clientX);
+      }
+
+      function handleInfoWheel(event) {
+        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) {
+          return;
+        }
+
+        event.preventDefault();
+        window.clearTimeout(interfaceInfoScrollTimer);
+        cancelSnapAnimation();
+        renderTrackOffset(getBoundedOffset(currentOffset - event.deltaX));
+        interfaceInfoScrollTimer = window.setTimeout(snapToNearest, 140);
+      }
+
+      interfaceInfoTrack.addEventListener("pointerdown", handlePointerDown);
+      interfaceInfoTrack.addEventListener("pointermove", handlePointerMove);
+      interfaceInfoTrack.addEventListener("pointerup", handlePointerUp);
+      interfaceInfoTrack.addEventListener("pointercancel", handlePointerUp);
+      interfaceInfoTrack.addEventListener("wheel", handleInfoWheel, { passive: false });
+      window.addEventListener("resize", () => {
+        jumpToInfoGroup(activeIndex);
+      });
+
+      setActiveIndex(0);
+      jumpToInfoGroup(0);
+    }
+
+    function initializeInterfaceIcons() {
+      if (!interfaceIconGrid || !window.lottie) {
+        return;
+      }
+
+      const iconItems = Array.from(interfaceIconGrid.querySelectorAll("[data-lottie-key]"));
+      const lottieData = window.ROOKIE2_INTERFACE_LOTTIES || {};
+      const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      let selectedTouchState = null;
+
+      if (!iconItems.length) {
+        return;
+      }
+
+      function isTouchIconMode() {
+        return coarsePointerQuery.matches;
+      }
+
+      function finishIconReturn(state) {
+        if (!state) {
+          return;
+        }
+
+        state.shouldStop = false;
+        state.canStopAtStart = false;
+        state.item.classList.remove("is-active");
+        state.item.setAttribute("aria-pressed", "false");
+
+        if (state.animation) {
+          state.animation.setSpeed(1);
+          state.animation.goToAndStop(state.startFrame, true);
+        }
+
+        window.setTimeout(() => {
+          state.item.classList.remove("is-returning");
+        }, 180);
+      }
+
+      function requestIconReturn(state) {
+        if (!state) {
+          return;
+        }
+
+        state.item.classList.add("is-returning");
+        state.item.classList.remove("is-active");
+        state.item.setAttribute("aria-pressed", "false");
+
+        if (!state.animation || reducedMotionQuery.matches || state.animation.isPaused) {
+          finishIconReturn(state);
+          return;
+        }
+
+        state.shouldStop = true;
+        state.canStopAtStart = false;
+        state.animation.setSpeed(1);
+      }
+
+      function activateIcon(state) {
+        if (!state || !state.animation) {
+          return;
+        }
+
+        state.shouldStop = false;
+        state.canStopAtStart = false;
+        state.item.classList.remove("is-returning");
+        state.item.classList.add("is-active");
+        state.item.setAttribute("aria-pressed", "true");
+
+        if (reducedMotionQuery.matches) {
+          state.animation.goToAndStop(state.startFrame, true);
+          return;
+        }
+
+        if (state.animation.isPaused) {
+          state.animation.setSpeed(1);
+          state.animation.play();
+        } else {
+          state.animation.setSpeed(1);
+        }
+      }
+
+      const iconStates = iconItems.map((item) => {
+        const motionTarget = item.querySelector(".interface-icon__motion");
+        const animationData = lottieData[item.dataset.lottieKey];
+        const startFrame = Number.parseInt(item.dataset.lottieStartFrame || "0", 10);
+        const state = {
+          item,
+          animation: null,
+          startFrame: Number.isNaN(startFrame) ? 0 : startFrame,
+          canStopAtStart: false,
+          shouldStop: false
+        };
+
+        if (!motionTarget || !animationData) {
+          return state;
+        }
+
+        state.animation = window.lottie.loadAnimation({
+          container: motionTarget,
+          renderer: "svg",
+          loop: true,
+          autoplay: false,
+          animationData,
+          rendererSettings: {
+            preserveAspectRatio: "xMidYMid meet",
+            progressiveLoad: true
+          }
+        });
+
+        state.animation.addEventListener("DOMLoaded", () => {
+          state.animation.goToAndStop(state.startFrame, true);
+          item.classList.add("is-ready");
+        });
+
+        state.animation.addEventListener("loopComplete", () => {
+          if (state.shouldStop) {
+            if (state.startFrame > 0) {
+              state.canStopAtStart = true;
+              return;
+            }
+
+            if (selectedTouchState === state) {
+              selectedTouchState = null;
+            }
+
+            finishIconReturn(state);
+          }
+        });
+
+        state.animation.addEventListener("enterFrame", (event) => {
+          if (!state.shouldStop || !state.canStopAtStart || state.startFrame <= 0) {
+            return;
+          }
+
+          const currentFrame = event && typeof event.currentTime === "number"
+            ? event.currentTime
+            : state.animation.currentFrame;
+
+          if (currentFrame >= state.startFrame) {
+            if (selectedTouchState === state) {
+              selectedTouchState = null;
+            }
+
+            finishIconReturn(state);
+          }
+        });
+
+        item.addEventListener("pointerenter", () => {
+          if (!isTouchIconMode()) {
+            activateIcon(state);
+          }
+        });
+
+        item.addEventListener("pointerleave", () => {
+          if (!isTouchIconMode()) {
+            requestIconReturn(state);
+          }
+        });
+
+        item.addEventListener("focus", () => {
+          if (!isTouchIconMode()) {
+            activateIcon(state);
+          }
+        });
+
+        item.addEventListener("blur", () => {
+          if (!isTouchIconMode()) {
+            requestIconReturn(state);
+          }
+        });
+
+        item.addEventListener("click", (event) => {
+          if (!isTouchIconMode()) {
+            return;
+          }
+
+          event.preventDefault();
+
+          if (selectedTouchState && selectedTouchState !== state) {
+            requestIconReturn(selectedTouchState);
+          }
+
+          if (selectedTouchState === state && item.classList.contains("is-active")) {
+            selectedTouchState = null;
+            requestIconReturn(state);
+            return;
+          }
+
+          selectedTouchState = state;
+          activateIcon(state);
+        });
+
+        return state;
+      });
+
+      document.addEventListener("pointerdown", (event) => {
+        if (!isTouchIconMode() || !selectedTouchState) {
+          return;
+        }
+
+        if (event.target instanceof Element && interfaceIconGrid.contains(event.target)) {
+          return;
+        }
+
+        requestIconReturn(selectedTouchState);
+        selectedTouchState = null;
+      }, { passive: true });
+
+      const handleReducedMotionChange = () => {
+        iconStates.forEach(finishIconReturn);
+      };
+
+      if (typeof reducedMotionQuery.addEventListener === "function") {
+        reducedMotionQuery.addEventListener("change", handleReducedMotionChange);
+      } else if (typeof reducedMotionQuery.addListener === "function") {
+        reducedMotionQuery.addListener(handleReducedMotionChange);
+      }
+    }
+
+    video.addEventListener("loadedmetadata", initializeVideo, { once: true });
+    video.addEventListener("loadeddata", updateScrollState, { once: true });
+    window.addEventListener("scroll", updateScrollState, { passive: true });
+    window.addEventListener("resize", updateScrollState);
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("keydown", handleKeydown);
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+
+    video.load();
+    updateHeroBackground();
+    initializeVisualCarousel();
+    initializeInterfaceInfoCarousel();
+    initializeInterfaceIcons();
+    requestAnimationFrame(syncScrollProgress);
+
+    if (video.readyState >= 1) {
+      initializeVideo();
+    }
+  </script>
+</body>
+</html>
