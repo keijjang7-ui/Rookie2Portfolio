@@ -340,7 +340,8 @@
       }
     }
 
-    .intro-motion {
+    .intro-motion,
+    .product-motion {
       position: relative;
       z-index: 2;
       height: 400svh;
@@ -348,7 +349,8 @@
       background: #050506;
     }
 
-    .intro-motion__stage {
+    .intro-motion__stage,
+    .product-motion__stage {
       position: sticky;
       top: 0;
       width: 100%;
@@ -357,7 +359,8 @@
       background: #050506;
     }
 
-    .intro-motion__video {
+    .intro-motion__video,
+    .product-motion__video {
       position: absolute;
       inset: 0;
       width: 100%;
@@ -369,7 +372,8 @@
       user-select: none;
     }
 
-    .intro-motion__copy {
+    .intro-motion__copy,
+    .product-motion__copy {
       position: absolute;
       top: 50%;
       left: calc((100vw - var(--section-width)) / 2);
@@ -386,6 +390,72 @@
       transform: translate3d(0, calc(-50% + var(--motion-copy-y, 80px)), 0);
       pointer-events: none;
       will-change: opacity, transform;
+    }
+
+    .product-motion__copy {
+      top: 57.315%;
+      transform: translate3d(0, var(--motion-copy-y, 80px), 0);
+    }
+
+    .product-title {
+      --product-title-gradient-bleed: clamp(140px, 13vw, 250px);
+      position: relative;
+      z-index: 2;
+      height: 200px;
+      overflow: visible;
+      background: #050506;
+      color: #f9f9fa;
+    }
+
+    .product-title::before {
+      content: "";
+      position: absolute;
+      top: calc(var(--product-title-gradient-bleed) * -1);
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 0;
+      background: linear-gradient(180deg, #100b0b 0%, #0b0808 48%, #000000 100%);
+      pointer-events: none;
+    }
+
+    .product-title__copy {
+      position: absolute;
+      left: 50%;
+      bottom: 40px;
+      z-index: 1;
+      width: var(--section-width);
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .product-title__title {
+      margin: 0;
+      color: #f9f9fa;
+      font-size: var(--type-title-size);
+      line-height: var(--type-title-line);
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .product-title__body {
+      margin: clamp(18px, 1.667vw, 32px) auto 0;
+      max-width: 800px;
+      color: rgba(249, 249, 250, 0.9);
+      font-size: var(--type-body-size);
+      line-height: var(--type-body-line);
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+
+    .product-motion__copy-line {
+      display: block;
+    }
+
+    @media (min-width: 561px) {
+      .product-title__body {
+        margin-top: clamp(28px, 2.083vw, 40px);
+      }
     }
 
     .section03 {
@@ -765,7 +835,7 @@
       --interface-info-radius: 36px;
       position: relative;
       z-index: 2;
-      padding: var(--interface-top) 0 320px;
+      padding: var(--interface-top) 0 270px;
       background: #100b0b;
       color: #f9f9fa;
     }
@@ -1412,9 +1482,14 @@
         max-width: 512px;
       }
 
-      .intro-motion {
+      .intro-motion,
+      .product-motion {
         height: 368svh;
         min-height: 1840px;
+      }
+
+      .product-title__body {
+        max-width: 720px;
       }
     }
 
@@ -1567,6 +1642,10 @@
         --interface-info-indicator-gap: 28px;
         --interface-info-radius: 24px;
       }
+
+      .product-title {
+        height: 220px;
+      }
     }
 
     @media (max-width: 680px) {
@@ -1701,18 +1780,35 @@
         max-width: 350px;
       }
 
-      .intro-motion {
+      .intro-motion,
+      .product-motion {
         height: 233svh;
         min-height: 1320px;
       }
 
-      .intro-motion__video {
+      .intro-motion__video,
+      .product-motion__video {
         object-position: center center;
       }
 
-      .intro-motion__copy {
+      .intro-motion__copy,
+      .product-motion__copy {
         left: calc((100vw - var(--section-width)) / 2);
         width: var(--section-width);
+      }
+
+      .product-title {
+        --product-title-gradient-bleed: 88px;
+        height: 260px;
+      }
+
+      .product-title__copy {
+        width: var(--section-width);
+        bottom: 40px;
+      }
+
+      .product-title__body {
+        max-width: 350px;
       }
 
       .section03 {
@@ -1885,7 +1981,8 @@
     }
 
     @media (hover: none) and (pointer: coarse) and (max-width: 1200px) {
-      .intro-motion {
+      .intro-motion,
+      .product-motion {
         height: 233svh;
         min-height: 1320px;
       }
@@ -1935,11 +2032,12 @@
       </section>
     </div>
 
-    <section class="intro-motion" id="introMotion" aria-label="Rookie2 intro motion">
+    <section class="intro-motion" id="introMotion" data-motion-section aria-label="Rookie2 intro motion">
       <div class="intro-motion__stage">
         <video
           id="introMotionVideo"
           class="intro-motion__video"
+          data-motion-video
           src="./assets/media/Intro_mv.mp4"
           poster="./assets/images/Intro_mv_poster.png"
           preload="auto"
@@ -1947,7 +2045,7 @@
           playsinline
           aria-hidden="true"
         ></video>
-        <p class="intro-motion__copy" aria-live="off">Every delivery is a small movement. Together, they shape the rhythm of a building. Rookie2 is designed to keep that rhythm moving.</p>
+        <p class="intro-motion__copy" data-motion-copy aria-live="off">Every delivery is a small movement. Together, they shape the rhythm of a building. Rookie2 is designed to keep that rhythm moving.</p>
       </div>
     </section>
 
@@ -2199,6 +2297,32 @@
         </div>
       </div>
     </section>
+
+    <section class="product-title" aria-labelledby="product-title">
+      <div class="product-title__copy">
+        <h2 class="product-title__title" id="product-title">Meet Rookie2</h2>
+        <p class="product-title__body">Designed for the rhythm of modern buildings. Bringing together movement, technology, and experience in one seamless presence.</p>
+      </div>
+    </section>
+
+    <section class="product-motion product-motion--first" id="productMotion1" data-motion-section aria-label="Rookie2 product motion">
+      <div class="product-motion__stage">
+        <video
+          id="productMotionVideo1"
+          class="product-motion__video"
+          data-motion-video
+          src="./assets/media/Product_mv1.mp4"
+          preload="auto"
+          muted
+          playsinline
+          aria-hidden="true"
+        ></video>
+        <p class="product-motion__copy" data-motion-copy aria-live="off">
+          <span class="product-motion__copy-line">A familiar presence</span>
+          <span class="product-motion__copy-line">in everyday spaces.</span>
+        </p>
+      </div>
+    </section>
   </main>
 
   <script src="./assets/js/lottie.min.js"></script>
@@ -2206,9 +2330,6 @@
   <script>
     const heroSection = document.querySelector(".hero");
     const heroBackground = document.querySelector(".hero-intro__background");
-    const motionSection = document.getElementById("introMotion");
-    const motionCopy = document.querySelector(".intro-motion__copy");
-    const video = document.getElementById("introMotionVideo");
     const visualCarousel = document.querySelector("[data-visual-carousel]");
     const visualTrack = document.querySelector("[data-visual-track]");
     const visualIndicator = document.querySelector("[data-visual-indicator]");
@@ -2224,13 +2345,21 @@
     const VISUAL_SWIPE_AXIS_RATIO = 1.15;
     const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
 
-    let duration = 0;
-    let progress = 0;
-    let targetTime = 0;
-    let currentTime = 0;
-    let ticking = false;
-    let hasMetadata = false;
-    let isPrimed = false;
+    const motionStates = Array.from(document.querySelectorAll("[data-motion-section]"))
+      .map((section) => ({
+        section,
+        video: section.querySelector("[data-motion-video]"),
+        copy: section.querySelector("[data-motion-copy]"),
+        duration: 0,
+        progress: 0,
+        targetTime: 0,
+        currentTime: 0,
+        ticking: false,
+        hasMetadata: false,
+        isPrimed: false
+      }))
+      .filter((state) => state.video);
+
     let lastScrollY = -1;
     let visualScrollTimer = 0;
     let interfaceInfoScrollTimer = 0;
@@ -2246,9 +2375,9 @@
       return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
     }
 
-    function getMotionProgress() {
-      const start = motionSection.offsetTop;
-      const end = motionSection.offsetTop + motionSection.offsetHeight - window.innerHeight;
+    function getMotionProgress(section) {
+      const start = section.offsetTop;
+      const end = section.offsetTop + section.offsetHeight - window.innerHeight;
 
       if (end <= start) {
         return 0;
@@ -2266,67 +2395,67 @@
 
     function updateScrollState() {
       updateHeroBackground();
-      updateVideoTarget();
+      motionStates.forEach(updateVideoTarget);
     }
 
-    function updateVideoTarget() {
-      progress = getMotionProgress();
+    function updateVideoTarget(state) {
+      state.progress = getMotionProgress(state.section);
 
-      if (!hasMetadata || !duration) {
-        updateMotionCopy(0);
+      if (!state.hasMetadata || !state.duration) {
+        updateMotionCopy(state, 0);
         return;
       }
 
-      targetTime = progress * duration;
+      state.targetTime = state.progress * state.duration;
 
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(scrub);
+      if (!state.ticking) {
+        state.ticking = true;
+        requestAnimationFrame(() => scrub(state));
       }
     }
 
-    function updateMotionCopy(videoTime) {
-      if (!motionCopy) {
+    function updateMotionCopy(state, videoTime) {
+      if (!state.copy) {
         return;
       }
 
-      const revealStart = duration
-        ? Math.min(COPY_REVEAL_START_SECONDS, Math.max(0, duration - COPY_REVEAL_DURATION_SECONDS))
+      const revealStart = state.duration
+        ? Math.min(COPY_REVEAL_START_SECONDS, Math.max(0, state.duration - COPY_REVEAL_DURATION_SECONDS))
         : COPY_REVEAL_START_SECONDS;
-      const revealDuration = duration
-        ? Math.max(0.2, Math.min(COPY_REVEAL_DURATION_SECONDS, duration - revealStart))
+      const revealDuration = state.duration
+        ? Math.max(0.2, Math.min(COPY_REVEAL_DURATION_SECONDS, state.duration - revealStart))
         : COPY_REVEAL_DURATION_SECONDS;
       const rawProgress = clamp((videoTime - revealStart) / revealDuration, 0, 1);
       const easedProgress = easeOutCubic(rawProgress);
       const offset = (1 - easedProgress) * COPY_REVEAL_DISTANCE;
 
-      motionCopy.style.setProperty("--motion-copy-opacity", easedProgress.toFixed(4));
-      motionCopy.style.setProperty("--motion-copy-y", `${offset.toFixed(2)}px`);
+      state.copy.style.setProperty("--motion-copy-opacity", easedProgress.toFixed(4));
+      state.copy.style.setProperty("--motion-copy-y", `${offset.toFixed(2)}px`);
     }
 
     function getScrubFollow() {
       return coarsePointerQuery.matches ? 0.68 : 0.35;
     }
 
-    function scrub() {
-      ticking = false;
+    function scrub(state) {
+      state.ticking = false;
 
-      if (!hasMetadata || !duration) {
+      if (!state.hasMetadata || !state.duration) {
         return;
       }
 
-      currentTime += (targetTime - currentTime) * getScrubFollow();
+      state.currentTime += (state.targetTime - state.currentTime) * getScrubFollow();
 
-      if (Math.abs(targetTime - currentTime) < 0.01) {
-        currentTime = targetTime;
+      if (Math.abs(state.targetTime - state.currentTime) < 0.01) {
+        state.currentTime = state.targetTime;
       }
 
-      video.currentTime = clamp(currentTime, 0, duration);
-      updateMotionCopy(currentTime);
+      state.video.currentTime = clamp(state.currentTime, 0, state.duration);
+      updateMotionCopy(state, state.currentTime);
 
-      if (currentTime !== targetTime) {
-        ticking = true;
-        requestAnimationFrame(scrub);
+      if (state.currentTime !== state.targetTime) {
+        state.ticking = true;
+        requestAnimationFrame(() => scrub(state));
       }
     }
 
@@ -2339,31 +2468,35 @@
       requestAnimationFrame(syncScrollProgress);
     }
 
-    function initializeVideo() {
-      duration = video.duration || 0;
-      hasMetadata = true;
-      video.pause();
-      updateMotionCopy(0);
+    function initializeVideo(state) {
+      state.duration = state.video.duration || 0;
+      state.hasMetadata = true;
+      state.video.pause();
+      updateMotionCopy(state, 0);
       updateScrollState();
     }
 
-    function primeVideo() {
-      if (isPrimed) {
+    function primeVideo(state) {
+      if (state.isPrimed) {
         return;
       }
 
-      isPrimed = true;
+      state.isPrimed = true;
 
-      const playPromise = video.play();
+      const playPromise = state.video.play();
 
       if (playPromise) {
         playPromise.then(() => {
-          video.pause();
+          state.video.pause();
           updateScrollState();
         }).catch(() => {
           updateScrollState();
         });
       }
+    }
+
+    function primeVideos() {
+      motionStates.forEach(primeVideo);
     }
 
     function scrollToPosition(nextY) {
@@ -2377,7 +2510,7 @@
       }
 
       event.preventDefault();
-      primeVideo();
+      primeVideos();
       scrollToPosition(window.scrollY + event.deltaY);
     }
 
@@ -2394,21 +2527,21 @@
 
       if (event.key === "Home") {
         event.preventDefault();
-        primeVideo();
+        primeVideos();
         scrollToPosition(0);
         return;
       }
 
       if (event.key === "End") {
         event.preventDefault();
-        primeVideo();
+        primeVideos();
         scrollToPosition(getMaxScrollY());
         return;
       }
 
       if (Object.prototype.hasOwnProperty.call(keyMap, event.key)) {
         event.preventDefault();
-        primeVideo();
+        primeVideos();
         scrollToPosition(window.scrollY + keyMap[event.key]);
       }
     }
@@ -2418,7 +2551,7 @@
         return;
       }
 
-      primeVideo();
+      primeVideos();
       updateScrollState();
     }
 
@@ -3342,24 +3475,32 @@
       }
     }
 
-    video.addEventListener("loadedmetadata", initializeVideo, { once: true });
-    video.addEventListener("loadeddata", updateScrollState, { once: true });
+    motionStates.forEach((state) => {
+      state.video.addEventListener("loadedmetadata", () => initializeVideo(state), { once: true });
+      state.video.addEventListener("loadeddata", updateScrollState, { once: true });
+    });
+
     window.addEventListener("scroll", updateScrollState, { passive: true });
     window.addEventListener("resize", updateScrollState);
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("keydown", handleKeydown);
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
 
-    video.load();
+    motionStates.forEach((state) => {
+      state.video.load();
+    });
+
     updateHeroBackground();
     initializeVisualCarousel();
     initializeInterfaceInfoCarousel();
     initializeInterfaceIcons();
     requestAnimationFrame(syncScrollProgress);
 
-    if (video.readyState >= 1) {
-      initializeVideo();
-    }
+    motionStates.forEach((state) => {
+      if (state.video.readyState >= 1) {
+        initializeVideo(state);
+      }
+    });
   </script>
 </body>
 </html>
