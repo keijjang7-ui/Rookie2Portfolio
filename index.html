@@ -1208,6 +1208,10 @@
       white-space: nowrap;
     }
 
+    .interface-distance__label-text--short {
+      display: none;
+    }
+
     .interface-info__title {
       width: 100%;
       margin: 0;
@@ -1737,6 +1741,21 @@
         gap: 32px;
       }
 
+      .interface-distance__label {
+        width: var(--meter-width);
+        margin-left: var(--meter-offset);
+        margin-top: 4px;
+        transform: none;
+      }
+
+      .interface-distance__label-text--full {
+        display: none;
+      }
+
+      .interface-distance__label-text--short {
+        display: inline;
+      }
+
       .interface-color__row--top {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -2098,21 +2117,30 @@
                           <img class="interface-distance__image interface-distance__image--near" src="./assets/images/interface-design/info-card-distance-near.svg" alt="">
                           <span class="interface-distance__meter">
                             <span class="interface-distance__bar"></span>
-                            <span class="interface-distance__label">Personal / 0.5m</span>
+                            <span class="interface-distance__label">
+                              <span class="interface-distance__label-text interface-distance__label-text--full">Personal / 0.5m</span>
+                              <span class="interface-distance__label-text interface-distance__label-text--short">0.5m</span>
+                            </span>
                           </span>
                         </div>
                         <div class="interface-distance__item interface-distance__item--mid">
                           <img class="interface-distance__image interface-distance__image--mid" src="./assets/images/interface-design/info-card-distance-mid.svg" alt="">
                           <span class="interface-distance__meter">
                             <span class="interface-distance__bar"></span>
-                            <span class="interface-distance__label">Social / 1-1.5m</span>
+                            <span class="interface-distance__label">
+                              <span class="interface-distance__label-text interface-distance__label-text--full">Social / 1-1.5m</span>
+                              <span class="interface-distance__label-text interface-distance__label-text--short">1-1.5m</span>
+                            </span>
                           </span>
                         </div>
                         <div class="interface-distance__item interface-distance__item--far">
                           <img class="interface-distance__image interface-distance__image--far" src="./assets/images/interface-design/info-card-distance-far.svg" alt="">
                           <span class="interface-distance__meter">
                             <span class="interface-distance__bar"></span>
-                            <span class="interface-distance__label">Public / 3-4m</span>
+                            <span class="interface-distance__label">
+                              <span class="interface-distance__label-text interface-distance__label-text--full">Public / 3-4m</span>
+                              <span class="interface-distance__label-text interface-distance__label-text--short">3-4m</span>
+                            </span>
                           </span>
                         </div>
                       </div>
