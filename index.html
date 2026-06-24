@@ -392,9 +392,76 @@
       will-change: opacity, transform;
     }
 
-    .product-motion__copy {
+    .product-motion__copy--lower {
       top: 68%;
       transform: translate3d(0, var(--motion-copy-y, 80px), 0);
+    }
+
+    .product-gallery {
+      --product-gallery-gap: 28px;
+      --product-gallery-radius: 36px;
+      --product-gallery-width: calc(100vw - (var(--product-gallery-gap) * 2));
+      --product-gallery-row-height: calc(var(--product-gallery-width) * 0.5364806867);
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      gap: var(--product-gallery-gap);
+      width: 100%;
+      padding: 0 var(--product-gallery-gap);
+      background: #050506;
+    }
+
+    .product-gallery--one {
+      background: linear-gradient(180deg, #000000 0%, #0f0f11 100%);
+    }
+
+    .product-gallery--two {
+      background: linear-gradient(180deg, #14161a 0%, #000000 100%);
+    }
+
+    .product-gallery__row {
+      display: grid;
+      gap: var(--product-gallery-gap);
+      width: 100%;
+      height: var(--product-gallery-row-height);
+      min-height: 0;
+    }
+
+    .product-gallery__row--single {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .product-gallery__row--two,
+    .product-gallery__row--mosaic {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .product-gallery__stack {
+      display: grid;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: var(--product-gallery-gap);
+      height: 100%;
+      min-height: 0;
+    }
+
+    .product-gallery__card {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
+      border-radius: var(--product-gallery-radius);
+      background: #0f0f11;
+    }
+
+    .product-gallery__image {
+      width: 100%;
+      height: 100%;
+      max-width: none;
+      object-fit: cover;
+      object-position: center center;
+      pointer-events: none;
+      user-select: none;
     }
 
     .product-title {
@@ -1587,6 +1654,11 @@
         padding-bottom: 160px;
       }
 
+      .product-gallery {
+        --product-gallery-gap: 22px;
+        --product-gallery-radius: 28px;
+      }
+
       .interface-typo {
         padding: 0 24px;
       }
@@ -1842,6 +1914,11 @@
         --interface-info-radius: 24px;
         margin-top: -1px;
         padding-bottom: 96px;
+      }
+
+      .product-gallery {
+        --product-gallery-gap: 16px;
+        --product-gallery-radius: 24px;
       }
 
       .interface-info__card--distance {
@@ -2317,9 +2394,83 @@
           playsinline
           aria-hidden="true"
         ></video>
-        <p class="product-motion__copy" data-motion-copy aria-live="off">
+        <p class="product-motion__copy product-motion__copy--lower" data-motion-copy aria-live="off">
           <span class="product-motion__copy-line">A familiar presence</span>
           <span class="product-motion__copy-line">in everyday spaces.</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="product-gallery product-gallery--one" aria-label="Rookie2 product image gallery one">
+      <div class="product-gallery__row product-gallery__row--single">
+        <div class="product-gallery__card">
+          <img class="product-gallery__image" src="./assets/images/Product_img1_card_01.jpg" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+      <div class="product-gallery__row product-gallery__row--two">
+        <div class="product-gallery__card">
+          <img class="product-gallery__image" src="./assets/images/Product_img1_card_02.jpg" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="product-gallery__card">
+          <img class="product-gallery__image" src="./assets/images/Product_img1_card_03.jpg" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <section class="product-motion product-motion--second" id="productMotion2" data-motion-section aria-label="Rookie2 product motion detail">
+      <div class="product-motion__stage">
+        <video
+          id="productMotionVideo2"
+          class="product-motion__video"
+          data-motion-video
+          src="./assets/media/Product_mv2.mp4"
+          preload="auto"
+          muted
+          playsinline
+          aria-hidden="true"
+        ></video>
+      </div>
+    </section>
+
+    <section class="product-gallery product-gallery--two" aria-label="Rookie2 product image gallery two">
+      <div class="product-gallery__row product-gallery__row--mosaic">
+        <div class="product-gallery__card">
+          <img class="product-gallery__image" src="./assets/images/Product_img2_card_01.png" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="product-gallery__stack">
+          <div class="product-gallery__card">
+            <img class="product-gallery__image" src="./assets/images/Product_img2_card_02.png" alt="" loading="lazy" decoding="async">
+          </div>
+          <div class="product-gallery__card">
+            <img class="product-gallery__image" src="./assets/images/Product_img2_card_03.jpg" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+      </div>
+      <div class="product-gallery__row product-gallery__row--two">
+        <div class="product-gallery__card">
+          <img class="product-gallery__image" src="./assets/images/Product_img2_card_04.jpg" alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="product-gallery__card">
+          <img class="product-gallery__image" src="./assets/images/Product_img2_card_05.jpg" alt="" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </section>
+
+    <section class="product-motion product-motion--third" id="productMotion3" data-motion-section aria-label="Rookie2 product motion in everyday life">
+      <div class="product-motion__stage">
+        <video
+          id="productMotionVideo3"
+          class="product-motion__video"
+          data-motion-video
+          src="./assets/media/Product_mv3.mp4"
+          preload="auto"
+          muted
+          playsinline
+          aria-hidden="true"
+        ></video>
+        <p class="product-motion__copy" data-motion-copy aria-live="off">
+          <span class="product-motion__copy-line">Quietly becoming part</span>
+          <span class="product-motion__copy-line">of everyday life</span>
         </p>
       </div>
     </section>
