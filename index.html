@@ -1919,6 +1919,22 @@
       .product-gallery {
         --product-gallery-gap: 16px;
         --product-gallery-radius: 24px;
+        --product-gallery-row-height: 320px;
+        padding: 0 var(--section-side);
+      }
+
+      .product-gallery__row,
+      .product-gallery__stack {
+        display: flex;
+        flex-direction: column;
+        gap: var(--product-gallery-gap);
+        height: auto;
+      }
+
+      .product-gallery__card {
+        width: 100%;
+        height: var(--product-gallery-row-height);
+        flex: none;
       }
 
       .interface-info__card--distance {
