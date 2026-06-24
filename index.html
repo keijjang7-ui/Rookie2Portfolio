@@ -1144,6 +1144,7 @@
       justify-content: center;
       gap: min(13.274%, 120px);
       width: 100%;
+      container-type: inline-size;
     }
 
     .interface-distance__item {
@@ -1200,7 +1201,8 @@
     .interface-distance__bar {
       display: block;
       width: var(--meter-width);
-      height: var(--meter-bar-height, 3px);
+      height: 3px;
+      height: min(3px, 0.332cqw);
       margin-left: var(--meter-offset);
       border-radius: 999px;
       background: #32ffea;
@@ -1515,7 +1517,7 @@
       }
 
       .interface-swatch {
-        padding: 32px;
+        padding: 28px;
       }
     }
 
@@ -1747,7 +1749,6 @@
       }
 
       .interface-distance {
-        --meter-bar-height: 1px;
         gap: 46px;
       }
 
