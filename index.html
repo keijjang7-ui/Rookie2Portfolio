@@ -464,6 +464,10 @@
       user-select: none;
     }
 
+    .product-gallery__image--flip-x {
+      transform: scaleX(-1);
+    }
+
     .product-title {
       --product-title-gradient-bleed: clamp(140px, 13vw, 250px);
       position: relative;
@@ -2452,25 +2456,20 @@
     </section>
 
     <section class="product-gallery product-gallery--two" aria-label="Rookie2 product image gallery two">
-      <div class="product-gallery__row product-gallery__row--mosaic">
+      <div class="product-gallery__row product-gallery__row--two">
         <div class="product-gallery__card">
           <img class="product-gallery__image" src="./assets/images/Product_img2_card_01.webp" alt="" loading="lazy" decoding="async">
         </div>
-        <div class="product-gallery__stack">
-          <div class="product-gallery__card">
-            <img class="product-gallery__image" src="./assets/images/Product_img2_card_02.webp" alt="" loading="lazy" decoding="async">
-          </div>
-          <div class="product-gallery__card">
-            <img class="product-gallery__image" src="./assets/images/Product_img2_card_03.webp" alt="" loading="lazy" decoding="async">
-          </div>
+        <div class="product-gallery__card">
+          <img class="product-gallery__image" src="./assets/images/Product_img2_card_04.webp" alt="" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="product-gallery__row product-gallery__row--two">
         <div class="product-gallery__card">
-          <img class="product-gallery__image" src="./assets/images/Product_img2_card_04.webp" alt="" loading="lazy" decoding="async">
+          <img class="product-gallery__image" src="./assets/images/Product_img2_card_02.webp" alt="" loading="lazy" decoding="async">
         </div>
         <div class="product-gallery__card">
-          <img class="product-gallery__image" src="./assets/images/Product_img2_card_05.webp" alt="" loading="lazy" decoding="async">
+          <img class="product-gallery__image product-gallery__image--flip-x" src="./assets/images/Product_img2_card_05.webp" alt="" loading="lazy" decoding="async">
         </div>
       </div>
     </section>
