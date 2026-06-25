@@ -5,9 +5,10 @@
 ## 현재 파일 구조
 
 - `index.html`: 현재 랜딩 페이지 전체 구조, 스타일, 스크롤/비디오 제어 스크립트가 들어 있는 단일 HTML 파일입니다.
+- `assets/images_original/`: 이미지 최적화 전 원본을 동일한 하위 경로로 보관하는 폴더입니다. 배포용 참조는 `assets/images/`를 기준으로 합니다.
 - `assets/images/HeroImg.png`: Hero 기본 배경 이미지입니다.
 - `assets/images/HeroImg_Color.png`: Hero 위에 얹는 컬러 효과 레이어입니다.
-- `assets/images/Intro_mv_poster.png`: Intro motion 영상 poster 이미지입니다.
+- `assets/images/Intro_mv_poster.jpg`: Intro motion 영상 poster 이미지입니다. 원본 PNG는 `assets/images_original/Intro_mv_poster.png`에 보관합니다.
 - `assets/images/NaverLabsMark.svg`: Hero 하단 NAVER LABS 로고입니다.
 - `assets/images/visual-principles/card-principles-graphic.svg`: Visual Principles 1번 카드의 벡터 그래픽 이미지입니다. 배경이 보이지 않도록 Figma의 `Subtract` 벡터를 SVG로 가져왔고, 카드 내부 텍스트는 HTML/CSS로 따로 얹습니다.
 - `assets/images/visual-principles/card-vision-grid.png`: Visual Principles 2번 카드의 이미지 그리드입니다. 카드 하나당 하나의 이미지 파일로 관리한다는 원칙에 맞춰 Figma 이미지 타일 10개를 투명 배경의 한 장 PNG로 합성했습니다.
