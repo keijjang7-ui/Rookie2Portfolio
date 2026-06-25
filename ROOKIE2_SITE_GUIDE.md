@@ -6,6 +6,7 @@
 
 - `index.html`: 현재 랜딩 페이지 전체 구조, 스타일, 스크롤/비디오 제어 스크립트가 들어 있는 단일 HTML 파일입니다.
 - `assets/images_original/`: 이미지 최적화 전 원본을 동일한 하위 경로로 보관하는 폴더입니다. 배포용 참조는 `assets/images/`를 기준으로 합니다.
+- `assets/media_original/`: 영상 최적화 전 원본 MP4를 보관하는 폴더입니다. 배포용 참조는 `assets/media/`를 기준으로 합니다.
 - `assets/images/HeroImg.png`: Hero 기본 배경 이미지입니다.
 - `assets/images/HeroImg_Color.webp`: Hero 위에 얹는 컬러 효과 레이어입니다. 원본 PNG는 `assets/images_original/HeroImg_Color.png`에 보관합니다.
 - `assets/images/Intro_mv_poster.webp`: Intro motion 영상 poster 이미지입니다. 원본 PNG는 `assets/images_original/Intro_mv_poster.png`에 보관합니다.
@@ -51,6 +52,7 @@
 - 섹션이 달라도 카드 캐러셀처럼 유사한 UI 구조를 공유한다면 폭, 높이, gap, radius, 인디케이터 위치, 스와이프 감각을 함께 검토하고 가능하면 기존 구조와 맞춥니다. 명확한 디자인 의도가 있을 때만 예외를 둡니다.
 - 새 카드/텍스트 섹션은 먼저 Figma 레이어 기준을 확인하고, 레이아웃 기준이 생기면 이 문서에 함께 기록합니다.
 - 새 이미지/영상 자산은 `assets/images` 또는 `assets/media` 아래에 넣고, 파일 구조 목록에 사용 목적을 추가합니다.
+- 배포용 영상은 원본을 `assets/media_original/`에 먼저 보관한 뒤 `assets/media/`에서 최적화합니다. 현재 배포용 MP4는 용량 절감을 위해 HEVC/H.265로 인코딩되어 있으므로, 호환성 문제가 보이면 `assets/media_original/`의 원본 H.264 MP4로 원복합니다.
 - 현재 favicon은 브라우저 탭용 SVG data URL입니다. iOS 홈 화면 아이콘, PNG fallback, SNS 공유 이미지가 필요해지면 별도 파일 자산과 meta 태그를 추가합니다.
 
 ## Figma 기준
