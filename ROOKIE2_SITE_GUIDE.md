@@ -6,7 +6,7 @@
 
 - `index.html`: 현재 랜딩 페이지 전체 구조, 스타일, 스크롤/비디오 제어 스크립트가 들어 있는 단일 HTML 파일입니다.
 - `assets/images_original/`: 이미지 최적화 전 원본을 동일한 하위 경로로 보관하는 폴더입니다. 배포용 참조는 `assets/images/`를 기준으로 합니다.
-- `assets/media_original/`: 영상 최적화 전 원본 MP4를 보관하는 폴더입니다. 배포용 참조는 `assets/media/`를 기준으로 합니다.
+- `assets/media_original/`: 영상 최적화 전 원본 MP4를 보관하는 폴더입니다. 현재는 HEVC/H.265 재생이 어려운 환경을 위한 H.264 fallback 소스로도 사용합니다.
 - `assets/images/HeroImg.png`: Hero 기본 배경 이미지입니다.
 - `assets/images/HeroImg_Color.webp`: Hero 위에 얹는 컬러 효과 레이어입니다. 원본 PNG는 `assets/images_original/HeroImg_Color.png`에 보관합니다.
 - `assets/images/Intro_mv_poster.webp`: Intro motion 영상 poster 이미지입니다. 원본 PNG는 `assets/images_original/Intro_mv_poster.png`에 보관합니다.
@@ -17,12 +17,12 @@
 - `assets/images/visual-principles/card-expressive-gaze-bg.webp`: Visual Principles 4번 카드 `Expressive Gaze`의 배경 이미지입니다. 흰색 선 5개는 이미지에 굽지 않고 HTML/CSS로 얹습니다.
 - `assets/images/visual-principles/card-future-form.webp`: Visual Principles 5번 카드의 전체 이미지입니다.
 - `assets/images/interface-design/info-card-02-left.png`, `assets/images/interface-design/info-card-02-right.webp`: Interface Design `Info` 1번 그룹의 좌우 이미지 카드입니다.
-- `assets/media/Interface_mv_01.mp4`: Interface Design `Info` 2번 그룹의 motion 카드 데스크톱/기본 영상입니다.
-- `assets/media/Interface_mv_01-m.mp4`: Interface Design `Info` 2번 그룹의 모바일 `560px` 이하 전용 영상입니다.
+- `assets/media/Interface_mv_01.mp4`: Interface Design `Info` 2번 그룹의 motion 카드 데스크톱/기본 HEVC 영상입니다. H.264 fallback은 `assets/media_original/Interface_mv_01.mp4`입니다.
+- `assets/media/Interface_mv_01-m.mp4`: Interface Design `Info` 2번 그룹의 모바일 `560px` 이하 전용 HEVC 영상입니다. H.264 fallback은 `assets/media_original/Interface_mv_01-m.mp4`입니다.
 - `assets/images/interface-design/info-card-distance-near.svg`, `assets/images/interface-design/info-card-distance-mid.svg`, `assets/images/interface-design/info-card-distance-far.svg`: Interface Design `Info` 3번 그룹의 viewing distance 그래픽입니다.
 - `assets/images/interface-design/info-card-05-nice.webp`, `assets/images/interface-design/info-card-05-pin.png`, `assets/images/interface-design/info-card-05-destination.png`, `assets/images/interface-design/info-card-05-depart.png`: Interface Design `Info` 4번 그룹의 status interface 예시 이미지입니다.
 - `assets/fonts/a-type/AType-Bold.otf`: Hero 타이틀 `Rookie2`에 사용하는 A Type 웹폰트입니다. 사이트에서 쓰는 두께만 `assets` 아래에서 관리합니다.
-- `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion 영상입니다.
+- `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion HEVC 영상입니다. H.264 fallback은 `assets/media_original/Intro_mv.mp4`입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
 - `History/index_20260619_001030.html`: 2026-06-19 00:10 기준, 공통 타이포그래피 토큰 적용 직전의 `index.html` 스냅샷입니다.
 - `History/index_20260623_230605.html`: 2026-06-23 23:06 기준, Interface Design `Info` 카드 반영 직전의 `index.html` 스냅샷입니다.
@@ -52,7 +52,7 @@
 - 섹션이 달라도 카드 캐러셀처럼 유사한 UI 구조를 공유한다면 폭, 높이, gap, radius, 인디케이터 위치, 스와이프 감각을 함께 검토하고 가능하면 기존 구조와 맞춥니다. 명확한 디자인 의도가 있을 때만 예외를 둡니다.
 - 새 카드/텍스트 섹션은 먼저 Figma 레이어 기준을 확인하고, 레이아웃 기준이 생기면 이 문서에 함께 기록합니다.
 - 새 이미지/영상 자산은 `assets/images` 또는 `assets/media` 아래에 넣고, 파일 구조 목록에 사용 목적을 추가합니다.
-- 배포용 영상은 원본을 `assets/media_original/`에 먼저 보관한 뒤 `assets/media/`에서 최적화합니다. 현재 배포용 MP4는 용량 절감을 위해 HEVC/H.265로 인코딩되어 있으므로, 호환성 문제가 보이면 `assets/media_original/`의 원본 H.264 MP4로 원복합니다.
+- 배포용 영상은 원본을 `assets/media_original/`에 먼저 보관한 뒤 `assets/media/`에서 HEVC/H.265로 최적화합니다. `index.html`은 HEVC 재생 가능 여부를 먼저 확인하고, HEVC를 지원하지 않거나 재생 에러가 발생하면 `assets/media_original/`의 H.264 MP4로 자동 전환합니다.
 - 현재 favicon은 브라우저 탭용 SVG data URL입니다. iOS 홈 화면 아이콘, PNG fallback, SNS 공유 이미지가 필요해지면 별도 파일 자산과 meta 태그를 추가합니다.
 
 ## Figma 기준
@@ -344,7 +344,7 @@ Intro motion overlay 카피 기준:
 - `Info` 영역은 `Visual Principles` 캐러셀과 같은 스와이프/인디케이터 감각을 사용하지만, 단위는 개별 카드가 아니라 `1200px 그룹`입니다. 카드 높이, indicator 간격, 반응형 완충 구간은 `Visual Principles`와 맞추는 것을 기본값으로 봅니다.
   - 카드 높이 기준은 데스크톱과 1600px 이하 `675px`, 1200px 이하 `clamp(430px, 51.667vw, 620px)`, 760px 이하 `400px`, 560px 이하 `320px`입니다.
   - 1번 그룹 `Interface touchpoints`: 1200px 안에 두 카드가 들어갑니다. `assets/images/interface-design/info-card-02-left.png`, `assets/images/interface-design/info-card-02-right.webp`를 사용합니다.
-  - 2번 그룹 `Interface motion`: 1200px 단일 영상 카드입니다. 기본 영상은 `assets/media/Interface_mv_01.mp4`를 사용하고, 모바일 `560px` 이하에서는 `assets/media/Interface_mv_01-m.mp4`로 교체합니다. 해당 슬라이드가 활성 상태이면서 섹션이 보일 때만 재생합니다. 벗어나면 currentTime을 초기화하지 않고 pause하며, 다시 돌아오면 이어서 재생합니다. 활성 상태에서는 loop 재생합니다.
+  - 2번 그룹 `Interface motion`: 1200px 단일 영상 카드입니다. 기본 영상은 `assets/media/Interface_mv_01.mp4`를 사용하고, 모바일 `560px` 이하에서는 `assets/media/Interface_mv_01-m.mp4`로 교체합니다. HEVC 재생이 어려운 환경에서는 같은 기준으로 `assets/media_original/Interface_mv_01.mp4`, `assets/media_original/Interface_mv_01-m.mp4`를 fallback으로 사용합니다. 해당 슬라이드가 활성 상태이면서 섹션이 보일 때만 재생합니다. 벗어나면 currentTime을 초기화하지 않고 pause하며, 다시 돌아오면 이어서 재생합니다. 활성 상태에서는 loop 재생합니다.
   - 3번 그룹 `Viewing distance`: 1200px 단일 카드입니다. 텍스트를 위, 거리 그래픽을 아래에 둡니다. `info-card-distance-near.svg`, `info-card-distance-mid.svg`, `info-card-distance-far.svg`를 HTML/CSS로 배치합니다. 내부 그래픽은 viewport에 직접 반응하지 않고 카드의 실제 콘텐츠 폭과 좌우 여백을 기준으로 가변되어야 합니다. 거리 표시 선은 Neon Teal `#32ffea`를 사용하고, 라벨은 `Personal / 0.5m`, `Social / 1-1.5m`, `Public / 3-4m` 문구를 각 이미지 중앙 기준으로 정렬합니다. 모바일에서는 세 거리 그래픽 사이 간격과 텍스트/이미지 사이 간격을 조금 넓혀 답답해 보이지 않게 유지합니다. 모바일에서는 거리 표시 선이 일러스트 선보다 굵어 보이지 않도록 `--meter-bar-height`를 낮춥니다.
   - 4번 그룹 `Status interface examples`: 1200px 안에 2x2 이미지 카드 그리드를 배치합니다. `info-card-05-nice.webp`, `info-card-05-pin.png`, `info-card-05-destination.png`, `info-card-05-depart.png`를 사용합니다. 모바일 `560px` 이하에서는 `pin`과 `destination` 이미지만 각각 `info-card-05-pin-m.png`, `info-card-05-destination-m.png`로 교체합니다. 중첩 카드가 자체 고정 높이를 가져 전체 슬라이드 높이를 깨지 않도록 내부 카드는 `height: auto`, `min-height: 0` 기준을 유지합니다.
   - 카드와 인디케이터 사이 간격은 `Visual Principles`와 동일하게 맞춥니다. 현재 기준은 데스크톱 `40px`, 1200px 이하 `34px`, 760px 이하 및 모바일 `28px`입니다.
@@ -364,8 +364,12 @@ Intro motion overlay 카피 기준:
 - `updateVideoTarget()`: progress를 video target time으로 변환
 - `scrub()`: 영상 currentTime을 targetTime으로 부드럽게 따라가게 함. 터치 환경에서는 더 빠르게 따라붙도록 보간값을 높입니다.
 - `scrollToPosition()`: wheel/key 커스텀 스크롤 처리
+- `supportsHevcVideo`: 브라우저의 HEVC/H.265 MP4 지원 여부를 `canPlayType()`으로 확인합니다.
+- `switchVideoToFallback()`: HEVC가 지원되지 않거나 실제 재생 에러가 발생하면 `assets/media_original/`의 H.264 원본 MP4로 전환합니다.
 
 현재 wheel/key 이벤트는 `preventDefault()`를 사용해 직접 scroll position을 제어합니다. 반면 모바일/태블릿 터치는 브라우저의 네이티브 관성 스크롤을 유지하고 `touchmove`를 가로채지 않습니다. 첫 `touchstart`에서는 영상 프라임을 수행합니다.
+
+영상 추가 시에는 `assets/media/`에 HEVC 최적화 파일을 두고, 같은 파일명을 `assets/media_original/`에 H.264 fallback으로 보관합니다. 스크롤 연동 영상은 `data-hevc-src`와 `data-fallback-src`, Interface 카드처럼 반응형 영상이 필요한 경우는 `data-desktop-src`/`data-mobile-src`와 `data-desktop-fallback-src`/`data-mobile-fallback-src`를 함께 지정합니다.
 
 ## 콘텐츠/언어 기준
 

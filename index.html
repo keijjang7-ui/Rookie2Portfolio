@@ -2131,7 +2131,8 @@
           id="introMotionVideo"
           class="intro-motion__video"
           data-motion-video
-          src="./assets/media/Intro_mv.mp4"
+          data-hevc-src="./assets/media/Intro_mv.mp4"
+          data-fallback-src="./assets/media_original/Intro_mv.mp4"
           poster="./assets/images/Intro_mv_poster.webp"
           preload="auto"
           muted
@@ -2315,7 +2316,7 @@
                 </div>
                 <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface motion">
                   <div class="interface-info__card">
-                    <video class="interface-info__video" src="./assets/media/Interface_mv_01.mp4" data-desktop-src="./assets/media/Interface_mv_01.mp4" data-mobile-src="./assets/media/Interface_mv_01-m.mp4" muted loop playsinline preload="metadata" aria-label="Rookie2 interface motion display"></video>
+                    <video class="interface-info__video" data-desktop-src="./assets/media/Interface_mv_01.mp4" data-mobile-src="./assets/media/Interface_mv_01-m.mp4" data-desktop-fallback-src="./assets/media_original/Interface_mv_01.mp4" data-mobile-fallback-src="./assets/media_original/Interface_mv_01-m.mp4" muted loop playsinline preload="metadata" aria-label="Rookie2 interface motion display"></video>
                   </div>
                 </div>
                 <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Viewing distance">
@@ -2404,7 +2405,8 @@
           id="productMotionVideo1"
           class="product-motion__video"
           data-motion-video
-          src="./assets/media/Product_mv1.mp4"
+          data-hevc-src="./assets/media/Product_mv1.mp4"
+          data-fallback-src="./assets/media_original/Product_mv1.mp4"
           preload="auto"
           muted
           playsinline
@@ -2439,7 +2441,8 @@
           id="productMotionVideo2"
           class="product-motion__video"
           data-motion-video
-          src="./assets/media/Product_mv2.mp4"
+          data-hevc-src="./assets/media/Product_mv2.mp4"
+          data-fallback-src="./assets/media_original/Product_mv2.mp4"
           preload="auto"
           muted
           playsinline
@@ -2478,7 +2481,8 @@
           id="productMotionVideo3"
           class="product-motion__video"
           data-motion-video
-          src="./assets/media/Product_mv3.mp4"
+          data-hevc-src="./assets/media/Product_mv3.mp4"
+          data-fallback-src="./assets/media_original/Product_mv3.mp4"
           preload="auto"
           muted
           playsinline
@@ -2511,6 +2515,17 @@
     const VISUAL_SWIPE_LOCK_DISTANCE = 8;
     const VISUAL_SWIPE_AXIS_RATIO = 1.15;
     const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
+    const videoSupportProbe = document.createElement("video");
+    const HEVC_CODEC_TYPES = [
+      'video/mp4; codecs="hvc1"',
+      'video/mp4; codecs="hev1"',
+      'video/mp4; codecs="hvc1.1.6.L93.B0"',
+      'video/mp4; codecs="hev1.1.6.L93.B0"'
+    ];
+    const supportsHevcVideo = HEVC_CODEC_TYPES.some((type) => (
+      Boolean(videoSupportProbe.canPlayType(type)) ||
+      Boolean(window.MediaSource && typeof window.MediaSource.isTypeSupported === "function" && window.MediaSource.isTypeSupported(type))
+    ));
 
     const motionStates = Array.from(document.querySelectorAll("[data-motion-section]"))
       .map((section) => ({
@@ -2533,6 +2548,41 @@
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
     const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
+
+    function shouldUseVideoFallback(video) {
+      return video.dataset.forceFallback === "true" || !supportsHevcVideo;
+    }
+
+    function getMotionVideoSource(video) {
+      const hevcSource = video.dataset.hevcSrc || video.getAttribute("src") || "";
+      const fallbackSource = video.dataset.fallbackSrc || "";
+
+      if (shouldUseVideoFallback(video) && fallbackSource) {
+        return fallbackSource;
+      }
+
+      return hevcSource || fallbackSource;
+    }
+
+    function setVideoSource(video, nextSource) {
+      if (!nextSource || video.dataset.currentSrc === nextSource) {
+        return false;
+      }
+
+      video.pause();
+      video.src = nextSource;
+      video.dataset.currentSrc = nextSource;
+      return true;
+    }
+
+    function switchVideoToFallback(video, fallbackSource) {
+      if (!fallbackSource || video.dataset.forceFallback === "true" || video.dataset.currentSrc === fallbackSource) {
+        return false;
+      }
+
+      video.dataset.forceFallback = "true";
+      return setVideoSource(video, fallbackSource);
+    }
 
     function isHorizontalCarouselTarget(target) {
       return target instanceof Element && Boolean(target.closest("[data-visual-carousel], [data-interface-info-carousel]"));
@@ -3112,11 +3162,28 @@
           return "";
         }
 
-        if (interfaceMotionVideoMediaQuery?.matches) {
-          return interfaceMotionVideo.dataset.mobileSrc || interfaceMotionVideo.dataset.desktopSrc || interfaceMotionVideo.getAttribute("src") || "";
+        const fallbackSource = getInterfaceMotionVideoFallbackSource();
+        const hevcSource = interfaceMotionVideoMediaQuery?.matches
+          ? interfaceMotionVideo.dataset.mobileSrc || interfaceMotionVideo.dataset.desktopSrc || interfaceMotionVideo.getAttribute("src") || ""
+          : interfaceMotionVideo.dataset.desktopSrc || interfaceMotionVideo.getAttribute("src") || "";
+
+        if (shouldUseVideoFallback(interfaceMotionVideo) && fallbackSource) {
+          return fallbackSource;
         }
 
-        return interfaceMotionVideo.dataset.desktopSrc || interfaceMotionVideo.getAttribute("src") || "";
+        return hevcSource || fallbackSource;
+      }
+
+      function getInterfaceMotionVideoFallbackSource() {
+        if (!interfaceMotionVideo) {
+          return "";
+        }
+
+        if (interfaceMotionVideoMediaQuery?.matches) {
+          return interfaceMotionVideo.dataset.mobileFallbackSrc || interfaceMotionVideo.dataset.desktopFallbackSrc || "";
+        }
+
+        return interfaceMotionVideo.dataset.desktopFallbackSrc || "";
       }
 
       function syncInterfaceMotionVideoSource() {
@@ -3137,6 +3204,20 @@
 
         if (shouldResume) {
           playInterfaceMotionVideo();
+        }
+      }
+
+      function handleInterfaceMotionVideoError() {
+        if (!interfaceMotionVideo) {
+          return;
+        }
+
+        if (switchVideoToFallback(interfaceMotionVideo, getInterfaceMotionVideoFallbackSource())) {
+          interfaceMotionVideo.load();
+
+          if (activeIndex === interfaceMotionVideoIndex && isInfoCarouselVisible) {
+            playInterfaceMotionVideo();
+          }
         }
       }
 
@@ -3392,6 +3473,10 @@
       interfaceInfoTrack.addEventListener("pointercancel", handlePointerUp);
       interfaceInfoTrack.addEventListener("wheel", handleInfoWheel, { passive: false });
 
+      if (interfaceMotionVideo) {
+        interfaceMotionVideo.addEventListener("error", handleInterfaceMotionVideoError);
+      }
+
       if ("IntersectionObserver" in window) {
         const infoObserver = new IntersectionObserver((entries) => {
           isInfoCarouselVisible = entries.some((entry) => entry.isIntersecting);
@@ -3646,8 +3731,20 @@
     }
 
     motionStates.forEach((state) => {
-      state.video.addEventListener("loadedmetadata", () => initializeVideo(state), { once: true });
-      state.video.addEventListener("loadeddata", updateScrollState, { once: true });
+      state.video.addEventListener("loadedmetadata", () => initializeVideo(state));
+      state.video.addEventListener("loadeddata", updateScrollState);
+      state.video.addEventListener("error", () => {
+        if (switchVideoToFallback(state.video, state.video.dataset.fallbackSrc || "")) {
+          state.duration = 0;
+          state.currentTime = 0;
+          state.targetTime = 0;
+          state.hasMetadata = false;
+          state.ticking = false;
+          state.video.load();
+        }
+      });
+
+      setVideoSource(state.video, getMotionVideoSource(state.video));
     });
 
     window.addEventListener("scroll", updateScrollState, { passive: true });
