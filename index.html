@@ -3519,6 +3519,10 @@
       const lottieData = window.ROOKIE2_INTERFACE_LOTTIES || {};
       const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       let selectedTouchState = null;
+      let idleTimer = 0;
+      let idleState = null;
+      let lastIdleIndex = -1;
+      let iconsInView = !("IntersectionObserver" in window);
 
       if (!iconItems.length) {
         return;
@@ -3528,6 +3532,83 @@
         return coarsePointerQuery.matches;
       }
 
+      function clearIconIdleTimer() {
+        if (!idleTimer) {
+          return;
+        }
+
+        window.clearTimeout(idleTimer);
+        idleTimer = 0;
+      }
+
+      function hasUserActiveIcon() {
+        return iconStates.some((state) => state.activeMode === "user");
+      }
+
+      function canRunIconIdle() {
+        return iconsInView && !reducedMotionQuery.matches && !hasUserActiveIcon();
+      }
+
+      function chooseIdleIcon() {
+        const candidates = iconStates.filter((state) => (
+          state.animation &&
+          state.item.classList.contains("is-ready") &&
+          state.activeMode !== "user"
+        ));
+
+        if (candidates.length > 1) {
+          const nextCandidates = candidates.filter((state) => iconStates.indexOf(state) !== lastIdleIndex);
+          return nextCandidates[Math.floor(Math.random() * nextCandidates.length)];
+        }
+
+        return candidates[0] || null;
+      }
+
+      function scheduleIconIdle(delay = 1000) {
+        clearIconIdleTimer();
+
+        if (!canRunIconIdle()) {
+          return;
+        }
+
+        idleTimer = window.setTimeout(() => {
+          idleTimer = 0;
+          playIdleIcon();
+        }, delay);
+      }
+
+      function playIdleIcon() {
+        if (!canRunIconIdle() || idleState) {
+          return;
+        }
+
+        const state = chooseIdleIcon();
+
+        if (!state) {
+          scheduleIconIdle(1000);
+          return;
+        }
+
+        idleState = state;
+        lastIdleIndex = iconStates.indexOf(state);
+        activateIcon(state, "idle");
+      }
+
+      function releaseIdleForUser(nextState) {
+        clearIconIdleTimer();
+
+        if (!idleState) {
+          return;
+        }
+
+        const previousIdleState = idleState;
+        idleState = null;
+
+        if (previousIdleState !== nextState) {
+          requestIconReturn(previousIdleState);
+        }
+      }
+
       function finishIconReturn(state) {
         if (!state) {
           return;
@@ -3535,8 +3616,18 @@
 
         state.shouldStop = false;
         state.canStopAtStart = false;
+        state.activeMode = null;
+        state.idleReturnQueued = false;
         state.item.classList.remove("is-active");
         state.item.setAttribute("aria-pressed", "false");
+
+        if (idleState === state) {
+          idleState = null;
+        }
+
+        if (selectedTouchState === state) {
+          selectedTouchState = null;
+        }
 
         if (state.animation) {
           state.animation.setSpeed(1);
@@ -3545,6 +3636,7 @@
 
         window.setTimeout(() => {
           state.item.classList.remove("is-returning");
+          scheduleIconIdle(1000);
         }, 180);
       }
 
@@ -3556,6 +3648,8 @@
         state.item.classList.add("is-returning");
         state.item.classList.remove("is-active");
         state.item.setAttribute("aria-pressed", "false");
+        state.idleReturnQueued = state.activeMode === "idle" || state.idleReturnQueued;
+        state.activeMode = null;
 
         if (!state.animation || reducedMotionQuery.matches || state.animation.isPaused) {
           finishIconReturn(state);
@@ -3567,13 +3661,19 @@
         state.animation.setSpeed(1);
       }
 
-      function activateIcon(state) {
+      function activateIcon(state, mode = "user") {
         if (!state || !state.animation) {
           return;
         }
 
+        if (mode === "user") {
+          releaseIdleForUser(state);
+        }
+
         state.shouldStop = false;
         state.canStopAtStart = false;
+        state.activeMode = mode;
+        state.idleReturnQueued = false;
         state.item.classList.remove("is-returning");
         state.item.classList.add("is-active");
         state.item.setAttribute("aria-pressed", "true");
@@ -3599,7 +3699,9 @@
           item,
           animation: null,
           startFrame: Number.isNaN(startFrame) ? 0 : startFrame,
+          activeMode: null,
           canStopAtStart: false,
+          idleReturnQueued: false,
           shouldStop: false
         };
 
@@ -3640,13 +3742,22 @@
         });
 
         state.animation.addEventListener("enterFrame", (event) => {
-          if (!state.shouldStop || !state.canStopAtStart || state.startFrame <= 0) {
-            return;
-          }
-
           const currentFrame = event && typeof event.currentTime === "number"
             ? event.currentTime
             : state.animation.currentFrame;
+
+          if (state.activeMode === "idle" && !state.idleReturnQueued && !state.shouldStop) {
+            const totalFrames = Number(state.animation.totalFrames) || 0;
+            const returnFrame = totalFrames * 0.82;
+
+            if (totalFrames && currentFrame >= returnFrame) {
+              requestIconReturn(state);
+            }
+          }
+
+          if (!state.shouldStop || !state.canStopAtStart || state.startFrame <= 0) {
+            return;
+          }
 
           if (currentFrame >= state.startFrame) {
             if (selectedTouchState === state) {
@@ -3659,7 +3770,7 @@
 
         item.addEventListener("pointerenter", () => {
           if (!isTouchIconMode()) {
-            activateIcon(state);
+            activateIcon(state, "user");
           }
         });
 
@@ -3671,7 +3782,7 @@
 
         item.addEventListener("focus", () => {
           if (!isTouchIconMode()) {
-            activateIcon(state);
+            activateIcon(state, "user");
           }
         });
 
@@ -3699,11 +3810,35 @@
           }
 
           selectedTouchState = state;
-          activateIcon(state);
+          activateIcon(state, "user");
         });
 
         return state;
       });
+
+      if ("IntersectionObserver" in window) {
+        const iconIdleObserver = new IntersectionObserver((entries) => {
+          const entry = entries[0];
+          iconsInView = Boolean(entry && entry.isIntersecting);
+
+          if (iconsInView) {
+            scheduleIconIdle(1000);
+            return;
+          }
+
+          clearIconIdleTimer();
+
+          if (idleState) {
+            const state = idleState;
+            idleState = null;
+            requestIconReturn(state);
+          }
+        }, { threshold: 0.35 });
+
+        iconIdleObserver.observe(interfaceIconGrid);
+      } else {
+        scheduleIconIdle(1000);
+      }
 
       document.addEventListener("pointerdown", (event) => {
         if (!isTouchIconMode() || !selectedTouchState) {
@@ -3719,7 +3854,12 @@
       }, { passive: true });
 
       const handleReducedMotionChange = () => {
+        clearIconIdleTimer();
         iconStates.forEach(finishIconReturn);
+
+        if (!reducedMotionQuery.matches) {
+          scheduleIconIdle(1000);
+        }
       };
 
       if (typeof reducedMotionQuery.addEventListener === "function") {
