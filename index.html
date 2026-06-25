@@ -2305,17 +2305,17 @@
           <div class="interface-info" data-interface-info-carousel aria-label="Rookie2 interface information cards">
             <div class="interface-info__viewport">
               <div class="interface-info__track" data-interface-info-track>
-                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface motion">
-                  <div class="interface-info__card">
-                    <video class="interface-info__video" src="./assets/media/Interface_mv_01.mp4" data-desktop-src="./assets/media/Interface_mv_01.mp4" data-mobile-src="./assets/media/Interface_mv_01-m.mp4" muted loop playsinline preload="metadata" aria-label="Rookie2 interface motion display"></video>
-                  </div>
-                </div>
                 <div class="interface-info__group interface-info__group--split" data-interface-info-slide data-card-label="Interface touchpoints">
                   <div class="interface-info__card">
                     <img class="interface-info__image" src="./assets/images/interface-design/info-card-02-left.png" alt="">
                   </div>
                   <div class="interface-info__card">
                     <img class="interface-info__image" src="./assets/images/interface-design/info-card-02-right.png" alt="">
+                  </div>
+                </div>
+                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface motion">
+                  <div class="interface-info__card">
+                    <video class="interface-info__video" src="./assets/media/Interface_mv_01.mp4" data-desktop-src="./assets/media/Interface_mv_01.mp4" data-mobile-src="./assets/media/Interface_mv_01-m.mp4" muted loop playsinline preload="metadata" aria-label="Rookie2 interface motion display"></video>
                   </div>
                 </div>
                 <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Viewing distance">
@@ -3028,8 +3028,11 @@
       }
 
       const groups = Array.from(interfaceInfoTrack.querySelectorAll("[data-interface-info-slide]"));
-      const firstGroupVideo = groups[0]?.querySelector(".interface-info__video") || null;
-      const firstGroupVideoMediaQuery = firstGroupVideo && "matchMedia" in window ? window.matchMedia("(max-width: 560px)") : null;
+      const interfaceMotionVideoIndex = groups.findIndex((group) => group.querySelector(".interface-info__video"));
+      const interfaceMotionVideo = interfaceMotionVideoIndex >= 0
+        ? groups[interfaceMotionVideoIndex].querySelector(".interface-info__video")
+        : null;
+      const interfaceMotionVideoMediaQuery = interfaceMotionVideo && "matchMedia" in window ? window.matchMedia("(max-width: 560px)") : null;
       let activeIndex = 0;
       let isInfoCarouselVisible = false;
       let isDragging = false;
@@ -3104,72 +3107,72 @@
         return clamp(Math.round((getCenterOffset() - offset) / step), 0, groups.length - 1);
       }
 
-      function getFirstGroupVideoSource() {
-        if (!firstGroupVideo) {
+      function getInterfaceMotionVideoSource() {
+        if (!interfaceMotionVideo) {
           return "";
         }
 
-        if (firstGroupVideoMediaQuery?.matches) {
-          return firstGroupVideo.dataset.mobileSrc || firstGroupVideo.dataset.desktopSrc || firstGroupVideo.getAttribute("src") || "";
+        if (interfaceMotionVideoMediaQuery?.matches) {
+          return interfaceMotionVideo.dataset.mobileSrc || interfaceMotionVideo.dataset.desktopSrc || interfaceMotionVideo.getAttribute("src") || "";
         }
 
-        return firstGroupVideo.dataset.desktopSrc || firstGroupVideo.getAttribute("src") || "";
+        return interfaceMotionVideo.dataset.desktopSrc || interfaceMotionVideo.getAttribute("src") || "";
       }
 
-      function syncFirstGroupVideoSource() {
-        if (!firstGroupVideo) {
+      function syncInterfaceMotionVideoSource() {
+        if (!interfaceMotionVideo) {
           return;
         }
 
-        const nextSource = getFirstGroupVideoSource();
-        if (!nextSource || firstGroupVideo.dataset.currentSrc === nextSource) {
+        const nextSource = getInterfaceMotionVideoSource();
+        if (!nextSource || interfaceMotionVideo.dataset.currentSrc === nextSource) {
           return;
         }
 
-        const shouldResume = !firstGroupVideo.paused && activeIndex === 0 && isInfoCarouselVisible;
-        firstGroupVideo.pause();
-        firstGroupVideo.src = nextSource;
-        firstGroupVideo.dataset.currentSrc = nextSource;
-        firstGroupVideo.load();
+        const shouldResume = !interfaceMotionVideo.paused && activeIndex === interfaceMotionVideoIndex && isInfoCarouselVisible;
+        interfaceMotionVideo.pause();
+        interfaceMotionVideo.src = nextSource;
+        interfaceMotionVideo.dataset.currentSrc = nextSource;
+        interfaceMotionVideo.load();
 
         if (shouldResume) {
-          playFirstGroupVideo();
+          playInterfaceMotionVideo();
         }
       }
 
-      function pauseFirstGroupVideo() {
-        if (!firstGroupVideo) {
+      function pauseInterfaceMotionVideo() {
+        if (!interfaceMotionVideo) {
           return;
         }
 
-        firstGroupVideo.pause();
+        interfaceMotionVideo.pause();
       }
 
-      function playFirstGroupVideo() {
-        if (!firstGroupVideo) {
+      function playInterfaceMotionVideo() {
+        if (!interfaceMotionVideo) {
           return;
         }
 
-        syncFirstGroupVideoSource();
+        syncInterfaceMotionVideoSource();
 
-        const playRequest = firstGroupVideo.play();
+        const playRequest = interfaceMotionVideo.play();
 
         if (playRequest && typeof playRequest.catch === "function") {
           playRequest.catch(() => {});
         }
       }
 
-      function syncFirstGroupVideo(previousIndex = activeIndex) {
-        if (!firstGroupVideo) {
+      function syncInterfaceMotionVideo(previousIndex = activeIndex) {
+        if (!interfaceMotionVideo) {
           return;
         }
 
-        if (activeIndex === 0 && isInfoCarouselVisible) {
-          playFirstGroupVideo();
+        if (activeIndex === interfaceMotionVideoIndex && isInfoCarouselVisible) {
+          playInterfaceMotionVideo();
           return;
         }
 
-        pauseFirstGroupVideo();
+        pauseInterfaceMotionVideo();
       }
 
       function setActiveIndex(index) {
@@ -3182,7 +3185,7 @@
           button.setAttribute("aria-selected", String(isActive));
         });
 
-        syncFirstGroupVideo(previousIndex);
+        syncInterfaceMotionVideo(previousIndex);
       }
 
       function getBoundedOffset(offset) {
@@ -3392,7 +3395,7 @@
       if ("IntersectionObserver" in window) {
         const infoObserver = new IntersectionObserver((entries) => {
           isInfoCarouselVisible = entries.some((entry) => entry.isIntersecting);
-          syncFirstGroupVideo();
+          syncInterfaceMotionVideo();
         }, { threshold: 0.35 });
 
         infoObserver.observe(interfaceInfoCarousel);
@@ -3400,18 +3403,18 @@
         isInfoCarouselVisible = true;
       }
 
-      syncFirstGroupVideoSource();
+      syncInterfaceMotionVideoSource();
 
-      if (firstGroupVideoMediaQuery) {
+      if (interfaceMotionVideoMediaQuery) {
         const handleVideoMediaChange = () => {
-          syncFirstGroupVideoSource();
-          syncFirstGroupVideo();
+          syncInterfaceMotionVideoSource();
+          syncInterfaceMotionVideo();
         };
 
-        if (typeof firstGroupVideoMediaQuery.addEventListener === "function") {
-          firstGroupVideoMediaQuery.addEventListener("change", handleVideoMediaChange);
-        } else if (typeof firstGroupVideoMediaQuery.addListener === "function") {
-          firstGroupVideoMediaQuery.addListener(handleVideoMediaChange);
+        if (typeof interfaceMotionVideoMediaQuery.addEventListener === "function") {
+          interfaceMotionVideoMediaQuery.addEventListener("change", handleVideoMediaChange);
+        } else if (typeof interfaceMotionVideoMediaQuery.addListener === "function") {
+          interfaceMotionVideoMediaQuery.addListener(handleVideoMediaChange);
         }
       }
 
