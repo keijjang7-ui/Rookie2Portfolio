@@ -1246,6 +1246,13 @@
       overflow: hidden;
     }
 
+    .interface-info__card--motion {
+      clip-path: inset(0 round var(--interface-info-radius));
+      isolation: isolate;
+      transform: translateZ(0);
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
+    }
+
     .interface-info__picture,
     .interface-info__image,
     .interface-info__video {
@@ -1261,6 +1268,13 @@
       pointer-events: none;
       user-select: none;
       -webkit-user-drag: none;
+    }
+
+    .interface-info__card--motion .interface-info__video {
+      border-radius: inherit;
+      clip-path: inset(0 round var(--interface-info-radius));
+      transform: translateZ(0);
+      backface-visibility: hidden;
     }
 
     .interface-info__card--distance {
@@ -2319,7 +2333,7 @@
                   </div>
                 </div>
                 <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface motion">
-                  <div class="interface-info__card">
+                  <div class="interface-info__card interface-info__card--motion">
                     <video class="interface-info__video" data-desktop-src="./assets/media/Interface_mv_01.mp4" data-mobile-src="./assets/media/Interface_mv_01-m.mp4" data-desktop-fallback-src="./assets/media_original/Interface_mv_01.mp4" data-mobile-fallback-src="./assets/media_original/Interface_mv_01-m.mp4" muted loop playsinline preload="metadata" aria-label="Rookie2 interface motion display"></video>
                   </div>
                 </div>
