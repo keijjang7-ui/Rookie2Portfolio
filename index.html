@@ -1011,20 +1011,36 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: 8.8px;
       width: var(--visual-card-width);
       margin: 40px auto 0;
     }
 
     .visual-principles__dot {
-      width: 12px;
-      height: 12px;
+      position: relative;
+      width: 19.2px;
+      height: 19.2px;
       padding: 0;
       border: 0;
       border-radius: 999px;
       appearance: none;
-      background: #494951;
+      background: transparent;
       cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: width 240ms ease;
+    }
+
+    .visual-principles__dot::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #494951;
+      transform: translate(-50%, -50%);
       transition: width 240ms ease, background-color 240ms ease, transform 240ms ease;
     }
 
@@ -1033,15 +1049,19 @@
       outline-offset: 4px;
     }
 
-    .visual-principles__dot:hover {
+    .visual-principles__dot:hover::before {
       background: #686871;
-      transform: scale(1.08);
+      transform: translate(-50%, -50%) scale(1.08);
     }
 
     .visual-principles__dot.is-active {
+      width: 47.2px;
+    }
+
+    .visual-principles__dot.is-active::before {
       width: 40px;
       background: #f5f5fb;
-      transform: scale(1);
+      transform: translate(-50%, -50%) scale(1);
     }
 
     @keyframes visual-gaze-blink {
@@ -1604,20 +1624,36 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 16px;
+      gap: 8.8px;
       width: var(--section-width);
       margin: 0 auto;
     }
 
     .interface-info__dot {
-      width: 12px;
-      height: 12px;
+      position: relative;
+      width: 19.2px;
+      height: 19.2px;
       padding: 0;
       border: 0;
       border-radius: 999px;
       appearance: none;
-      background: #494951;
+      background: transparent;
       cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: width 240ms ease;
+    }
+
+    .interface-info__dot::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #494951;
+      transform: translate(-50%, -50%);
       transition: width 240ms ease, background-color 240ms ease, transform 240ms ease;
     }
 
@@ -1626,15 +1662,19 @@
       outline-offset: 4px;
     }
 
-    .interface-info__dot:hover {
+    .interface-info__dot:hover::before {
       background: #686871;
-      transform: scale(1.08);
+      transform: translate(-50%, -50%) scale(1.08);
     }
 
     .interface-info__dot.is-active {
+      width: 47.2px;
+    }
+
+    .interface-info__dot.is-active::before {
       width: 40px;
       background: #f5f5fb;
-      transform: scale(1);
+      transform: translate(-50%, -50%) scale(1);
     }
 
     @media (max-width: 1200px) {
