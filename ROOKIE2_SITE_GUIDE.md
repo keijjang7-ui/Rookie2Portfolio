@@ -385,7 +385,7 @@ Intro motion overlay 카피 기준:
 - full 상태에 도달한 뒤에는 카드를 viewport에 계속 고정하지 않습니다. sticky stage가 끝나면 full 영상과 `System_info1`이 하나의 흐름처럼 함께 위로 스크롤됩니다.
 - 카드 확장 중 radius는 현재 breakpoint의 시작값에서 `0px`까지 보간합니다. 데스크톱 시작값은 Figma 기준 `36px`입니다.
 - System 영상은 일반 playback입니다. Intro/Product motion처럼 scroll-scrub으로 currentTime을 제어하지 않습니다. 화면 안에 있으면 재생하고, 섹션을 벗어나면 현재 시간을 유지한 채 pause합니다.
-- `System_info1`은 Figma 기준으로 상단 `800px` 폭의 state 텍스트, `200px` 간격, `586 x 675` 이미지 카드 2개와 각 캡션으로 구성합니다. 데스크톱 카드 gap은 `28px`입니다. 카드와 캡션 사이 간격은 데스크톱 `32px`, 1200 이하 `28px`, 760 이하 `24px`, 560 이하 `20px`입니다. 카드 확장 중에는 sticky stage 안의 `aria-hidden` pinned 복제본을 full 영상 하단 기준 위치에 미리 배치해, 문구와 2개 카드가 카드와 같은 그룹처럼 들어오게 합니다. 데스크톱/태블릿은 `800px`, 모바일은 `400px` 하단 기준을 사용합니다. 카드가 full 상태에 도달하면 pinned 복제본을 숨기고 동일한 위치의 실제 `System_info1` flow 섹션을 보여주어, 이후에는 영상과 정보가 문서 흐름 안에서 함께 스크롤됩니다.
+- `System_info1`은 Figma 기준으로 상단 `800px` 폭의 state 텍스트, `200px` 간격, `586 x 675` 이미지 카드 2개와 각 캡션으로 구성합니다. 데스크톱 카드 gap은 `28px`입니다. 카드와 캡션 사이 간격은 데스크톱 `32px`, 1200 이하 `28px`, 760 이하 `24px`, 560 이하 `20px`입니다. `System_info1`은 별도의 pinned/flow 복제본으로 전환하지 않고 sticky stage 안의 단일 실제 섹션으로 유지합니다. 위치는 full 영상 하단 기준에 미리 고정해, 카드가 커질 때 문구와 2개 카드가 아래에서 따라 올라오거나 전환 시점에 튀지 않게 합니다. 데스크톱/태블릿은 `800px`, 모바일은 `400px` 하단 기준을 사용합니다.
 - 카드 아래 캡션은 `sub` 타입이며 데스크톱 기준 Pretendard Regular `24px`, line-height `1.4`, 텍스트 박스 폭 `550px`를 사용합니다. 카드 좌측선 기준 텍스트 시작점은 공통 optical inset을 적용해 데스크톱 `8px`, 1200 이하 `6px`, 560 이하 `4px` 안쪽으로 둡니다. Figma의 letter spacing은 `-2%`이지만 사이트 구현에서는 음수 자간을 쓰지 않는 기준에 맞춰 `0`으로 유지합니다.
 
 ## 스크롤/비디오 스크립트 기준

@@ -630,20 +630,11 @@
       color: #f9f9fa;
     }
 
-    .system-info--pinned {
+    .system-info--stage {
       position: absolute;
       top: var(--system-full-height);
       left: 0;
       width: 100%;
-      pointer-events: none;
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .system-info--flow {
-      margin-top: calc(var(--system-full-height) - 100svh);
-      opacity: 0;
-      visibility: hidden;
     }
 
     .system-info__inner {
@@ -2796,45 +2787,25 @@
             aria-hidden="true"
           ></video>
         </div>
-        <div class="system-info system-info--pinned" data-system-info-pinned aria-hidden="true">
+        <section class="system-info system-info--stage" aria-label="Rookie2 connected system">
           <div class="system-info__inner">
             <p class="system-info__lead">Connected through 5G and NAVER Cloud, Rookie2 continuously shares intelligence across one connected robotic ecosystem.</p>
             <div class="system-info__cards">
               <article class="system-info__item">
                 <div class="system-info__media">
-                  <img class="system-info__image" src="./assets/images/system/system-info-card-01.webp" alt="" loading="lazy" decoding="async">
+                  <img class="system-info__image" src="./assets/images/system/system-info-card-01.webp" alt="Rookie2 navigating over a digital indoor map" loading="lazy" decoding="async">
                 </div>
                 <p class="system-info__caption">A real-time digital understanding of indoor spaces enables Rookie2 to navigate with confidence.</p>
               </article>
               <article class="system-info__item">
                 <div class="system-info__media">
-                  <img class="system-info__image" src="./assets/images/system/system-info-card-02.webp" alt="" loading="lazy" decoding="async">
+                  <img class="system-info__image" src="./assets/images/system/system-info-card-02.webp" alt="Rookie2 robots operating in a building environment" loading="lazy" decoding="async">
                 </div>
                 <p class="system-info__caption">Every robot works as part of one connected system, sharing information across the building in real time.</p>
               </article>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="system-info system-info--flow" data-system-info-flow aria-label="Rookie2 connected system">
-      <div class="system-info__inner">
-        <p class="system-info__lead">Connected through 5G and NAVER Cloud, Rookie2 continuously shares intelligence across one connected robotic ecosystem.</p>
-        <div class="system-info__cards">
-          <article class="system-info__item">
-            <div class="system-info__media">
-              <img class="system-info__image" src="./assets/images/system/system-info-card-01.webp" alt="Rookie2 navigating over a digital indoor map" loading="lazy" decoding="async">
-            </div>
-            <p class="system-info__caption">A real-time digital understanding of indoor spaces enables Rookie2 to navigate with confidence.</p>
-          </article>
-          <article class="system-info__item">
-            <div class="system-info__media">
-              <img class="system-info__image" src="./assets/images/system/system-info-card-02.webp" alt="Rookie2 robots operating in a building environment" loading="lazy" decoding="async">
-            </div>
-            <p class="system-info__caption">Every robot works as part of one connected system, sharing information across the building in real time.</p>
-          </article>
-        </div>
+        </section>
       </div>
     </section>
   </main>
@@ -2854,8 +2825,6 @@
     const systemMotionSection = document.querySelector("[data-system-motion-section]");
     const systemMotionCard = document.querySelector("[data-system-motion-card]");
     const systemMotionVideo = document.querySelector("[data-system-motion-video]");
-    const systemInfoPinned = document.querySelector("[data-system-info-pinned]");
-    const systemInfoFlow = document.querySelector("[data-system-info-flow]");
     const COPY_REVEAL_START_SECONDS = 1.6;
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
     const COPY_REVEAL_DISTANCE = 80;
@@ -3111,18 +3080,6 @@
       systemMotionCard.style.setProperty("--system-current-height", `${nextHeight.toFixed(2)}px`);
       systemMotionCard.style.setProperty("--system-current-top", `${nextTop.toFixed(2)}px`);
       systemMotionCard.style.setProperty("--system-current-radius", `${nextRadius.toFixed(2)}px`);
-
-      const flowIsActive = rawProgress >= 0.999;
-
-      if (systemInfoPinned) {
-        systemInfoPinned.style.opacity = flowIsActive ? "0" : "1";
-        systemInfoPinned.style.visibility = flowIsActive ? "hidden" : "visible";
-      }
-
-      if (systemInfoFlow) {
-        systemInfoFlow.style.opacity = flowIsActive ? "1" : "0";
-        systemInfoFlow.style.visibility = flowIsActive ? "visible" : "hidden";
-      }
 
       syncSystemMotionVideoPlayback();
     }
