@@ -177,7 +177,8 @@
       letter-spacing: 2px;
       font-weight: 600;
       pointer-events: none;
-      transform: translateX(-50%);
+      transform: translate3d(-50%, var(--hero-foreground-offset, 0px), 0);
+      will-change: transform;
     }
 
     .hero-scroll__line {
@@ -227,6 +228,8 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-start;
+      transform: translate3d(0, var(--hero-foreground-offset, 0px), 0);
+      will-change: transform;
     }
 
     .hero__title {
@@ -2394,6 +2397,16 @@
         transform: none;
         will-change: auto;
       }
+
+      .hero__content {
+        transform: none;
+        will-change: auto;
+      }
+
+      .hero-scroll {
+        transform: translateX(-50%);
+        will-change: auto;
+      }
     }
 
     @media (hover: none) and (pointer: coarse) and (max-width: 1200px) {
@@ -3149,8 +3162,10 @@
     function updateHeroBackground() {
       const heroHeight = heroSection ? heroSection.offsetHeight : 0;
       const introTravel = clamp(window.scrollY, 0, heroHeight);
-      const offset = introTravel * -0.3;
-      heroBackground.style.setProperty("--hero-bg-offset", `${offset}px`);
+      const backgroundOffset = introTravel * -0.3;
+      const foregroundOffset = introTravel * 0.7;
+      heroBackground.style.setProperty("--hero-bg-offset", `${backgroundOffset}px`);
+      heroSection.style.setProperty("--hero-foreground-offset", `${foregroundOffset}px`);
     }
 
     function updateScrollState() {
