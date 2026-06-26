@@ -4064,6 +4064,7 @@
       const iconItems = Array.from(interfaceIconGrid.querySelectorAll("[data-lottie-key]"));
       const lottieData = window.ROOKIE2_INTERFACE_LOTTIES || {};
       const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+      const ICON_IDLE_DELAY = 100;
       let selectedTouchState = null;
       let idleTimer = 0;
       let idleState = null;
@@ -4110,7 +4111,7 @@
         return candidates[0] || null;
       }
 
-      function scheduleIconIdle(delay = 1000) {
+      function scheduleIconIdle(delay = ICON_IDLE_DELAY) {
         clearIconIdleTimer();
 
         if (!canRunIconIdle()) {
@@ -4131,7 +4132,7 @@
         const state = chooseIdleIcon();
 
         if (!state) {
-          scheduleIconIdle(1000);
+          scheduleIconIdle();
           return;
         }
 
@@ -4182,7 +4183,7 @@
 
         window.setTimeout(() => {
           state.item.classList.remove("is-returning");
-          scheduleIconIdle(1000);
+          scheduleIconIdle();
         }, 180);
       }
 
@@ -4368,7 +4369,7 @@
           iconsInView = Boolean(entry && entry.isIntersecting);
 
           if (iconsInView) {
-            scheduleIconIdle(1000);
+            scheduleIconIdle();
             return;
           }
 
@@ -4383,7 +4384,7 @@
 
         iconIdleObserver.observe(interfaceIconGrid);
       } else {
-        scheduleIconIdle(1000);
+        scheduleIconIdle();
       }
 
       document.addEventListener("pointerdown", (event) => {
@@ -4404,7 +4405,7 @@
         iconStates.forEach(finishIconReturn);
 
         if (!reducedMotionQuery.matches) {
-          scheduleIconIdle(1000);
+          scheduleIconIdle();
         }
       };
 
