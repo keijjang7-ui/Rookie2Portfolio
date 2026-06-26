@@ -637,6 +637,14 @@
       width: 100%;
     }
 
+    .system-motion-tail {
+      position: relative;
+      z-index: 2;
+      height: 0;
+      margin-top: -1px;
+      background: #151517;
+    }
+
     .system-info__inner {
       width: var(--section-width);
       margin: 0 auto;
@@ -2158,6 +2166,10 @@
         padding-bottom: 96px;
       }
 
+      .system-motion-tail {
+        height: var(--system-motion-tail-height, 0px);
+      }
+
       .section03 {
         --visual-card-width: var(--section-width);
         --visual-card-height: 320px;
@@ -2808,6 +2820,7 @@
         </section>
       </div>
     </section>
+    <div class="system-motion-tail" data-system-motion-tail aria-hidden="true"></div>
   </main>
 
   <script src="./assets/js/lottie.min.js"></script>
@@ -2825,6 +2838,8 @@
     const systemMotionSection = document.querySelector("[data-system-motion-section]");
     const systemMotionCard = document.querySelector("[data-system-motion-card]");
     const systemMotionVideo = document.querySelector("[data-system-motion-video]");
+    const systemInfoStage = document.querySelector(".system-info--stage");
+    const systemMotionTail = document.querySelector("[data-system-motion-tail]");
     const COPY_REVEAL_START_SECONDS = 1.6;
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
     const COPY_REVEAL_DISTANCE = 80;
@@ -3058,6 +3073,18 @@
       return window.matchMedia("(max-width: 560px)").matches
         ? Math.min(400, window.innerHeight)
         : Math.min(800, window.innerHeight);
+    }
+
+    function updateSystemMotionTail() {
+      if (!systemMotionTail || !systemInfoStage) {
+        return;
+      }
+
+      const shouldUseTail = window.matchMedia("(max-width: 560px)").matches;
+      const infoBottom = getSystemTargetHeight() + systemInfoStage.offsetHeight;
+      const nextHeight = shouldUseTail ? Math.max(0, infoBottom - window.innerHeight) : 0;
+
+      systemMotionTail.style.setProperty("--system-motion-tail-height", `${nextHeight.toFixed(2)}px`);
     }
 
     function updateSystemMotion() {
@@ -4379,7 +4406,10 @@
     }
 
     window.addEventListener("scroll", updateScrollState, { passive: true });
-    window.addEventListener("resize", updateScrollState);
+    window.addEventListener("resize", () => {
+      updateSystemMotionTail();
+      updateScrollState();
+    });
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("keydown", handleKeydown);
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
@@ -4392,6 +4422,22 @@
       systemMotionVideo.load();
     }
 
+    if ("ResizeObserver" in window && systemInfoStage) {
+      const systemInfoObserver = new ResizeObserver(() => {
+        updateSystemMotionTail();
+        updateScrollState();
+      });
+      systemInfoObserver.observe(systemInfoStage);
+    }
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(() => {
+        updateSystemMotionTail();
+        updateScrollState();
+      }).catch(() => {});
+    }
+
+    updateSystemMotionTail();
     updateHeroBackground();
     updateSystemMotion();
     initializeVisualCarousel();
