@@ -33,7 +33,6 @@
       --type-state-line: 1.4;
       --type-sub-line: 1.4;
       --left-text-optical-inset: 8px;
-      --system-full-height: min(800px, 100svh);
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--copy-black);
       background: var(--page-white);
@@ -631,7 +630,7 @@
 
     .system-info--pinned {
       position: absolute;
-      top: var(--system-full-height);
+      top: min(800px, 100svh);
       left: 0;
       width: 100%;
       pointer-events: none;
@@ -640,7 +639,7 @@
     }
 
     .system-info--flow {
-      margin-top: calc(var(--system-full-height) - 100svh);
+      margin-top: calc(min(800px, 100svh) - 100svh);
       opacity: 0;
       visibility: hidden;
     }
@@ -1982,7 +1981,6 @@
         --section-side: 28px;
         --section-gutter: 56px;
         --left-text-optical-inset: 4px;
-        --system-full-height: min(400px, 100svh);
       }
 
       .hero-intro {
@@ -3078,12 +3076,6 @@
       systemMotionVideoPlayAttempted = false;
     }
 
-    function getSystemTargetHeight() {
-      return window.matchMedia("(max-width: 560px)").matches
-        ? Math.min(400, window.innerHeight)
-        : Math.min(800, window.innerHeight);
-    }
-
     function updateSystemMotion() {
       if (!systemMotionSection || !systemMotionCard) {
         return;
@@ -3094,7 +3086,7 @@
       const expansionProgress = easeInOutCubic(rawProgress);
       const topProgress = expansionProgress;
       const targetWidth = window.innerWidth;
-      const targetHeight = getSystemTargetHeight();
+      const targetHeight = Math.min(800, window.innerHeight);
       const nextWidth = initial.width + (targetWidth - initial.width) * expansionProgress;
       const nextHeight = initial.height + (targetHeight - initial.height) * expansionProgress;
       const nextTop = initial.top * (1 - topProgress);

@@ -20,6 +20,8 @@
 - `assets/images/interface-design/info-card-02-left.webp`, `assets/images/interface-design/info-card-02-right.webp`: Interface Design `Info` 1번 그룹의 좌우 이미지 카드입니다.
 - `assets/media/Interface_mv_01.mp4`: Interface Design `Info` 2번 그룹의 motion 카드 데스크톱/기본 HEVC 영상입니다.
 - `assets/media/Interface_mv_01-m.mp4`: Interface Design `Info` 2번 그룹의 모바일 `560px` 이하 전용 HEVC 영상입니다.
+- `assets/media/System_mv1.mp4`: System 섹션의 카드에서 풀 화면으로 확장되는 motion 영상입니다. 영상 시간은 스크롤로 scrub하지 않고, 화면 안에 있을 때 정상 재생하며 화면을 벗어나면 pause합니다.
+- `assets/images/system/system-info-card-01.webp`, `assets/images/system/system-info-card-02.webp`: System `System_info1`의 2개 이미지 카드입니다. Figma의 이미지 카드 노드를 WebP로 변환해 최종 자산으로 보관합니다.
 - `assets/images/interface-design/info-card-distance-near.svg`, `assets/images/interface-design/info-card-distance-mid.svg`, `assets/images/interface-design/info-card-distance-far.svg`: Interface Design `Info` 3번 그룹의 viewing distance 그래픽입니다.
 - `assets/images/interface-design/info-card-05-nice.webp`, `assets/images/interface-design/info-card-05-pin.webp`, `assets/images/interface-design/info-card-05-destination.webp`, `assets/images/interface-design/info-card-05-depart.webp`: Interface Design `Info` 4번 그룹의 status interface 예시 이미지입니다. 모바일 전용 이미지는 `info-card-05-pin-m.webp`, `info-card-05-destination-m.webp`입니다.
 - `assets/fonts/a-type/AType-Bold.otf`: Hero 타이틀 `Rookie2`에 사용하는 A Type 웹폰트입니다. 사이트에서 쓰는 두께만 `assets` 아래에서 관리합니다.
@@ -81,6 +83,10 @@
   - `Product_mv2`
   - `Product_img2`
   - `Product_mv3`
+  - `System_title`
+  - `System_mv1`
+  - `System_mv1_full`
+  - `System_info1`
 - Figma의 `Intro` node id는 `1:26`입니다.
 - Figma의 `Hero_Tablet` node id는 `30:2`입니다.
 - Figma의 `Hero_Mobile` node id는 `18:2`입니다.
@@ -364,6 +370,22 @@ Intro motion overlay 카피 기준:
 - 모바일 `560px` 이하에서는 `Visual Principles`와의 경계에서 흰 배경이 1px 새지 않도록 `.section04`에 `margin-top: -1px` 보정을 둡니다.
 - 모바일 `560px` 이하에서는 데스크톱 좁은 창에서 과한 빈 공간이 생기지 않도록 `.section03`의 `min-height: 100svh`를 `auto`로 풉니다.
 
+## System 섹션 기준
+
+- Figma 레이어는 `System_title`, `System_mv1`, `System_mv1_full`, `System_info1` 순서입니다. 현재 구현은 네 레이어 흐름을 모두 포함합니다.
+- System 섹션의 배경 컬러는 Figma 기준 `#151517`로 통일합니다.
+- `System_title`은 `margin-top: -100svh`로 Product 마지막 sticky motion 위를 덮듯 진입합니다. 데스크톱 기준 title 내부의 상단 여백은 `360px`입니다.
+- Product 마지막 motion은 System title의 덮임을 위해 `100svh` hold 구간을 추가로 가집니다. 영상 scrub progress는 이 hold 구간을 제외하고 계산하므로, Product 영상이 완전히 끝난 뒤 System title이 덮여 올라오기 시작합니다.
+- System title이 Product 마지막 motion을 덮는 hold 구간에서는 Product 마지막 영상과 overlay 텍스트에 hero 배경과 같은 `0.3` 배율의 parallax offset을 적용합니다. System 섹션은 일반 scroll 속도로 올라오고, 이전 영상/텍스트는 더 느리게 위로 밀려나는 구조입니다.
+- `System_mv1`은 처음에는 `1200 x 675` 비율의 카드로 보이고, 카드 중심이 viewport의 약 `62%` 지점에 도달한 뒤부터 같은 sticky stage 안에서 `System_mv1_full` 상태처럼 좌우 full width로 확장됩니다. 중앙 도달 시점보다 조금 이르게 확장을 시작하기 위한 기준입니다.
+- 카드 확장은 중앙 기준 scale이 아니라 상단 기준 확장처럼 보여야 합니다. 좌우 폭이 확장되기 시작하는 시점부터 초기 top 값에서 `top: 0`까지 함께 보간해, 확장 시작 순간에 카드가 아래로 튀지 않고 full 상태에 동시에 붙는 흐름을 유지합니다.
+- full 상태의 높이는 데스크톱/태블릿 기준 `800px`입니다. 모바일 `560px` 이하에서는 영상 존재감과 다음 정보의 진입 균형을 위해 `400px`를 사용합니다. 각 기준 높이는 viewport 높이를 넘지 않도록 `min(..., 100svh)`로 제한합니다.
+- full 상태에 도달한 뒤에는 카드를 viewport에 계속 고정하지 않습니다. sticky stage가 끝나면 full 영상과 `System_info1`이 하나의 흐름처럼 함께 위로 스크롤됩니다.
+- 카드 확장 중 radius는 현재 breakpoint의 시작값에서 `0px`까지 보간합니다. 데스크톱 시작값은 Figma 기준 `36px`입니다.
+- System 영상은 일반 playback입니다. Intro/Product motion처럼 scroll-scrub으로 currentTime을 제어하지 않습니다. 화면 안에 있으면 재생하고, 섹션을 벗어나면 현재 시간을 유지한 채 pause합니다.
+- `System_info1`은 Figma 기준으로 상단 `800px` 폭의 state 텍스트, `200px` 간격, `586 x 675` 이미지 카드 2개와 각 캡션으로 구성합니다. 데스크톱 카드 gap은 `28px`입니다. 카드와 캡션 사이 간격은 데스크톱 `32px`, 1200 이하 `28px`, 760 이하 `24px`, 560 이하 `20px`입니다. 카드 확장 중에는 sticky stage 안의 `aria-hidden` pinned 복제본을 full 영상 하단 기준 위치에 미리 배치해, 문구와 2개 카드가 카드와 같은 그룹처럼 들어오게 합니다. 데스크톱/태블릿은 `800px`, 모바일은 `400px` 하단 기준을 사용합니다. 카드가 full 상태에 도달하면 pinned 복제본을 숨기고 동일한 위치의 실제 `System_info1` flow 섹션을 보여주어, 이후에는 영상과 정보가 문서 흐름 안에서 함께 스크롤됩니다.
+- 카드 아래 캡션은 `sub` 타입이며 데스크톱 기준 Pretendard Regular `24px`, line-height `1.4`, 텍스트 박스 폭 `550px`를 사용합니다. 카드 좌측선 기준 텍스트 시작점은 공통 optical inset을 적용해 데스크톱 `8px`, 1200 이하 `6px`, 560 이하 `4px` 안쪽으로 둡니다. Figma의 letter spacing은 `-2%`이지만 사이트 구현에서는 음수 자간을 쓰지 않는 기준에 맞춰 `0`으로 유지합니다.
+
 ## 스크롤/비디오 스크립트 기준
 
 스크립트는 `index.html` 하단에 있습니다.
@@ -374,6 +396,8 @@ Intro motion overlay 카피 기준:
 - `getMotionProgress()`: Intro motion 섹션 내 스크롤 progress 계산
 - `updateVideoTarget()`: progress를 video target time으로 변환
 - `scrub()`: 영상 currentTime을 targetTime으로 부드럽게 따라가게 함. 터치 환경에서는 더 빠르게 따라붙도록 보간값을 높입니다.
+- `updateSystemMotion()`: System 섹션의 sticky stage 안에서 카드 폭, 높이, top, radius를 scroll progress에 맞춰 보간합니다.
+- `syncSystemMotionVideoPlayback()`: System 영상이 viewport에 보이면 재생하고, 벗어나면 pause합니다.
 - `scrollToPosition()`: wheel/key 커스텀 스크롤 처리
 - `VIDEO_FALLBACK_ENABLED`: 기본값은 `false`입니다. fallback 관련 data 속성과 함수는 남겨두되, 이 값이 `false`인 동안은 `assets/media_original/` 소스를 선택하지 않습니다.
 - `supportsHevcVideo`: 브라우저의 HEVC/H.265 MP4 지원 여부를 `canPlayType()`으로 확인합니다. fallback 기능을 다시 켤 때 판단 기준으로 사용합니다.
