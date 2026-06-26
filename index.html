@@ -640,7 +640,7 @@
     .system-motion-tail {
       position: relative;
       z-index: 2;
-      height: 0;
+      height: var(--system-motion-tail-height, 0px);
       margin-top: -1px;
       background: #151517;
     }
@@ -2166,10 +2166,6 @@
         padding-bottom: 96px;
       }
 
-      .system-motion-tail {
-        height: var(--system-motion-tail-height, 0px);
-      }
-
       .section03 {
         --visual-card-width: var(--section-width);
         --visual-card-height: 320px;
@@ -3080,9 +3076,8 @@
         return;
       }
 
-      const shouldUseTail = window.matchMedia("(max-width: 560px)").matches;
       const infoBottom = getSystemTargetHeight() + systemInfoStage.offsetHeight;
-      const nextHeight = shouldUseTail ? Math.max(0, infoBottom - window.innerHeight) : 0;
+      const nextHeight = Math.max(0, infoBottom - window.innerHeight);
 
       systemMotionTail.style.setProperty("--system-motion-tail-height", `${nextHeight.toFixed(2)}px`);
     }
