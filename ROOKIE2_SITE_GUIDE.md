@@ -377,6 +377,8 @@ Intro motion overlay 카피 기준:
 - `System_title`은 `margin-top: -100svh`로 Product 마지막 sticky motion 위를 덮듯 진입합니다. 데스크톱 기준 title 내부의 상단 여백은 `360px`입니다.
 - Product 마지막 motion은 System title의 덮임을 위해 `100svh` hold 구간을 추가로 가집니다. 영상 scrub progress는 이 hold 구간을 제외하고 계산하므로, Product 영상이 완전히 끝난 뒤 System title이 덮여 올라오기 시작합니다.
 - System title이 Product 마지막 motion을 덮는 hold 구간에서는 Product 마지막 영상과 overlay 텍스트에 hero 배경과 같은 `0.3` 배율의 parallax offset을 적용합니다. System 섹션은 일반 scroll 속도로 올라오고, 이전 영상/텍스트는 더 느리게 위로 밀려나는 구조입니다.
+- 모바일 `560px` 이하에서는 Product 마지막 motion의 stage/video 배경을 System 배경과 같은 `#151517`로 맞춰, System이 덮여 올라오기 전 하단 빈 영역이 검게 분리되어 보이지 않게 합니다.
+- `System_title`과 `System_mv1` 사이에 1px 배경선이 보이지 않도록 `System_mv1` 섹션에는 `margin-top: -1px` 보정을 둡니다.
 - `System_mv1`은 처음에는 `1200 x 675` 비율의 카드로 보이고, 카드 중심이 viewport의 약 `62%` 지점에 도달한 뒤부터 같은 sticky stage 안에서 `System_mv1_full` 상태처럼 좌우 full width로 확장됩니다. 중앙 도달 시점보다 조금 이르게 확장을 시작하기 위한 기준입니다.
 - 카드 확장은 중앙 기준 scale이 아니라 상단 기준 확장처럼 보여야 합니다. 좌우 폭이 확장되기 시작하는 시점부터 초기 top 값에서 `top: 0`까지 함께 보간해, 확장 시작 순간에 카드가 아래로 튀지 않고 full 상태에 동시에 붙는 흐름을 유지합니다.
 - full 상태의 높이는 데스크톱/태블릿 기준 `800px`입니다. 모바일 `560px` 이하에서는 영상 존재감과 다음 정보의 진입 균형을 위해 `400px`를 사용합니다. 각 기준 높이는 viewport 높이를 넘지 않도록 `min(..., 100svh)`로 제한합니다.
