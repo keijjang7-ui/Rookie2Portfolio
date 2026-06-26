@@ -4,3 +4,4 @@ node_modules/
 .env
 .env.*
 /A type/
+/assets/media_original/

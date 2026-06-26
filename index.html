@@ -2527,6 +2527,7 @@
     const VISUAL_DRAG_THRESHOLD_RATIO = 0.15;
     const VISUAL_SWIPE_LOCK_DISTANCE = 8;
     const VISUAL_SWIPE_AXIS_RATIO = 1.15;
+    const VIDEO_FALLBACK_ENABLED = false;
     const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
     const videoSupportProbe = document.createElement("video");
     const HEVC_CODEC_TYPES = [
@@ -2563,7 +2564,7 @@
     const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
 
     function shouldUseVideoFallback(video) {
-      return video.dataset.forceFallback === "true" || !supportsHevcVideo;
+      return VIDEO_FALLBACK_ENABLED && (video.dataset.forceFallback === "true" || !supportsHevcVideo);
     }
 
     function getMotionVideoSource(video) {
@@ -2574,7 +2575,7 @@
         return fallbackSource;
       }
 
-      return hevcSource || fallbackSource;
+      return hevcSource || (VIDEO_FALLBACK_ENABLED ? fallbackSource : "");
     }
 
     function setVideoSource(video, nextSource) {
@@ -2589,6 +2590,10 @@
     }
 
     function switchVideoToFallback(video, fallbackSource) {
+      if (!VIDEO_FALLBACK_ENABLED) {
+        return false;
+      }
+
       if (!fallbackSource || video.dataset.forceFallback === "true" || video.dataset.currentSrc === fallbackSource) {
         return false;
       }
@@ -3184,7 +3189,7 @@
           return fallbackSource;
         }
 
-        return hevcSource || fallbackSource;
+        return hevcSource || (VIDEO_FALLBACK_ENABLED ? fallbackSource : "");
       }
 
       function getInterfaceMotionVideoFallbackSource() {
