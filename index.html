@@ -621,6 +621,67 @@
       user-select: none;
     }
 
+    .system-motion--integration {
+      --system-card-initial-height: 520px;
+      height: auto;
+      min-height: 0;
+      padding: 80px 0 0;
+      background: #151517;
+    }
+
+    .system-motion--integration .system-motion__stage {
+      position: relative;
+      height: auto;
+      min-height: 0;
+      background: #151517;
+    }
+
+    .system-motion--integration .system-motion__card {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: var(--section-width);
+      height: var(--system-card-initial-height);
+      margin: 0 auto;
+      aspect-ratio: auto;
+      border-radius: var(--system-card-radius);
+      transform: none;
+      will-change: auto;
+    }
+
+    .system-motion--integration .system-motion-copy {
+      position: relative;
+      top: auto;
+    }
+
+    .system-motion-copy {
+      --system-motion-copy-top-gap: 80px;
+      --system-motion-copy-bottom-gap: 80px;
+      position: absolute;
+      top: var(--system-full-height);
+      left: 0;
+      width: 100%;
+      padding: var(--system-motion-copy-top-gap) 0 var(--system-motion-copy-bottom-gap);
+      background: #151517;
+      color: #f9f9fa;
+    }
+
+    .system-motion-copy__inner {
+      width: var(--section-width);
+      margin: 0 auto;
+    }
+
+    .system-motion-copy__body {
+      width: min(800px, 100%);
+      margin: 0;
+      padding-left: var(--left-text-optical-inset);
+      color: #f9f9fa;
+      font-size: var(--type-state-size);
+      line-height: var(--type-state-line);
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
     .system-info {
       --system-info-gap: 28px;
       --system-info-radius: 36px;
@@ -712,7 +773,7 @@
       position: relative;
       z-index: 3;
       margin-top: 0;
-      padding: 120px 0 200px;
+      padding: 120px 0 120px;
       background: #151517;
       color: #f9f9fa;
     }
@@ -773,6 +834,231 @@
       line-height: var(--type-state-line);
       letter-spacing: 0;
       font-weight: 600;
+    }
+
+    .system-info3 {
+      --system-info3-radius: 36px;
+      --system-info3-top-gap: 80px;
+      --system-info3-card-icon-gap: 80px;
+      --system-info3-card-height: 520px;
+      --system-info3-icon-size: 160px;
+      --system-info3-icon-column-gap: 120px;
+      --system-info3-icon-row-gap: 80px;
+      --system-info3-icon-text-gap: 8px;
+      --system-info3-icon-text-pad: 28px;
+      --system-info3-image-range: 52px;
+      --system-info3-image-y: 0px;
+      position: relative;
+      z-index: 3;
+      padding: var(--system-info3-top-gap) 0 120px;
+      background: #151517;
+      color: #f9f9fa;
+    }
+
+    .system-info3__inner {
+      width: var(--section-width);
+      margin: 0 auto;
+    }
+
+    .system-info3__media {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      height: var(--system-info3-card-height);
+      border-radius: var(--system-info3-radius);
+      background: #151517;
+    }
+
+    .system-info3__image {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      display: block;
+      width: 100%;
+      height: calc(100% + var(--system-info3-image-range) + var(--system-info3-image-range));
+      object-fit: cover;
+      object-position: center center;
+      transform: translate3d(0, calc(-50% + var(--system-info3-image-y)), 0);
+      will-change: transform;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .system-info3__icon-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 540px));
+      gap: var(--system-info3-icon-row-gap) var(--system-info3-icon-column-gap);
+      margin-top: var(--system-info3-card-icon-gap);
+    }
+
+    .system-info3__icon-item {
+      min-width: 0;
+    }
+
+    .system-info3__icon {
+      --system-info3-icon-base-size: 100%;
+      position: relative;
+      width: var(--system-info3-icon-size);
+      aspect-ratio: 1;
+      line-height: 0;
+    }
+
+    .system-info3__icon-motion {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: var(--system-info3-icon-base-size);
+      height: var(--system-info3-icon-base-size);
+      transform: translate(-50%, -50%);
+    }
+
+    .system-info3__icon--scale-83 {
+      --system-info3-icon-base-size: 83%;
+    }
+
+    .system-info3__icon--scale-94 {
+      --system-info3-icon-base-size: 94%;
+    }
+
+    .system-info3__icon--scale-105 {
+      --system-info3-icon-base-size: 105%;
+    }
+
+    .system-info3__icon--scale-110 {
+      --system-info3-icon-base-size: 110%;
+    }
+
+    .system-info3__icon-motion {
+      pointer-events: none;
+    }
+
+    .system-info3__icon-motion svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    .system-info3__icon-circle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      display: block;
+      width: 65%;
+      height: 65%;
+      overflow: hidden;
+      border-radius: 50%;
+      background: #f9f9fa;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
+    }
+
+    .system-info3__icon-circle-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .system-info3__icon--works.is-sequencing .system-info3__icon-circle {
+      animation: systemInfo3WorksPulse 4000ms cubic-bezier(0.65, 0, 0.35, 1) both;
+    }
+
+    @keyframes systemInfo3WorksPulse {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      28% {
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+
+      62% {
+        transform: translate(-50%, -50%) scale(0.9);
+      }
+
+      82% {
+        transform: translate(-50%, -50%) scale(1.04);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+    }
+
+    .system-info3__icon-copy {
+      width: 100%;
+      margin: var(--system-info3-icon-text-gap) 0 0;
+      padding: 0 var(--system-info3-icon-text-pad);
+      color: #f9f9fa;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: var(--type-sub-size);
+      line-height: var(--type-sub-line);
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .system-info4 {
+      --system-info4-gap: 28px;
+      --system-info4-radius: 36px;
+      --system-info4-caption-gap: 32px;
+      --system-info4-caption-left: 10px;
+      --system-info4-caption-right: 24px;
+      --system-info4-padding-y: 120px;
+      --system-info4-padding-top: var(--system-info4-padding-y);
+      --system-info4-padding-bottom: var(--system-info4-padding-y);
+      position: relative;
+      z-index: 3;
+      padding: var(--system-info4-padding-top) 0 var(--system-info4-padding-bottom);
+      background: #151517;
+      color: #f9f9fa;
+    }
+
+    .system-info4__inner {
+      width: var(--section-width);
+      margin: 0 auto;
+    }
+
+    .system-info4__cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--system-info4-gap);
+      align-items: start;
+    }
+
+    .system-info4__item {
+      min-width: 0;
+    }
+
+    .system-info4__media {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 381.333 / 324;
+      border-radius: var(--system-info4-radius);
+      background: #f9f9fa;
+    }
+
+    .system-info4__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .system-info4__caption {
+      margin: var(--system-info4-caption-gap) 0 0;
+      padding: 0 var(--system-info4-caption-right) 0 var(--system-info4-caption-left);
+      color: #ebeef6;
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: var(--type-sub-size);
+      line-height: var(--type-sub-line);
+      letter-spacing: 0;
+      font-weight: 400;
     }
 
     @media (min-width: 561px) {
@@ -1425,6 +1711,11 @@
       --interface-icon-hover-size: 114%;
     }
 
+    .interface-icon--scale-94 {
+      --interface-icon-base-size: 94%;
+      --interface-icon-hover-size: 130%;
+    }
+
     .interface-icon--scale-110 {
       --interface-icon-base-size: 110%;
       --interface-icon-hover-size: 152%;
@@ -1831,12 +2122,13 @@
       }
 
       .hero__body-line {
-        display: block;
+        display: none;
         white-space: nowrap;
       }
 
       .hero__body-mobile-line {
-        display: none;
+        display: block;
+        white-space: nowrap;
       }
 
       .hero__mark {
@@ -1981,6 +2273,18 @@
         min-height: 1320px;
       }
 
+      .system-motion--integration {
+        --system-card-initial-height: clamp(430px, 43.333vw, 520px);
+        height: auto;
+        min-height: 0;
+        padding-top: 56px;
+      }
+
+      .system-motion--integration .system-motion__stage {
+        height: auto;
+        min-height: 0;
+      }
+
       .system-title {
         --system-title-top-gap: 320px;
       }
@@ -1994,12 +2298,39 @@
         padding-bottom: 96px;
       }
 
+      .system-motion-copy {
+        --system-motion-copy-top-gap: 72px;
+        --system-motion-copy-bottom-gap: 56px;
+      }
+
       .system-info2 {
         --system-info2-gap: 22px;
         --system-info2-radius: 28px;
         --system-info2-copy-gap: 72px;
         padding-top: 104px;
-        padding-bottom: 160px;
+        padding-bottom: 88px;
+      }
+
+      .system-info3 {
+        --system-info3-radius: 28px;
+        --system-info3-top-gap: 72px;
+        --system-info3-card-icon-gap: 72px;
+        --system-info3-card-height: clamp(430px, 43.333vw, 520px);
+        --system-info3-icon-column-gap: 80px;
+        --system-info3-icon-row-gap: 72px;
+        --system-info3-icon-text-pad: 24px;
+        --system-info3-image-range: 44px;
+        padding-bottom: 104px;
+      }
+
+      .system-info4 {
+        --system-info4-gap: 22px;
+        --system-info4-radius: 28px;
+        --system-info4-caption-gap: 28px;
+        --system-info4-caption-left: 8px;
+        --system-info4-caption-right: 24px;
+        --system-info4-padding-y: 104px;
+        --system-info4-padding-top: 104px;
       }
 
       .interface-typo {
@@ -2078,6 +2409,18 @@
         min-height: 1120px;
       }
 
+      .system-motion--integration {
+        --system-card-initial-height: clamp(300px, 48vw, 360px);
+        height: auto;
+        min-height: 0;
+        padding-top: 48px;
+      }
+
+      .system-motion--integration .system-motion__stage {
+        height: auto;
+        min-height: 0;
+      }
+
       .system-info {
         --system-info-gap: 40px;
         --system-info-radius: 24px;
@@ -2087,11 +2430,38 @@
         padding-bottom: 48px;
       }
 
+      .system-motion-copy {
+        --system-motion-copy-top-gap: 56px;
+        --system-motion-copy-bottom-gap: 48px;
+      }
+
       .system-info2 {
         --system-info2-radius: 24px;
         --system-info2-copy-gap: 56px;
         padding-top: 56px;
-        padding-bottom: 128px;
+        padding-bottom: 48px;
+      }
+
+      .system-info3 {
+        --system-info3-radius: 24px;
+        --system-info3-top-gap: 56px;
+        --system-info3-card-icon-gap: 56px;
+        --system-info3-card-height: clamp(300px, 48vw, 360px);
+        --system-info3-icon-column-gap: 56px;
+        --system-info3-icon-row-gap: 56px;
+        --system-info3-icon-text-pad: 20px;
+        --system-info3-image-range: 30px;
+        padding-bottom: 96px;
+      }
+
+      .system-info4 {
+        --system-info4-gap: 40px;
+        --system-info4-radius: 24px;
+        --system-info4-caption-gap: 24px;
+        --system-info4-caption-left: 6px;
+        --system-info4-caption-right: 20px;
+        --system-info4-padding-y: 96px;
+        --system-info4-padding-top: 56px;
       }
 
       .system-info__cards {
@@ -2105,6 +2475,14 @@
       .system-info2__stack {
         grid-template-rows: none;
         height: auto;
+      }
+
+      .system-info3__icon-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .system-info4__cards {
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -2297,6 +2675,18 @@
         min-height: 1040px;
       }
 
+      .system-motion--integration {
+        --system-card-initial-height: 240px;
+        height: auto;
+        min-height: 0;
+        padding-top: 40px;
+      }
+
+      .system-motion--integration .system-motion__stage {
+        height: auto;
+        min-height: 0;
+      }
+
       .system-info {
         --system-info-text-gap: 72px;
         --system-info-caption-gap: 20px;
@@ -2304,11 +2694,56 @@
         padding-bottom: 32px;
       }
 
+      .system-motion-copy {
+        --system-motion-copy-top-gap: 40px;
+        --system-motion-copy-bottom-gap: 40px;
+      }
+
       .system-info2 {
         --system-info2-gap: 16px;
         --system-info2-copy-gap: 40px;
         padding-top: 40px;
-        padding-bottom: 96px;
+        padding-bottom: 32px;
+      }
+
+      .system-info3 {
+        --system-info3-top-gap: 40px;
+        --system-info3-card-icon-gap: 40px;
+        --system-info3-card-height: 240px;
+        --system-info3-icon-size: 88px;
+        --system-info3-icon-row-gap: 40px;
+        --system-info3-icon-text-pad: 16px;
+        --system-info3-image-range: 24px;
+        padding-bottom: 80px;
+      }
+
+      .system-info4 {
+        --system-info4-gap: 40px;
+        --system-info4-caption-gap: 20px;
+        --system-info4-caption-left: 4px;
+        --system-info4-caption-right: 16px;
+        --system-info4-padding-y: 80px;
+        --system-info4-padding-top: 32px;
+      }
+
+      .system-info3__icon {
+        --system-info3-icon-base-size: 90%;
+      }
+
+      .system-info3__icon--scale-83 {
+        --system-info3-icon-base-size: 74.7%;
+      }
+
+      .system-info3__icon--scale-94 {
+        --system-info3-icon-base-size: 84.6%;
+      }
+
+      .system-info3__icon--scale-105 {
+        --system-info3-icon-base-size: 94.5%;
+      }
+
+      .system-info3__icon--scale-110 {
+        --system-info3-icon-base-size: 99%;
       }
 
       .section03 {
@@ -2436,6 +2871,10 @@
 
       .interface-icon--scale-83 {
         --interface-icon-base-size: 74.7%;
+      }
+
+      .interface-icon--scale-94 {
+        --interface-icon-base-size: 84.6%;
       }
 
       .interface-icon--scale-110 {
@@ -2704,7 +3143,7 @@
               <button class="interface-icon interface-icon--scale-83" type="button" data-lottie-key="Congrat" data-lottie-start-frame="20" aria-label="Congrats icon" aria-pressed="false">
                 <span class="interface-icon__motion" aria-hidden="true"></span>
               </button>
-              <button class="interface-icon" type="button" data-lottie-key="Heart" aria-label="Heart icon" aria-pressed="false">
+              <button class="interface-icon interface-icon--scale-94" type="button" data-lottie-key="Heart" aria-label="Heart icon" aria-pressed="false">
                 <span class="interface-icon__motion" aria-hidden="true"></span>
               </button>
               <button class="interface-icon" type="button" data-lottie-key="Send" aria-label="Send icon" aria-pressed="false">
@@ -2746,10 +3185,10 @@
               <div class="interface-info__track" data-interface-info-track>
                 <div class="interface-info__group interface-info__group--split" data-interface-info-slide data-card-label="Interface touchpoints">
                   <div class="interface-info__card">
-                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-02-left.webp" alt="">
+                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-02-open.webp" alt="Rookie2 touchscreen asking the user to press open">
                   </div>
                   <div class="interface-info__card">
-                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-02-right.webp" alt="">
+                    <img class="interface-info__image" src="./assets/images/interface-design/info-card-02-delivery.webp" alt="Rookie2 carrying drinks and a package inside its storage bay">
                   </div>
                 </div>
                 <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface motion">
@@ -2950,7 +3389,7 @@
             aria-hidden="true"
           ></video>
         </div>
-        <section class="system-info system-info--stage" aria-label="Rookie2 connected system">
+        <section class="system-info system-info--stage" data-system-motion-stage-content aria-label="Rookie2 connected system">
           <div class="system-info__inner">
             <p class="system-info__lead">Connected through 5G and NAVER Cloud, Rookie2 continuously shares intelligence across a connected robotic ecosystem.</p>
             <div class="system-info__cards">
@@ -3000,6 +3439,90 @@
         <p class="system-info2__lead">From packages and drinks to lunchboxes, Rookie2 keeps everyday deliveries moving throughout modern buildings.</p>
       </div>
     </section>
+
+    <section class="system-info3" aria-label="Rookie2 service connection information">
+      <div class="system-info3__inner">
+        <div class="system-info3__media" data-system-info3-parallax-media>
+          <img class="system-info3__image" data-system-info3-parallax-image src="./assets/images/system/system-info3-card-01.webp" alt="Rookie2 service order screen on a smartphone" loading="lazy" decoding="async">
+        </div>
+        <div class="system-info3__icon-grid">
+          <article class="system-info3__icon-item">
+            <div class="system-info3__icon system-info3__icon--works" data-system-info3-works-icon aria-hidden="true">
+              <span class="system-info3__icon-circle">
+                <img class="system-info3__icon-circle-image" src="./assets/images/system/system-info3-service-works.webp" alt="" loading="lazy" decoding="async">
+              </span>
+            </div>
+            <p class="system-info3__icon-copy">Seamlessly connect NAVER WORKS and NAVER Order for a better service experience.</p>
+          </article>
+          <article class="system-info3__icon-item">
+            <div class="system-info3__icon" aria-hidden="true">
+              <span class="system-info3__icon-motion" data-system-info3-lottie="Bell"></span>
+            </div>
+            <p class="system-info3__icon-copy">Stay informed with real-time robot updates and service notifications.</p>
+          </article>
+          <article class="system-info3__icon-item">
+            <div class="system-info3__icon system-info3__icon--scale-110" aria-hidden="true">
+              <span class="system-info3__icon-motion" data-system-info3-lottie="Check"></span>
+            </div>
+            <p class="system-info3__icon-copy">Request service changes easily and follow every step of the process.</p>
+          </article>
+          <article class="system-info3__icon-item">
+            <div class="system-info3__icon system-info3__icon--scale-94" aria-hidden="true">
+              <span class="system-info3__icon-motion" data-system-info3-lottie="Heart"></span>
+            </div>
+            <p class="system-info3__icon-copy">Access your service history and current service information anytime.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="system-motion system-motion--integration" id="systemMotionIntegration" data-system-motion-section aria-label="Rookie2 seamless integration motion">
+      <div class="system-motion__stage">
+        <div class="system-motion__card" data-system-motion-card>
+          <video
+            id="systemMotionVideo2"
+            class="system-motion__video"
+            data-system-motion-video
+            data-hevc-src="./assets/media/System_mv3.mp4"
+            preload="auto"
+            muted
+            playsinline
+            loop
+            aria-hidden="true"
+          ></video>
+        </div>
+        <section class="system-motion-copy" data-system-motion-stage-content aria-label="Rookie2 seamless integration">
+          <div class="system-motion-copy__inner">
+            <p class="system-motion-copy__body">Built on NAVER&rsquo;s second headquarters, the world&rsquo;s first robot-friendly building, Rookie leverages state-of-the-art technologies and seamlessly integrates with next-generation spatial infrastructure.</p>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="system-info4" aria-label="Rookie2 interaction and building integration information">
+      <div class="system-info4__inner">
+        <div class="system-info4__cards">
+          <article class="system-info4__item">
+            <div class="system-info4__media">
+              <img class="system-info4__image" src="./assets/images/system/system-info4-card-01.webp" alt="Rookie2 display showing gaze interaction" loading="lazy" decoding="async">
+            </div>
+            <p class="system-info4__caption">Natural gaze interaction enables intuitive and comfortable communication.</p>
+          </article>
+          <article class="system-info4__item">
+            <div class="system-info4__media">
+              <img class="system-info4__image" src="./assets/images/system/system-info4-card-02.webp" alt="Rookie2 navigating around a person in a service zone" loading="lazy" decoding="async">
+            </div>
+            <p class="system-info4__caption">Human-friendly navigation ensures smooth, safe, and non-threatening movement.</p>
+          </article>
+          <article class="system-info4__item">
+            <div class="system-info4__media">
+              <img class="system-info4__image" src="./assets/images/system/system-info4-card-03.webp" alt="Rookie2 operating with elevators and ROBOPORT stations" loading="lazy" decoding="async">
+            </div>
+            <p class="system-info4__caption">Seamlessly access elevators and ROBOPORT&trade; for continuous autonomous operation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
   </main>
 
   <script src="./assets/js/lottie.min.js"></script>
@@ -3014,11 +3537,9 @@
     const interfaceInfoTrack = document.querySelector("[data-interface-info-track]");
     const interfaceInfoIndicator = document.querySelector("[data-interface-info-indicator]");
     const interfaceIconGrid = document.querySelector("[data-interface-icons]");
-    const systemMotionSection = document.querySelector("[data-system-motion-section]");
-    const systemMotionCard = document.querySelector("[data-system-motion-card]");
-    const systemMotionVideo = document.querySelector("[data-system-motion-video]");
-    const systemInfoStage = document.querySelector(".system-info--stage");
-    const systemMotionTail = document.querySelector("[data-system-motion-tail]");
+    const systemInfo3ParallaxMedia = document.querySelector("[data-system-info3-parallax-media]");
+    const systemInfo3IconMotions = document.querySelectorAll("[data-system-info3-lottie]");
+    const systemMotionSections = document.querySelectorAll("[data-system-motion-section]");
     const systemInfo2Video = document.querySelector("[data-system-info2-video]");
     const COPY_REVEAL_START_SECONDS = 1.6;
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
@@ -3030,6 +3551,7 @@
     const VISUAL_SWIPE_AXIS_RATIO = 1.15;
     const VIDEO_FALLBACK_ENABLED = false;
     const coarsePointerQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
+    const reducedMotionMediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const videoSupportProbe = document.createElement("video");
     const HEVC_CODEC_TYPES = [
       'video/mp4; codecs="hvc1"',
@@ -3057,10 +3579,22 @@
       }))
       .filter((state) => state.video);
 
+    const systemMotionStates = Array.from(systemMotionSections)
+      .map((section) => ({
+        section,
+        card: section.querySelector("[data-system-motion-card]"),
+        video: section.querySelector("[data-system-motion-video]"),
+        stageContent: section.querySelector("[data-system-motion-stage-content]"),
+        tail: section.nextElementSibling?.matches("[data-system-motion-tail]")
+          ? section.nextElementSibling
+          : null,
+        videoPlayAttempted: false
+      }))
+      .filter((state) => state.card);
+
     let lastScrollY = -1;
     let visualScrollTimer = 0;
     let interfaceInfoScrollTimer = 0;
-    let systemMotionVideoPlayAttempted = false;
     let systemInfo2VideoPlayAttempted = false;
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
@@ -3158,12 +3692,12 @@
       state.section.style.setProperty("--motion-cover-y", `${offset.toFixed(2)}px`);
     }
 
-    function getSystemExpansionProgress(initialMetrics) {
-      if (!systemMotionSection) {
+    function getSystemExpansionProgress(state, initialMetrics) {
+      if (!state?.section) {
         return 0;
       }
 
-      const sectionTravel = systemMotionSection.offsetHeight - window.innerHeight;
+      const sectionTravel = state.section.offsetHeight - window.innerHeight;
 
       if (sectionTravel <= 0) {
         return 0;
@@ -3171,8 +3705,8 @@
 
       const cardCenterOffset = initialMetrics.top + initialMetrics.height / 2;
       const startOffset = window.innerHeight * SYSTEM_EXPANSION_START_RATIO - cardCenterOffset;
-      const start = systemMotionSection.offsetTop - startOffset;
-      const end = systemMotionSection.offsetTop + sectionTravel;
+      const start = state.section.offsetTop - startOffset;
+      const end = state.section.offsetTop + sectionTravel;
 
       if (end <= start) {
         return window.scrollY >= start ? 1 : 0;
@@ -3197,14 +3731,14 @@
       return Number.isFinite(parsedValue) ? parsedValue : fallback;
     }
 
-    function getSystemInitialCardMetrics() {
+    function getSystemInitialCardMetrics(state) {
       const sectionGutter = getRootPixelValue("--section-gutter", 160);
       const sectionMax = getRootPixelValue("--section-max", 1200);
       const initialWidth = clamp(window.innerWidth - sectionGutter, 0, sectionMax);
-      const initialHeight = initialWidth * 0.5625;
-      const requestedTop = getElementPixelValue(systemMotionSection, "--system-card-top", 80);
+      const initialHeight = getElementPixelValue(state?.section, "--system-card-initial-height", initialWidth * 0.5625);
+      const requestedTop = getElementPixelValue(state?.section, "--system-card-top", 80);
       const initialTop = Math.min(requestedTop, Math.max(0, window.innerHeight - initialHeight));
-      const initialRadius = getElementPixelValue(systemMotionSection, "--system-card-radius", 36);
+      const initialRadius = getElementPixelValue(state?.section, "--system-card-radius", 36);
 
       return {
         width: initialWidth,
@@ -3214,40 +3748,40 @@
       };
     }
 
-    function isSystemMotionVisible() {
-      if (!systemMotionSection) {
+    function isSystemMotionVisible(state) {
+      if (!state?.section) {
         return false;
       }
 
-      const bounds = systemMotionSection.getBoundingClientRect();
+      const bounds = state.section.getBoundingClientRect();
       return bounds.bottom > 0 && bounds.top < window.innerHeight;
     }
 
-    function playSystemMotionVideo() {
-      if (!systemMotionVideo || !systemMotionVideo.paused || systemMotionVideoPlayAttempted) {
+    function playSystemMotionVideo(state) {
+      if (!state?.video || !state.video.paused || state.videoPlayAttempted) {
         return;
       }
 
-      systemMotionVideoPlayAttempted = true;
-      const playPromise = systemMotionVideo.play();
+      state.videoPlayAttempted = true;
+      const playPromise = state.video.play();
 
       if (playPromise) {
         playPromise.catch(() => {});
       }
     }
 
-    function syncSystemMotionVideoPlayback() {
-      if (!systemMotionVideo) {
+    function syncSystemMotionVideoPlayback(state) {
+      if (!state?.video) {
         return;
       }
 
-      if (isSystemMotionVisible()) {
-        playSystemMotionVideo();
+      if (isSystemMotionVisible(state)) {
+        playSystemMotionVideo(state);
         return;
       }
 
-      systemMotionVideo.pause();
-      systemMotionVideoPlayAttempted = false;
+      state.video.pause();
+      state.videoPlayAttempted = false;
     }
 
     function isSystemInfo2VideoVisible() {
@@ -3286,30 +3820,57 @@
       systemInfo2VideoPlayAttempted = false;
     }
 
+    function updateSystemInfo3ImageParallax() {
+      if (!systemInfo3ParallaxMedia) {
+        return;
+      }
+
+      if (reducedMotionMediaQuery.matches) {
+        systemInfo3ParallaxMedia.style.setProperty("--system-info3-image-y", "0px");
+        return;
+      }
+
+      const bounds = systemInfo3ParallaxMedia.getBoundingClientRect();
+      const travel = window.innerHeight + bounds.height;
+
+      if (travel <= 0) {
+        return;
+      }
+
+      const range = getElementPixelValue(systemInfo3ParallaxMedia, "--system-info3-image-range", 52);
+      const progress = clamp((window.innerHeight - bounds.top) / travel, 0, 1);
+      const offset = (progress - 0.5) * 2 * range;
+      systemInfo3ParallaxMedia.style.setProperty("--system-info3-image-y", `${offset.toFixed(2)}px`);
+    }
+
     function getSystemTargetHeight() {
       return window.matchMedia("(max-width: 560px)").matches
         ? Math.min(400, window.innerHeight)
         : Math.min(800, window.innerHeight);
     }
 
-    function updateSystemMotionTail() {
-      if (!systemMotionTail || !systemInfoStage) {
+    function updateSystemMotionTail(state) {
+      if (!state?.tail || !state.stageContent) {
         return;
       }
 
-      const infoBottom = getSystemTargetHeight() + systemInfoStage.offsetHeight;
+      const infoBottom = getSystemTargetHeight() + state.stageContent.offsetHeight;
       const nextHeight = Math.max(0, infoBottom - window.innerHeight);
 
-      systemMotionTail.style.setProperty("--system-motion-tail-height", `${nextHeight.toFixed(2)}px`);
+      state.tail.style.setProperty("--system-motion-tail-height", `${nextHeight.toFixed(2)}px`);
     }
 
-    function updateSystemMotion() {
-      if (!systemMotionSection || !systemMotionCard) {
+    function updateSystemMotionTails() {
+      systemMotionStates.forEach(updateSystemMotionTail);
+    }
+
+    function updateSystemMotionState(state) {
+      if (!state?.section || !state.card) {
         return;
       }
 
-      const initial = getSystemInitialCardMetrics();
-      const rawProgress = getSystemExpansionProgress(initial);
+      const initial = getSystemInitialCardMetrics(state);
+      const rawProgress = getSystemExpansionProgress(state, initial);
       const expansionProgress = easeInOutCubic(rawProgress);
       const topProgress = expansionProgress;
       const targetWidth = window.innerWidth;
@@ -3319,12 +3880,16 @@
       const nextTop = initial.top * (1 - topProgress);
       const nextRadius = initial.radius * (1 - expansionProgress);
 
-      systemMotionCard.style.setProperty("--system-current-width", `${nextWidth.toFixed(2)}px`);
-      systemMotionCard.style.setProperty("--system-current-height", `${nextHeight.toFixed(2)}px`);
-      systemMotionCard.style.setProperty("--system-current-top", `${nextTop.toFixed(2)}px`);
-      systemMotionCard.style.setProperty("--system-current-radius", `${nextRadius.toFixed(2)}px`);
+      state.card.style.setProperty("--system-current-width", `${nextWidth.toFixed(2)}px`);
+      state.card.style.setProperty("--system-current-height", `${nextHeight.toFixed(2)}px`);
+      state.card.style.setProperty("--system-current-top", `${nextTop.toFixed(2)}px`);
+      state.card.style.setProperty("--system-current-radius", `${nextRadius.toFixed(2)}px`);
 
-      syncSystemMotionVideoPlayback();
+      syncSystemMotionVideoPlayback(state);
+    }
+
+    function updateSystemMotion() {
+      systemMotionStates.forEach(updateSystemMotionState);
     }
 
     function updateHeroBackground() {
@@ -3340,6 +3905,7 @@
       updateHeroBackground();
       motionStates.forEach(updateVideoTarget);
       updateSystemMotion();
+      updateSystemInfo3ImageParallax();
       syncSystemInfo2VideoPlayback();
     }
 
@@ -4240,6 +4806,235 @@
       jumpToInfoGroup(0);
     }
 
+    function initializeSystemInfo3Icons() {
+      const worksIcon = document.querySelector("[data-system-info3-works-icon]");
+      const sequenceRoot = worksIcon?.closest(".system-info3__icon-grid");
+
+      if (!sequenceRoot || (!worksIcon && !systemInfo3IconMotions.length) || !window.lottie) {
+        return;
+      }
+
+      const lottieData = window.ROOKIE2_INTERFACE_LOTTIES || {};
+      const sequenceItems = [];
+      const lottieStates = [];
+      const WORKS_PULSE_FALLBACK_MS = 4200;
+      let iconsInView = !("IntersectionObserver" in window);
+      let isPlaying = false;
+      let stopAfterCurrent = false;
+      let currentIndex = 0;
+      let sequenceToken = 0;
+      let activeCancel = null;
+      let activeItem = null;
+
+      if (worksIcon) {
+        sequenceItems.push({ type: "works", icon: worksIcon });
+      }
+
+      systemInfo3IconMotions.forEach((motionTarget) => {
+        const animationData = lottieData[motionTarget.dataset.systemInfo3Lottie];
+        const startFrame = Number.parseInt(motionTarget.dataset.systemInfo3StartFrame || "0", 10);
+
+        if (!animationData) {
+          return;
+        }
+
+        const animation = window.lottie.loadAnimation({
+          container: motionTarget,
+          renderer: "svg",
+          loop: false,
+          autoplay: false,
+          animationData,
+          rendererSettings: {
+            preserveAspectRatio: "xMidYMid meet",
+            progressiveLoad: true
+          }
+        });
+
+        const state = {
+          type: "lottie",
+          icon: motionTarget.closest(".system-info3__icon"),
+          motionTarget,
+          animation,
+          startFrame: Number.isNaN(startFrame) ? 0 : startFrame,
+          isReady: false
+        };
+
+        lottieStates.push(state);
+        sequenceItems.push(state);
+
+        animation.addEventListener("DOMLoaded", () => {
+          state.isReady = true;
+          animation.goToAndStop(state.startFrame, true);
+          motionTarget.classList.add("is-ready");
+          maybeStartSequence();
+        });
+      });
+
+      function areSystemInfo3IconsReady() {
+        return lottieStates.every((state) => state.isReady);
+      }
+
+      function canPlaySystemInfo3Sequence() {
+        return iconsInView && !reducedMotionMediaQuery.matches && areSystemInfo3IconsReady();
+      }
+
+      function clearActiveSequenceItem() {
+        if (activeCancel) {
+          activeCancel();
+          activeCancel = null;
+        }
+
+        if (activeItem?.icon) {
+          activeItem.icon.classList.remove("is-sequencing");
+        }
+
+        activeItem = null;
+      }
+
+      function cancelSystemInfo3Sequence() {
+        sequenceToken += 1;
+        clearActiveSequenceItem();
+
+        lottieStates.forEach((state) => {
+          state.animation.goToAndStop(state.startFrame, true);
+        });
+
+        isPlaying = false;
+        stopAfterCurrent = false;
+      }
+
+      function finishSystemInfo3SequenceItem(token) {
+        if (token !== sequenceToken) {
+          return;
+        }
+
+        clearActiveSequenceItem();
+        currentIndex = (currentIndex + 1) % sequenceItems.length;
+        isPlaying = false;
+
+        if (canPlaySystemInfo3Sequence() && !stopAfterCurrent) {
+          playNextSystemInfo3SequenceItem();
+        }
+      }
+
+      function playWorksSequenceItem(item, token) {
+        const circle = item.icon.querySelector(".system-info3__icon-circle");
+
+        if (!circle) {
+          finishSystemInfo3SequenceItem(token);
+          return;
+        }
+
+        item.icon.classList.remove("is-sequencing");
+        void item.icon.offsetWidth;
+
+        let isFinished = false;
+        let fallbackTimer = 0;
+
+        const finish = () => {
+          if (isFinished) {
+            return;
+          }
+
+          isFinished = true;
+          window.clearTimeout(fallbackTimer);
+          circle.removeEventListener("animationend", finish);
+          finishSystemInfo3SequenceItem(token);
+        };
+
+        activeCancel = () => {
+          window.clearTimeout(fallbackTimer);
+          circle.removeEventListener("animationend", finish);
+        };
+
+        circle.addEventListener("animationend", finish);
+        item.icon.classList.add("is-sequencing");
+        fallbackTimer = window.setTimeout(finish, WORKS_PULSE_FALLBACK_MS);
+      }
+
+      function playLottieSequenceItem(item, token) {
+        const finish = () => {
+          item.animation.removeEventListener("complete", finish);
+          finishSystemInfo3SequenceItem(token);
+        };
+
+        activeCancel = () => {
+          item.animation.removeEventListener("complete", finish);
+        };
+
+        item.animation.addEventListener("complete", finish);
+        item.icon?.classList.add("is-sequencing");
+        item.animation.goToAndStop(item.startFrame, true);
+        item.animation.play();
+      }
+
+      function playNextSystemInfo3SequenceItem() {
+        if (isPlaying || !canPlaySystemInfo3Sequence()) {
+          return;
+        }
+
+        const item = sequenceItems[currentIndex];
+
+        if (!item) {
+          return;
+        }
+
+        isPlaying = true;
+        activeItem = item;
+        const token = sequenceToken + 1;
+        sequenceToken = token;
+
+        if (item.type === "works") {
+          playWorksSequenceItem(item, token);
+          return;
+        }
+
+        playLottieSequenceItem(item, token);
+      }
+
+      function maybeStartSequence() {
+        if (!canPlaySystemInfo3Sequence()) {
+          return;
+        }
+
+        stopAfterCurrent = false;
+        playNextSystemInfo3SequenceItem();
+      }
+
+      if ("IntersectionObserver" in window) {
+        const sequenceObserver = new IntersectionObserver((entries) => {
+          iconsInView = entries.some((entry) => entry.isIntersecting);
+
+          if (iconsInView) {
+            stopAfterCurrent = false;
+            maybeStartSequence();
+            return;
+          }
+
+          stopAfterCurrent = true;
+        }, { threshold: 0.24 });
+
+        sequenceObserver.observe(sequenceRoot);
+      } else {
+        maybeStartSequence();
+      }
+
+      const handleReducedMotionChange = () => {
+        if (reducedMotionMediaQuery.matches) {
+          cancelSystemInfo3Sequence();
+          return;
+        }
+
+        maybeStartSequence();
+      };
+
+      if (typeof reducedMotionMediaQuery.addEventListener === "function") {
+        reducedMotionMediaQuery.addEventListener("change", handleReducedMotionChange);
+      } else if (typeof reducedMotionMediaQuery.addListener === "function") {
+        reducedMotionMediaQuery.addListener(handleReducedMotionChange);
+      }
+    }
+
     function initializeInterfaceIcons() {
       if (!interfaceIconGrid || !window.lottie) {
         return;
@@ -4617,13 +5412,18 @@
       setVideoSource(state.video, getMotionVideoSource(state.video));
     });
 
-    if (systemMotionVideo) {
-      systemMotionVideo.addEventListener("loadeddata", updateScrollState);
-      systemMotionVideo.addEventListener("error", () => {
-        systemMotionVideo.pause();
+    systemMotionStates.forEach((state) => {
+      if (!state.video) {
+        return;
+      }
+
+      state.video.addEventListener("loadeddata", updateScrollState);
+      state.video.addEventListener("error", () => {
+        state.video.pause();
+        state.videoPlayAttempted = false;
       });
-      setVideoSource(systemMotionVideo, getMotionVideoSource(systemMotionVideo));
-    }
+      setVideoSource(state.video, getMotionVideoSource(state.video));
+    });
 
     if (systemInfo2Video) {
       systemInfo2Video.addEventListener("loadeddata", updateScrollState);
@@ -4636,9 +5436,14 @@
 
     window.addEventListener("scroll", updateScrollState, { passive: true });
     window.addEventListener("resize", () => {
-      updateSystemMotionTail();
+      updateSystemMotionTails();
       updateScrollState();
     });
+    if (typeof reducedMotionMediaQuery.addEventListener === "function") {
+      reducedMotionMediaQuery.addEventListener("change", updateScrollState);
+    } else if (typeof reducedMotionMediaQuery.addListener === "function") {
+      reducedMotionMediaQuery.addListener(updateScrollState);
+    }
     window.addEventListener("wheel", handleWheel, { passive: false });
     window.addEventListener("keydown", handleKeydown);
     window.addEventListener("touchstart", handleTouchStart, { passive: true });
@@ -4647,34 +5452,40 @@
       state.video.load();
     });
 
-    if (systemMotionVideo) {
-      systemMotionVideo.load();
-    }
+    systemMotionStates.forEach((state) => {
+      state.video?.load();
+    });
 
     if (systemInfo2Video) {
       systemInfo2Video.load();
     }
 
-    if ("ResizeObserver" in window && systemInfoStage) {
+    if ("ResizeObserver" in window && systemMotionStates.some((state) => state.stageContent)) {
       const systemInfoObserver = new ResizeObserver(() => {
-        updateSystemMotionTail();
+        updateSystemMotionTails();
         updateScrollState();
       });
-      systemInfoObserver.observe(systemInfoStage);
+      systemMotionStates.forEach((state) => {
+        if (state.stageContent) {
+          systemInfoObserver.observe(state.stageContent);
+        }
+      });
     }
 
     if (document.fonts && document.fonts.ready) {
       document.fonts.ready.then(() => {
-        updateSystemMotionTail();
+        updateSystemMotionTails();
         updateScrollState();
       }).catch(() => {});
     }
 
-    updateSystemMotionTail();
+    updateSystemMotionTails();
     updateHeroBackground();
     updateSystemMotion();
+    updateSystemInfo3ImageParallax();
     initializeVisualCarousel();
     initializeInterfaceInfoCarousel();
+    initializeSystemInfo3Icons();
     initializeInterfaceIcons();
     requestAnimationFrame(syncScrollProgress);
 

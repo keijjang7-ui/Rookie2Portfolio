@@ -17,13 +17,17 @@
 - `assets/images/visual-principles/card-understood-visual.webp`: Visual Principles 3번 카드 `Designed to Be Understood`의 배경 비주얼 이미지입니다.
 - `assets/images/visual-principles/card-expressive-gaze-bg.webp`: Visual Principles 4번 카드 `Expressive Gaze`의 배경 이미지입니다. 흰색 선 5개는 이미지에 굽지 않고 HTML/CSS로 얹습니다.
 - `assets/images/visual-principles/card-future-form.webp`: Visual Principles 5번 카드의 전체 이미지입니다.
-- `assets/images/interface-design/info-card-02-left.webp`, `assets/images/interface-design/info-card-02-right.webp`: Interface Design `Info` 1번 그룹의 좌우 이미지 카드입니다.
+- `assets/images/interface-design/info-card-02-open.webp`, `assets/images/interface-design/info-card-02-delivery.webp`: Interface Design `Info` 1번 그룹의 좌우 이미지 카드입니다. 왼쪽은 OPEN 터치 화면, 오른쪽은 사용자 제공 `info-card-02-delivery.png`를 WebP로 변환한 로봇 내부 적재 이미지입니다.
 - `assets/media/Interface_mv_01.mp4`: Interface Design `Info` 2번 그룹의 motion 카드 데스크톱/기본 HEVC 영상입니다.
 - `assets/media/Interface_mv_01-m.mp4`: Interface Design `Info` 2번 그룹의 모바일 `560px` 이하 전용 HEVC 영상입니다.
 - `assets/media/System_mv1.mp4`: System 섹션의 카드에서 풀 화면으로 확장되는 motion 영상입니다. 영상 시간은 스크롤로 scrub하지 않고, 화면 안에 있을 때 정상 재생하며 화면을 벗어나면 pause합니다.
 - `assets/images/system/system-info-card-01.webp`, `assets/images/system/system-info-card-02.webp`: System `System_info1`의 2개 이미지 카드입니다. Figma의 이미지 카드 노드를 WebP로 변환해 최종 자산으로 보관합니다.
 - `assets/media/System_mv2.mp4`: System `System_info2`의 첫 번째 카드 영상입니다. `assets/media_original/System_mv2.mp4` 원본을 HEVC로 압축한 최종본이며, 화면 안에 있을 때 정상 재생하고 벗어나면 pause합니다.
 - `assets/images/system/system-info2-card-02.webp`, `assets/images/system/system-info2-card-03.webp`: System `System_info2`의 오른쪽 2개 이미지 카드입니다. Figma 카드 노드를 PNG로 가져온 뒤 WebP로 변환해 최종 자산으로 보관합니다.
+- `assets/images/system/system-info3-card-01.webp`: System `System_info3`의 첫 번째 서비스 연결 카드입니다. 사용자 제공 큰 PNG 이미지를 카드 비율에 맞춰 `2208 x 1242` WebP로 변환한 최종 자산입니다.
+- `assets/images/system/system-info3-service-works.webp`: System `System_info3` 첫 번째 NAVER WORKS 아이콘입니다. 사용자 제공 `works.png`를 WebP로 변환한 자산이며, 화면에서는 CSS 원형 마스크 안에 넣어 사용합니다.
+- `assets/media/System_mv3.mp4`: `System_info3`와 `System_info4` 사이에 추가한 `Seamless Integration` 정적 카드 영상입니다. `assets/media_original/System_mv3.mp4` 원본을 HEVC로 압축한 최종본이며, 화면 안에 있을 때 일반 playback으로 재생합니다.
+- `assets/images/system/system-info4-card-01.webp`, `assets/images/system/system-info4-card-02.webp`, `assets/images/system/system-info4-card-03.webp`: System `System_info4`의 3개 이미지 카드입니다. Figma asset 원본을 작게 줄이지 않고 각각 `1718 x 1440`, `1620 x 1080`, `1620 x 1080` WebP로 변환했습니다. 첫 번째 이미지는 알파 채널을 흰 배경으로 평탄화해 최종 WebP는 모두 RGB입니다. 라운드는 이미지 파일에 굽지 않고 HTML/CSS 라운드 박스에서 `overflow: hidden`으로 처리합니다.
 - `assets/images/interface-design/info-card-distance-near.svg`, `assets/images/interface-design/info-card-distance-mid.svg`, `assets/images/interface-design/info-card-distance-far.svg`: Interface Design `Info` 3번 그룹의 viewing distance 그래픽입니다.
 - `assets/images/interface-design/info-card-05-nice.webp`, `assets/images/interface-design/info-card-05-pin.webp`, `assets/images/interface-design/info-card-05-destination.webp`, `assets/images/interface-design/info-card-05-depart.webp`: Interface Design `Info` 4번 그룹의 status interface 예시 이미지입니다. 모바일 전용 이미지는 `info-card-05-pin-m.webp`, `info-card-05-destination-m.webp`입니다.
 - `assets/fonts/a-type/AType-Bold.otf`: Hero 타이틀 `Rookie2`에 사용하는 A Type 웹폰트입니다. 사이트에서 쓰는 두께만 `assets` 아래에서 관리합니다.
@@ -90,12 +94,18 @@
   - `System_mv1_full`
   - `System_info1`
   - `System_info2`
+  - `System_info3`
+  - `System_mv2`
+  - `System_mv2_full`
+  - `System_info4`
 - Figma의 `Intro` node id는 `1:26`입니다.
 - Figma의 `Hero_Tablet` node id는 `30:2`입니다.
 - Figma의 `Hero_Mobile` node id는 `18:2`입니다.
 - Figma의 `Visual Principles` node id는 `18:25`입니다.
 - Figma의 `Interface Design` section node id는 `37:29`입니다.
-- Figma의 `System_info2` node id는 `136:44`입니다.
+- Figma의 `Landing2 > System_info2` node id는 `162:588`입니다.
+- Figma의 `Landing2 > System_info3` node id는 `162:597`입니다.
+- Figma의 `Landing2 > System_info4` node id는 `162:622`입니다.
 
 Figma 디자인을 다시 반영할 때는 먼저 Figma에서 해당 node를 확인하고, `index.html`의 현재 수작업 구조에 맞게 CSS/HTML로 변환합니다.
 
@@ -125,6 +135,9 @@ Figma 디자인을 다시 반영할 때는 먼저 Figma에서 해당 node를 확
   <section class="system-title">...</section>
   <section class="system-motion">...</section>
   <section class="system-info2">...</section>
+  <section class="system-info3">...</section>
+  <section class="system-motion system-motion--integration">...</section>
+  <section class="system-info4">...</section>
 </main>
 ```
 
@@ -172,7 +185,7 @@ Hero 배경 레이어:
   - 0~2초: opacity 0
   - 2~3.5초: opacity 0 -> 0.7
   - 3.5~5초: opacity 0.7 -> 0
-- Hero 중앙 하단에는 `Scroll` 안내와 세로 라인 애니메이션 `.hero-scroll`을 둡니다. 기본 `bottom: 40px`, 태블릿 `28px`, 모바일 `24px` 기준입니다.
+- Hero 중앙 하단에는 `Scroll` 안내와 세로 라인 애니메이션 `.hero-scroll`을 둡니다. 기본 `bottom: 40px`, 태블릿 `28px`, 모바일 `24px`, letter spacing `2px` 기준입니다.
 
 Hero 반응형 기준:
 
@@ -189,7 +202,7 @@ Hero 반응형 기준:
   - 타이틀은 상단 중앙, 최대 `80px`, `line-height: 0.7`, 1200px 기준 `top: 152px`, width `296px`
   - 설명 묶음은 1200px 기준 `top: 248px`, width `252px`, 중앙 정렬
   - 설명 eyebrow는 `20px`, body는 `16px`, body color `#818590`
-  - 태블릿 body도 Figma처럼 3줄로 고정하기 위해 `.hero__body-line`을 block + `white-space: nowrap`으로 처리합니다.
+  - 태블릿 body는 모바일과 같은 2줄 전용 카피 `Scaling autonomous delivery / across real-world buildings.`를 사용합니다. 데스크톱의 3줄 카피는 숨깁니다.
 - `max-width: 560px`: 모바일
   - Figma `Hero_Mobile` 프레임 기준: `390 x 600`
   - Hero 높이 `600px`
@@ -201,7 +214,7 @@ Hero 반응형 기준:
   - 설명 묶음은 `top: 218px`, width `252px`, 중앙 정렬
   - 타이틀과 설명 묶음의 세로 간격은 `40px`
   - 설명 eyebrow는 `20px`, body는 `16px`, body color `#818590`, eyebrow/body 간격은 `16px` 시각 기준에 맞춰 CSS margin `10px`
-  - 모바일 body는 정보량을 줄이기 위해 2줄 전용 카피 `Scaling autonomous delivery / across real-world buildings.`를 사용합니다. 데스크톱/태블릿의 3줄 카피는 숨깁니다.
+  - 모바일 body는 정보량을 줄이기 위해 태블릿과 같은 2줄 전용 카피 `Scaling autonomous delivery / across real-world buildings.`를 사용합니다. 데스크톱의 3줄 카피는 숨깁니다.
 
 ## Intro 현재 기준
 
@@ -368,7 +381,7 @@ Intro motion overlay 카피 기준:
 - 아이콘 아래 카피는 `A library of over 80 animated icons communicates status, intent, and emotion through a clear visual language. Tap or hover to see them in motion.`를 사용하며, 공통 `state` 토큰을 따릅니다.
 - `Info` 영역은 `Visual Principles` 캐러셀과 같은 스와이프/인디케이터 감각을 사용하지만, 단위는 개별 카드가 아니라 `1200px 그룹`입니다. 카드 높이, indicator 간격, 반응형 완충 구간은 `Visual Principles`와 맞추는 것을 기본값으로 봅니다.
   - 카드 높이 기준은 데스크톱과 1600px 이하 `675px`, 1200px 이하 `clamp(430px, 51.667vw, 620px)`, 760px 이하 `400px`, 560px 이하 `320px`입니다.
-  - 1번 그룹 `Interface touchpoints`: 1200px 안에 두 카드가 들어갑니다. `assets/images/interface-design/info-card-02-left.webp`, `assets/images/interface-design/info-card-02-right.webp`를 사용합니다.
+  - 1번 그룹 `Interface touchpoints`: 1200px 안에 두 카드가 들어갑니다. Figma 최신 기준으로 왼쪽은 OPEN 터치 화면(`info-card-02-open.webp`), 오른쪽은 로봇 내부 적재 이미지(`info-card-02-delivery.webp`)를 사용합니다. 오른쪽 이미지는 사용자 제공 `info-card-02-delivery.png`를 WebP로 변환한 최종 자산입니다.
   - 2번 그룹 `Interface motion`: 1200px 단일 영상 카드입니다. 기본 영상은 `assets/media/Interface_mv_01.mp4`를 사용하고, 모바일 `560px` 이하에서는 `assets/media/Interface_mv_01-m.mp4`로 교체합니다. fallback 소스 속성은 나중을 위해 남겨두지만, 현재는 `VIDEO_FALLBACK_ENABLED = false`라서 사용하지 않습니다. 해당 슬라이드가 활성 상태이면서 섹션이 보일 때만 재생합니다. 벗어나면 currentTime을 초기화하지 않고 pause하며, 다시 돌아오면 이어서 재생합니다. 활성 상태에서는 loop 재생합니다.
   - 3번 그룹 `Viewing distance`: 1200px 단일 카드입니다. 텍스트를 위, 거리 그래픽을 아래에 둡니다. `info-card-distance-near.svg`, `info-card-distance-mid.svg`, `info-card-distance-far.svg`를 HTML/CSS로 배치합니다. 내부 그래픽은 viewport에 직접 반응하지 않고 카드의 실제 콘텐츠 폭과 좌우 여백을 기준으로 가변되어야 합니다. 거리 표시 선은 Neon Teal `#32ffea`를 사용하고, 라벨은 `Personal / 0.5m`, `Social / 1-1.5m`, `Public / 3-4m` 문구를 각 이미지 중앙 기준으로 정렬합니다. 모바일에서는 세 거리 그래픽 사이 간격과 텍스트/이미지 사이 간격을 조금 넓혀 답답해 보이지 않게 유지합니다. 모바일에서는 거리 표시 선이 일러스트 선보다 굵어 보이지 않도록 `--meter-bar-height`를 낮춥니다.
   - 4번 그룹 `Status interface examples`: 1200px 안에 2x2 이미지 카드 그리드를 배치합니다. `info-card-05-nice.webp`, `info-card-05-pin.webp`, `info-card-05-destination.webp`, `info-card-05-depart.webp`를 사용합니다. 모바일 `560px` 이하에서는 `pin`과 `destination` 이미지만 각각 `info-card-05-pin-m.webp`, `info-card-05-destination-m.webp`로 교체합니다. 중첩 카드가 자체 고정 높이를 가져 전체 슬라이드 높이를 깨지 않도록 내부 카드는 `height: auto`, `min-height: 0` 기준을 유지합니다.
@@ -380,7 +393,7 @@ Intro motion overlay 카피 기준:
 
 ## System 섹션 기준
 
-- Figma 레이어는 `System_title`, `System_mv1`, `System_mv1_full`, `System_info1`, `System_info2` 순서입니다. 현재 구현은 다섯 레이어 흐름을 모두 포함합니다.
+- Figma 레이어는 `System_title`, `System_mv1`, `System_mv1_full`, `System_info1`, `System_info2`, `System_info3`, `System_mv2`, `System_mv2_full`, `System_info4` 순서입니다. 현재 구현은 `System_info3`와 `System_info4` 사이의 `Seamless Integration` 정적 카드 챕터까지 포함합니다.
 - System 섹션의 배경 컬러는 Figma 기준 `#151517`로 통일합니다.
 - `System_title`은 `margin-top: -100svh`로 Product 마지막 sticky motion 위를 덮듯 진입합니다. 데스크톱 기준 title 내부의 상단 여백은 `360px`입니다.
 - Product 마지막 motion은 System title의 덮임을 위해 `100svh` hold 구간을 추가로 가집니다. 영상 scrub progress는 이 hold 구간을 제외하고 계산하므로, Product 영상이 완전히 끝난 뒤 System title이 덮여 올라오기 시작합니다.
@@ -400,6 +413,11 @@ Intro motion overlay 카피 기준:
 - `System_info2` 카드 영역은 `1200 x 675`입니다. 왼쪽 `Card_01`은 `586 x 675` 영상 카드로 `assets/media/System_mv2.mp4`를 사용합니다. 오른쪽 컬럼은 `586 x 323.5` 이미지 카드 2개를 `28px` gap으로 쌓고, 각각 `system-info2-card-02.webp`, `system-info2-card-03.webp`를 사용합니다. 데스크톱 radius는 `36px`입니다.
 - `System_info2` 문구는 카드 영역 아래에 배치합니다. 데스크톱은 `80px`, 1200 이하 `72px`, 모바일 760 이하 `56px`, 560 이하 `40px`입니다. 모바일에서는 `System_info1`의 full 영상과 state 텍스트 사이 간격과 같은 값으로 맞춥니다. 텍스트는 state 타입, 폭 `800px`, optical inset 적용, 문구는 `From packages and drinks to lunchboxes, Rookie2 keeps everyday deliveries moving throughout modern buildings.`입니다. Figma의 letter spacing은 `-2%`이지만 사이트 구현에서는 음수 자간을 쓰지 않는 기준에 맞춰 `0`으로 유지합니다.
 - `System_info2`의 첫 번째 영상 카드는 일반 playback입니다. 화면 안에 들어오면 `play()`, 벗어나면 현재 시간을 유지한 채 `pause()`합니다.
+- `System_info3`는 Figma `Landing2 > System_info3` 기준 `1920 x 1473` 프레임입니다. 첫 카드 `Card_01`은 `x=360`, `y=80`, 폭 `1200px`, 높이 `520px` 기준이고 `assets/images/system/system-info3-card-01.webp`를 사용합니다. 카드는 고정 크기/반경을 유지하고, 내부 이미지만 스크롤 진행에 따라 위아래로 움직입니다. 카드 높이는 데스크톱 `520px`, 1200 이하 `clamp(430px, 43.333vw, 520px)`, 760 이하 `clamp(300px, 48vw, 360px)`, 560 이하 `240px`입니다. 아래로 스크롤하면 이미지가 아래로, 역스크롤하면 위로 따라가며, 움직임 폭은 데스크톱 `52px`, 1200 이하 `44px`, 760 이하 `30px`, 560 이하 `24px`입니다. `prefers-reduced-motion`에서는 이동값을 `0px`으로 둡니다. `System_info2` 문구 끝에서 첫 카드 시작까지의 간격은 데스크톱 `200px`입니다. 구현상 `System_info2` 하단 padding `120px`과 `System_info3` 상단 padding `80px`을 합쳐 맞춥니다. 반응형은 1200 이하 `88px + 72px = 160px`, 760 이하 `48px + 56px = 104px`, 560 이하 `32px + 40px = 72px`입니다.
+- `System_info3`의 `IconInfo` 영역은 Figma 기준 `2 x 2` 그리드이며 item `540 x 219`, column gap `120px`, row gap `80px`, icon slot `160px`, icon과 텍스트 사이 `8px`, 텍스트 좌우 내부 padding `28px`입니다. 텍스트는 `sub` 타입을 사용하고 사이트 기준에 따라 letter spacing은 `0`으로 둡니다. 첫 번째 NAVER WORKS 아이콘은 WebP 이미지를 `104 x 104` 원형 마스크 안에 넣어 표시합니다. 원형 크기는 icon slot의 `65%`라서 반응형에서도 다른 아이콘 슬롯과 같은 비율로 줄어듭니다. 아이콘 모션은 아이콘 그리드가 viewport에 들어오면 `Works -> Bell -> Check -> Heart` 순서로 계속 루프합니다. Works는 `4s` 동안 `100% -> 110% -> 90% -> 104% -> 100%` pulse를 실행하고, 나머지 `Bell`, `Check`, `Heart`는 Interface 섹션의 Lottie JSON 전체 타임라인을 재생합니다. 화면을 벗어나면 현재 움직이는 아이콘까지만 끝까지 재생하고 멈추며, 다시 진입하면 마지막으로 끝난 아이콘 다음부터 이어서 시작합니다. Lottie 아이콘의 슬롯 크기와 개별 scale은 Interface 아이콘 규칙을 따릅니다. 기본 슬롯은 `160px`, 560 이하에서는 `88px`이고, `Check`는 Interface의 `scale-110`, `Heart`는 `scale-94` 규칙을 그대로 사용합니다. 560 이하에서는 Interface처럼 기본 내부 그림 크기를 `90%`, `scale-110`은 `99%`, `scale-94`는 `84.6%`로 줄입니다.
+- `System_info3`와 `System_info4` 사이의 `Seamless Integration` 챕터는 `System_mv1`의 카드 스타일만 공유하고, 확장 motion은 사용하지 않습니다. 영상은 `assets/media/System_mv3.mp4`이며, 일반 playback으로 화면 안에 있을 때 재생하고 벗어나면 pause합니다. 데스크톱 기준 `System_info3` 아이콘 영역 끝과 카드 시작의 시각 간격은 `200px`이고, 기존 `System_info3` 하단 padding `120px`과 챕터 상단 padding `80px` 조합으로 맞춥니다. 카드는 정적인 초기 크기로 유지하며 높이는 데스크톱 `520px`, 1200 이하 `clamp(430px, 43.333vw, 520px)`, 760 이하 `clamp(300px, 48vw, 360px)`, 560 이하 `240px`로 줄입니다. 카드와 아래 문구 사이 간격은 정적 카드 하단 기준 `80px`입니다. 아래 문구와 `System_info4` 카드 시작 사이의 데스크톱 시각 간격은 기존처럼 `200px`이며, 문구 하단 padding `80px`과 `System_info4` 상단 padding `120px` 조합으로 맞춥니다. 1200 이하부터는 `System_info2` 문구와 `System_info3` 카드 사이 간격과 같은 합산값을 사용합니다. 1200 이하 `56px + 104px = 160px`, 760 이하 `48px + 56px = 104px`, 560 이하 `40px + 32px = 72px`입니다. 태블릿/모바일에서는 공통 `.system-motion`의 큰 scroll용 `height/min-height`가 이 정적 챕터에 다시 먹지 않도록 각 breakpoint에서 `height: auto`, `min-height: 0`을 다시 선언합니다.
+- `Seamless Integration` 챕터의 카드 아래 문구는 별도 타이틀 없이 `System_info2` 문구와 같은 state 타입으로 배치합니다. 폭은 `800px`, optical inset은 공통 `--left-text-optical-inset`을 적용하고, 문구는 `Built on NAVER's second headquarters, the world's first robot-friendly building, Rookie leverages state-of-the-art technologies and seamlessly integrates with next-generation spatial infrastructure.`입니다. Figma의 letter spacing은 `-2%`이지만 사이트 구현 기준에 따라 `0`으로 유지합니다.
+- `System_info4`는 Figma `Landing2 > System_info4` 기준 `1920 x 681` 프레임입니다. 내부 카드 그룹은 `x=360`, `y=120`, `1200 x 441`이며 3개 카드가 한 행에 배치됩니다. 카드 column gap은 `28px`, 각 이미지 박스는 `381.333 x 324`, 이미지와 캡션 사이 간격은 `32px`입니다. 캡션은 `sub` 타입을 사용하고 좌측 `10px`, 우측 `24px` 내부 여백을 둡니다. 사이트 기준에 맞춰 letter spacing은 `0`입니다. 라운드는 이미지에 굽지 않고 `.system-info4__media`의 `border-radius`와 `overflow: hidden`으로 처리합니다. 1200 이하에서는 gap `22px`, radius `28px`, caption gap `28px`를 쓰고, 760 이하에서는 `System_info1` 모바일처럼 카드+캡션 그룹이 한 열로 쌓이며 그룹 간격은 `40px`입니다. 560 이하에서는 caption gap을 `20px`로 줄입니다. `System_info4`의 상단 padding은 데스크톱에서는 기존 `120px`이고, 1200 이하 `104px`, 760 이하 `56px`, 560 이하 `32px`입니다.
 
 ## 스크롤/비디오 스크립트 기준
 
@@ -411,9 +429,12 @@ Intro motion overlay 카피 기준:
 - `getMotionProgress()`: Intro motion 섹션 내 스크롤 progress 계산
 - `updateVideoTarget()`: progress를 video target time으로 변환
 - `scrub()`: 영상 currentTime을 targetTime으로 부드럽게 따라가게 함. 터치 환경에서는 더 빠르게 따라붙도록 보간값을 높입니다.
-- `updateSystemMotion()`: System 섹션의 sticky stage 안에서 카드 폭, 높이, top, radius를 scroll progress에 맞춰 보간합니다.
-- `syncSystemMotionVideoPlayback()`: System 영상이 viewport에 보이면 재생하고, 벗어나면 pause합니다.
+- `updateSystemMotion()`: 각 `[data-system-motion-section]`의 sticky stage 안에서 카드 폭, 높이, top, radius를 scroll progress에 맞춰 보간합니다. 실제 확장 motion은 `System_mv1`에서 사용하고, `Seamless Integration` 챕터는 CSS에서 정적 카드로 고정합니다.
+- `updateSystemMotionTails()`: 각 system motion stage 안의 후속 콘텐츠 높이에 맞춰 tail 높이를 계산해 full 카드 뒤의 문구/정보가 일반 스크롤 흐름으로 이어지게 합니다.
+- `syncSystemMotionVideoPlayback()`: 각 system motion 영상이 viewport에 보이면 재생하고, 벗어나면 pause합니다.
 - `syncSystemInfo2VideoPlayback()`: `System_info2`의 첫 번째 카드 영상이 viewport에 보이면 재생하고, 벗어나면 pause합니다.
+- `updateSystemInfo3ImageParallax()`: `System_info3` 첫 카드의 내부 이미지만 스크롤 진행에 맞춰 위아래로 이동시킵니다. 카드 자체 위치와 크기는 바꾸지 않습니다.
+- `initializeSystemInfo3Icons()`: `System_info3`의 4개 아이콘을 순차 재생합니다. Works CSS pulse 뒤에 `Bell`, `Check`, `Heart` Lottie를 차례로 재생하고, viewport 이탈 시 현재 아이콘을 끝낸 뒤 멈췄다가 재진입 시 다음 아이콘부터 이어갑니다.
 - `scrollToPosition()`: wheel/key 커스텀 스크롤 처리
 - `VIDEO_FALLBACK_ENABLED`: 기본값은 `false`입니다. fallback 관련 data 속성과 함수는 남겨두되, 이 값이 `false`인 동안은 `assets/media_original/` 소스를 선택하지 않습니다.
 - `supportsHevcVideo`: 브라우저의 HEVC/H.265 MP4 지원 여부를 `canPlayType()`으로 확인합니다. fallback 기능을 다시 켤 때 판단 기준으로 사용합니다.
