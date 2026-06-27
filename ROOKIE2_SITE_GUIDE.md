@@ -395,10 +395,10 @@ Intro motion overlay 카피 기준:
 - System 영상은 일반 playback입니다. Intro/Product motion처럼 scroll-scrub으로 currentTime을 제어하지 않습니다. 화면 안에 있으면 재생하고, 섹션을 벗어나면 현재 시간을 유지한 채 pause합니다.
 - `System_info1`은 Figma 기준으로 상단 `800px` 폭의 state 텍스트, `200px` 간격, `586 x 675` 이미지 카드 2개와 각 캡션으로 구성합니다. 데스크톱 카드 gap은 `28px`입니다. 카드와 캡션 사이 간격은 데스크톱 `32px`, 1200 이하 `28px`, 760 이하 `24px`, 560 이하 `20px`입니다. 760 이하에서 카드가 한 열로 쌓일 때는 `카드+캡션` 그룹 사이 간격을 `40px`로 둡니다. `System_info1`은 별도의 pinned/flow 복제본으로 전환하지 않고 sticky stage 안의 단일 실제 섹션으로 유지합니다. 위치는 full 영상 하단 기준에 미리 고정해, 카드가 커질 때 문구와 2개 카드가 아래에서 따라 올라오거나 전환 시점에 튀지 않게 합니다. 데스크톱/태블릿은 `800px`, 모바일은 `400px` 하단 기준을 사용합니다.
 - 카드 아래 캡션은 `sub` 타입이며 데스크톱 기준 Pretendard Regular `24px`, line-height `1.4`, 텍스트 박스 폭 `550px`를 사용합니다. 카드 좌측선 기준 텍스트 시작점은 공통 optical inset을 적용해 데스크톱 `8px`, 1200 이하 `6px`, 560 이하 `4px` 안쪽으로 둡니다. Figma의 letter spacing은 `-2%`이지만 사이트 구현에서는 음수 자간을 쓰지 않는 기준에 맞춰 `0`으로 유지합니다.
-- `System_info1`의 2개 카드 아래 캡션 텍스트 끝과 `System_info2` 카드 시작 사이의 시각 간격은 `200px`입니다. 구현에서는 `System_info1` 하단 padding과 `System_info2` 상단 padding의 합으로 맞춥니다. 데스크톱은 `80px + 120px`, 1200 이하 `96px + 104px`, 760 이하 `104px + 96px`, 560 이하 `120px + 80px`입니다.
+- `System_info1`의 2개 카드 아래 캡션 텍스트 끝과 `System_info2` 카드 시작 사이의 시각 간격은 데스크톱/태블릿에서 `200px`입니다. 모바일에서 카드가 한 열로 쌓이면 `System_info1`의 state 텍스트와 아래 카드 간격과 같게 맞춥니다. 760 이하에서는 `48px + 56px = 104px`, 560 이하에서는 `32px + 40px = 72px`입니다.
 - `System_info2`는 Figma 기준 `1920 x 1200` 프레임이며, 내부 컨테이너는 `x=360`, `y=120`, `1200 x 880`입니다.
 - `System_info2` 카드 영역은 `1200 x 675`입니다. 왼쪽 `Card_01`은 `586 x 675` 영상 카드로 `assets/media/System_mv2.mp4`를 사용합니다. 오른쪽 컬럼은 `586 x 323.5` 이미지 카드 2개를 `28px` gap으로 쌓고, 각각 `system-info2-card-02.webp`, `system-info2-card-03.webp`를 사용합니다. 데스크톱 radius는 `36px`입니다.
-- `System_info2` 문구는 카드 영역 아래 `80px` 간격으로 배치합니다. 텍스트는 state 타입, 폭 `800px`, optical inset 적용, 문구는 `From packages and drinks to lunchboxes, Rookie2 keeps everyday deliveries moving throughout modern buildings.`입니다. Figma의 letter spacing은 `-2%`이지만 사이트 구현에서는 음수 자간을 쓰지 않는 기준에 맞춰 `0`으로 유지합니다.
+- `System_info2` 문구는 카드 영역 아래에 배치합니다. 데스크톱은 `80px`, 1200 이하 `72px`, 모바일 760 이하 `56px`, 560 이하 `40px`입니다. 모바일에서는 `System_info1`의 full 영상과 state 텍스트 사이 간격과 같은 값으로 맞춥니다. 텍스트는 state 타입, 폭 `800px`, optical inset 적용, 문구는 `From packages and drinks to lunchboxes, Rookie2 keeps everyday deliveries moving throughout modern buildings.`입니다. Figma의 letter spacing은 `-2%`이지만 사이트 구현에서는 음수 자간을 쓰지 않는 기준에 맞춰 `0`으로 유지합니다.
 - `System_info2`의 첫 번째 영상 카드는 일반 playback입니다. 화면 안에 들어오면 `play()`, 벗어나면 현재 시간을 유지한 채 `pause()`합니다.
 
 ## 스크롤/비디오 스크립트 기준
