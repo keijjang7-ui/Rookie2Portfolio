@@ -22,6 +22,8 @@
 - `assets/media/Interface_mv_01-m.mp4`: Interface Design `Info` 2번 그룹의 모바일 `560px` 이하 전용 HEVC 영상입니다.
 - `assets/media/System_mv1.mp4`: System 섹션의 카드에서 풀 화면으로 확장되는 motion 영상입니다. 영상 시간은 스크롤로 scrub하지 않고, 화면 안에 있을 때 정상 재생하며 화면을 벗어나면 pause합니다.
 - `assets/images/system/system-info-card-01.webp`, `assets/images/system/system-info-card-02.webp`: System `System_info1`의 2개 이미지 카드입니다. Figma의 이미지 카드 노드를 WebP로 변환해 최종 자산으로 보관합니다.
+- `assets/media/System_mv2.mp4`: System `System_info2`의 첫 번째 카드 영상입니다. `assets/media_original/System_mv2.mp4` 원본을 HEVC로 압축한 최종본이며, 화면 안에 있을 때 정상 재생하고 벗어나면 pause합니다.
+- `assets/images/system/system-info2-card-02.webp`, `assets/images/system/system-info2-card-03.webp`: System `System_info2`의 오른쪽 2개 이미지 카드입니다. Figma 카드 노드를 PNG로 가져온 뒤 WebP로 변환해 최종 자산으로 보관합니다.
 - `assets/images/interface-design/info-card-distance-near.svg`, `assets/images/interface-design/info-card-distance-mid.svg`, `assets/images/interface-design/info-card-distance-far.svg`: Interface Design `Info` 3번 그룹의 viewing distance 그래픽입니다.
 - `assets/images/interface-design/info-card-05-nice.webp`, `assets/images/interface-design/info-card-05-pin.webp`, `assets/images/interface-design/info-card-05-destination.webp`, `assets/images/interface-design/info-card-05-depart.webp`: Interface Design `Info` 4번 그룹의 status interface 예시 이미지입니다. 모바일 전용 이미지는 `info-card-05-pin-m.webp`, `info-card-05-destination-m.webp`입니다.
 - `assets/fonts/a-type/AType-Bold.otf`: Hero 타이틀 `Rookie2`에 사용하는 A Type 웹폰트입니다. 사이트에서 쓰는 두께만 `assets` 아래에서 관리합니다.
@@ -59,7 +61,7 @@
 - 네이밍은 맥락별로 나눕니다. HTML/CSS 클래스와 id는 웹 관례에 맞춰 kebab-case(`product-title`, `product-motion`)를 사용하고, Figma 레이어와 에셋 파일명은 기존 구조에 맞춰 snake_case 계열(`Product_title`, `Product_mv1`, `Product_img1`)을 사용합니다.
 - 영상 fallback 코드는 `index.html`에 남겨두지만, 기본값은 `VIDEO_FALLBACK_ENABLED = false`입니다. fallback이 필요해지면 `assets/media_original/`을 Git에 복구/업로드하고 이 값을 `true`로 바꿉니다.
 - Codex 환경에서 영상 압축을 맡길 때는 아래 `영상 압축 작업 기준`의 Swift/AVFoundation 절차를 우선 사용합니다. 기본 PATH에 `ffmpeg`가 없고, `avconvert`/`AVAssetExportSession`은 HEVC preset에서 실패할 수 있어 먼저 찾느라 시간을 쓰지 않습니다.
-- `index.html`이 수정된 작업에서는 Codex 결과의 대표 파일이 `ROOKIE2_SITE_GUIDE.md`가 아니라 `index.html`로 우선 보이도록 작업 순서와 최종 보고를 맞춥니다. `index.html`이 수정되지 않은 작업은 이 기준을 적용하지 않아도 됩니다.
+- `index.html`이 수정된 작업에서는 Codex 결과의 대표 파일이 `ROOKIE2_SITE_GUIDE.md`가 아니라 `index.html`로 우선 보이도록 작업 순서와 최종 보고를 맞춥니다. 최종 답변에서 파일을 언급할 때도 `index.html` 링크를 먼저 둡니다. 문서 갱신이 함께 있더라도 대표 파일 우선순위는 항상 `index.html`입니다. `index.html`이 수정되지 않은 작업은 이 기준을 적용하지 않아도 됩니다.
 - 현재 favicon은 브라우저 탭용 SVG data URL입니다. iOS 홈 화면 아이콘, PNG fallback, SNS 공유 이미지가 필요해지면 별도 파일 자산과 meta 태그를 추가합니다.
 
 ## Figma 기준
@@ -87,11 +89,13 @@
   - `System_mv1`
   - `System_mv1_full`
   - `System_info1`
+  - `System_info2`
 - Figma의 `Intro` node id는 `1:26`입니다.
 - Figma의 `Hero_Tablet` node id는 `30:2`입니다.
 - Figma의 `Hero_Mobile` node id는 `18:2`입니다.
 - Figma의 `Visual Principles` node id는 `18:25`입니다.
 - Figma의 `Interface Design` section node id는 `37:29`입니다.
+- Figma의 `System_info2` node id는 `136:44`입니다.
 
 Figma 디자인을 다시 반영할 때는 먼저 Figma에서 해당 node를 확인하고, `index.html`의 현재 수작업 구조에 맞게 CSS/HTML로 변환합니다.
 
@@ -104,6 +108,7 @@ Figma 디자인을 다시 반영할 때는 먼저 Figma에서 해당 node를 확
 3. `Intro_mv` scroll-scrub video
 4. `Visual Principles` horizontal card carousel
 5. `Interface Design`
+6. `System` title, motion, and information sections
 
 `Hero`와 `Intro`는 `.hero-intro` 래퍼 안에 함께 들어 있습니다. 데스크톱/일반 포인터 환경에서는 Hero 배경을 별도 fixed 레이어로 두고, Hero 텍스트와 Intro 섹션이 스크롤 흐름 안에서 움직입니다. 터치 환경에서는 fixed 레이어 어긋남을 피하기 위해 Hero 배경도 문서 흐름과 함께 움직이게 합니다.
 
@@ -117,6 +122,9 @@ Figma 디자인을 다시 반영할 때는 먼저 Figma에서 해당 node를 확
   <section class="intro-motion">...</section>
   <section class="section03 visual-principles">...</section>
   <section class="section04 interface-design">...</section>
+  <section class="system-title">...</section>
+  <section class="system-motion">...</section>
+  <section class="system-info2">...</section>
 </main>
 ```
 
@@ -372,7 +380,7 @@ Intro motion overlay 카피 기준:
 
 ## System 섹션 기준
 
-- Figma 레이어는 `System_title`, `System_mv1`, `System_mv1_full`, `System_info1` 순서입니다. 현재 구현은 네 레이어 흐름을 모두 포함합니다.
+- Figma 레이어는 `System_title`, `System_mv1`, `System_mv1_full`, `System_info1`, `System_info2` 순서입니다. 현재 구현은 다섯 레이어 흐름을 모두 포함합니다.
 - System 섹션의 배경 컬러는 Figma 기준 `#151517`로 통일합니다.
 - `System_title`은 `margin-top: -100svh`로 Product 마지막 sticky motion 위를 덮듯 진입합니다. 데스크톱 기준 title 내부의 상단 여백은 `360px`입니다.
 - Product 마지막 motion은 System title의 덮임을 위해 `100svh` hold 구간을 추가로 가집니다. 영상 scrub progress는 이 hold 구간을 제외하고 계산하므로, Product 영상이 완전히 끝난 뒤 System title이 덮여 올라오기 시작합니다.
@@ -385,8 +393,13 @@ Intro motion overlay 카피 기준:
 - full 상태에 도달한 뒤에는 카드를 viewport에 계속 고정하지 않습니다. sticky stage가 끝나면 full 영상과 `System_info1`이 하나의 흐름처럼 함께 위로 스크롤됩니다.
 - 카드 확장 중 radius는 현재 breakpoint의 시작값에서 `0px`까지 보간합니다. 데스크톱 시작값은 Figma 기준 `36px`입니다.
 - System 영상은 일반 playback입니다. Intro/Product motion처럼 scroll-scrub으로 currentTime을 제어하지 않습니다. 화면 안에 있으면 재생하고, 섹션을 벗어나면 현재 시간을 유지한 채 pause합니다.
-- `System_info1`은 Figma 기준으로 상단 `800px` 폭의 state 텍스트, `200px` 간격, `586 x 675` 이미지 카드 2개와 각 캡션으로 구성합니다. 데스크톱 카드 gap은 `28px`입니다. 카드와 캡션 사이 간격은 데스크톱 `32px`, 1200 이하 `28px`, 760 이하 `24px`, 560 이하 `20px`입니다. `System_info1`은 별도의 pinned/flow 복제본으로 전환하지 않고 sticky stage 안의 단일 실제 섹션으로 유지합니다. 위치는 full 영상 하단 기준에 미리 고정해, 카드가 커질 때 문구와 2개 카드가 아래에서 따라 올라오거나 전환 시점에 튀지 않게 합니다. 데스크톱/태블릿은 `800px`, 모바일은 `400px` 하단 기준을 사용합니다.
+- `System_info1`은 Figma 기준으로 상단 `800px` 폭의 state 텍스트, `200px` 간격, `586 x 675` 이미지 카드 2개와 각 캡션으로 구성합니다. 데스크톱 카드 gap은 `28px`입니다. 카드와 캡션 사이 간격은 데스크톱 `32px`, 1200 이하 `28px`, 760 이하 `24px`, 560 이하 `20px`입니다. 760 이하에서 카드가 한 열로 쌓일 때는 `카드+캡션` 그룹 사이 간격을 `40px`로 둡니다. `System_info1`은 별도의 pinned/flow 복제본으로 전환하지 않고 sticky stage 안의 단일 실제 섹션으로 유지합니다. 위치는 full 영상 하단 기준에 미리 고정해, 카드가 커질 때 문구와 2개 카드가 아래에서 따라 올라오거나 전환 시점에 튀지 않게 합니다. 데스크톱/태블릿은 `800px`, 모바일은 `400px` 하단 기준을 사용합니다.
 - 카드 아래 캡션은 `sub` 타입이며 데스크톱 기준 Pretendard Regular `24px`, line-height `1.4`, 텍스트 박스 폭 `550px`를 사용합니다. 카드 좌측선 기준 텍스트 시작점은 공통 optical inset을 적용해 데스크톱 `8px`, 1200 이하 `6px`, 560 이하 `4px` 안쪽으로 둡니다. Figma의 letter spacing은 `-2%`이지만 사이트 구현에서는 음수 자간을 쓰지 않는 기준에 맞춰 `0`으로 유지합니다.
+- `System_info1`의 2개 카드 아래 캡션 텍스트 끝과 `System_info2` 카드 시작 사이의 시각 간격은 `200px`입니다. 구현에서는 `System_info1` 하단 padding과 `System_info2` 상단 padding의 합으로 맞춥니다. 데스크톱은 `80px + 120px`, 1200 이하 `96px + 104px`, 760 이하 `104px + 96px`, 560 이하 `120px + 80px`입니다.
+- `System_info2`는 Figma 기준 `1920 x 1200` 프레임이며, 내부 컨테이너는 `x=360`, `y=120`, `1200 x 880`입니다.
+- `System_info2` 카드 영역은 `1200 x 675`입니다. 왼쪽 `Card_01`은 `586 x 675` 영상 카드로 `assets/media/System_mv2.mp4`를 사용합니다. 오른쪽 컬럼은 `586 x 323.5` 이미지 카드 2개를 `28px` gap으로 쌓고, 각각 `system-info2-card-02.webp`, `system-info2-card-03.webp`를 사용합니다. 데스크톱 radius는 `36px`입니다.
+- `System_info2` 문구는 카드 영역 아래 `80px` 간격으로 배치합니다. 텍스트는 state 타입, 폭 `800px`, optical inset 적용, 문구는 `From packages and drinks to lunchboxes, Rookie2 keeps everyday deliveries moving throughout modern buildings.`입니다. Figma의 letter spacing은 `-2%`이지만 사이트 구현에서는 음수 자간을 쓰지 않는 기준에 맞춰 `0`으로 유지합니다.
+- `System_info2`의 첫 번째 영상 카드는 일반 playback입니다. 화면 안에 들어오면 `play()`, 벗어나면 현재 시간을 유지한 채 `pause()`합니다.
 
 ## 스크롤/비디오 스크립트 기준
 
@@ -400,6 +413,7 @@ Intro motion overlay 카피 기준:
 - `scrub()`: 영상 currentTime을 targetTime으로 부드럽게 따라가게 함. 터치 환경에서는 더 빠르게 따라붙도록 보간값을 높입니다.
 - `updateSystemMotion()`: System 섹션의 sticky stage 안에서 카드 폭, 높이, top, radius를 scroll progress에 맞춰 보간합니다.
 - `syncSystemMotionVideoPlayback()`: System 영상이 viewport에 보이면 재생하고, 벗어나면 pause합니다.
+- `syncSystemInfo2VideoPlayback()`: `System_info2`의 첫 번째 카드 영상이 viewport에 보이면 재생하고, 벗어나면 pause합니다.
 - `scrollToPosition()`: wheel/key 커스텀 스크롤 처리
 - `VIDEO_FALLBACK_ENABLED`: 기본값은 `false`입니다. fallback 관련 data 속성과 함수는 남겨두되, 이 값이 `false`인 동안은 `assets/media_original/` 소스를 선택하지 않습니다.
 - `supportsHevcVideo`: 브라우저의 HEVC/H.265 MP4 지원 여부를 `canPlayType()`으로 확인합니다. fallback 기능을 다시 켤 때 판단 기준으로 사용합니다.
@@ -416,7 +430,7 @@ Codex desktop 환경에서 기존 방식처럼 HEVC/H.265 MP4를 만들 때는 m
 주의할 점:
 
 - 기본 PATH에는 `ffmpeg`/`ffprobe`가 없을 수 있습니다.
-- `/usr/bin/avconvert`는 HEVC preset을 목록에는 보여주지만, `specified file extension ... not valid with preset` 오류가 날 수 있습니다.
+- `/usr/bin/avconvert`는 sandbox 안에서 HEVC preset을 목록에는 보여주지만 `specified file extension ... not valid with preset` 오류가 날 수 있습니다. 승인 실행(`sandbox_permissions: "require_escalated"`)에서는 같은 preset이 정상 동작할 수 있으며, `System_mv2.mp4`는 `PresetHEVC1920x1080`으로 압축했습니다.
 - `AVAssetExportSession`은 `AVFoundationErrorDomain -11800`, underlying `NSOSStatusErrorDomain -12122`로 실패할 수 있습니다.
 - sandbox 안에서 Swift/AVFoundation 인코딩을 실행하면 `Cannot Encode`, `The encoder required for this media cannot be found`가 날 수 있습니다. 이때는 `sandbox_permissions: "require_escalated"`로 실행해야 합니다.
 - Swift 실행 시 모듈 캐시 쓰기 오류를 피하려면 `CLANG_MODULE_CACHE_PATH=/private/tmp/codex-swift-cache`를 지정합니다.

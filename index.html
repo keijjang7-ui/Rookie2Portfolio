@@ -628,7 +628,7 @@
       --system-info-caption-gap: 32px;
       position: relative;
       z-index: 3;
-      padding: 120px 0 200px;
+      padding: 80px 0 80px;
       background: #151517;
       color: #f9f9fa;
     }
@@ -703,6 +703,76 @@
       line-height: var(--type-sub-line);
       letter-spacing: 0;
       font-weight: 400;
+    }
+
+    .system-info2 {
+      --system-info2-gap: 28px;
+      --system-info2-radius: 36px;
+      --system-info2-copy-gap: 80px;
+      position: relative;
+      z-index: 3;
+      margin-top: 0;
+      padding: 120px 0 200px;
+      background: #151517;
+      color: #f9f9fa;
+    }
+
+    .system-info2__inner {
+      width: var(--section-width);
+      margin: 0 auto;
+    }
+
+    .system-info2__cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: stretch;
+      gap: var(--system-info2-gap);
+    }
+
+    .system-info2__stack {
+      display: grid;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: var(--system-info2-gap);
+      height: 100%;
+      min-width: 0;
+    }
+
+    .system-info2__media {
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+      border-radius: var(--system-info2-radius);
+      background: #151517;
+    }
+
+    .system-info2__media--large {
+      aspect-ratio: 586 / 675;
+    }
+
+    .system-info2__media--short {
+      aspect-ratio: 1172 / 647;
+    }
+
+    .system-info2__video,
+    .system-info2__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .system-info2__lead {
+      width: min(800px, 100%);
+      margin: var(--system-info2-copy-gap) 0 0;
+      padding-left: var(--left-text-optical-inset);
+      color: #f9f9fa;
+      font-size: var(--type-state-size);
+      line-height: var(--type-state-line);
+      letter-spacing: 0;
+      font-weight: 600;
     }
 
     @media (min-width: 561px) {
@@ -1920,6 +1990,14 @@
         --system-info-radius: 28px;
         --system-info-text-gap: 160px;
         --system-info-caption-gap: 28px;
+        padding-top: 64px;
+        padding-bottom: 96px;
+      }
+
+      .system-info2 {
+        --system-info2-gap: 22px;
+        --system-info2-radius: 28px;
+        --system-info2-copy-gap: 72px;
         padding-top: 104px;
         padding-bottom: 160px;
       }
@@ -2001,15 +2079,32 @@
       }
 
       .system-info {
+        --system-info-gap: 40px;
         --system-info-radius: 24px;
         --system-info-text-gap: 104px;
         --system-info-caption-gap: 24px;
+        padding-top: 56px;
+        padding-bottom: 104px;
+      }
+
+      .system-info2 {
+        --system-info2-radius: 24px;
+        --system-info2-copy-gap: 64px;
         padding-top: 96px;
         padding-bottom: 128px;
       }
 
       .system-info__cards {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .system-info2__cards {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .system-info2__stack {
+        grid-template-rows: none;
+        height: auto;
       }
     }
 
@@ -2205,6 +2300,13 @@
       .system-info {
         --system-info-text-gap: 72px;
         --system-info-caption-gap: 20px;
+        padding-top: 40px;
+        padding-bottom: 120px;
+      }
+
+      .system-info2 {
+        --system-info2-gap: 16px;
+        --system-info2-copy-gap: 56px;
         padding-top: 80px;
         padding-bottom: 96px;
       }
@@ -2870,6 +2972,34 @@
       </div>
     </section>
     <div class="system-motion-tail" data-system-motion-tail aria-hidden="true"></div>
+
+    <section class="system-info2" data-system-info2-section aria-label="Rookie2 everyday delivery system">
+      <div class="system-info2__inner">
+        <div class="system-info2__cards">
+          <div class="system-info2__media system-info2__media--large system-info2__media--video">
+            <video
+              class="system-info2__video"
+              data-system-info2-video
+              data-hevc-src="./assets/media/System_mv2.mp4"
+              preload="auto"
+              muted
+              playsinline
+              loop
+              aria-label="Rookie2 handling everyday deliveries"
+            ></video>
+          </div>
+          <div class="system-info2__stack">
+            <div class="system-info2__media system-info2__media--short">
+              <img class="system-info2__image" src="./assets/images/system/system-info2-card-02.webp" alt="Rookie2 waiting in a building lounge" loading="lazy" decoding="async">
+            </div>
+            <div class="system-info2__media system-info2__media--short">
+              <img class="system-info2__image" src="./assets/images/system/system-info2-card-03.webp" alt="Rookie2 moving through a building beside a pedestrian" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </div>
+        <p class="system-info2__lead">From packages and drinks to lunchboxes, Rookie2 keeps everyday deliveries moving throughout modern buildings.</p>
+      </div>
+    </section>
   </main>
 
   <script src="./assets/js/lottie.min.js"></script>
@@ -2889,6 +3019,7 @@
     const systemMotionVideo = document.querySelector("[data-system-motion-video]");
     const systemInfoStage = document.querySelector(".system-info--stage");
     const systemMotionTail = document.querySelector("[data-system-motion-tail]");
+    const systemInfo2Video = document.querySelector("[data-system-info2-video]");
     const COPY_REVEAL_START_SECONDS = 1.6;
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
     const COPY_REVEAL_DISTANCE = 80;
@@ -2930,6 +3061,7 @@
     let visualScrollTimer = 0;
     let interfaceInfoScrollTimer = 0;
     let systemMotionVideoPlayAttempted = false;
+    let systemInfo2VideoPlayAttempted = false;
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
     const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
@@ -3118,6 +3250,42 @@
       systemMotionVideoPlayAttempted = false;
     }
 
+    function isSystemInfo2VideoVisible() {
+      if (!systemInfo2Video) {
+        return false;
+      }
+
+      const bounds = systemInfo2Video.getBoundingClientRect();
+      return bounds.bottom > 0 && bounds.top < window.innerHeight;
+    }
+
+    function playSystemInfo2Video() {
+      if (!systemInfo2Video || !systemInfo2Video.paused || systemInfo2VideoPlayAttempted) {
+        return;
+      }
+
+      systemInfo2VideoPlayAttempted = true;
+      const playPromise = systemInfo2Video.play();
+
+      if (playPromise) {
+        playPromise.catch(() => {});
+      }
+    }
+
+    function syncSystemInfo2VideoPlayback() {
+      if (!systemInfo2Video) {
+        return;
+      }
+
+      if (isSystemInfo2VideoVisible()) {
+        playSystemInfo2Video();
+        return;
+      }
+
+      systemInfo2Video.pause();
+      systemInfo2VideoPlayAttempted = false;
+    }
+
     function getSystemTargetHeight() {
       return window.matchMedia("(max-width: 560px)").matches
         ? Math.min(400, window.innerHeight)
@@ -3172,6 +3340,7 @@
       updateHeroBackground();
       motionStates.forEach(updateVideoTarget);
       updateSystemMotion();
+      syncSystemInfo2VideoPlayback();
     }
 
     function updateVideoTarget(state) {
@@ -4456,6 +4625,15 @@
       setVideoSource(systemMotionVideo, getMotionVideoSource(systemMotionVideo));
     }
 
+    if (systemInfo2Video) {
+      systemInfo2Video.addEventListener("loadeddata", updateScrollState);
+      systemInfo2Video.addEventListener("error", () => {
+        systemInfo2Video.pause();
+        systemInfo2VideoPlayAttempted = false;
+      });
+      setVideoSource(systemInfo2Video, getMotionVideoSource(systemInfo2Video));
+    }
+
     window.addEventListener("scroll", updateScrollState, { passive: true });
     window.addEventListener("resize", () => {
       updateSystemMotionTail();
@@ -4471,6 +4649,10 @@
 
     if (systemMotionVideo) {
       systemMotionVideo.load();
+    }
+
+    if (systemInfo2Video) {
+      systemInfo2Video.load();
     }
 
     if ("ResizeObserver" in window && systemInfoStage) {
