@@ -221,7 +221,7 @@ Hero 반응형 기준:
 현재 표시 문구:
 
 - Title: `Moving What Matters`
-- Body: `Rookie2 automates countless movements throughout modern buildings, allowing people to focus on what matters most. Every delivery is designed to feel seamless, efficient, and effortless.`
+- Body: `Rookie2 automates countless movements throughout modern buildings, allowing people to focus on what matters most. It handles the small, repeated trips that keep a building running.`
 
 보관용 한글 문구는 `assets/content/intro.json`에 있습니다.
 
