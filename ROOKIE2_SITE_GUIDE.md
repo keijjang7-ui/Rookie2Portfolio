@@ -355,7 +355,7 @@ Intro motion overlay 카피 기준:
 `Visual Principles` 이후의 다음 섹션은 Figma의 `Interface Design` 레이어를 기준으로 구현합니다.
 
 - 섹션 클래스: `.section04.interface-design`
-- 배경: Figma 기준 `#100B0B`
+- 배경: 현재 구현 기준 `#0D0B0B`입니다. Visual Principles와 Interface Design은 같은 배경색을 쓰고, 다음 Product 진입부의 `.product-title::before` 그라디언트가 `#0D0B0B`에서 검정으로 이어지도록 맞춥니다.
 - 현재 구현 기준 1920px 화면에서 inner는 x `360`, y `113` 위치이며, 정보 섹션의 1200px inner 왼쪽에 맞춥니다.
 - 섹션은 Figma의 큰 블록 순서인 `ColorTypo` → `Icon` → `Info` 순서로 구성합니다. 1920px 기준 큰 블록 간격은 `240px`입니다.
 - `Visual Principles` 인디케이터 하단에서 `Interface Design` 타이틀 상단까지의 Figma 기준 간격은 1920px에서 `373px`입니다. 현재 CSS에서는 `.section03` 하단 padding과 `.section04` 상단 padding의 합으로 맞춥니다.
