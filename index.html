@@ -770,6 +770,8 @@
       --system-info2-gap: 28px;
       --system-info2-radius: 36px;
       --system-info2-copy-gap: 80px;
+      --system-info2-card-height: 675px;
+      --system-info2-indicator-gap: 40px;
       position: relative;
       z-index: 3;
       margin-top: 0;
@@ -781,6 +783,69 @@
     .system-info2__inner {
       width: var(--section-width);
       margin: 0 auto;
+    }
+
+    .system-info2__carousel {
+      display: flex;
+      flex-direction: column;
+      gap: var(--system-info2-indicator-gap);
+      width: 100%;
+    }
+
+    .system-info2__viewport {
+      width: 100vw;
+      margin-left: calc((100vw - var(--section-width)) / -2);
+      overflow: visible;
+    }
+
+    .system-info2__track {
+      display: flex;
+      gap: var(--system-info2-gap);
+      width: max-content;
+      padding-left: calc((100vw - var(--section-width)) / 2);
+      padding-right: calc((100vw - var(--section-width)) / 2);
+      cursor: grab;
+      touch-action: pan-y;
+      user-select: none;
+      transform: translate3d(var(--system-info2-track-x, 0px), 0, 0);
+      will-change: transform;
+    }
+
+    .system-info2__track.is-dragging {
+      cursor: grabbing;
+    }
+
+    .system-info2__slide {
+      display: grid;
+      flex: 0 0 var(--section-width);
+      width: var(--section-width);
+      height: var(--system-info2-card-height);
+      gap: var(--system-info2-gap);
+    }
+
+    .system-info2__slide--single {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .system-info2__slide--split {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .system-info2__slide .system-info2__cards {
+      height: 100%;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .system-info2__slide .system-info2__stack {
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      height: 100%;
+    }
+
+    .system-info2__slide .system-info2__media--large,
+    .system-info2__slide .system-info2__media--short {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
     }
 
     .system-info2__cards {
@@ -814,7 +879,11 @@
       aspect-ratio: 1172 / 647;
     }
 
-    .system-info2__video,
+    .system-info2__media--slide {
+      width: 100%;
+      height: 100%;
+    }
+
     .system-info2__image {
       display: block;
       width: 100%;
@@ -823,6 +892,63 @@
       object-position: center center;
       pointer-events: none;
       user-select: none;
+    }
+
+    .system-info2__indicator {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8.8px;
+      width: var(--section-width);
+      margin: 0 auto;
+    }
+
+    .system-info2__dot {
+      position: relative;
+      width: 19.2px;
+      height: 19.2px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      appearance: none;
+      background: transparent;
+      cursor: pointer;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: transparent;
+      transition: width 240ms ease;
+    }
+
+    .system-info2__dot::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #494951;
+      transform: translate(-50%, -50%);
+      transition: width 240ms ease, background-color 240ms ease, transform 240ms ease;
+    }
+
+    .system-info2__dot:focus-visible {
+      outline: 2px solid rgba(249, 249, 250, 0.65);
+      outline-offset: 4px;
+    }
+
+    .system-info2__dot:hover::before {
+      background: #686871;
+      transform: translate(-50%, -50%) scale(1.08);
+    }
+
+    .system-info2__dot.is-active {
+      width: 47.2px;
+    }
+
+    .system-info2__dot.is-active::before {
+      width: 40px;
+      background: #f5f5fb;
+      transform: translate(-50%, -50%) scale(1);
     }
 
     .system-info2__lead {
@@ -2307,6 +2433,8 @@
         --system-info2-gap: 22px;
         --system-info2-radius: 28px;
         --system-info2-copy-gap: 72px;
+        --system-info2-card-height: clamp(430px, 51.667vw, 620px);
+        --system-info2-indicator-gap: 34px;
         padding-top: 104px;
         padding-bottom: 88px;
       }
@@ -2445,6 +2573,8 @@
       .system-info2 {
         --system-info2-radius: 24px;
         --system-info2-copy-gap: 56px;
+        --system-info2-card-height: 400px;
+        --system-info2-indicator-gap: 28px;
         padding-top: 56px;
         padding-bottom: 48px;
       }
@@ -2467,6 +2597,7 @@
         --system-info4-caption-gap: 24px;
         --system-info4-caption-left: 6px;
         --system-info4-caption-right: 20px;
+        --system-info4-card-height: clamp(300px, 48vw, 360px);
         --system-info4-padding-y: 96px;
         --system-info4-padding-top: 56px;
       }
@@ -2490,6 +2621,11 @@
 
       .system-info4__cards {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .system-info4__media {
+        height: var(--system-info4-card-height);
+        aspect-ratio: auto;
       }
     }
 
@@ -2709,6 +2845,7 @@
       .system-info2 {
         --system-info2-gap: 16px;
         --system-info2-copy-gap: 40px;
+        --system-info2-card-height: 320px;
         padding-top: 40px;
         padding-bottom: 32px;
       }
@@ -2729,6 +2866,7 @@
         --system-info4-caption-gap: 20px;
         --system-info4-caption-left: 4px;
         --system-info4-caption-right: 16px;
+        --system-info4-card-height: 240px;
         --system-info4-padding-y: 80px;
         --system-info4-padding-top: 32px;
       }
@@ -3421,27 +3559,40 @@
 
     <section class="system-info2" data-system-info2-section aria-label="Rookie2 everyday delivery system">
       <div class="system-info2__inner">
-        <div class="system-info2__cards">
-          <div class="system-info2__media system-info2__media--large system-info2__media--video">
-            <video
-              class="system-info2__video"
-              data-system-info2-video
-              data-hevc-src="./assets/media/System_mv2.mp4"
-              preload="auto"
-              muted
-              playsinline
-              loop
-              aria-label="Rookie2 handling everyday deliveries"
-            ></video>
-          </div>
-          <div class="system-info2__stack">
-            <div class="system-info2__media system-info2__media--short">
-              <img class="system-info2__image" src="./assets/images/system/system-info2-card-02.webp" alt="Rookie2 waiting in a building lounge" loading="lazy" decoding="async">
+        <div class="system-info2__carousel" data-system-info2-carousel>
+          <div class="system-info2__viewport">
+            <div class="system-info2__track" data-system-info2-track>
+              <article class="system-info2__slide system-info2__slide--combo" data-system-info2-slide data-card-label="Everyday delivery overview">
+                <div class="system-info2__cards">
+                  <div class="system-info2__media system-info2__media--large">
+                    <img class="system-info2__image" src="./assets/images/system/system-info2-card-01.webp" alt="Rookie2 storage bay being loaded with everyday deliveries" loading="lazy" decoding="async">
+                  </div>
+                  <div class="system-info2__stack">
+                    <div class="system-info2__media system-info2__media--short">
+                      <img class="system-info2__image" src="./assets/images/system/system-info2-card-02.webp" alt="Rookie2 waiting in a building lounge" loading="lazy" decoding="async">
+                    </div>
+                    <div class="system-info2__media system-info2__media--short">
+                      <img class="system-info2__image" src="./assets/images/system/system-info2-card-03.webp" alt="Rookie2 moving through a building beside a pedestrian" loading="lazy" decoding="async">
+                    </div>
+                  </div>
+                </div>
+              </article>
+              <article class="system-info2__slide system-info2__slide--single" data-system-info2-slide data-card-label="Rookie2 moving through people">
+                <div class="system-info2__media system-info2__media--slide">
+                  <img class="system-info2__image" src="./assets/images/system/system-info2-slide-02.webp" alt="Rookie2 moving as people pass through a building corridor" loading="lazy" decoding="async">
+                </div>
+              </article>
+              <article class="system-info2__slide system-info2__slide--split" data-system-info2-slide data-card-label="Rookie2 shared-space delivery moments">
+                <div class="system-info2__media system-info2__media--slide">
+                  <img class="system-info2__image" src="./assets/images/system/system-info2-slide-03-left.webp" alt="Rookie2 waiting in front of an elevator with people inside" loading="lazy" decoding="async">
+                </div>
+                <div class="system-info2__media system-info2__media--slide">
+                  <img class="system-info2__image" src="./assets/images/system/system-info2-slide-03-right.webp" alt="Rookie2 navigating near a family in a building" loading="lazy" decoding="async">
+                </div>
+              </article>
             </div>
-            <div class="system-info2__media system-info2__media--short">
-              <img class="system-info2__image" src="./assets/images/system/system-info2-card-03.webp" alt="Rookie2 moving through a building beside a pedestrian" loading="lazy" decoding="async">
-            </div>
           </div>
+          <div class="system-info2__indicator" data-system-info2-indicator role="tablist" aria-label="Everyday delivery system cards"></div>
         </div>
         <p class="system-info2__lead">From packages and drinks to lunchboxes, Rookie2 keeps everyday deliveries moving throughout modern buildings.</p>
       </div>
@@ -3543,11 +3694,13 @@
     const interfaceInfoCarousel = document.querySelector("[data-interface-info-carousel]");
     const interfaceInfoTrack = document.querySelector("[data-interface-info-track]");
     const interfaceInfoIndicator = document.querySelector("[data-interface-info-indicator]");
+    const systemInfo2Carousel = document.querySelector("[data-system-info2-carousel]");
+    const systemInfo2Track = document.querySelector("[data-system-info2-track]");
+    const systemInfo2Indicator = document.querySelector("[data-system-info2-indicator]");
     const interfaceIconGrid = document.querySelector("[data-interface-icons]");
     const systemInfo3ParallaxMedia = document.querySelector("[data-system-info3-parallax-media]");
     const systemInfo3IconMotions = document.querySelectorAll("[data-system-info3-lottie]");
     const systemMotionSections = document.querySelectorAll("[data-system-motion-section]");
-    const systemInfo2Video = document.querySelector("[data-system-info2-video]");
     const COPY_REVEAL_START_SECONDS = 1.6;
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
     const COPY_REVEAL_DISTANCE = 80;
@@ -3602,7 +3755,7 @@
     let lastScrollY = -1;
     let visualScrollTimer = 0;
     let interfaceInfoScrollTimer = 0;
-    let systemInfo2VideoPlayAttempted = false;
+    let systemInfo2ScrollTimer = 0;
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
     const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
@@ -3652,7 +3805,7 @@
     }
 
     function isHorizontalCarouselTarget(target) {
-      return target instanceof Element && Boolean(target.closest("[data-visual-carousel], [data-interface-info-carousel]"));
+      return target instanceof Element && Boolean(target.closest("[data-visual-carousel], [data-interface-info-carousel], [data-system-info2-carousel]"));
     }
 
     function getMaxScrollY() {
@@ -3791,42 +3944,6 @@
       state.videoPlayAttempted = false;
     }
 
-    function isSystemInfo2VideoVisible() {
-      if (!systemInfo2Video) {
-        return false;
-      }
-
-      const bounds = systemInfo2Video.getBoundingClientRect();
-      return bounds.bottom > 0 && bounds.top < window.innerHeight;
-    }
-
-    function playSystemInfo2Video() {
-      if (!systemInfo2Video || !systemInfo2Video.paused || systemInfo2VideoPlayAttempted) {
-        return;
-      }
-
-      systemInfo2VideoPlayAttempted = true;
-      const playPromise = systemInfo2Video.play();
-
-      if (playPromise) {
-        playPromise.catch(() => {});
-      }
-    }
-
-    function syncSystemInfo2VideoPlayback() {
-      if (!systemInfo2Video) {
-        return;
-      }
-
-      if (isSystemInfo2VideoVisible()) {
-        playSystemInfo2Video();
-        return;
-      }
-
-      systemInfo2Video.pause();
-      systemInfo2VideoPlayAttempted = false;
-    }
-
     function updateSystemInfo3ImageParallax() {
       if (!systemInfo3ParallaxMedia) {
         return;
@@ -3913,7 +4030,6 @@
       motionStates.forEach(updateVideoTarget);
       updateSystemMotion();
       updateSystemInfo3ImageParallax();
-      syncSystemInfo2VideoPlayback();
     }
 
     function updateVideoTarget(state) {
@@ -4813,6 +4929,311 @@
       jumpToInfoGroup(0);
     }
 
+    function initializeSystemInfo2Carousel() {
+      if (!systemInfo2Carousel || !systemInfo2Track || !systemInfo2Indicator) {
+        return;
+      }
+
+      const slides = Array.from(systemInfo2Track.querySelectorAll("[data-system-info2-slide]"));
+      let activeIndex = 0;
+      let isDragging = false;
+      let dragStartX = 0;
+      let dragStartY = 0;
+      let dragStartOffset = 0;
+      let dragStartIndex = 0;
+      let dragIntent = "pending";
+      let currentOffset = 0;
+      let snapAnimationFrame = 0;
+
+      if (!slides.length) {
+        return;
+      }
+
+      systemInfo2Indicator.innerHTML = "";
+
+      const buttons = slides.map((slide, index) => {
+        const button = document.createElement("button");
+        const label = slide.dataset.cardLabel || `System info ${index + 1}`;
+
+        button.className = "system-info2__dot";
+        button.type = "button";
+        button.setAttribute("role", "tab");
+        button.setAttribute("aria-label", label);
+        button.setAttribute("aria-selected", "false");
+        button.addEventListener("click", () => {
+          animateToSystemInfo2Slide(index);
+        });
+        systemInfo2Indicator.appendChild(button);
+        return button;
+      });
+
+      function getSlideStep() {
+        if (slides.length > 1) {
+          return slides[1].offsetLeft - slides[0].offsetLeft;
+        }
+
+        return slides[0].offsetWidth;
+      }
+
+      function getCenterOffset() {
+        const firstSlide = slides[0];
+
+        if (!firstSlide) {
+          return 0;
+        }
+
+        const firstSlideCenter = firstSlide.offsetLeft + firstSlide.offsetWidth / 2;
+        return window.innerWidth / 2 - firstSlideCenter;
+      }
+
+      function getTargetOffset(index) {
+        return getCenterOffset() - getSlideStep() * clamp(index, 0, slides.length - 1);
+      }
+
+      function getMinOffset() {
+        return getTargetOffset(slides.length - 1);
+      }
+
+      function getMaxOffset() {
+        return getTargetOffset(0);
+      }
+
+      function getNearestIndex(offset = currentOffset) {
+        const step = getSlideStep();
+
+        if (!step) {
+          return 0;
+        }
+
+        return clamp(Math.round((getCenterOffset() - offset) / step), 0, slides.length - 1);
+      }
+
+      function setActiveIndex(index) {
+        activeIndex = clamp(index, 0, slides.length - 1);
+        systemInfo2Carousel.dataset.activeIndex = String(activeIndex);
+
+        buttons.forEach((button, buttonIndex) => {
+          const isActive = buttonIndex === activeIndex;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-selected", String(isActive));
+        });
+
+        slides.forEach((slide, slideIndex) => {
+          slide.classList.toggle("is-active", slideIndex === activeIndex);
+        });
+      }
+
+      function getBoundedOffset(offset) {
+        return clamp(offset, getMinOffset(), getMaxOffset());
+      }
+
+      function cancelSnapAnimation() {
+        if (snapAnimationFrame) {
+          cancelAnimationFrame(snapAnimationFrame);
+          snapAnimationFrame = 0;
+        }
+
+        systemInfo2Track.classList.remove("is-settling");
+      }
+
+      function renderTrackOffset(offset) {
+        currentOffset = offset;
+        systemInfo2Track.style.setProperty("--system-info2-track-x", `${offset.toFixed(2)}px`);
+        setActiveIndex(getNearestIndex(offset));
+      }
+
+      function renderDragOffset(offset) {
+        const minOffset = getMinOffset();
+        const maxOffset = getMaxOffset();
+        let nextOffset = offset;
+
+        if (nextOffset > maxOffset) {
+          nextOffset = maxOffset + (nextOffset - maxOffset) * 0.24;
+        } else if (nextOffset < minOffset) {
+          nextOffset = minOffset + (nextOffset - minOffset) * 0.24;
+        }
+
+        renderTrackOffset(nextOffset);
+      }
+
+      function jumpToSystemInfo2Slide(index) {
+        cancelSnapAnimation();
+        renderTrackOffset(getTargetOffset(index));
+        setActiveIndex(index);
+      }
+
+      function animateToSystemInfo2Slide(index) {
+        const targetIndex = clamp(index, 0, slides.length - 1);
+        const start = currentOffset;
+        const end = getTargetOffset(targetIndex);
+        const distance = end - start;
+        const duration = clamp(Math.abs(distance) * 0.42, 240, 560);
+        const startedAt = performance.now();
+
+        cancelSnapAnimation();
+
+        if (Math.abs(distance) < 0.5) {
+          jumpToSystemInfo2Slide(targetIndex);
+          return;
+        }
+
+        systemInfo2Track.classList.add("is-settling");
+
+        function step(now) {
+          const elapsed = now - startedAt;
+          const progressValue = clamp(elapsed / duration, 0, 1);
+          const easedValue = easeOutCubic(progressValue);
+
+          renderTrackOffset(start + distance * easedValue);
+
+          if (progressValue < 1) {
+            snapAnimationFrame = requestAnimationFrame(step);
+            return;
+          }
+
+          renderTrackOffset(end);
+          systemInfo2Track.classList.remove("is-settling");
+          snapAnimationFrame = 0;
+          setActiveIndex(targetIndex);
+        }
+
+        snapAnimationFrame = requestAnimationFrame(step);
+      }
+
+      function snapToNearest() {
+        animateToSystemInfo2Slide(getNearestIndex());
+      }
+
+      function snapFromDrag(releaseX) {
+        const dragDistance = releaseX - dragStartX;
+        const threshold = getSlideStep() * VISUAL_DRAG_THRESHOLD_RATIO;
+        let targetIndex = getNearestIndex();
+
+        if (Math.abs(dragDistance) >= threshold) {
+          targetIndex = dragStartIndex + (dragDistance < 0 ? 1 : -1);
+        }
+
+        animateToSystemInfo2Slide(clamp(targetIndex, 0, slides.length - 1));
+      }
+
+      function preventPointerDefault(event) {
+        if (event.cancelable) {
+          event.preventDefault();
+        }
+      }
+
+      function releaseSystemInfo2Pointer(event) {
+        if (systemInfo2Track.hasPointerCapture(event.pointerId)) {
+          systemInfo2Track.releasePointerCapture(event.pointerId);
+        }
+      }
+
+      function lockSystemInfo2Drag(event) {
+        dragIntent = "horizontal";
+        window.clearTimeout(systemInfo2ScrollTimer);
+        cancelSnapAnimation();
+        systemInfo2Track.classList.add("is-dragging");
+
+        if (!systemInfo2Track.hasPointerCapture(event.pointerId)) {
+          systemInfo2Track.setPointerCapture(event.pointerId);
+        }
+      }
+
+      function resetSystemInfo2Drag(event) {
+        isDragging = false;
+        dragIntent = "pending";
+        systemInfo2Track.classList.remove("is-dragging");
+        releaseSystemInfo2Pointer(event);
+      }
+
+      function handlePointerDown(event) {
+        if (event.pointerType === "mouse" && event.button !== 0) {
+          return;
+        }
+
+        isDragging = true;
+        dragStartX = event.clientX;
+        dragStartY = event.clientY;
+        dragStartOffset = currentOffset;
+        dragStartIndex = getNearestIndex(currentOffset);
+        dragIntent = event.pointerType === "mouse" ? "horizontal" : "pending";
+
+        if (dragIntent === "horizontal") {
+          preventPointerDefault(event);
+          lockSystemInfo2Drag(event);
+        }
+      }
+
+      function handlePointerMove(event) {
+        if (!isDragging) {
+          return;
+        }
+
+        const deltaX = event.clientX - dragStartX;
+        const deltaY = event.clientY - dragStartY;
+        const absX = Math.abs(deltaX);
+        const absY = Math.abs(deltaY);
+
+        if (dragIntent === "pending") {
+          if (Math.max(absX, absY) < VISUAL_SWIPE_LOCK_DISTANCE) {
+            return;
+          }
+
+          if (absY > absX * VISUAL_SWIPE_AXIS_RATIO) {
+            resetSystemInfo2Drag(event);
+            return;
+          }
+
+          if (absX <= absY * VISUAL_SWIPE_AXIS_RATIO) {
+            return;
+          }
+
+          lockSystemInfo2Drag(event);
+        }
+
+        preventPointerDefault(event);
+        renderDragOffset(dragStartOffset + event.clientX - dragStartX);
+      }
+
+      function handlePointerUp(event) {
+        if (!isDragging) {
+          return;
+        }
+
+        if (dragIntent !== "horizontal") {
+          resetSystemInfo2Drag(event);
+          return;
+        }
+
+        resetSystemInfo2Drag(event);
+        snapFromDrag(event.clientX);
+      }
+
+      function handleSystemInfo2Wheel(event) {
+        if (Math.abs(event.deltaX) <= Math.abs(event.deltaY)) {
+          return;
+        }
+
+        event.preventDefault();
+        window.clearTimeout(systemInfo2ScrollTimer);
+        cancelSnapAnimation();
+        renderTrackOffset(getBoundedOffset(currentOffset - event.deltaX));
+        systemInfo2ScrollTimer = window.setTimeout(snapToNearest, 140);
+      }
+
+      systemInfo2Track.addEventListener("pointerdown", handlePointerDown);
+      systemInfo2Track.addEventListener("pointermove", handlePointerMove);
+      systemInfo2Track.addEventListener("pointerup", handlePointerUp);
+      systemInfo2Track.addEventListener("pointercancel", handlePointerUp);
+      systemInfo2Track.addEventListener("wheel", handleSystemInfo2Wheel, { passive: false });
+      window.addEventListener("resize", () => {
+        jumpToSystemInfo2Slide(activeIndex);
+      });
+
+      setActiveIndex(0);
+      jumpToSystemInfo2Slide(0);
+    }
+
     function initializeSystemInfo3Icons() {
       const worksIcon = document.querySelector("[data-system-info3-works-icon]");
       const sequenceRoot = worksIcon?.closest(".system-info3__icon-grid");
@@ -5432,15 +5853,6 @@
       setVideoSource(state.video, getMotionVideoSource(state.video));
     });
 
-    if (systemInfo2Video) {
-      systemInfo2Video.addEventListener("loadeddata", updateScrollState);
-      systemInfo2Video.addEventListener("error", () => {
-        systemInfo2Video.pause();
-        systemInfo2VideoPlayAttempted = false;
-      });
-      setVideoSource(systemInfo2Video, getMotionVideoSource(systemInfo2Video));
-    }
-
     window.addEventListener("scroll", updateScrollState, { passive: true });
     window.addEventListener("resize", () => {
       updateSystemMotionTails();
@@ -5462,10 +5874,6 @@
     systemMotionStates.forEach((state) => {
       state.video?.load();
     });
-
-    if (systemInfo2Video) {
-      systemInfo2Video.load();
-    }
 
     if ("ResizeObserver" in window && systemMotionStates.some((state) => state.stageContent)) {
       const systemInfoObserver = new ResizeObserver(() => {
@@ -5492,6 +5900,7 @@
     updateSystemInfo3ImageParallax();
     initializeVisualCarousel();
     initializeInterfaceInfoCarousel();
+    initializeSystemInfo2Carousel();
     initializeSystemInfo3Icons();
     initializeInterfaceIcons();
     requestAnimationFrame(syncScrollProgress);

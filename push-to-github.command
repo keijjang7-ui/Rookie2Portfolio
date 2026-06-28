@@ -3,25 +3,21 @@
 set -u
 
 REPO_DIR="/Users/ad02370561/Desktop/my-workspace/Rookie2Portfolio"
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export GIT_TERMINAL_PROMPT=1
 
 echo ""
-echo "Rookie2Portfolio GitHub Push"
+echo "Rookie2Portfolio GitHub Auto Commit + Push"
 echo "Repository: $REPO_DIR"
 echo ""
 
 if ! cd "$REPO_DIR"; then
   echo "Repository folder was not found."
-  echo ""
-  echo "Press any key to close."
-  read -k 1
   exit 1
 fi
 
 if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   echo "This folder is not a Git repository."
-  echo ""
-  echo "Press any key to close."
-  read -k 1
   exit 1
 fi
 
@@ -29,9 +25,6 @@ BRANCH="$(git branch --show-current)"
 
 if [[ -z "$BRANCH" ]]; then
   echo "Git is currently in detached HEAD state. Push was not attempted."
-  echo ""
-  echo "Press any key to close."
-  read -k 1
   exit 1
 fi
 
@@ -40,18 +33,58 @@ echo ""
 git status --short --branch
 echo ""
 
+if [[ -n "$(git status --porcelain)" ]]; then
+  COMMIT_MESSAGE="Update Rookie2 portfolio $(date '+%Y-%m-%d %H:%M:%S')"
+
+  echo "Staging all changes..."
+  git add -A
+  ADD_RESULT=$?
+
+  if [[ $ADD_RESULT -ne 0 ]]; then
+    echo ""
+    echo "Staging failed."
+    exit $ADD_RESULT
+  fi
+
+  if git diff --cached --quiet; then
+    echo "No committable changes after staging."
+  else
+    echo "Creating commit:"
+    echo "$COMMIT_MESSAGE"
+    git commit -m "$COMMIT_MESSAGE"
+    COMMIT_RESULT=$?
+
+    if [[ $COMMIT_RESULT -ne 0 ]]; then
+      echo ""
+      echo "Commit failed."
+      exit $COMMIT_RESULT
+    fi
+  fi
+else
+  echo "No local file changes to commit."
+fi
+
+echo ""
+echo "Syncing with origin/$BRANCH..."
+git pull --rebase origin "$BRANCH"
+PULL_RESULT=$?
+
+if [[ $PULL_RESULT -ne 0 ]]; then
+  echo ""
+  echo "Pull/rebase failed. Resolve the message above, then run this command again."
+  exit $PULL_RESULT
+fi
+
+echo ""
 echo "Pushing to origin/$BRANCH..."
 git push origin "$BRANCH"
 RESULT=$?
 
 echo ""
 if [[ $RESULT -eq 0 ]]; then
-  echo "Push completed."
+  echo "GitHub update completed."
 else
   echo "Push failed. Review the message above."
 fi
 
-echo ""
-echo "Press any key to close."
-read -k 1
 exit $RESULT
