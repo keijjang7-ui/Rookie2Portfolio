@@ -2573,6 +2573,7 @@
         --system-info-radius: 24px;
         --system-info-text-gap: 104px;
         --system-info-caption-gap: 24px;
+        --system-info-card-height: 400px;
         padding-top: 56px;
         padding-bottom: 48px;
       }
@@ -2616,6 +2617,11 @@
 
       .system-info__cards {
         grid-template-columns: minmax(0, 1fr);
+      }
+
+      .system-info__media {
+        height: var(--system-info-card-height);
+        aspect-ratio: auto;
       }
 
       .system-info2__cards {
@@ -2845,6 +2851,7 @@
       .system-info {
         --system-info-text-gap: 72px;
         --system-info-caption-gap: 20px;
+        --system-info-card-height: 320px;
         padding-top: 40px;
         padding-bottom: 32px;
       }
