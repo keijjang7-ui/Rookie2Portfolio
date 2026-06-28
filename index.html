@@ -832,8 +832,10 @@
     }
 
     .system-info2__slide .system-info2__cards {
-      height: 100%;
+      height: var(--system-info2-card-height);
+      max-height: var(--system-info2-card-height);
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      min-height: 0;
     }
 
     .system-info2__slide .system-info2__stack {
@@ -885,6 +887,16 @@
     }
 
     .system-info2__image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .system-info2__video {
       display: block;
       width: 100%;
       height: 100%;
@@ -3565,15 +3577,20 @@
               <article class="system-info2__slide system-info2__slide--combo" data-system-info2-slide data-card-label="Everyday delivery overview">
                 <div class="system-info2__cards">
                   <div class="system-info2__media system-info2__media--large">
-                    <img class="system-info2__image" src="./assets/images/system/system-info2-card-01.webp" alt="Rookie2 storage bay being loaded with everyday deliveries" loading="lazy" decoding="async">
+                    <video
+                      class="system-info2__video"
+                      data-system-info2-video
+                      data-hevc-src="./assets/media/System_mv2.mp4"
+                      data-fallback-src="./assets/media_original/System_mv2.mp4"
+                      muted
+                      loop
+                      playsinline
+                      preload="metadata"
+                      aria-label="Rookie2 storage bay being loaded with everyday deliveries"
+                    ></video>
                   </div>
-                  <div class="system-info2__stack">
-                    <div class="system-info2__media system-info2__media--short">
-                      <img class="system-info2__image" src="./assets/images/system/system-info2-card-02.webp" alt="Rookie2 waiting in a building lounge" loading="lazy" decoding="async">
-                    </div>
-                    <div class="system-info2__media system-info2__media--short">
-                      <img class="system-info2__image" src="./assets/images/system/system-info2-card-03.webp" alt="Rookie2 moving through a building beside a pedestrian" loading="lazy" decoding="async">
-                    </div>
+                  <div class="system-info2__media system-info2__media--large">
+                    <img class="system-info2__image" src="./assets/images/system/system-info2-card-03.webp" alt="Rookie2 moving through a building beside a pedestrian" loading="lazy" decoding="async">
                   </div>
                 </div>
               </article>
@@ -3584,10 +3601,15 @@
               </article>
               <article class="system-info2__slide system-info2__slide--split" data-system-info2-slide data-card-label="Rookie2 shared-space delivery moments">
                 <div class="system-info2__media system-info2__media--slide">
-                  <img class="system-info2__image" src="./assets/images/system/system-info2-slide-03-left.webp" alt="Rookie2 waiting in front of an elevator with people inside" loading="lazy" decoding="async">
+                  <img class="system-info2__image" src="./assets/images/system/system-info2-slide-03-right.webp" alt="Rookie2 navigating near a family in a building" loading="lazy" decoding="async">
                 </div>
                 <div class="system-info2__media system-info2__media--slide">
-                  <img class="system-info2__image" src="./assets/images/system/system-info2-slide-03-right.webp" alt="Rookie2 navigating near a family in a building" loading="lazy" decoding="async">
+                  <img class="system-info2__image" src="./assets/images/system/system-info2-slide-03-left.webp" alt="Rookie2 waiting in front of an elevator with people inside" loading="lazy" decoding="async">
+                </div>
+              </article>
+              <article class="system-info2__slide system-info2__slide--single" data-system-info2-slide data-card-label="Rookie2 waiting inside an indoor service space">
+                <div class="system-info2__media system-info2__media--slide">
+                  <img class="system-info2__image" src="./assets/images/system/system-info2-slide-04.webp" alt="Rookie2 waiting inside an indoor service space" loading="lazy" decoding="async">
                 </div>
               </article>
             </div>
@@ -4935,7 +4957,9 @@
       }
 
       const slides = Array.from(systemInfo2Track.querySelectorAll("[data-system-info2-slide]"));
+      const videos = Array.from(systemInfo2Track.querySelectorAll("[data-system-info2-video]"));
       let activeIndex = 0;
+      let isCarouselInView = !("IntersectionObserver" in window);
       let isDragging = false;
       let dragStartX = 0;
       let dragStartY = 0;
@@ -5021,6 +5045,8 @@
         slides.forEach((slide, slideIndex) => {
           slide.classList.toggle("is-active", slideIndex === activeIndex);
         });
+
+        syncSystemInfo2VideoPlayback();
       }
 
       function getBoundedOffset(offset) {
@@ -5098,6 +5124,29 @@
         }
 
         snapAnimationFrame = requestAnimationFrame(step);
+      }
+
+      function syncSystemInfo2VideoPlayback() {
+        videos.forEach((video) => {
+          const parentSlide = video.closest("[data-system-info2-slide]");
+          const shouldPlay = (
+            isCarouselInView &&
+            parentSlide === slides[activeIndex] &&
+            !reducedMotionMediaQuery.matches
+          );
+
+          if (shouldPlay) {
+            if (video.paused) {
+              const playRequest = video.play();
+
+              if (playRequest && typeof playRequest.catch === "function") {
+                playRequest.catch(() => {});
+              }
+            }
+          } else if (!video.paused) {
+            video.pause();
+          }
+        });
       }
 
       function snapToNearest() {
@@ -5226,6 +5275,39 @@
       systemInfo2Track.addEventListener("pointerup", handlePointerUp);
       systemInfo2Track.addEventListener("pointercancel", handlePointerUp);
       systemInfo2Track.addEventListener("wheel", handleSystemInfo2Wheel, { passive: false });
+
+      videos.forEach((video) => {
+        video.addEventListener("error", () => {
+          if (switchVideoToFallback(video, video.dataset.fallbackSrc || "")) {
+            video.load();
+            syncSystemInfo2VideoPlayback();
+          }
+        });
+
+        if (setVideoSource(video, getMotionVideoSource(video))) {
+          video.load();
+        }
+      });
+
+      if ("IntersectionObserver" in window) {
+        const carouselObserver = new IntersectionObserver((entries) => {
+          isCarouselInView = entries.some((entry) => entry.isIntersecting);
+          syncSystemInfo2VideoPlayback();
+        }, { threshold: 0.35 });
+
+        carouselObserver.observe(systemInfo2Carousel);
+      }
+
+      const handleReducedMotionChange = () => {
+        syncSystemInfo2VideoPlayback();
+      };
+
+      if (typeof reducedMotionMediaQuery.addEventListener === "function") {
+        reducedMotionMediaQuery.addEventListener("change", handleReducedMotionChange);
+      } else if (typeof reducedMotionMediaQuery.addListener === "function") {
+        reducedMotionMediaQuery.addListener(handleReducedMotionChange);
+      }
+
       window.addEventListener("resize", () => {
         jumpToSystemInfo2Slide(activeIndex);
       });
