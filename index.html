@@ -40,7 +40,6 @@
       --system-v2-dot-hover: #686871;
       --system-v2-dot-active: #f5f5fb;
       --system-v2-focus: rgba(249, 249, 250, 0.65);
-      --system-v2-gray-bg: #f5f5f7;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--copy-black);
       background: var(--page-white);
@@ -633,14 +632,14 @@
       height: auto;
       min-height: 0;
       padding: 80px 0 0;
-      background: var(--system-v2-gray-bg);
+      background: var(--system-v2-bg);
     }
 
     .system-motion--integration .system-motion__stage {
       position: relative;
       height: auto;
       min-height: 0;
-      background: var(--system-v2-gray-bg);
+      background: var(--system-v2-bg);
     }
 
     .system-motion--integration .system-motion__card {
@@ -669,7 +668,7 @@
       left: 0;
       width: 100%;
       padding: var(--system-motion-copy-top-gap) 0 var(--system-motion-copy-bottom-gap);
-      background: var(--system-v2-gray-bg);
+      background: var(--system-v2-bg);
       color: var(--system-v2-text);
     }
 
@@ -779,18 +778,11 @@
       --system-info2-copy-gap: 80px;
       --system-info2-card-height: 675px;
       --system-info2-indicator-gap: 40px;
-      --system-v2-info2-gray-height: 20px;
       position: relative;
       z-index: 3;
       margin-top: 0;
       padding: 80px 0 120px;
-      background: linear-gradient(
-        to bottom,
-        var(--system-v2-bg) 0,
-        var(--system-v2-bg) calc(100% - var(--system-v2-info2-gray-height)),
-        var(--system-v2-gray-bg) calc(100% - var(--system-v2-info2-gray-height)),
-        var(--system-v2-gray-bg) 100%
-      );
+      background: var(--system-v2-bg);
       color: var(--system-v2-text);
     }
 
@@ -1000,17 +992,10 @@
       --system-info3-icon-text-pad: 28px;
       --system-info3-image-range: 52px;
       --system-info3-image-y: 0px;
-      --system-v2-info3-gray-start: 0px;
       position: relative;
       z-index: 3;
       padding: var(--system-info3-top-gap) 0 80px;
-      background: linear-gradient(
-        to bottom,
-        var(--system-v2-bg) 0,
-        var(--system-v2-bg) var(--system-v2-info3-gray-start),
-        var(--system-v2-gray-bg) var(--system-v2-info3-gray-start),
-        var(--system-v2-gray-bg) 100%
-      );
+      background: var(--system-v2-bg);
       color: var(--system-v2-text);
     }
 
@@ -1246,7 +1231,7 @@
       position: relative;
       z-index: 3;
       padding: var(--system-info4-padding-top) 0 var(--system-info4-padding-bottom);
-      background: var(--system-v2-gray-bg);
+      background: var(--system-v2-bg);
       color: var(--system-v2-text);
     }
 
@@ -2544,7 +2529,6 @@
         --system-info2-copy-gap: 72px;
         --system-info2-card-height: clamp(430px, 51.667vw, 620px);
         --system-info2-indicator-gap: 34px;
-        --system-v2-info2-gray-height: 8px;
         padding-top: 64px;
         padding-bottom: 88px;
       }
@@ -2558,7 +2542,6 @@
         --system-info3-icon-row-gap: 56px;
         --system-info3-icon-text-pad: 24px;
         --system-info3-image-range: 44px;
-        --system-v2-info3-gray-start: 0px;
         padding-bottom: 72px;
       }
 
@@ -2687,7 +2670,6 @@
         --system-info2-copy-gap: 56px;
         --system-info2-card-height: 400px;
         --system-info2-indicator-gap: 28px;
-        --system-v2-info2-gray-height: 0px;
         padding-top: 16px;
         padding-bottom: 48px;
       }
@@ -2701,7 +2683,6 @@
         --system-info3-icon-row-gap: 40px;
         --system-info3-icon-text-pad: 20px;
         --system-info3-image-range: 30px;
-        --system-v2-info3-gray-start: 4px;
         padding-bottom: 64px;
       }
 
@@ -2966,7 +2947,6 @@
         --system-info2-gap: 16px;
         --system-info2-copy-gap: 40px;
         --system-info2-card-height: 320px;
-        --system-v2-info2-gray-height: 0px;
         padding-top: 0;
         padding-bottom: 32px;
       }
@@ -2979,7 +2959,6 @@
         --system-info3-icon-row-gap: 32px;
         --system-info3-icon-text-pad: 16px;
         --system-info3-image-range: 24px;
-        --system-v2-info3-gray-start: 4px;
         padding-bottom: 56px;
       }
 
@@ -3841,7 +3820,7 @@
     const SYSTEM_TONE_START_OFFSET_PX = 0;
     const SYSTEM_TONE_END_OFFSET_PX = 0;
     const SYSTEM_TONE_DARK_BG = [21, 21, 23];
-    const SYSTEM_TONE_LIGHT_BG = [255, 255, 255];
+    const SYSTEM_TONE_LIGHT_BG = [245, 245, 247];
     const SYSTEM_TONE_DARK_TEXT = [249, 249, 250];
     const SYSTEM_TONE_LIGHT_TEXT = [34, 34, 34];
     const SYSTEM_TONE_DARK_DOT = [73, 73, 81];
