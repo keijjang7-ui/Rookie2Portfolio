@@ -34,13 +34,6 @@
       --type-sub-line: 1.4;
       --left-text-optical-inset: 10px;
       --system-full-height: min(800px, 100svh);
-      --system-v2-bg: #151517;
-      --system-v2-text: #f9f9fa;
-      --system-v2-dot: #494951;
-      --system-v2-dot-hover: #686871;
-      --system-v2-dot-active: #f5f5fb;
-      --system-v2-focus: rgba(249, 249, 250, 0.65);
-      --system-v2-gray-bg: #f5f5f7;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--copy-black);
       background: var(--page-white);
@@ -553,8 +546,8 @@
       margin-top: -100svh;
       overflow: hidden;
       padding-top: var(--system-title-top-gap);
-      background: var(--system-v2-bg);
-      color: var(--system-v2-text);
+      background: #151517;
+      color: #f9f9fa;
     }
 
     .system-title__copy {
@@ -566,21 +559,21 @@
 
     .system-title__title {
       margin: 0;
-      color: var(--system-v2-text);
+      color: #f9f9fa;
       font-size: var(--type-title-size);
       line-height: var(--type-title-line);
       letter-spacing: 0;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .system-title__body {
       margin: clamp(18px, 1.667vw, 32px) auto 0;
       max-width: 800px;
-      color: var(--system-v2-text);
+      color: rgba(249, 249, 250, 0.9);
       font-size: var(--type-body-size);
       line-height: var(--type-body-line);
       letter-spacing: 0;
-      font-weight: 500;
+      font-weight: 400;
     }
 
     .system-motion {
@@ -591,7 +584,7 @@
       margin-top: -1px;
       height: 190svh;
       min-height: 1500px;
-      background: var(--system-v2-bg);
+      background: #151517;
     }
 
     .system-motion__stage {
@@ -601,7 +594,7 @@
       height: 100svh;
       min-height: 600px;
       overflow: visible;
-      background: var(--system-v2-bg);
+      background: #151517;
     }
 
     .system-motion__card {
@@ -633,14 +626,14 @@
       height: auto;
       min-height: 0;
       padding: 80px 0 0;
-      background: var(--system-v2-gray-bg);
+      background: #151517;
     }
 
     .system-motion--integration .system-motion__stage {
       position: relative;
       height: auto;
       min-height: 0;
-      background: var(--system-v2-gray-bg);
+      background: #151517;
     }
 
     .system-motion--integration .system-motion__card {
@@ -669,8 +662,8 @@
       left: 0;
       width: 100%;
       padding: var(--system-motion-copy-top-gap) 0 var(--system-motion-copy-bottom-gap);
-      background: var(--system-v2-gray-bg);
-      color: var(--system-v2-text);
+      background: #151517;
+      color: #f9f9fa;
     }
 
     .system-motion-copy__inner {
@@ -682,23 +675,23 @@
       width: min(800px, 100%);
       margin: 0;
       padding-left: var(--left-text-optical-inset);
-      color: var(--system-v2-text);
+      color: #f9f9fa;
       font-size: var(--type-state-size);
       line-height: var(--type-state-line);
       letter-spacing: 0;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .system-info {
       --system-info-gap: 28px;
       --system-info-radius: 36px;
-      --system-info-text-gap: 160px;
+      --system-info-text-gap: 200px;
       --system-info-caption-gap: 32px;
       position: relative;
       z-index: 3;
       padding: 80px 0 80px;
-      background: var(--system-v2-bg);
-      color: var(--system-v2-text);
+      background: #151517;
+      color: #f9f9fa;
     }
 
     .system-info--stage {
@@ -713,7 +706,7 @@
       z-index: 2;
       height: var(--system-motion-tail-height, 0px);
       margin-top: -1px;
-      background: var(--system-v2-bg);
+      background: #151517;
     }
 
     .system-info__inner {
@@ -725,11 +718,11 @@
       width: min(800px, 100%);
       margin: 0;
       padding-left: var(--left-text-optical-inset);
-      color: var(--system-v2-text);
+      color: #f9f9fa;
       font-size: var(--type-state-size);
       line-height: var(--type-state-line);
       letter-spacing: 0;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .system-info__cards {
@@ -765,12 +758,12 @@
       width: min(550px, 100%);
       margin: var(--system-info-caption-gap) 0 0;
       padding-left: var(--left-text-optical-inset);
-      color: var(--system-v2-text);
+      color: #ebeef6;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: var(--type-sub-size);
       line-height: var(--type-sub-line);
       letter-spacing: 0;
-      font-weight: 500;
+      font-weight: 400;
     }
 
     .system-info2 {
@@ -779,19 +772,12 @@
       --system-info2-copy-gap: 80px;
       --system-info2-card-height: 675px;
       --system-info2-indicator-gap: 40px;
-      --system-v2-info2-gray-height: 20px;
       position: relative;
       z-index: 3;
       margin-top: 0;
-      padding: 80px 0 120px;
-      background: linear-gradient(
-        to bottom,
-        var(--system-v2-bg) 0,
-        var(--system-v2-bg) calc(100% - var(--system-v2-info2-gray-height)),
-        var(--system-v2-gray-bg) calc(100% - var(--system-v2-info2-gray-height)),
-        var(--system-v2-gray-bg) 100%
-      );
-      color: var(--system-v2-text);
+      padding: 120px 0 120px;
+      background: #151517;
+      color: #f9f9fa;
     }
 
     .system-info2__inner {
@@ -952,18 +938,18 @@
       width: 12px;
       height: 12px;
       border-radius: 999px;
-      background: var(--system-v2-dot);
+      background: #494951;
       transform: translate(-50%, -50%);
       transition: width 240ms ease, background-color 240ms ease, transform 240ms ease;
     }
 
     .system-info2__dot:focus-visible {
-      outline: 2px solid var(--system-v2-focus);
+      outline: 2px solid rgba(249, 249, 250, 0.65);
       outline-offset: 4px;
     }
 
     .system-info2__dot:hover::before {
-      background: var(--system-v2-dot-hover);
+      background: #686871;
       transform: translate(-50%, -50%) scale(1.08);
     }
 
@@ -973,7 +959,7 @@
 
     .system-info2__dot.is-active::before {
       width: 40px;
-      background: var(--system-v2-dot-active);
+      background: #f5f5fb;
       transform: translate(-50%, -50%) scale(1);
     }
 
@@ -981,37 +967,30 @@
       width: min(800px, 100%);
       margin: var(--system-info2-copy-gap) 0 0;
       padding-left: var(--left-text-optical-inset);
-      color: var(--system-v2-text);
+      color: #f9f9fa;
       font-size: var(--type-state-size);
       line-height: var(--type-state-line);
       letter-spacing: 0;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .system-info3 {
       --system-info3-radius: 36px;
       --system-info3-top-gap: 80px;
-      --system-info3-card-icon-gap: 60px;
+      --system-info3-card-icon-gap: 80px;
       --system-info3-card-height: 520px;
       --system-info3-icon-size: 160px;
       --system-info3-icon-column-gap: 120px;
-      --system-info3-icon-row-gap: 60px;
+      --system-info3-icon-row-gap: 80px;
       --system-info3-icon-text-gap: 8px;
       --system-info3-icon-text-pad: 28px;
       --system-info3-image-range: 52px;
       --system-info3-image-y: 0px;
-      --system-v2-info3-gray-start: 0px;
       position: relative;
       z-index: 3;
-      padding: var(--system-info3-top-gap) 0 80px;
-      background: linear-gradient(
-        to bottom,
-        var(--system-v2-bg) 0,
-        var(--system-v2-bg) var(--system-v2-info3-gray-start),
-        var(--system-v2-gray-bg) var(--system-v2-info3-gray-start),
-        var(--system-v2-gray-bg) 100%
-      );
-      color: var(--system-v2-text);
+      padding: var(--system-info3-top-gap) 0 120px;
+      background: #151517;
+      color: #f9f9fa;
     }
 
     .system-info3__inner {
@@ -1226,12 +1205,12 @@
       width: 100%;
       margin: var(--system-info3-icon-text-gap) 0 0;
       padding: 0 var(--system-info3-icon-text-pad);
-      color: var(--system-v2-text);
+      color: #f9f9fa;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: var(--type-sub-size);
       line-height: var(--type-sub-line);
       letter-spacing: 0;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .system-info4 {
@@ -1241,13 +1220,13 @@
       --system-info4-caption-left: 10px;
       --system-info4-caption-right: 24px;
       --system-info4-padding-y: 120px;
-      --system-info4-padding-top: 80px;
+      --system-info4-padding-top: var(--system-info4-padding-y);
       --system-info4-padding-bottom: var(--system-info4-padding-y);
       position: relative;
       z-index: 3;
       padding: var(--system-info4-padding-top) 0 var(--system-info4-padding-bottom);
-      background: var(--system-v2-gray-bg);
-      color: var(--system-v2-text);
+      background: #151517;
+      color: #f9f9fa;
     }
 
     .system-info4__inner {
@@ -1288,12 +1267,12 @@
     .system-info4__caption {
       margin: var(--system-info4-caption-gap) 0 0;
       padding: 0 var(--system-info4-caption-right) 0 var(--system-info4-caption-left);
-      color: var(--system-v2-text);
+      color: #ebeef6;
       font-family: Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       font-size: var(--type-sub-size);
       line-height: var(--type-sub-line);
       letter-spacing: 0;
-      font-weight: 500;
+      font-weight: 400;
     }
 
     @media (min-width: 561px) {
@@ -2527,7 +2506,7 @@
       .system-info {
         --system-info-gap: 22px;
         --system-info-radius: 28px;
-        --system-info-text-gap: 120px;
+        --system-info-text-gap: 160px;
         --system-info-caption-gap: 28px;
         padding-top: 64px;
         padding-bottom: 96px;
@@ -2544,22 +2523,20 @@
         --system-info2-copy-gap: 72px;
         --system-info2-card-height: clamp(430px, 51.667vw, 620px);
         --system-info2-indicator-gap: 34px;
-        --system-v2-info2-gray-height: 8px;
-        padding-top: 64px;
+        padding-top: 104px;
         padding-bottom: 88px;
       }
 
       .system-info3 {
         --system-info3-radius: 28px;
         --system-info3-top-gap: 72px;
-        --system-info3-card-icon-gap: 56px;
+        --system-info3-card-icon-gap: 72px;
         --system-info3-card-height: clamp(430px, 43.333vw, 520px);
         --system-info3-icon-column-gap: 80px;
-        --system-info3-icon-row-gap: 56px;
+        --system-info3-icon-row-gap: 72px;
         --system-info3-icon-text-pad: 24px;
         --system-info3-image-range: 44px;
-        --system-v2-info3-gray-start: 0px;
-        padding-bottom: 72px;
+        padding-bottom: 104px;
       }
 
       .system-info4 {
@@ -2569,7 +2546,7 @@
         --system-info4-caption-left: 8px;
         --system-info4-caption-right: 8px;
         --system-info4-padding-y: 104px;
-        --system-info4-padding-top: 64px;
+        --system-info4-padding-top: 104px;
       }
 
       .interface-typo {
@@ -2670,7 +2647,7 @@
       .system-info {
         --system-info-gap: 40px;
         --system-info-radius: 24px;
-        --system-info-text-gap: 64px;
+        --system-info-text-gap: 104px;
         --system-info-caption-gap: 24px;
         --system-info-card-height: 400px;
         padding-top: 56px;
@@ -2687,22 +2664,20 @@
         --system-info2-copy-gap: 56px;
         --system-info2-card-height: 400px;
         --system-info2-indicator-gap: 28px;
-        --system-v2-info2-gray-height: 0px;
-        padding-top: 16px;
+        padding-top: 56px;
         padding-bottom: 48px;
       }
 
       .system-info3 {
         --system-info3-radius: 24px;
         --system-info3-top-gap: 56px;
-        --system-info3-card-icon-gap: 40px;
+        --system-info3-card-icon-gap: 56px;
         --system-info3-card-height: clamp(300px, 48vw, 360px);
         --system-info3-icon-column-gap: 56px;
-        --system-info3-icon-row-gap: 40px;
+        --system-info3-icon-row-gap: 56px;
         --system-info3-icon-text-pad: 20px;
         --system-info3-image-range: 30px;
-        --system-v2-info3-gray-start: 4px;
-        padding-bottom: 64px;
+        padding-bottom: 96px;
       }
 
       .system-info4 {
@@ -2713,7 +2688,7 @@
         --system-info4-caption-right: 20px;
         --system-info4-card-height: clamp(300px, 48vw, 360px);
         --system-info4-padding-y: 96px;
-        --system-info4-padding-top: 16px;
+        --system-info4-padding-top: 56px;
       }
 
       .system-info__cards {
@@ -2950,7 +2925,7 @@
       }
 
       .system-info {
-        --system-info-text-gap: 32px;
+        --system-info-text-gap: 72px;
         --system-info-caption-gap: 20px;
         --system-info-card-height: 320px;
         padding-top: 40px;
@@ -2959,28 +2934,26 @@
 
       .system-motion-copy {
         --system-motion-copy-top-gap: 40px;
-        --system-motion-copy-bottom-gap: 32px;
+        --system-motion-copy-bottom-gap: 40px;
       }
 
       .system-info2 {
         --system-info2-gap: 16px;
         --system-info2-copy-gap: 40px;
         --system-info2-card-height: 320px;
-        --system-v2-info2-gray-height: 0px;
-        padding-top: 0;
+        padding-top: 40px;
         padding-bottom: 32px;
       }
 
       .system-info3 {
         --system-info3-top-gap: 40px;
-        --system-info3-card-icon-gap: 32px;
+        --system-info3-card-icon-gap: 40px;
         --system-info3-card-height: 240px;
         --system-info3-icon-size: 88px;
-        --system-info3-icon-row-gap: 32px;
+        --system-info3-icon-row-gap: 40px;
         --system-info3-icon-text-pad: 16px;
         --system-info3-image-range: 24px;
-        --system-v2-info3-gray-start: 4px;
-        padding-bottom: 56px;
+        padding-bottom: 80px;
       }
 
       .system-info4 {
@@ -2990,7 +2963,7 @@
         --system-info4-caption-right: 16px;
         --system-info4-card-height: 240px;
         --system-info4-padding-y: 80px;
-        --system-info4-padding-top: 0;
+        --system-info4-padding-top: 32px;
       }
 
       .system-info3__icon {
@@ -3832,24 +3805,11 @@
     const interfaceIconGrid = document.querySelector("[data-interface-icons]");
     const systemInfo3ParallaxMedia = document.querySelector("[data-system-info3-parallax-media]");
     const systemInfo3IconMotions = document.querySelectorAll("[data-system-info3-lottie]");
-    const systemTitleSection = document.querySelector(".system-title");
     const systemMotionSections = document.querySelectorAll("[data-system-motion-section]");
     const COPY_REVEAL_START_SECONDS = 1.6;
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
     const COPY_REVEAL_DISTANCE = 80;
     const SYSTEM_EXPANSION_START_RATIO = 0.62;
-    const SYSTEM_TONE_START_OFFSET_PX = 0;
-    const SYSTEM_TONE_END_OFFSET_PX = 0;
-    const SYSTEM_TONE_DARK_BG = [21, 21, 23];
-    const SYSTEM_TONE_LIGHT_BG = [255, 255, 255];
-    const SYSTEM_TONE_DARK_TEXT = [249, 249, 250];
-    const SYSTEM_TONE_LIGHT_TEXT = [34, 34, 34];
-    const SYSTEM_TONE_DARK_DOT = [73, 73, 81];
-    const SYSTEM_TONE_LIGHT_DOT = [213, 213, 218];
-    const SYSTEM_TONE_DARK_DOT_HOVER = [104, 104, 113];
-    const SYSTEM_TONE_LIGHT_DOT_HOVER = [172, 172, 176];
-    const SYSTEM_TONE_DARK_DOT_ACTIVE = [245, 245, 251];
-    const SYSTEM_TONE_LIGHT_DOT_ACTIVE = [34, 34, 34];
     const COVER_PARALLAX_RATIO = 0.3;
     const VISUAL_DRAG_THRESHOLD_RATIO = 0.15;
     const VISUAL_SWIPE_LOCK_DISTANCE = 8;
@@ -3949,18 +3909,6 @@
       return setVideoSource(video, fallbackSource);
     }
 
-    function mixColor(startColor, endColor, progress) {
-      const channels = startColor.map((channel, index) => (
-        Math.round(channel + (endColor[index] - channel) * progress)
-      ));
-
-      return `rgb(${channels.join(", ")})`;
-    }
-
-    function mixAlpha(startAlpha, endAlpha, progress) {
-      return startAlpha + (endAlpha - startAlpha) * progress;
-    }
-
     function isHorizontalCarouselTarget(target) {
       return target instanceof Element && Boolean(target.closest("[data-visual-carousel], [data-interface-info-carousel], [data-system-info2-carousel]"));
     }
@@ -4009,12 +3957,6 @@
       state.section.style.setProperty("--motion-cover-y", `${offset.toFixed(2)}px`);
     }
 
-    function getSystemExpansionStartScrollY(state, initialMetrics) {
-      const cardCenterOffset = initialMetrics.top + initialMetrics.height / 2;
-      const startOffset = window.innerHeight * SYSTEM_EXPANSION_START_RATIO - cardCenterOffset;
-      return state.section.offsetTop - startOffset;
-    }
-
     function getSystemExpansionProgress(state, initialMetrics) {
       if (!state?.section) {
         return 0;
@@ -4026,7 +3968,9 @@
         return 0;
       }
 
-      const start = getSystemExpansionStartScrollY(state, initialMetrics);
+      const cardCenterOffset = initialMetrics.top + initialMetrics.height / 2;
+      const startOffset = window.innerHeight * SYSTEM_EXPANSION_START_RATIO - cardCenterOffset;
+      const start = state.section.offsetTop - startOffset;
       const end = state.section.offsetTop + sectionTravel;
 
       if (end <= start) {
@@ -4034,36 +3978,6 @@
       }
 
       return clamp((window.scrollY - start) / (end - start), 0, 1);
-    }
-
-    function getSystemToneProgress() {
-      const primarySystemMotion = systemMotionStates[0];
-
-      if (!systemTitleSection || !primarySystemMotion?.section) {
-        return 1;
-      }
-
-      const initialMetrics = getSystemInitialCardMetrics(primarySystemMotion);
-      const start = systemTitleSection.offsetTop - window.innerHeight + SYSTEM_TONE_START_OFFSET_PX;
-      const end = getSystemExpansionStartScrollY(primarySystemMotion, initialMetrics) + SYSTEM_TONE_END_OFFSET_PX;
-
-      if (end <= start) {
-        return window.scrollY >= start ? 1 : 0;
-      }
-
-      return clamp((window.scrollY - start) / (end - start), 0, 1);
-    }
-
-    function updateSystemTone() {
-      const toneProgress = easeInOutCubic(getSystemToneProgress());
-      const rootStyle = document.documentElement.style;
-
-      rootStyle.setProperty("--system-v2-bg", mixColor(SYSTEM_TONE_DARK_BG, SYSTEM_TONE_LIGHT_BG, toneProgress));
-      rootStyle.setProperty("--system-v2-text", mixColor(SYSTEM_TONE_DARK_TEXT, SYSTEM_TONE_LIGHT_TEXT, toneProgress));
-      rootStyle.setProperty("--system-v2-dot", mixColor(SYSTEM_TONE_DARK_DOT, SYSTEM_TONE_LIGHT_DOT, toneProgress));
-      rootStyle.setProperty("--system-v2-dot-hover", mixColor(SYSTEM_TONE_DARK_DOT_HOVER, SYSTEM_TONE_LIGHT_DOT_HOVER, toneProgress));
-      rootStyle.setProperty("--system-v2-dot-active", mixColor(SYSTEM_TONE_DARK_DOT_ACTIVE, SYSTEM_TONE_LIGHT_DOT_ACTIVE, toneProgress));
-      rootStyle.setProperty("--system-v2-focus", `rgba(34, 34, 34, ${mixAlpha(0.65, 0.45, toneProgress).toFixed(3)})`);
     }
 
     function getRootPixelValue(name, fallback) {
@@ -4219,7 +4133,6 @@
     function updateScrollState() {
       updateHeroBackground();
       motionStates.forEach(updateVideoTarget);
-      updateSystemTone();
       updateSystemMotion();
       updateSystemInfo3ImageParallax();
     }
@@ -6148,7 +6061,6 @@
 
     updateSystemMotionTails();
     updateHeroBackground();
-    updateSystemTone();
     updateSystemMotion();
     updateSystemInfo3ImageParallax();
     initializeVisualCarousel();
