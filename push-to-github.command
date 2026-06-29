@@ -2,7 +2,7 @@
 
 set -u
 
-REPO_DIR="/Users/ad02370561/Desktop/my-workspace/Rookie2Portfolio"
+REPO_DIR="${0:A:h}"
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export GIT_TERMINAL_PROMPT=1
 
