@@ -21,7 +21,7 @@
 - `assets/media/Interface_mv_01.mp4`: Interface Design `Info` 2번 그룹의 motion 카드 데스크톱/기본 HEVC 영상입니다.
 - `assets/media/Interface_mv_01-m.mp4`: Interface Design `Info` 2번 그룹의 모바일 `560px` 이하 전용 HEVC 영상입니다.
 - `assets/media/System_mv1.mp4`: System 섹션의 카드에서 풀 화면으로 확장되는 motion 영상입니다. 영상 시간은 스크롤로 scrub하지 않고, 화면 안에 있을 때 정상 재생하며 화면을 벗어나면 pause합니다.
-- `assets/images/system/system-info-card-01.webp`, `assets/images/system/system-info-card-02.webp`: System `System_info1`의 2개 이미지 카드입니다. Figma의 이미지 카드 노드를 WebP로 변환해 최종 자산으로 보관합니다.
+- `assets/images/system/system-info-card-01.webp`, `assets/images/system/system-info-card-02.webp`: System `System_info1`의 2개 이미지 카드입니다. 사용자 제공 `10_03.png`, `0104.png`를 원본 해상도 `1920 x 1080` 그대로 WebP로 변환했고, 최종 파일은 알파 채널이 없는 RGB WebP입니다.
 - `assets/media/System_mv2.mp4`: System `System_info2` 1번 슬라이드의 왼쪽 큰 영상 카드입니다. 사용자 제공 `scene_instead03_v2.mp4`를 `assets/media_original/System_mv2.mp4`에 원본으로 보관하고, 최종 사이트용은 HEVC로 압축해 사용합니다. 캐러셀의 해당 슬라이드가 화면 안에서 활성화될 때 재생하고 벗어나면 pause합니다.
 - `assets/images/system/system-info2-card-03.webp`: System `System_info2` 1번 슬라이드의 오른쪽 이미지 카드입니다. 사용자 제공 `img_instead01_v2.png`를 원본 해상도 `856 x 1160` 그대로 WebP로 변환했고, 최종 파일은 알파 채널이 없는 RGB WebP입니다.
 - `assets/images/system/system-info2-slide-02.webp`, `assets/images/system/system-info2-slide-03-left.webp`, `assets/images/system/system-info2-slide-03-right.webp`, `assets/images/system/system-info2-slide-04.webp`: System `System_info2` 캐러셀의 2, 3, 4번째 슬라이드 이미지입니다. `system-info2-slide-03-left.webp`는 사용자 제공 `videoframe_564.png`를 원본 해상도 `720 x 1090` 그대로 WebP로 변환했고, `system-info2-slide-04.webp`는 사용자 제공 `img_instead04_v2.png`를 원본 해상도 `1920 x 1080` 그대로 WebP로 변환했습니다. 최종 파일은 모두 알파 채널이 없는 RGB WebP입니다.

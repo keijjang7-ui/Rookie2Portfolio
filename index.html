@@ -492,9 +492,11 @@
 
     .product-title {
       --product-title-gradient-bleed: clamp(140px, 13vw, 250px);
+      --product-title-content-height: 200px;
+      --product-title-motion-gap: clamp(168px, calc(4.167vw + 120px), 200px);
       position: relative;
       z-index: 2;
-      height: 200px;
+      height: calc(var(--product-title-content-height) + var(--product-title-motion-gap));
       overflow: visible;
       background: #050506;
       color: #f9f9fa;
@@ -515,7 +517,7 @@
     .product-title__copy {
       position: absolute;
       left: 50%;
-      bottom: 0;
+      bottom: var(--product-title-motion-gap);
       z-index: 1;
       width: var(--section-width);
       transform: translateX(-50%);
@@ -2487,6 +2489,10 @@
         --product-gallery-radius: 28px;
       }
 
+      .product-title {
+        --product-title-motion-gap: clamp(48px, 4.167vw, 80px);
+      }
+
       .system-motion {
         --system-card-radius: 28px;
         --system-card-top: 72px;
@@ -2620,7 +2626,7 @@
       }
 
       .product-title {
-        height: 220px;
+        --product-title-content-height: 220px;
       }
 
       .system-title__body {
@@ -2887,12 +2893,12 @@
 
       .product-title {
         --product-title-gradient-bleed: 88px;
-        height: 260px;
+        --product-title-content-height: 260px;
       }
 
       .product-title__copy {
         width: var(--section-width);
-        bottom: 0;
+        bottom: var(--product-title-motion-gap);
       }
 
       .product-title__body {
@@ -2933,7 +2939,7 @@
       .system-info {
         --system-info-text-gap: 32px;
         --system-info-caption-gap: 20px;
-        --system-info-card-height: 320px;
+        --system-info-card-height: 240px;
         padding-top: 40px;
         padding-bottom: 32px;
       }
@@ -3429,17 +3435,17 @@
           <div class="interface-info" data-interface-info-carousel aria-label="Rookie2 interface information cards">
             <div class="interface-info__viewport">
               <div class="interface-info__track" data-interface-info-track>
+                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface motion">
+                  <div class="interface-info__card interface-info__card--motion">
+                    <video class="interface-info__video" data-desktop-src="./assets/media/Interface_mv_01.mp4" data-mobile-src="./assets/media/Interface_mv_01-m.mp4" data-desktop-fallback-src="./assets/media_original/Interface_mv_01.mp4" data-mobile-fallback-src="./assets/media_original/Interface_mv_01-m.mp4" muted loop playsinline preload="metadata" aria-label="Rookie2 interface motion display"></video>
+                  </div>
+                </div>
                 <div class="interface-info__group interface-info__group--split" data-interface-info-slide data-card-label="Interface touchpoints">
                   <div class="interface-info__card">
                     <img class="interface-info__image" src="./assets/images/interface-design/info-card-02-open.webp" alt="Rookie2 touchscreen asking the user to press open">
                   </div>
                   <div class="interface-info__card">
                     <img class="interface-info__image" src="./assets/images/interface-design/info-card-02-delivery.webp" alt="Rookie2 carrying drinks and a package inside its storage bay">
-                  </div>
-                </div>
-                <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Interface motion">
-                  <div class="interface-info__card interface-info__card--motion">
-                    <video class="interface-info__video" data-desktop-src="./assets/media/Interface_mv_01.mp4" data-mobile-src="./assets/media/Interface_mv_01-m.mp4" data-desktop-fallback-src="./assets/media_original/Interface_mv_01.mp4" data-mobile-fallback-src="./assets/media_original/Interface_mv_01-m.mp4" muted loop playsinline preload="metadata" aria-label="Rookie2 interface motion display"></video>
                   </div>
                 </div>
                 <div class="interface-info__group interface-info__group--single" data-interface-info-slide data-card-label="Viewing distance">
@@ -3535,7 +3541,7 @@
           playsinline
           aria-hidden="true"
         ></video>
-        <p class="product-motion__copy product-motion__copy--lower" data-motion-copy aria-live="off">
+        <p class="product-motion__copy" data-motion-copy aria-live="off">
           <span class="product-motion__copy-line">A familiar presence</span>
           <span class="product-motion__copy-line">in everyday spaces.</span>
         </p>
@@ -3606,7 +3612,7 @@
           playsinline
           aria-hidden="true"
         ></video>
-        <p class="product-motion__copy" data-motion-copy aria-live="off">
+        <p class="product-motion__copy product-motion__copy--lower" data-motion-copy aria-live="off">
           <span class="product-motion__copy-line">Quietly becoming part</span>
           <span class="product-motion__copy-line">of everyday life.</span>
         </p>
@@ -3658,6 +3664,42 @@
     </section>
     <div class="system-motion-tail" data-system-motion-tail aria-hidden="true"></div>
 
+    <section class="system-info3" aria-label="Rookie2 service connection information">
+      <div class="system-info3__inner">
+        <div class="system-info3__media" data-system-info3-parallax-media>
+          <img class="system-info3__image" data-system-info3-parallax-image src="./assets/images/system/system-info3-card-01.webp" alt="Rookie2 service order screen on a smartphone" loading="lazy" decoding="async">
+        </div>
+        <div class="system-info3__icon-grid">
+          <article class="system-info3__icon-item">
+            <div class="system-info3__icon system-info3__icon--works" data-system-info3-works-icon aria-hidden="true">
+              <span class="system-info3__icon-circle">
+                <img class="system-info3__icon-circle-image" src="./assets/images/system/system-info3-service-works.webp" alt="" loading="lazy" decoding="async">
+              </span>
+            </div>
+            <p class="system-info3__icon-copy">Seamlessly connect NAVER WORKS and NAVER Order for a better service experience.</p>
+          </article>
+          <article class="system-info3__icon-item">
+            <div class="system-info3__icon" aria-hidden="true">
+              <span class="system-info3__icon-motion" data-system-info3-lottie="Bell"></span>
+            </div>
+            <p class="system-info3__icon-copy">Stay informed with real-time robot updates and service notifications.</p>
+          </article>
+          <article class="system-info3__icon-item">
+            <div class="system-info3__icon system-info3__icon--scale-110" aria-hidden="true">
+              <span class="system-info3__icon-motion" data-system-info3-lottie="Check"></span>
+            </div>
+            <p class="system-info3__icon-copy">Request service changes easily and follow every step of the process.</p>
+          </article>
+          <article class="system-info3__icon-item">
+            <div class="system-info3__icon system-info3__icon--scale-94" aria-hidden="true">
+              <span class="system-info3__icon-motion" data-system-info3-lottie="Heart"></span>
+            </div>
+            <p class="system-info3__icon-copy">Access your service history and current service information anytime.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <section class="system-info2" data-system-info2-section aria-label="Rookie2 everyday delivery system">
       <div class="system-info2__inner">
         <div class="system-info2__carousel" data-system-info2-carousel>
@@ -3706,42 +3748,6 @@
           <div class="system-info2__indicator" data-system-info2-indicator role="tablist" aria-label="Everyday delivery system cards"></div>
         </div>
         <p class="system-info2__lead">From packages and drinks to lunchboxes, Rookie2 keeps everyday deliveries moving throughout modern buildings.</p>
-      </div>
-    </section>
-
-    <section class="system-info3" aria-label="Rookie2 service connection information">
-      <div class="system-info3__inner">
-        <div class="system-info3__media" data-system-info3-parallax-media>
-          <img class="system-info3__image" data-system-info3-parallax-image src="./assets/images/system/system-info3-card-01.webp" alt="Rookie2 service order screen on a smartphone" loading="lazy" decoding="async">
-        </div>
-        <div class="system-info3__icon-grid">
-          <article class="system-info3__icon-item">
-            <div class="system-info3__icon system-info3__icon--works" data-system-info3-works-icon aria-hidden="true">
-              <span class="system-info3__icon-circle">
-                <img class="system-info3__icon-circle-image" src="./assets/images/system/system-info3-service-works.webp" alt="" loading="lazy" decoding="async">
-              </span>
-            </div>
-            <p class="system-info3__icon-copy">Seamlessly connect NAVER WORKS and NAVER Order for a better service experience.</p>
-          </article>
-          <article class="system-info3__icon-item">
-            <div class="system-info3__icon" aria-hidden="true">
-              <span class="system-info3__icon-motion" data-system-info3-lottie="Bell"></span>
-            </div>
-            <p class="system-info3__icon-copy">Stay informed with real-time robot updates and service notifications.</p>
-          </article>
-          <article class="system-info3__icon-item">
-            <div class="system-info3__icon system-info3__icon--scale-110" aria-hidden="true">
-              <span class="system-info3__icon-motion" data-system-info3-lottie="Check"></span>
-            </div>
-            <p class="system-info3__icon-copy">Request service changes easily and follow every step of the process.</p>
-          </article>
-          <article class="system-info3__icon-item">
-            <div class="system-info3__icon system-info3__icon--scale-94" aria-hidden="true">
-              <span class="system-info3__icon-motion" data-system-info3-lottie="Heart"></span>
-            </div>
-            <p class="system-info3__icon-copy">Access your service history and current service information anytime.</p>
-          </article>
-        </div>
       </div>
     </section>
 
