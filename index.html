@@ -486,8 +486,34 @@
       user-select: none;
     }
 
+    .product-gallery__card[data-product-gallery-cover-card] .product-gallery__image {
+      transform: scale(var(--product-gallery-cover-scale, 1));
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    .product-gallery__image--cover {
+      position: absolute;
+      inset: 0;
+      opacity: var(--product-gallery-cover-opacity, 0);
+      will-change: opacity, transform;
+    }
+
     .product-gallery__image--flip-x {
       transform: scaleX(-1);
+    }
+
+    .product-gallery__card[data-product-gallery-parallax] .product-gallery__image {
+      position: absolute;
+      top: calc(var(--product-gallery-parallax-range, 0px) * -1);
+      left: 0;
+      height: calc(100% + var(--product-gallery-parallax-bleed, 0px));
+      transform: translate3d(0, var(--product-gallery-parallax-y, 0px), 0);
+      will-change: transform;
+    }
+
+    .product-gallery__card[data-product-gallery-parallax] .product-gallery__image--flip-x {
+      transform: translate3d(0, var(--product-gallery-parallax-y, 0px), 0) scaleX(-1);
     }
 
     .product-title {
@@ -3552,15 +3578,16 @@
 
     <section class="product-gallery product-gallery--one" aria-label="Rookie2 product image gallery one">
       <div class="product-gallery__row product-gallery__row--single">
-        <div class="product-gallery__card">
+        <div class="product-gallery__card" data-product-gallery-cover-card>
           <img class="product-gallery__image" src="./assets/images/Product_img1_card_01.webp" alt="" loading="lazy" decoding="async">
+          <img class="product-gallery__image product-gallery__image--cover" src="./assets/images/Product_img1_card_01_cover.webp" alt="" loading="lazy" decoding="async" aria-hidden="true">
         </div>
       </div>
       <div class="product-gallery__row product-gallery__row--two">
-        <div class="product-gallery__card">
+        <div class="product-gallery__card" data-product-gallery-parallax="near">
           <img class="product-gallery__image" src="./assets/images/Product_img1_card_02.webp" alt="" loading="lazy" decoding="async">
         </div>
-        <div class="product-gallery__card">
+        <div class="product-gallery__card" data-product-gallery-parallax="far">
           <img class="product-gallery__image" src="./assets/images/Product_img1_card_03.webp" alt="" loading="lazy" decoding="async">
         </div>
       </div>
@@ -3584,18 +3611,18 @@
 
     <section class="product-gallery product-gallery--two" aria-label="Rookie2 product image gallery two">
       <div class="product-gallery__row product-gallery__row--two">
-        <div class="product-gallery__card">
+        <div class="product-gallery__card" data-product-gallery-parallax="far">
           <img class="product-gallery__image" src="./assets/images/Product_img2_card_01.webp" alt="" loading="lazy" decoding="async">
         </div>
-        <div class="product-gallery__card">
+        <div class="product-gallery__card" data-product-gallery-parallax="near">
           <img class="product-gallery__image" src="./assets/images/Product_img2_card_04.webp" alt="" loading="lazy" decoding="async">
         </div>
       </div>
       <div class="product-gallery__row product-gallery__row--two">
-        <div class="product-gallery__card">
+        <div class="product-gallery__card" data-product-gallery-parallax="near">
           <img class="product-gallery__image" src="./assets/images/Product_img2_card_02.webp" alt="" loading="lazy" decoding="async">
         </div>
-        <div class="product-gallery__card">
+        <div class="product-gallery__card" data-product-gallery-parallax="far">
           <img class="product-gallery__image product-gallery__image--flip-x" src="./assets/images/Product_img2_card_05.webp" alt="" loading="lazy" decoding="async">
         </div>
       </div>
@@ -3824,6 +3851,8 @@
     const interfaceIconGrid = document.querySelector("[data-interface-icons]");
     const systemInfo3ParallaxMedia = document.querySelector("[data-system-info3-parallax-media]");
     const systemInfo3IconMotions = document.querySelectorAll("[data-system-info3-lottie]");
+    const productGalleryCoverCards = document.querySelectorAll("[data-product-gallery-cover-card]");
+    const productGalleryParallaxCards = document.querySelectorAll("[data-product-gallery-parallax]");
     const systemTitleSection = document.querySelector(".system-title");
     const systemMotionSections = document.querySelectorAll("[data-system-motion-section]");
     const COPY_REVEAL_START_SECONDS = 1.6;
@@ -3999,6 +4028,83 @@
       const coverProgress = getMotionCoverProgress(state.section);
       const offset = holdPixels * coverProgress * -COVER_PARALLAX_RATIO;
       state.section.style.setProperty("--motion-cover-y", `${offset.toFixed(2)}px`);
+    }
+
+    function getProductGalleryCoverProgress(card) {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.top + rect.height / 2;
+      const viewportCenter = window.innerHeight / 2;
+      const revealDistance = Math.max(120, Math.min(window.innerHeight * 0.22, rect.height * 0.34));
+      const revealLead = revealDistance * 0.09;
+
+      if (revealDistance <= 0) {
+        return cardCenter <= viewportCenter ? 1 : 0;
+      }
+
+      return clamp((viewportCenter - cardCenter + revealLead) / revealDistance, 0, 1);
+    }
+
+    function getProductGalleryScaleProgress(card) {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.top + rect.height / 2;
+      const viewportCenter = window.innerHeight / 2;
+      const scaleDistance = Math.max(360, Math.min(window.innerHeight * 0.85, rect.height * 1.1));
+
+      if (scaleDistance <= 0) {
+        return cardCenter <= viewportCenter ? 1 : 0;
+      }
+
+      return clamp((viewportCenter - cardCenter + scaleDistance / 2) / scaleDistance, 0, 1);
+    }
+
+    function updateProductGalleryCovers() {
+      productGalleryCoverCards.forEach((card) => {
+        const coverProgress = easeOutCubic(getProductGalleryCoverProgress(card));
+        const scaleProgress = easeInOutCubic(getProductGalleryScaleProgress(card));
+        const coverScale = 1 + scaleProgress * 0.1;
+        card.style.setProperty("--product-gallery-cover-opacity", coverProgress.toFixed(4));
+        card.style.setProperty("--product-gallery-cover-scale", coverScale.toFixed(4));
+      });
+    }
+
+    function getProductGalleryParallaxDistance(card) {
+      const isNear = card.dataset.productGalleryParallax === "near";
+      const desktopDistance = isNear ? 88 : 44;
+      const tabletDistance = isNear ? 64 : 32;
+      const mobileDistance = isNear ? 36 : 18;
+
+      if (window.innerWidth <= 760) {
+        return mobileDistance;
+      }
+
+      if (window.innerWidth <= 1200) {
+        return tabletDistance;
+      }
+
+      return desktopDistance;
+    }
+
+    function getProductGalleryParallaxProgress(card) {
+      const rect = card.getBoundingClientRect();
+      const travel = window.innerHeight + rect.height;
+
+      if (travel <= 0) {
+        return 0.5;
+      }
+
+      return clamp((window.innerHeight - rect.top) / travel, 0, 1);
+    }
+
+    function updateProductGalleryParallax() {
+      productGalleryParallaxCards.forEach((card) => {
+        const distance = reducedMotionMediaQuery.matches ? 0 : getProductGalleryParallaxDistance(card);
+        const progress = easeInOutCubic(getProductGalleryParallaxProgress(card));
+        const offset = (progress - 0.5) * distance * 2;
+
+        card.style.setProperty("--product-gallery-parallax-range", `${distance.toFixed(2)}px`);
+        card.style.setProperty("--product-gallery-parallax-bleed", `${(distance * 2).toFixed(2)}px`);
+        card.style.setProperty("--product-gallery-parallax-y", `${offset.toFixed(2)}px`);
+      });
     }
 
     function getSystemExpansionStartScrollY(state, initialMetrics) {
@@ -4214,6 +4320,8 @@
       updateSystemTone();
       updateSystemMotion();
       updateSystemInfo3ImageParallax();
+      updateProductGalleryCovers();
+      updateProductGalleryParallax();
     }
 
     function updateVideoTarget(state) {
@@ -6143,6 +6251,8 @@
     updateSystemTone();
     updateSystemMotion();
     updateSystemInfo3ImageParallax();
+    updateProductGalleryCovers();
+    updateProductGalleryParallax();
     initializeVisualCarousel();
     initializeInterfaceInfoCarousel();
     initializeSystemInfo2Carousel();
