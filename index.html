@@ -1267,7 +1267,7 @@
       --system-info4-caption-gap: 32px;
       --system-info4-caption-left: 10px;
       --system-info4-caption-right: 16px;
-      --system-info4-padding-y: 120px;
+      --system-info4-padding-y: 300px;
       --system-info4-padding-top: 80px;
       --system-info4-padding-bottom: var(--system-info4-padding-y);
       position: relative;
@@ -1349,6 +1349,7 @@
       --footer-spec-unit-gap: 4px;
       --footer-spec-height: calc(var(--footer-spec-label-height) + var(--footer-spec-value-gap) + var(--footer-spec-value-height));
       --footer-spec-mobile-group-gap: 32px;
+      --footer-robot-start-x: 160px;
       --footer-robot-gap: 80px;
       --footer-brand-gap: 160px;
       position: relative;
@@ -1491,9 +1492,12 @@
     }
 
     .site-footer__robot {
+      --footer-robot-scale: 0.7;
+      --footer-robot-x: var(--footer-robot-start-x);
       width: 100%;
       aspect-ratio: 1200 / 800;
       margin-top: var(--footer-robot-gap);
+      overflow: hidden;
     }
 
     .site-footer__robot-image {
@@ -1501,6 +1505,9 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transform: translate3d(var(--footer-robot-x), 0, 0) scale(var(--footer-robot-scale));
+      transform-origin: center center;
+      will-change: transform;
       pointer-events: none;
       user-select: none;
       -webkit-user-drag: none;
@@ -2836,15 +2843,16 @@
         --system-info4-caption-gap: 28px;
         --system-info4-caption-left: 8px;
         --system-info4-caption-right: 8px;
-        --system-info4-padding-y: 104px;
+        --system-info4-padding-y: 260px;
         --system-info4-padding-top: 64px;
       }
 
       .site-footer {
-        --footer-top: 160px;
+        --footer-top: 240px;
         --footer-bottom: 160px;
         --footer-lead-spec-gap: 128px;
         --footer-spec-column-gap: 80px;
+        --footer-robot-start-x: 112px;
         --footer-robot-gap: 72px;
         --footer-brand-gap: 128px;
         min-height: auto;
@@ -2999,19 +3007,20 @@
         --system-info4-caption-left: 6px;
         --system-info4-caption-right: 16px;
         --system-info4-card-height: clamp(300px, 48vw, 360px);
-        --system-info4-padding-y: 96px;
+        --system-info4-padding-y: 240px;
         --system-info4-padding-top: 16px;
       }
 
       .site-footer {
-        --footer-top: 120px;
+        --footer-top: 180px;
         --footer-bottom: 120px;
         --footer-lead-spec-gap: 88px;
         --footer-spec-row-gap: 48px;
         --footer-spec-column-gap: 32px;
         --footer-spec-label-size: 16px;
-        --footer-spec-value-gap: 12px;
-        --footer-spec-value-size: 38px;
+        --footer-spec-value-gap: 8px;
+        --footer-spec-value-size: 36px;
+        --footer-robot-start-x: 80px;
         --footer-logo-naver-width: 130.47px;
         --footer-logo-naver-height: 24.07px;
         --footer-logo-rookie-width: 130.47px;
@@ -3348,17 +3357,17 @@
         --system-info4-caption-left: 4px;
         --system-info4-caption-right: 16px;
         --system-info4-card-height: 240px;
-        --system-info4-padding-y: 80px;
+        --system-info4-padding-y: 200px;
         --system-info4-padding-top: 0;
       }
 
       .site-footer {
-        --footer-top: 96px;
+        --footer-top: 144px;
         --footer-bottom: 96px;
         --footer-lead-spec-gap: 64px;
         --footer-spec-row-gap: 40px;
         --footer-spec-column-gap: 28px;
-        --footer-spec-value-size: 36px;
+        --footer-spec-value-size: 34px;
         --footer-logo-naver-width: 123.6px;
         --footer-logo-naver-height: 22.8px;
         --footer-logo-rookie-width: 123.6px;
@@ -4283,7 +4292,7 @@
         </div>
       </div>
 
-      <div class="site-footer__robot">
+      <div class="site-footer__robot" data-footer-robot>
         <img class="site-footer__robot-image" src="./assets/images/footer/footer-robot.webp" width="1200" height="800" alt="Rookie2 robot product render" loading="lazy" decoding="async">
       </div>
 
@@ -4328,6 +4337,7 @@
     const productGalleryParallaxCards = document.querySelectorAll("[data-product-gallery-parallax]");
     const systemTitleSection = document.querySelector(".system-title");
     const systemFooterCover = document.querySelector("[data-system-footer-cover]");
+    const footerRobot = document.querySelector("[data-footer-robot]");
     const systemMotionSections = document.querySelectorAll("[data-system-motion-section]");
     const COPY_REVEAL_START_SECONDS = 1.6;
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
@@ -4396,6 +4406,7 @@
     let visualScrollTimer = 0;
     let interfaceInfoScrollTimer = 0;
     let systemInfo2ScrollTimer = 0;
+    let footerRobotRevealProgress = 0;
 
     const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
     const easeOutCubic = (value) => 1 - Math.pow(1 - value, 3);
@@ -4538,6 +4549,45 @@
       const coverProgress = getFooterCoverProgress();
       const offset = holdPixels * coverProgress * (1 - COVER_PARALLAX_RATIO);
       systemFooterCover.style.setProperty("--system-footer-cover-y", `${offset.toFixed(2)}px`);
+    }
+
+    function updateFooterRobotMotion() {
+      if (!footerRobot) {
+        return;
+      }
+
+      if (reducedMotionMediaQuery.matches) {
+        footerRobotRevealProgress = 1;
+        footerRobot.style.setProperty("--footer-robot-scale", "1");
+        footerRobot.style.setProperty("--footer-robot-x", "0px");
+        return;
+      }
+
+      const rect = footerRobot.getBoundingClientRect();
+      const viewportHeight = window.innerHeight;
+      const isVisible = rect.bottom > 0 && rect.top < viewportHeight;
+
+      if (!isVisible) {
+        footerRobotRevealProgress = 0;
+        footerRobot.style.setProperty("--footer-robot-scale", "0.7");
+        footerRobot.style.setProperty("--footer-robot-x", "var(--footer-robot-start-x)");
+        return;
+      }
+
+      const viewportCenter = window.innerHeight / 2;
+      const robotCenter = rect.top + rect.height / 2;
+      const startDistance = viewportCenter + rect.height / 2;
+      const distanceToCenter = robotCenter - viewportCenter;
+      const endOffset = 60;
+      const progress = clamp((startDistance - distanceToCenter) / (startDistance + endOffset), 0, 1);
+      footerRobotRevealProgress = Math.max(footerRobotRevealProgress, progress);
+
+      const startX = Number.parseFloat(getComputedStyle(footerRobot).getPropertyValue("--footer-robot-start-x")) || 160;
+      const scale = 0.7 + 0.3 * footerRobotRevealProgress;
+      const translateX = startX * (1 - footerRobotRevealProgress);
+
+      footerRobot.style.setProperty("--footer-robot-scale", scale.toFixed(4));
+      footerRobot.style.setProperty("--footer-robot-x", `${translateX.toFixed(2)}px`);
     }
 
     function getProductGalleryCoverProgress(card) {
@@ -4833,6 +4883,7 @@
       updateProductGalleryCovers();
       updateProductGalleryParallax();
       updateFooterCoverOffset();
+      updateFooterRobotMotion();
     }
 
     function updateVideoTarget(state) {
