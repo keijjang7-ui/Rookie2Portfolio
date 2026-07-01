@@ -6,14 +6,6 @@
   <title>Rookie2 Portfolio</title>
   <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg%20width%3D%2280%22%20height%3D%2280%22%20viewBox%3D%220%200%2080%2080%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Crect%20width%3D%2280%22%20height%3D%2280%22%20rx%3D%2240%22%20fill%3D%22black%22%2F%3E%3Cpath%20d%3D%22M45.7212%2041.1057L33.8263%2024H24V56H34.2788V38.8943L46.1737%2056H56V24H45.7212V41.1057Z%22%20fill%3D%22white%22%2F%3E%3C%2Fsvg%3E">
   <style>
-    @font-face {
-      font-family: "A Type";
-      src: url("./assets/fonts/a-type/AType-Bold.otf") format("opentype");
-      font-weight: 800;
-      font-style: normal;
-      font-display: swap;
-    }
-
     :root {
       --page-white: #ffffff;
       --page-black: #09090b;
@@ -239,12 +231,19 @@
     }
 
     .hero__title {
+      --hero-title-line-height: 0.94;
+      --hero-title-width-ratio: 3.845;
       margin: 0;
-      font-family: "A Type", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      font-size: var(--hero-title-size);
-      line-height: 0.94;
-      letter-spacing: 0;
-      font-weight: 800;
+      width: calc(var(--hero-title-size) * var(--hero-title-width-ratio));
+      height: calc(var(--hero-title-size) * var(--hero-title-line-height));
+      color: #000;
+      line-height: 0;
+    }
+
+    .hero__title-logo {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .hero__detail {
@@ -686,6 +685,21 @@
     .system-motion--integration .system-motion-copy {
       position: relative;
       top: auto;
+    }
+
+    .system-footer-cover {
+      --system-footer-cover-hold: 100svh;
+      --system-footer-cover-y: 0px;
+      position: relative;
+      z-index: 3;
+      padding-bottom: var(--system-footer-cover-hold);
+      background: var(--system-v2-bg);
+      color: var(--system-v2-text);
+    }
+
+    .system-footer-cover__content {
+      transform: translate3d(0, var(--system-footer-cover-y), 0);
+      will-change: transform;
     }
 
     .system-motion-copy {
@@ -1264,6 +1278,7 @@
     }
 
     .system-info4__inner {
+      position: relative;
       width: var(--section-width);
       margin: 0 auto;
     }
@@ -1307,6 +1322,234 @@
       line-height: var(--type-sub-line);
       letter-spacing: 0;
       font-weight: 500;
+    }
+
+    .site-footer {
+      --footer-overlap: 100svh;
+      --footer-top: 300px;
+      --footer-bottom: 200px;
+      --footer-lead-width: 800px;
+      --footer-lead-spec-gap: 160px;
+      --footer-spec-row-gap: 80px;
+      --footer-spec-column-gap: 120px;
+      --footer-spec-label-size: 20px;
+      --footer-spec-label-height: 14px;
+      --footer-spec-value-size: 60px;
+      --footer-spec-value-height: 42px;
+      --footer-spec-value-gap: 20px;
+      --footer-logo-naver-width: 206px;
+      --footer-logo-naver-height: 38px;
+      --footer-logo-rookie-width: 206px;
+      --footer-logo-rookie-height: 42px;
+      --footer-logo-around-width: 235px;
+      --footer-logo-around-height: 40px;
+      --footer-spec-unit-size: 32px;
+      --footer-spec-unit-height: 23px;
+      --footer-spec-unit-top: 19px;
+      --footer-spec-unit-gap: 4px;
+      --footer-spec-height: calc(var(--footer-spec-label-height) + var(--footer-spec-value-gap) + var(--footer-spec-value-height));
+      --footer-spec-mobile-group-gap: 32px;
+      --footer-robot-gap: 80px;
+      --footer-brand-gap: 160px;
+      position: relative;
+      z-index: 4;
+      min-height: 2279px;
+      margin-top: calc(var(--footer-overlap) * -1);
+      padding: var(--footer-top) 0 var(--footer-bottom);
+      overflow: hidden;
+      background: #000000;
+      color: #f9f9fa;
+    }
+
+    .site-footer__inner {
+      width: var(--section-width);
+      margin: 0 auto;
+    }
+
+    .site-footer__lead {
+      width: min(var(--footer-lead-width), 100%);
+      margin: 0;
+      padding-left: var(--left-text-optical-inset);
+      color: #f9f9fa;
+      font-size: var(--type-state-size);
+      line-height: var(--type-state-line);
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .footer-specs {
+      display: grid;
+      grid-template-columns: 540px 210px 210px;
+      gap: var(--footer-spec-row-gap) var(--footer-spec-column-gap);
+      width: 100%;
+      margin-top: var(--footer-lead-spec-gap);
+    }
+
+    .footer-spec {
+      display: grid;
+      grid-template-rows: var(--footer-spec-label-height) var(--footer-spec-value-height);
+      row-gap: var(--footer-spec-value-gap);
+      align-content: start;
+      min-width: 0;
+      min-height: var(--footer-spec-height);
+      padding-left: var(--left-text-optical-inset);
+    }
+
+    .footer-spec__label {
+      margin: 0;
+      height: var(--footer-spec-label-height);
+      color: #bfc3d0;
+      font-size: var(--footer-spec-label-size);
+      line-height: var(--footer-spec-label-height);
+      letter-spacing: -0.02em;
+      font-weight: 500;
+    }
+
+    .footer-spec__value {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--footer-spec-unit-gap);
+      width: 190px;
+      height: var(--footer-spec-value-height);
+      margin: 0;
+      color: #f9f9fa;
+      font-size: var(--footer-spec-value-size);
+      line-height: var(--footer-spec-value-height);
+      letter-spacing: 0;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .footer-spec__number {
+      display: block;
+      height: var(--footer-spec-value-height);
+      font-size: var(--footer-spec-value-size);
+      line-height: var(--footer-spec-value-height);
+      letter-spacing: 0;
+      font-weight: 600;
+    }
+
+    .footer-spec__unit {
+      display: block;
+      height: var(--footer-spec-unit-height);
+      margin-top: var(--footer-spec-unit-top);
+      font-size: var(--footer-spec-unit-size);
+      line-height: var(--footer-spec-unit-height);
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .footer-spec__logo {
+      display: flex;
+      align-items: center;
+      height: var(--footer-spec-value-height);
+      margin: 0;
+      color: #f9f9fa;
+    }
+
+    .footer-spec__logo--rookie {
+      width: var(--footer-logo-rookie-width);
+      height: var(--footer-spec-value-height);
+    }
+
+    .footer-spec__logo--naver {
+      width: var(--footer-logo-naver-width);
+      height: var(--footer-spec-value-height);
+    }
+
+    .footer-spec__logo--around {
+      width: var(--footer-logo-around-width);
+      height: var(--footer-spec-value-height);
+    }
+
+    .footer-spec__logo-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .footer-spec__logo--naver .footer-spec__logo-image,
+    .footer-spec__logo--rookie .footer-spec__logo-image {
+      width: 100%;
+    }
+
+    .footer-spec__logo--naver .footer-spec__logo-image {
+      height: var(--footer-logo-naver-height);
+    }
+
+    .footer-spec__logo--rookie .footer-spec__logo-image {
+      height: var(--footer-logo-rookie-height);
+    }
+
+    .footer-spec__logo--around .footer-spec__logo-image {
+      width: 100%;
+      height: var(--footer-logo-around-height);
+    }
+
+    .site-footer__robot {
+      width: 100%;
+      aspect-ratio: 1200 / 800;
+      margin-top: var(--footer-robot-gap);
+    }
+
+    .site-footer__robot-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .site-footer__brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: var(--footer-brand-gap);
+    }
+
+    .site-footer__brand-logo {
+      display: block;
+      width: 360px;
+      height: 36px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .site-footer__socials {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 40px;
+    }
+
+    .site-footer__social {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      color: #a8abb2;
+      background: #1f2024;
+    }
+
+    .site-footer__social-icon {
+      width: 20px;
+      height: 20px;
+      display: block;
+      pointer-events: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
     @media (min-width: 561px) {
@@ -2335,12 +2578,22 @@
       }
 
       .hero__title {
+        --hero-title-line-height: 0.7;
         position: absolute;
         top: clamp(122px, calc(5vw + 92px), 152px);
         left: 50%;
         width: 296px;
+        height: calc(var(--hero-title-size) * var(--hero-title-line-height));
         text-align: center;
-        line-height: 0.7;
+        line-height: 0;
+        transform: translateX(-50%);
+      }
+
+      .hero__title-logo {
+        position: relative;
+        left: 50%;
+        width: calc(var(--hero-title-size) * var(--hero-title-width-ratio));
+        height: auto;
         transform: translateX(-50%);
       }
 
@@ -2587,6 +2840,25 @@
         --system-info4-padding-top: 64px;
       }
 
+      .site-footer {
+        --footer-top: 160px;
+        --footer-bottom: 160px;
+        --footer-lead-spec-gap: 128px;
+        --footer-spec-column-gap: 80px;
+        --footer-robot-gap: 72px;
+        --footer-brand-gap: 128px;
+        min-height: auto;
+      }
+
+      .footer-specs {
+        grid-template-columns: minmax(320px, 1fr) repeat(2, minmax(150px, 210px));
+      }
+
+      .site-footer__brand-logo {
+        width: 300px;
+        height: 30px;
+      }
+
       .interface-typo {
         padding: 0 24px;
       }
@@ -2731,6 +3003,78 @@
         --system-info4-padding-top: 16px;
       }
 
+      .site-footer {
+        --footer-top: 120px;
+        --footer-bottom: 120px;
+        --footer-lead-spec-gap: 88px;
+        --footer-spec-row-gap: 48px;
+        --footer-spec-column-gap: 32px;
+        --footer-spec-label-size: 16px;
+        --footer-spec-value-gap: 12px;
+        --footer-spec-value-size: 38px;
+        --footer-logo-naver-width: 130.47px;
+        --footer-logo-naver-height: 24.07px;
+        --footer-logo-rookie-width: 130.47px;
+        --footer-logo-rookie-height: 26.6px;
+        --footer-logo-around-width: 148.83px;
+        --footer-logo-around-height: 25.33px;
+        --footer-spec-unit-size: 19px;
+        --footer-spec-unit-height: 22px;
+        --footer-spec-unit-top: 16px;
+        --footer-robot-gap: 64px;
+        --footer-brand-gap: 96px;
+      }
+
+      .footer-specs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .system-info4__inner {
+        position: relative;
+        top: auto;
+      }
+
+      .footer-spec--provider {
+        order: 1;
+      }
+
+      .footer-spec--nickname {
+        order: 2;
+      }
+
+      .footer-spec--platform {
+        order: 3;
+      }
+
+      .footer-spec--system {
+        order: 4;
+      }
+
+      .footer-spec--height {
+        order: 5;
+      }
+
+      .footer-spec--weight {
+        order: 6;
+      }
+
+      .footer-spec--speed {
+        order: 7;
+      }
+
+      .footer-spec--runtime {
+        order: 8;
+      }
+
+      .footer-spec--payload {
+        order: 9;
+      }
+
+      .site-footer__robot {
+        width: 100vw;
+        margin-left: calc((var(--section-width) - 100vw) / 2);
+      }
+
       .system-info__cards {
         grid-template-columns: minmax(0, 1fr);
       }
@@ -2823,12 +3167,14 @@
       }
 
       .hero__title {
+        --hero-title-line-height: 0.705;
         position: absolute;
         top: 130px;
         left: 50%;
         width: 252px;
+        height: calc(var(--hero-title-size) * var(--hero-title-line-height));
         text-align: center;
-        line-height: 0.705;
+        line-height: 0;
         transform: translateX(-50%);
       }
 
@@ -3004,6 +3350,45 @@
         --system-info4-card-height: 240px;
         --system-info4-padding-y: 80px;
         --system-info4-padding-top: 0;
+      }
+
+      .site-footer {
+        --footer-top: 96px;
+        --footer-bottom: 96px;
+        --footer-lead-spec-gap: 64px;
+        --footer-spec-row-gap: 40px;
+        --footer-spec-column-gap: 28px;
+        --footer-spec-value-size: 36px;
+        --footer-logo-naver-width: 123.6px;
+        --footer-logo-naver-height: 22.8px;
+        --footer-logo-rookie-width: 123.6px;
+        --footer-logo-rookie-height: 25.2px;
+        --footer-logo-around-width: 141px;
+        --footer-logo-around-height: 24px;
+        --footer-spec-unit-size: 18px;
+        --footer-spec-unit-height: 22px;
+        --footer-spec-unit-top: 16px;
+        --footer-spec-mobile-group-gap: 24px;
+        --footer-robot-gap: 56px;
+        --footer-brand-gap: 80px;
+      }
+
+      .footer-specs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .site-footer__brand-logo {
+        width: 240px;
+        height: 24px;
+      }
+
+      .site-footer__socials {
+        margin-top: 32px;
+      }
+
+      .site-footer__social {
+        width: 36px;
+        height: 36px;
       }
 
       .system-info3__icon {
@@ -3253,7 +3638,18 @@
 
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero__content">
-          <h1 class="hero__title" id="hero-title">Rookie2</h1>
+          <h1 class="hero__title" id="hero-title" aria-label="Rookie2">
+            <svg class="hero__title-logo" viewBox="0 0 400 85" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M94.6943 23.5195C112.39 23.5196 123.478 35.2799 123.479 54.0957C123.479 73.1357 112.39 84.8965 94.6943 84.8965C76.9983 84.8965 65.9102 73.1357 65.9102 54.0957C65.9103 35.2799 76.9984 23.5195 94.6943 23.5195ZM94.6943 37.0723C86.4064 37.0723 81.8145 43.1199 81.8145 54.0957C81.8145 65.4077 86.4063 71.3438 94.6943 71.3438C102.982 71.3437 107.574 65.4077 107.574 54.0957C107.574 43.1199 102.982 37.0723 94.6943 37.0723Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M158.395 23.5195C176.09 23.5197 187.179 35.28 187.179 54.0957C187.179 73.1356 176.09 84.8964 158.395 84.8965C140.699 84.8965 129.61 73.1357 129.61 54.0957C129.61 35.2799 140.699 23.5195 158.395 23.5195ZM158.395 37.0723C150.107 37.0723 145.515 43.1199 145.515 54.0957C145.515 65.4077 150.107 71.3438 158.395 71.3438C166.682 71.3436 171.274 65.4076 171.274 54.0957C171.274 43.12 166.682 37.0724 158.395 37.0723Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M311.755 23.5195C330.011 23.5197 337.627 36.2883 337.627 53.2002C337.627 54.9921 337.515 57.2319 337.179 58.7998H298.539C299.995 67.5358 305.371 71.9043 315.003 71.9043C321.275 71.9042 325.867 70.6722 330.906 67.6484L335.499 79.1836C328.555 83.2156 322.058 84.8965 313.322 84.8965C294.282 84.8964 283.194 73.3599 283.194 53.8721C283.194 35.6161 294.059 23.5195 311.755 23.5195ZM311.307 35.7275C304.139 35.7275 299.771 39.9845 298.539 48.2725H322.954C322.058 39.7605 318.587 35.7276 311.307 35.7275Z" fill="currentColor"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M29.1201 5.04004C48.608 5.04007 59.0244 13.8883 59.0244 30.2402C59.0243 41.1041 54.0957 48.9443 44.7998 52.8643L62.7197 83.4404H44.6885L29.1201 55.5518H16.0156V83.4404H0V5.04004H29.1201ZM16.0156 42.2236H27.8877C37.8556 42.2236 42.4482 38.3041 42.4482 30.2402C42.4482 22.1762 37.744 18.3682 28 18.3682H16.0156V42.2236Z" fill="currentColor"/>
+              <path d="M211.679 49.8398L233.183 24.9756H251.887L228.702 51.2959L253.454 83.4404H234.75L211.679 52.9756V83.4404H195.998V1.67969H211.679V49.8398Z" fill="currentColor"/>
+              <path d="M274.394 83.4404H258.714V24.9756H274.394V83.4404Z" fill="currentColor"/>
+              <path d="M370.157 5.04004C386.397 5.04004 397.709 12.4319 397.709 26.7676C397.709 39.7596 390.989 45.4721 378.109 53.5361C369.037 59.1361 363.326 63.6161 361.422 69.6641H399.39V83.4404H344.285V78.624C344.285 63.056 351.342 54.7684 366.014 45.3604C377.438 37.9685 381.245 34.8321 381.245 28.4482C381.245 22.4002 376.765 19.04 368.701 19.04C361.981 19.0401 356.829 21.0557 351.229 25.3115L344.285 14C352.573 7.72803 360.749 5.04007 370.157 5.04004Z" fill="currentColor"/>
+              <path d="M266.554 0C272.49 0 275.962 3.36002 275.962 8.62402C275.962 14 272.49 17.248 266.554 17.248C260.73 17.248 257.146 14 257.146 8.62402C257.146 3.36007 260.73 5.86908e-05 266.554 0Z" fill="currentColor"/>
+            </svg>
+          </h1>
           <div class="hero__detail">
             <div class="hero__detail-copy">
               <p class="hero__eyebrow">Autonomy at Scale</p>
@@ -3785,54 +4181,131 @@
       </div>
     </section>
 
-    <section class="system-motion system-motion--integration" id="systemMotionIntegration" data-system-motion-section aria-label="Rookie2 seamless integration motion">
-      <div class="system-motion__stage">
-        <div class="system-motion__card" data-system-motion-card>
-          <video
-            id="systemMotionVideo2"
-            class="system-motion__video"
-            data-system-motion-video
-            data-hevc-src="./assets/media/System_mv3.mp4"
-            preload="auto"
-            muted
-            playsinline
-            loop
-            aria-hidden="true"
-          ></video>
-        </div>
-        <section class="system-motion-copy" data-system-motion-stage-content aria-label="Rookie2 seamless integration">
-          <div class="system-motion-copy__inner">
-            <p class="system-motion-copy__body">Built on NAVER 1784, the world&rsquo;s first robot-friendly building, Rookie2 integrates seamlessly with next-generation spatial infrastructure.</p>
+    <div class="system-footer-cover" data-system-footer-cover>
+      <div class="system-footer-cover__content">
+        <section class="system-motion system-motion--integration" id="systemMotionIntegration" data-system-motion-section aria-label="Rookie2 seamless integration motion">
+          <div class="system-motion__stage">
+            <div class="system-motion__card" data-system-motion-card>
+              <video
+                id="systemMotionVideo2"
+                class="system-motion__video"
+                data-system-motion-video
+                data-hevc-src="./assets/media/System_mv3.mp4"
+                preload="auto"
+                muted
+                playsinline
+                loop
+                aria-hidden="true"
+              ></video>
+            </div>
+            <section class="system-motion-copy" data-system-motion-stage-content aria-label="Rookie2 seamless integration">
+              <div class="system-motion-copy__inner">
+                <p class="system-motion-copy__body">Built on NAVER 1784, the world&rsquo;s first robot-friendly building, Rookie2 integrates seamlessly with next-generation spatial infrastructure.</p>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="system-info4" aria-label="Rookie2 interaction and building integration information">
+          <div class="system-info4__inner">
+            <div class="system-info4__cards">
+              <article class="system-info4__item">
+                <div class="system-info4__media">
+                  <img class="system-info4__image" src="./assets/images/system/system-info4-card-01.webp" alt="Rookie2 display showing gaze interaction" loading="lazy" decoding="async">
+                </div>
+                <p class="system-info4__caption">Natural gaze interaction enables intuitive and comfortable communication.</p>
+              </article>
+              <article class="system-info4__item">
+                <div class="system-info4__media">
+                  <img class="system-info4__image" src="./assets/images/system/system-info4-card-02.webp" alt="Rookie2 navigating around a person in a service zone" loading="lazy" decoding="async">
+                </div>
+                <p class="system-info4__caption">Human-friendly navigation ensures smooth, safe, and non-threatening movement.</p>
+              </article>
+              <article class="system-info4__item">
+                <div class="system-info4__media">
+                  <img class="system-info4__image" src="./assets/images/system/system-info4-card-03.webp" alt="Rookie2 operating with elevators and ROBOPORT stations" loading="lazy" decoding="async">
+                </div>
+                <p class="system-info4__caption">Seamlessly access elevators and ROBOPORT&trade; for continuous autonomous operation.</p>
+              </article>
+            </div>
           </div>
         </section>
       </div>
-    </section>
+    </div>
+  </main>
 
-    <section class="system-info4" aria-label="Rookie2 interaction and building integration information">
-      <div class="system-info4__inner">
-        <div class="system-info4__cards">
-          <article class="system-info4__item">
-            <div class="system-info4__media">
-              <img class="system-info4__image" src="./assets/images/system/system-info4-card-01.webp" alt="Rookie2 display showing gaze interaction" loading="lazy" decoding="async">
-            </div>
-            <p class="system-info4__caption">Natural gaze interaction enables intuitive and comfortable communication.</p>
-          </article>
-          <article class="system-info4__item">
-            <div class="system-info4__media">
-              <img class="system-info4__image" src="./assets/images/system/system-info4-card-02.webp" alt="Rookie2 navigating around a person in a service zone" loading="lazy" decoding="async">
-            </div>
-            <p class="system-info4__caption">Human-friendly navigation ensures smooth, safe, and non-threatening movement.</p>
-          </article>
-          <article class="system-info4__item">
-            <div class="system-info4__media">
-              <img class="system-info4__image" src="./assets/images/system/system-info4-card-03.webp" alt="Rookie2 operating with elevators and ROBOPORT stations" loading="lazy" decoding="async">
-            </div>
-            <p class="system-info4__caption">Seamlessly access elevators and ROBOPORT&trade; for continuous autonomous operation.</p>
-          </article>
+  <footer class="site-footer" aria-labelledby="footer-title">
+    <div class="site-footer__inner">
+      <p class="site-footer__lead" id="footer-title">Developed by NAVER LABS through the collaboration of researchers and engineers across robotics, AI, HRI, cloud, digital twin, connectivity, and autonomous systems.</p>
+
+      <div class="footer-specs" aria-label="Rookie2 product specifications">
+        <div class="footer-spec footer-spec--provider footer-spec--brand">
+          <p class="footer-spec__label">Provider</p>
+          <div class="footer-spec__logo footer-spec__logo--naver" aria-label="NAVER" role="img">
+            <img class="footer-spec__logo-image" src="./assets/images/footer/footer-logo-naver.svg" width="206" height="38" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="footer-spec footer-spec--system footer-spec--metric">
+          <p class="footer-spec__label">System</p>
+          <p class="footer-spec__value"><span class="footer-spec__number">ARC</span></p>
+        </div>
+        <div class="footer-spec footer-spec--speed footer-spec--metric">
+          <p class="footer-spec__label">Speed</p>
+          <p class="footer-spec__value"><span class="footer-spec__number">1.2</span><span class="footer-spec__unit">m/s</span></p>
+        </div>
+        <div class="footer-spec footer-spec--nickname footer-spec--brand">
+          <p class="footer-spec__label">Nickname</p>
+          <div class="footer-spec__logo footer-spec__logo--rookie" aria-label="Rookie2" role="img">
+            <img class="footer-spec__logo-image" src="./assets/images/footer/footer-logo-rookie2.svg" width="206" height="42" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="footer-spec footer-spec--height footer-spec--metric">
+          <p class="footer-spec__label">Height</p>
+          <p class="footer-spec__value"><span class="footer-spec__number">100</span><span class="footer-spec__unit">cm</span></p>
+        </div>
+        <div class="footer-spec footer-spec--runtime footer-spec--metric">
+          <p class="footer-spec__label">Runtime</p>
+          <p class="footer-spec__value"><span class="footer-spec__number">8</span><span class="footer-spec__unit">hr</span></p>
+        </div>
+        <div class="footer-spec footer-spec--platform footer-spec--brand">
+          <p class="footer-spec__label">Robot Platform</p>
+          <div class="footer-spec__logo footer-spec__logo--around" aria-label="AROUND" role="img">
+            <img class="footer-spec__logo-image" src="./assets/images/footer/footer-logo-around.svg" width="235" height="40" alt="" loading="lazy" decoding="async">
+          </div>
+        </div>
+        <div class="footer-spec footer-spec--weight footer-spec--metric">
+          <p class="footer-spec__label">Weight</p>
+          <p class="footer-spec__value"><span class="footer-spec__number">65</span><span class="footer-spec__unit">kg</span></p>
+        </div>
+        <div class="footer-spec footer-spec--payload footer-spec--metric">
+          <p class="footer-spec__label">Payload</p>
+          <p class="footer-spec__value"><span class="footer-spec__number">20</span><span class="footer-spec__unit">kg</span></p>
         </div>
       </div>
-    </section>
-  </main>
+
+      <div class="site-footer__robot">
+        <img class="site-footer__robot-image" src="./assets/images/footer/footer-robot.webp" width="1200" height="800" alt="Rookie2 robot product render" loading="lazy" decoding="async">
+      </div>
+
+      <div class="site-footer__brand">
+        <img class="site-footer__brand-logo" src="./assets/images/NaverLabsMark.svg" width="360" height="36" alt="NAVER LABS" loading="lazy" decoding="async">
+        <div class="site-footer__socials" aria-label="NAVER LABS social channels">
+          <span class="site-footer__social" role="img" aria-label="Instagram">
+            <img class="site-footer__social-icon" src="./assets/images/footer/footer-social-instagram.svg" width="20" height="20" alt="" loading="lazy" decoding="async">
+          </span>
+          <span class="site-footer__social" role="img" aria-label="X">
+            <img class="site-footer__social-icon" src="./assets/images/footer/footer-social-x.svg" width="20" height="20" alt="" loading="lazy" decoding="async">
+          </span>
+          <span class="site-footer__social" role="img" aria-label="Kakao">
+            <img class="site-footer__social-icon" src="./assets/images/footer/footer-social-kakao.svg" width="20" height="20" alt="" loading="lazy" decoding="async">
+          </span>
+          <span class="site-footer__social" role="img" aria-label="YouTube">
+            <img class="site-footer__social-icon" src="./assets/images/footer/footer-social-youtube.svg" width="20" height="20" alt="" loading="lazy" decoding="async">
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="./assets/js/lottie.min.js"></script>
   <script src="./assets/js/interface-lottie-data.js"></script>
@@ -3854,6 +4327,7 @@
     const productGalleryCoverCards = document.querySelectorAll("[data-product-gallery-cover-card]");
     const productGalleryParallaxCards = document.querySelectorAll("[data-product-gallery-parallax]");
     const systemTitleSection = document.querySelector(".system-title");
+    const systemFooterCover = document.querySelector("[data-system-footer-cover]");
     const systemMotionSections = document.querySelectorAll("[data-system-motion-section]");
     const COPY_REVEAL_START_SECONDS = 1.6;
     const COPY_REVEAL_DURATION_SECONDS = 0.85;
@@ -4028,6 +4502,42 @@
       const coverProgress = getMotionCoverProgress(state.section);
       const offset = holdPixels * coverProgress * -COVER_PARALLAX_RATIO;
       state.section.style.setProperty("--motion-cover-y", `${offset.toFixed(2)}px`);
+    }
+
+    function getFooterCoverHoldPixels() {
+      return window.innerHeight || 0;
+    }
+
+    function getFooterCoverProgress() {
+      if (!systemFooterCover) {
+        return 0;
+      }
+
+      const holdPixels = getFooterCoverHoldPixels();
+
+      if (holdPixels <= 0) {
+        return 0;
+      }
+
+      const start = systemFooterCover.offsetTop + systemFooterCover.offsetHeight - window.innerHeight - holdPixels;
+      const end = start + holdPixels;
+
+      if (end <= start) {
+        return 0;
+      }
+
+      return clamp((window.scrollY - start) / (end - start), 0, 1);
+    }
+
+    function updateFooterCoverOffset() {
+      if (!systemFooterCover) {
+        return;
+      }
+
+      const holdPixels = getFooterCoverHoldPixels();
+      const coverProgress = getFooterCoverProgress();
+      const offset = holdPixels * coverProgress * (1 - COVER_PARALLAX_RATIO);
+      systemFooterCover.style.setProperty("--system-footer-cover-y", `${offset.toFixed(2)}px`);
     }
 
     function getProductGalleryCoverProgress(card) {
@@ -4322,6 +4832,7 @@
       updateSystemInfo3ImageParallax();
       updateProductGalleryCovers();
       updateProductGalleryParallax();
+      updateFooterCoverOffset();
     }
 
     function updateVideoTarget(state) {

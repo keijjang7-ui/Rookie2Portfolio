@@ -31,7 +31,9 @@
 - `assets/images/system/system-info4-card-01.webp`, `assets/images/system/system-info4-card-02.webp`, `assets/images/system/system-info4-card-03.webp`: System `System_info4`의 3개 이미지 카드입니다. Figma asset 원본을 작게 줄이지 않고 각각 `1718 x 1440`, `1620 x 1080`, `1620 x 1080` WebP로 변환했습니다. 첫 번째 이미지는 알파 채널을 흰 배경으로 평탄화해 최종 WebP는 모두 RGB입니다. 라운드는 이미지 파일에 굽지 않고 HTML/CSS 라운드 박스에서 `overflow: hidden`으로 처리합니다.
 - `assets/images/interface-design/info-card-distance-near.svg`, `assets/images/interface-design/info-card-distance-mid.svg`, `assets/images/interface-design/info-card-distance-far.svg`: Interface Design `Info` 3번 그룹의 viewing distance 그래픽입니다.
 - `assets/images/interface-design/info-card-05-nice.webp`, `assets/images/interface-design/info-card-05-pin.webp`, `assets/images/interface-design/info-card-05-destination.webp`, `assets/images/interface-design/info-card-05-depart.webp`: Interface Design `Info` 4번 그룹의 status interface 예시 이미지입니다. 모바일 전용 이미지는 `info-card-05-pin-m.webp`, `info-card-05-destination-m.webp`입니다.
-- `assets/fonts/a-type/AType-Bold.otf`: Hero 타이틀 `Rookie2`에 사용하는 A Type 웹폰트입니다. 사이트에서 쓰는 두께만 `assets` 아래에서 관리합니다.
+- Hero 타이틀 `Rookie2`는 웹폰트가 아니라 `index.html` 안에 인라인 SVG 패스로 직접 포함합니다. 제공 원본은 여백 없는 `Rookie2_logo.svg`이며, 화면에서는 `currentColor`와 CSS 크기값으로 기존 반응형 위치를 유지합니다.
+- `assets/images/footer/footer-robot.webp`: Footer 중앙 로봇 렌더 이미지입니다. 사용자 제공 `1200x800.png`를 원본 해상도 `1200 x 800` 그대로 WebP로 변환했습니다. Footer 레이아웃의 이미지 슬롯도 Figma 기준 `1200 x 800` 비율을 유지하고, 이미지는 `object-fit: cover`로 Fill 처리합니다.
+- `assets/images/footer/footer-social-instagram.svg`, `assets/images/footer/footer-social-x.svg`, `assets/images/footer/footer-social-kakao.svg`, `assets/images/footer/footer-social-youtube.svg`: Footer 소셜 아이콘입니다. 사용자가 제공한 SVG 원본을 그대로 복사해 사용합니다. 브랜드/소셜 아이콘은 임의로 직접 그리지 말고, 제공 SVG 또는 Figma/공식 원본 SVG를 사용합니다.
 - `assets/media/Intro_mv.mp4`: 스크롤에 따라 재생/역재생되는 Intro motion HEVC 영상입니다.
 - `assets/content/intro.json`: Intro 문구의 `en`, `ko` 보관용 콘텐츠입니다. 현재 화면은 HTML에 직접 박힌 영문을 사용하지만, 나중에 한글화할 때 이 파일을 기준으로 다시 적용합니다.
 - `History/index_20260619_001030.html`: 2026-06-19 00:10 기준, 공통 타이포그래피 토큰 적용 직전의 `index.html` 스냅샷입니다.
@@ -42,7 +44,7 @@
 오늘 작업 기준으로 확정된 내용:
 
 - `index.html`에 favicon SVG data URL을 직접 포함했습니다.
-- Hero 타이틀 폰트는 `assets/fonts/a-type/AType-Bold.otf`를 `@font-face`로 로드합니다. 루트의 `A type/` 원본 폴더는 사이트 자산으로 쓰지 않고 Git 추적에서도 제외합니다.
+- Hero 타이틀은 별도 폰트 파일 없이 인라인 SVG로 렌더링합니다. 접근성 이름은 `h1`의 `aria-label="Rookie2"`로 유지하고, SVG 자체는 장식 요소로 숨깁니다.
 - 터치 환경의 Hero 배경은 `position: absolute`로 전환합니다. 이전처럼 최상단 pull-down을 `touchmove`에서 막는 방식은 다시 사용하지 않습니다.
 - Visual Principles 카드 폭은 모든 반응형 지점에서 `var(--section-width)`를 사용합니다. 활성 카드, 타이틀, 인디케이터의 좌측 기준선은 항상 같아야 합니다.
 - Visual Principles 터치 스와이프는 방향 잠금 로직을 사용합니다. 가로 의도가 확인되면 카드 스와이프, 세로 의도가 크면 페이지 스크롤을 유지합니다.
@@ -99,6 +101,7 @@
   - `System_mv2`
   - `System_mv2_full`
   - `System_info4`
+  - `Footer`
 - Figma의 `Intro` node id는 `1:26`입니다.
 - Figma의 `Hero_Tablet` node id는 `30:2`입니다.
 - Figma의 `Hero_Mobile` node id는 `18:2`입니다.
@@ -106,7 +109,8 @@
 - Figma의 `Interface Design` section node id는 `37:29`입니다.
 - Figma의 `Landing2 > System_info2` node id는 `162:588`입니다.
 - Figma의 `Landing2 > System_info3` node id는 `162:597`입니다.
-- Figma의 `Landing2 > System_info4` node id는 `162:622`입니다.
+- Figma의 `Landing2 > System_info4` node id는 `199:59`입니다.
+- Figma의 `Landing2 > Footer` node id는 `210:258`입니다.
 
 Figma 디자인을 다시 반영할 때는 먼저 Figma에서 해당 node를 확인하고, `index.html`의 현재 수작업 구조에 맞게 CSS/HTML로 변환합니다.
 
@@ -418,6 +422,7 @@ Intro motion overlay 카피 기준:
 - `System_info3`와 `System_info4` 사이의 `Seamless Integration` 챕터는 `System_mv1`의 카드 스타일만 공유하고, 확장 motion은 사용하지 않습니다. 영상은 `assets/media/System_mv3.mp4`이며, 일반 playback으로 화면 안에 있을 때 재생하고 벗어나면 pause합니다. 데스크톱 기준 `System_info3` 아이콘 영역 끝과 카드 시작의 시각 간격은 `200px`이고, 기존 `System_info3` 하단 padding `120px`과 챕터 상단 padding `80px` 조합으로 맞춥니다. 카드는 정적인 초기 크기로 유지하며 높이는 데스크톱 `520px`, 1200 이하 `clamp(430px, 43.333vw, 520px)`, 760 이하 `clamp(300px, 48vw, 360px)`, 560 이하 `240px`로 줄입니다. 카드와 아래 문구 사이 간격은 정적 카드 하단 기준 `80px`입니다. 아래 문구와 `System_info4` 카드 시작 사이의 데스크톱 시각 간격은 기존처럼 `200px`이며, 문구 하단 padding `80px`과 `System_info4` 상단 padding `120px` 조합으로 맞춥니다. 1200 이하부터는 `System_info2` 문구와 `System_info3` 카드 사이 간격과 같은 합산값을 사용합니다. 1200 이하 `56px + 104px = 160px`, 760 이하 `48px + 56px = 104px`, 560 이하 `40px + 32px = 72px`입니다. 태블릿/모바일에서는 공통 `.system-motion`의 큰 scroll용 `height/min-height`가 이 정적 챕터에 다시 먹지 않도록 각 breakpoint에서 `height: auto`, `min-height: 0`을 다시 선언합니다.
 - `Seamless Integration` 챕터의 카드 아래 문구는 별도 타이틀 없이 `System_info2` 문구와 같은 state 타입으로 배치합니다. 폭은 `800px`, optical inset은 공통 `--left-text-optical-inset`을 적용하고, 문구는 `Built on NAVER 1784, the world's first robot-friendly building, Rookie2 integrates seamlessly with next-generation spatial infrastructure.`입니다. Figma의 letter spacing은 `-2%`이지만 사이트 구현 기준에 따라 `0`으로 유지합니다.
 - `System_info4`는 Figma `Landing2 > System_info4` 기준 `1920 x 681` 프레임입니다. 내부 카드 그룹은 `x=360`, `y=120`, `1200 x 441`이며 3개 카드가 한 행에 배치됩니다. 카드 column gap은 `28px`, 각 이미지 박스는 `381.333 x 324`, 이미지와 캡션 사이 간격은 `32px`입니다. 캡션은 `sub` 타입을 사용하고 좌측 `10px`, 우측 `16px` 내부 여백을 둡니다. 사이트 기준에 맞춰 letter spacing은 `0`입니다. 라운드는 이미지에 굽지 않고 `.system-info4__media`의 `border-radius`와 `overflow: hidden`으로 처리합니다. 1200 이하에서는 gap `22px`, radius `28px`, caption gap `28px`, 캡션 좌측 padding `8px`, 우측 padding `8px`를 씁니다. 760 이하에서는 `System_info1` 모바일처럼 카드+캡션 그룹이 한 열로 쌓이며 그룹 간격은 `40px`이고, 캡션 우측 padding은 `16px`, 이미지 박스 높이는 바로 위 `Seamless Integration` 영상 카드와 같은 `clamp(300px, 48vw, 360px)`입니다. 560 이하에서는 이미지 박스 높이를 같은 기준의 `240px`로 맞추고 caption gap을 `20px`로 줄입니다. `System_info4`의 상단 padding은 데스크톱에서는 기존 `120px`이고, 1200 이하 `104px`, 760 이하 `56px`, 560 이하 `32px`입니다.
+- `Footer`는 Figma `Landing2 > Footer` 기준 `1920 x 2279` 프레임입니다. 데스크톱에서는 lead 상단 여백 `300px`, lead 폭 `800`, specs 시작 `y=635`, robot image 시작 `y=1103`, NAVER LABS 로고 시작 `y=2063` 기준입니다. Product 마지막 영상 위로 System이 덮이는 방식과 맞춰, `Seamless Integration` 영상/문구와 `System_info4`를 `.system-footer-cover`로 함께 감싸고 하단에 `100svh` hold/reveal 영역을 둡니다. `.site-footer`는 `margin-top: -100svh`로 올라오며, Footer는 정상 스크롤로 검은 영역이 덮고 올라옵니다. 뒤의 시스템 하단 묶음 전체는 `.system-footer-cover__content` 단일 레이어에서 같은 counter-translate 값을 공유합니다. 개별 섹션이나 카드만 따로 transform하지 않아야 `System_info4` 배경이 위 문구를 마스킹하지 않습니다. 이 레이어는 integration 영상/문구와 하단 3카드가 함께 거의 정지된 듯 보이되 Product 마지막 motion처럼 약간만 위로 흐르게 만듭니다. 계산은 Product 마지막 motion의 `COVER_PARALLAX_RATIO`와 맞춰, 최종 시각 이동이 hold 거리의 약 30%가 되도록 합니다. Footer lead 문구는 공통 `state` 토큰과 optical inset을 사용합니다. Provider `NAVER`, Nickname `Rookie2`, Robot Platform `AROUND`는 `assets/images/footer/`의 SVG 로고를 사용하며, 큰 spec 텍스트(`60px`)와 같은 비율로 반응형에서 축소합니다. 하단 `NAVER LABS`는 `assets/images/NaverLabsMark.svg`를 이미지로 재사용하고 푸터에서 흰색 필터를 적용합니다. Footer 소셜 아이콘은 사용자가 제공한 SVG 파일을 `<img>`로 참조하며, 아이콘 형태를 코드에서 임의로 직접 그리지 않습니다.
 
 ## 스크롤/비디오 스크립트 기준
 
